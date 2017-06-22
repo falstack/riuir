@@ -2,7 +2,7 @@
   <section class="container">
     <logo/>
     <h1 class="title">riuir</h1>
-    <h2 class="subtitle">天下漫友是一家</h2>
+    <h2 class="subtitle">mobile</h2>
   </section>
 </template>
 
