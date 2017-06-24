@@ -28,14 +28,12 @@ class DoorController extends Controller
     public function register(RegisterRequest $request)
     {
         $data = [
-            'name' => $request->get('name'),
             'email' => $request->get('email'),
+            'nickname' => $request->get('nickname'),
             'password' => $request->get('password'),
             'zone' => $this->createUserZone($request->get('name')),
             'avatar' => 'avatar',
-            'banner' => 'B-banner',
-            'sex' => 0,
-            'like' => 0
+            'banner' => 'B-banner'
         ];
 
         $this->user->create($data);
