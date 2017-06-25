@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\RegisterRequest;
 use App\Models\User;
-use App\Models\userZone;
+use App\Models\UserZone;
 use App\Service\JWTService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class DoorController extends Controller
     protected $JWTService;
 
     public function __construct(User $user,
-                                userZone $zone,
+                                UserZone $zone,
                                 JWTService $JWTService)
     {
         $this->user = $user;
@@ -37,32 +37,12 @@ class DoorController extends Controller
             'email' => $request->get('email'),
             'nickname' => $request->get('nickname'),
             'password' => $request->get('password'),
-            'zone' => $this->createUserZone($request->get('name')),
+            'zone' => $this->createUserZone($request->get('nickname')),
             'avatar' => 'avatar',
             'banner' => 'B-banner'
         ];
 
         $this->user->create($data);
-    }
-
-    public function dispatchToken()
-    {
-        return $this->JWTService->createToken($this->user->find(1));
-    }
-
-    public function useToken()
-    {
-        return $this->getAuthUser();
-    }
-
-    public function refreshToken()
-    {
-        // 旧的 token 不能用了
-        // 在 request header 中返回一个新的 token
-        // 如果 token 过期了就不能刷新了，会返回401
-        // 如果 token 是无效的，则会返回400
-        // 所以说 refresh_ttl 比 token_ttl 大的意义在哪里？
-        return $this->getAuthUser();
     }
 
     public function captcha()

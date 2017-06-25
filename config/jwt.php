@@ -7,6 +7,11 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * 如果 token 未过期，则会返回 [200]，在 response header 中返回新的 token
+ * 如果 token 过期，则会返回 [401 Unauthorized] token_expired，在 response header 中返回新的 token
+ * 如果 token 的 refresh_ttl 超时，则会返回 [400 400 Bad Request]， token_expired
+ *
  */
 
 return [

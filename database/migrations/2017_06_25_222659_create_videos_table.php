@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserZonesTable extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateUserZonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_zones', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('url');
+            $table->string('poster');
+            $table->unsignedInteger('bangumi_id');
+            $table->unsignedInteger('part');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +31,6 @@ class CreateUserZonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_zones');
+        Schema::dropIfExists('videos');
     }
 }
