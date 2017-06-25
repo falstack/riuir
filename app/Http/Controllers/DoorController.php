@@ -8,6 +8,7 @@ use App\Models\userZone;
 use App\Service\JWTService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravist\GeeCaptcha\GeeCaptcha;
 use Overtrue\LaravelPinyin\Facades\Pinyin as Overtrue;
 
 class DoorController extends Controller
@@ -25,6 +26,11 @@ class DoorController extends Controller
         $this->JWTService = $JWTService;
     }
 
+    public function index()
+    {
+        return view('welcome');
+    }
+
     public function register(RegisterRequest $request)
     {
         $data = [
@@ -37,6 +43,33 @@ class DoorController extends Controller
         ];
 
         $this->user->create($data);
+    }
+
+    public function dispatchToken()
+    {
+        return $this->JWTService->createToken($this->user->find(1));
+    }
+
+    public function useToken()
+    {
+        return $this->getAuthUser();
+    }
+
+    public function refreshToken()
+    {
+        // 旧的 token 不能用了
+        // 在 request header 中返回一个新的 token
+        // 如果 token 过期了就不能刷新了，会返回401
+        // 如果 token 是无效的，则会返回400
+        // 所以说 refresh_ttl 比 token_ttl 大的意义在哪里？
+        return $this->getAuthUser();
+    }
+
+    public function captcha()
+    {
+        $captcha = new GeeCaptcha(env('GEETEST_ID'), env('GEETEST_KEY'));
+
+        return $captcha->GTServerIsNormal();
     }
 
     public function login(Request $request)
