@@ -3,12 +3,25 @@
 </style>
 
 <template>
-  <p>this is bangumi news page</p>
+  <div class="list container">
+    <div class="bangumi"
+         v-for="item in bangumis">
+      <p v-text="item.summary"></p>
+    </div>
+  </div>
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     name: 'bangumi-news',
+    asyncData () {
+      return axios.get('http://riuir.dev/bangumi/news')
+        .then((res) => {
+          return { bangumis: res.data }
+        })
+    },
     components: {
 
     },
@@ -23,7 +36,7 @@
     },
     data () {
       return {
-
+        bangumis: null
       }
     },
     created () {

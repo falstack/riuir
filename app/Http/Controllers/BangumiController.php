@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Bangumi;
 
 class BangumiController extends Controller
 {
-    //
+    public function news()
+    {
+        return Bangumi::all();
+    }
 }

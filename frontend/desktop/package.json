@@ -5,6 +5,7 @@
   "author": "falstack <icesilt@outlook.com>",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "fonts.css": "^1.5.0",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",

@@ -5,27 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\RegisterRequest;
 use App\Models\User;
 use App\Models\UserZone;
-use App\Service\JWTService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravist\GeeCaptcha\GeeCaptcha;
 use Overtrue\LaravelPinyin\Facades\Pinyin as Overtrue;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DoorController extends Controller
 {
-    protected $user;
-    protected $zone;
-    protected $JWTService;
-
-    public function __construct(User $user,
-                                UserZone $zone,
-                                JWTService $JWTService)
-    {
-        $this->user = $user;
-        $this->zone = $zone;
-        $this->JWTService = $JWTService;
-    }
-
     public function index()
     {
         return view('welcome');
@@ -42,7 +29,7 @@ class DoorController extends Controller
             'banner' => 'B-banner'
         ];
 
-        $this->user->create($data);
+        User::create($data);
     }
 
     public function captcha()
@@ -60,7 +47,7 @@ class DoorController extends Controller
         {
             $user = Auth::user();
 
-            $user->token = $this->JWTService->createToken($user);
+            $user->token = JWTAuth::fromUser($user);
 
             return $user;
         }
@@ -75,11 +62,16 @@ class DoorController extends Controller
         Auth::logout();
     }
 
+    public function refresh()
+    {
+        return $this->getAuthUser();
+    }
+
     protected function createUserZone($name)
     {
         $pinyin = Overtrue::permalink($name);
 
-        $tail = $this->zone->where('name', $pinyin)->count();
+        $tail = UserZone::where('name', $pinyin)->count();
 
         if ($tail)
         {
@@ -87,7 +79,7 @@ class DoorController extends Controller
         }
         else
         {
-            $this->zone->create(['name' => $pinyin]);
+            UserZone::create(['name' => $pinyin]);
 
             return $pinyin;
         }
