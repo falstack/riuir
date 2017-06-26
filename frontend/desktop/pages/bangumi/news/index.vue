@@ -1,19 +1,14 @@
-<style lang="scss" scoped>
-  header {
-    width: 100%;
-  }
+<style lang="scss" scoped="">
+
 </style>
 
 <template>
-  <header>
-    <router-link to="/">首页</router-link>
-    <router-link to="/bangumi/news">最新</router-link>
-  </header>
+  <p>this is bangumi news page</p>
 </template>
 
 <script>
   export default {
-    name: 'v-header',
+    name: 'bangumi-news',
     components: {
 
     },
