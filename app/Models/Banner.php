@@ -5,23 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Video extends Model
+class Banner extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = [
-        'url',
-        'name',
-        'poster',
-        'bangumi_id',
-        'part',
-        'count_played',
-        'count_comment'
-    ];
+    protected $fillable = ['url', 'user_id', 'bangumi_id'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 
     public function bangumi()
     {
-        return $this->belongsTo(Bangumi::class, 'id', 'bangumi_id');
+        return $this->hasOne(Bangumi::class, 'id', 'bangumi_id');
     }
 
     public function getUrlAttribute($url)

@@ -1,9 +1,11 @@
 @import "reboot";
 @import "colors";
+@import "variables";
+@import "layout";
 
 a {
   text-decoration: none;
   cursor: pointer;
   color: $black;
-  font-size: 24px;
+  font-size: $font-size;
 }

@@ -19,6 +19,8 @@ class CreateBangumisTable extends Migration
             $table->string('summary');
             $table->string('avatar');
             $table->string('banner');
+            $table->unsignedInteger('count_like')->default(0);
+            $table->float('count_score', 5);
             $table->softDeletes();
             $table->timestamps();
         });

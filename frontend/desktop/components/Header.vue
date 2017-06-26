@@ -1,11 +1,9 @@
 <style lang="scss" scoped>
-  header {
-    width: 100%;
-  }
+
 </style>
 
 <template>
-  <header>
+  <header class="container">
     <router-link to="/">首页</router-link>
     <router-link to="/bangumi/news">最新</router-link>
   </header>
