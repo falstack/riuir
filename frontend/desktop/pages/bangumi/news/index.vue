@@ -17,7 +17,7 @@
   export default {
     name: 'bangumi-news',
     asyncData () {
-      return axios.get('http://api.riuir.com/bangumi/news')
+      return axios.get('http://riuir.dev/bangumi/news')
         .then((res) => {
           return { bangumis: res.data }
         })
