@@ -5,19 +5,19 @@
 
 <template>
   <div id="main" class="font-hei">
-    <v-header></v-header>
+    <v-banner></v-banner>
     <nuxt/>
     <v-footer></v-footer>
   </div>
 </template>
 
 <script>
-  import vHeader from '~components/Header.vue'
+  import vBanner from '~components/Banner.vue'
   import vFooter from '~components/Footer.vue'
 
   export default {
     components: {
-      vHeader, vFooter
+      vBanner, vFooter
     }
   }
 </script>
