@@ -10,9 +10,11 @@
     right: 0;
     top: 0;
     bottom: 0;
+    background-color: RGB(238, 238, 238);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    transition: background-image 1s ease-in-out;
     z-index: -1;
   }
 </style>
@@ -43,6 +45,20 @@ export default {
   data () {
     return {
       banner: null
+    }
+  },
+  created () {
+    this.loopBanner()
+  },
+  methods: {
+    loopBanner () {
+      setInterval(() => {
+        axios.get('http://api.riuir.com/cartoon/banner').then((res) => {
+          this.banner = res.data;
+        }).catch(() => {
+
+        })
+      }, 20000)
     }
   }
 }
