@@ -54,7 +54,7 @@ export default {
     loopBanner () {
       setInterval(() => {
         axios.get('http://api.riuir.com/cartoon/banner').then((res) => {
-          this.banner = res.data;
+          this.banner = res.data
         }).catch(() => {
 
         })
