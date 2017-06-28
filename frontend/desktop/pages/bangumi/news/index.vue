@@ -40,11 +40,6 @@
         margin: 10px 0 20px 0;
         text-indent: 2em;
         line-height: 1.5;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
       }
 
       .foot {
@@ -61,13 +56,13 @@
   <div class="container">
     <div class="list col-8">
       <div class="bangumi" v-for="item in list">
-        <router-link :to="'/bangumi/' + item.id" tag="div" class="face"></router-link>
+        <router-link :to="'/bangumi/' + item.id" tag="div" class="face" :style="{ backgroundImage: 'url(' + item.avatar + ')' }"></router-link>
         <div class="content">
           <div class="head">
             <router-link :to="'/bangumi/' + item.id" class="name" v-text="item.name"></router-link>
             <span v-text="item.count_score"></span>
           </div>
-          <div class="body">{{ html2text(item.summary) }}</div>
+          <div class="body" v-html="item.summary"></div>
           <div class="foot">
             <span v-text="item.count_like"></span>
           </div>
@@ -83,7 +78,7 @@
   export default {
     name: 'bangumi-news',
     asyncData () {
-      return axios.get('http://riuir.dev/bangumi/news')
+      return axios.get('http://api.riuir.com/bangumi/news')
         .then((res) => {
           return { list: res.data }
         })
@@ -109,9 +104,7 @@
 
     },
     methods: {
-      html2text (html) {
-        return html.replace(/<p>/g, '').replace(/<\/p>/g, '\n')
-      }
+
     },
     mounted () {
 
