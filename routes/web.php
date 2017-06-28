@@ -17,3 +17,8 @@ Route::group(['prefix' => '/bangumi'], function ()
 {
     Route::get('/news', 'BangumiController@news');
 });
+
+Route::group(['prefix' => '/cartoon'], function ()
+{
+    Route::get('/banner', 'DoorController@banner');
+});

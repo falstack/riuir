@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\RegisterRequest;
+use App\Models\Banner;
 use App\Models\User;
 use App\Models\UserZone;
 use Illuminate\Http\Request;
@@ -16,6 +17,11 @@ class DoorController extends Controller
     public function index()
     {
         return view('welcome');
+    }
+
+    public function banner()
+    {
+        return Banner::inRandomOrder()->first();
     }
 
     public function register(RegisterRequest $request)

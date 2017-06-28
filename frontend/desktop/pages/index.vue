@@ -1,34 +1,49 @@
 <style lang="scss" scoped>
-  section {
+  #banner-wrap {
+    width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  }
 
-    .VueToNuxtLogo {
-      flex: 1;
-    }
+  #banner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
   }
 </style>
 
 <template>
-  <section>
+  <div id="banner-wrap">
     <v-header></v-header>
-    <logo/>
-    <h1 class="title">riuir</h1>
-    <h2 class="subtitle">desktop</h2>
-  </section>
+    <div id="banner" :style="{ backgroundImage: 'url(' + banner.url + ')' }"></div>
+  </div>
 </template>
 
 <script>
-import Logo from '~components/Logo.vue'
 import vHeader from '~components/Header.vue'
+import axios from 'axios'
 
 export default {
-  components: {
-    Logo, vHeader
+  name: 'bangumi-news',
+  layout: 'index',
+  asyncData () {
+    return axios.get('http://api.riuir.com/cartoon/banner')
+      .then((res) => {
+        return { banner: res.data }
+      })
   },
-  layout: 'index'
+  components: {
+    vHeader
+  },
+  data () {
+    return {
+      banner: null
+    }
+  }
 }
 </script>
