@@ -15,7 +15,7 @@
         preload="auto"
         :poster="info.poster"
         data-setup='{}'>
-        <source :src="info.url" type="video/mp4"/>
+        <source :src="info.url"/>
       </video>
     </div>
     <v-footer></v-footer>
