@@ -28,4 +28,9 @@ class Video extends Model
     {
         return 'http://cdn.riuir.com/' . $url;
     }
+
+    public function getPosterAttribute($poster)
+    {
+        return 'http://cdn.riuir.com/' . $poster;
+    }
 }

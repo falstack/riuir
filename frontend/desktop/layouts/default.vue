@@ -1,18 +1,31 @@
+<style lang="scss">
+  #layout-default {
+    height: 100%;
+
+    >#main {
+      display: flex;
+      flex-direction: column;
+
+      >.container {
+        flex: 1;
+      }
+    }
+  }
+</style>
+
 <template>
-  <div id="main" class="font-hei">
-    <v-banner></v-banner>
+  <div id="layout-default">
     <nuxt/>
-    <v-footer></v-footer>
+    <v-music></v-music>
   </div>
 </template>
 
 <script>
-  import vBanner from '~components/Banner.vue'
-  import vFooter from '~components/Footer.vue'
+  import vMusic from '~components/Music.vue'
 
   export default {
     components: {
-      vBanner, vFooter
+      vMusic
     }
   }
 </script>

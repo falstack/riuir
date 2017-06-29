@@ -1,34 +1,19 @@
 <style lang="scss" scoped="">
   #banner {
     width: 100%;
-    height: 180px;
-    background-color: #00a1d6;
+    height: 170px;
+    background: linear-gradient(4deg,#00e6ff,#00a1d6);
+    margin-bottom: 40px;
   }
 </style>
 
 <template>
-  <div id="banner">
-    <v-header></v-header>
-  </div>
+  <div id="banner"></div>
 </template>
 
 <script>
-  import vHeader from '~components/Header.vue'
-
   export default {
     name: 'v-banner',
-    components: {
-      vHeader
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
-    computed: {
-
-    },
     data () {
       return {
 
@@ -38,9 +23,6 @@
 
     },
     methods: {
-
-    },
-    mounted () {
 
     }
   }

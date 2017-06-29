@@ -22,44 +22,43 @@
 <template>
   <div id="banner-wrap">
     <v-header></v-header>
-    <div id="banner" :style="{ backgroundImage: 'url(' + banner.url + ')' }"></div>
+    <div id="banner" :style="{ backgroundImage: `url(${banner.url})` }"></div>
   </div>
 </template>
 
 <script>
-import vHeader from '~components/Header.vue'
-import axios from 'axios'
+  import axios from 'axios'
+  import vHeader from '~components/Header.vue'
 
-export default {
-  name: 'bangumi-news',
-  layout: 'index',
-  asyncData () {
-    return axios.get('http://api.riuir.com/cartoon/banner')
-      .then((res) => {
-        return { banner: res.data }
-      })
-  },
-  components: {
-    vHeader
-  },
-  data () {
-    return {
-      banner: null
-    }
-  },
-  created () {
-    this.loopBanner()
-  },
-  methods: {
-    loopBanner () {
-      setInterval(() => {
-        axios.get('http://api.riuir.com/cartoon/banner').then((res) => {
-          this.banner = res.data
-        }).catch(() => {
-
+  export default {
+    name: 'index',
+    components: {
+      vHeader
+    },
+    asyncData () {
+      return axios.get('http://api.riuir.com/cartoon/banner')
+        .then((res) => {
+          return { banner: res.data }
         })
-      }, 20000)
+    },
+    data () {
+      return {
+        banner: null
+      }
+    },
+    created () {
+      this.loopBanner()
+    },
+    methods: {
+      loopBanner () {
+        setInterval(() => {
+          axios.get('http://api.riuir.com/cartoon/banner').then((res) => {
+            this.banner = res.data
+          }).catch(() => {
+
+          })
+        }, 20000)
+      }
     }
   }
-}
 </script>

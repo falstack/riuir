@@ -16,6 +16,16 @@ Route::group(['prefix' => '/door', 'middleware' => ['throttle:5,3']], function (
 Route::group(['prefix' => '/bangumi'], function ()
 {
     Route::get('/news', 'BangumiController@news');
+
+    Route::group(['prefix' => '/{id}'], function ()
+    {
+        Route::get('/info', 'BangumiController@info');
+    });
+});
+
+Route::group(['prefix' => '/video/{id}'], function ()
+{
+    Route::get('/info', 'VideoController@info');
 });
 
 Route::group(['prefix' => '/cartoon'], function ()

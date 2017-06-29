@@ -53,38 +53,46 @@
 </style>
 
 <template>
-  <div class="container">
-    <div class="list col-8">
-      <div class="bangumi" v-for="item in list">
-        <router-link :to="'/bangumi/' + item.id" tag="div" class="face" :style="{ backgroundImage: 'url(' + item.avatar + ')' }"></router-link>
-        <div class="content">
-          <div class="head">
-            <router-link :to="'/bangumi/' + item.id" class="name" v-text="item.name"></router-link>
-            <span v-text="item.count_score"></span>
-          </div>
-          <div class="body" v-html="item.summary"></div>
-          <div class="foot">
-            <span v-text="item.count_like"></span>
+  <div id="main">
+    <v-header></v-header>
+    <v-banner></v-banner>
+    <div class="container">
+      <div class="list col-8">
+        <div class="bangumi" v-for="item in list">
+          <router-link :to="`/bangumi/${item.id}`" tag="div" class="face" :style="{ backgroundImage: `${item.avatar}` }"></router-link>
+          <div class="content">
+            <div class="head">
+              <router-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></router-link>
+              <span v-text="item.count_score"></span>
+            </div>
+            <div class="body" v-html="item.summary"></div>
+            <div class="foot">
+              <span v-text="item.count_like"></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import vHeader from '~components/Header.vue'
+  import vBanner from '~components/Banner.vue'
+  import vFooter from '~components/Footer.vue'
 
   export default {
     name: 'bangumi-news',
+    components: {
+      vHeader, vBanner, vFooter
+    },
     asyncData () {
       return axios.get('http://api.riuir.com/bangumi/news')
         .then((res) => {
           return { list: res.data }
         })
-    },
-    components: {
-
     },
     props: {
 
