@@ -68,7 +68,7 @@
   <div id="main">
     <v-header></v-header>
     <div id="banner">
-      <div class="img face" :style="{ backgroundImage: `url(${info.avatar})` }"></div>
+      <div class="img face" :style="{ backgroundImage: `url(${info.banner})` }"></div>
     </div>
     <div class="container">
       <div id="videos" class="clearfix" v-if="videos.length">
