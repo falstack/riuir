@@ -6,13 +6,19 @@
     width: 100%;
     height: 45px;
     z-index: 10;
+
+    .container {
+      height: 100%;
+    }
   }
 </style>
 
 <template>
-  <header id="header" class="container">
-    <router-link to="/">首页</router-link>
-    <router-link to="/bangumi/news">番剧</router-link>
+  <header id="header">
+    <div class="container">
+      <router-link to="/">首页</router-link>
+      <router-link to="/bangumi/news">番剧</router-link>
+    </div>
   </header>
 </template>
 
