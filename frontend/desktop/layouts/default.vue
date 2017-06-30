@@ -15,17 +15,19 @@
 
 <template>
   <div id="layout-default">
+    <v-header></v-header>
     <nuxt/>
     <v-music></v-music>
   </div>
 </template>
 
 <script>
+  import vHeader from '~components/Header.vue'
   import vMusic from '~components/Music.vue'
 
   export default {
     components: {
-      vMusic
+      vHeader, vMusic
     }
   }
 </script>

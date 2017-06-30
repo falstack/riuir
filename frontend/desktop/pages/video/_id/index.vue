@@ -4,19 +4,10 @@
 
 <template>
   <div id="main">
-    <v-header></v-header>
     <v-banner></v-banner>
     <div class="container">
       <h2 class="subtitle">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
-      <video
-        id="my-player"
-        class="video-js"
-        controls
-        preload="auto"
-        :poster="info.poster"
-        data-setup='{}'>
-        <source :src="info.url"/>
-      </video>
+      <v-video :sourceissrc="true" :source="info.url" :poster="info.poster"></v-video>
     </div>
     <v-footer></v-footer>
   </div>
@@ -24,16 +15,14 @@
 
 <script>
   import axios from 'axios'
-  import vHeader from '~components/Header.vue'
   import vBanner from '~components/Banner.vue'
   import vFooter from '~components/Footer.vue'
-
-  import videojs from 'video.js'
+  import vVideo from '~components/video/video.vue'
 
   export default {
     name: 'video-index',
     components: {
-      vHeader, vBanner, vFooter
+      vBanner, vFooter, vVideo
     },
     validate ({ params }) {
       return /^\d+$/.test(params.id)
@@ -70,15 +59,7 @@
 
     },
     mounted () {
-      videojs('my-player', {}, function onPlayerReady () {
-        videojs.log('Your player is ready!')
-        // In this context, `this` is the player that was created by Video.js.
-        this.play()
-        // How about an event listener?
-        this.on('ended', function () {
-          videojs.log('Awww...over so soon?!')
-        })
-      })
+
     }
   }
 </script>

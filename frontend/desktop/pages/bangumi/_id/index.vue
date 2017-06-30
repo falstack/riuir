@@ -66,7 +66,6 @@
 
 <template>
   <div id="main">
-    <v-header></v-header>
     <div id="banner">
       <div class="img face" :style="{ backgroundImage: `url(${info.banner})` }"></div>
     </div>
@@ -86,13 +85,12 @@
 
 <script>
   import axios from 'axios'
-  import vHeader from '~components/Header.vue'
   import vFooter from '~components/Footer.vue'
 
   export default {
     name: 'bangumi-home',
     components: {
-      vHeader, vFooter
+      vFooter
     },
     validate ({ params }) {
       return /^\d+$/.test(params.id)

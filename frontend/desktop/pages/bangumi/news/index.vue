@@ -54,7 +54,6 @@
 
 <template>
   <div id="main">
-    <v-header></v-header>
     <v-banner></v-banner>
     <div class="container">
       <div class="list col-8">
@@ -79,14 +78,13 @@
 
 <script>
   import axios from 'axios'
-  import vHeader from '~components/Header.vue'
   import vBanner from '~components/Banner.vue'
   import vFooter from '~components/Footer.vue'
 
   export default {
     name: 'bangumi-news',
     components: {
-      vHeader, vBanner, vFooter
+      vBanner, vFooter
     },
     asyncData () {
       return axios.get('http://api.riuir.com/bangumi/news')
