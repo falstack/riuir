@@ -176,6 +176,15 @@
         }
       }
     }
+
+    .v-tool-full {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border: none;
+      z-index: 2147483650;
+      width: 100%;
+    }
   }
 
   .fade-enter-active, .fade-leave-active {
@@ -185,15 +194,6 @@
   .fade-enter, .fade-leave-active {
     transition: opacity .5s;
     opacity: 0
-  }
-
-  .v-tool-full {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border: none;
-    z-index: 2147483650;
-    width: 100%;
   }
 
   .vue-pwa-video-btn-playing:before {
@@ -279,7 +279,7 @@
        ref="box">
     <div class="vue-pwa-video-box"
          ref="mask"
-         @click.stop="screenclick ? handlePlay(true) : ''"
+         @click.stop="screenclick ? handlePlay() : ''"
          @dblclick="screenclick ? screen() : ''"
          @mousemove="tool">
       <video :preload="auto ? 'auto' : 'metadata'"
@@ -315,7 +315,7 @@
            class="vue-pwa-video-tool"
            :class="{ 'v-tool-full' : state.isFull }">
         <button :class="[ state.playing ? 'vue-pwa-video-btn-playing' : 'vue-pwa-video-btn-paused' ]"
-                @click="handlePlay(false)">
+                @click="handlePlay()">
         </button>
         <div class="vue-pwa-video-time">
           <span v-text="value.curTime"></span>
@@ -444,8 +444,8 @@
       }
     },
     methods: {
-      handlePlay (bool = false) {
-        if (this.state.waiting || (this.state.isFull && bool)) return
+      handlePlay () {
+        if (this.state.waiting) return
 
         if (this.video.paused) {
           this.video.play()
@@ -476,17 +476,16 @@
       handleSeek (val) {
         this.video.currentTime = val
         if (this.video.paused) {
-          this.handlePlay(false)
+          this.handlePlay()
         }
       },
       tool () {
-        if (this.state.isFull) {
+        if (this.state.isFull && !this.state.showTool) {
           this.state.showTool = true
           this.value.timer = setTimeout(() => {
             if (this.state.isFull) {
               this.state.showTool = false
             }
-            clearTimeout(this.value.timer)
           }, 5000)
         }
       },
@@ -610,7 +609,7 @@
           self.state.init = false
         } else {
           if (this.paused) {
-            self.handlePlay(false)
+            self.handlePlay()
           }
         }
       })
@@ -750,9 +749,10 @@
 
       document.addEventListener('keyup', function (e) {
         if (e.keyCode === 32) {
-          if (self.keyboard || self.checkIsFullScreen()) {
+          if (self.keyboard && self.checkIsFullScreen()) {
             e.preventDefault()
-            self.handlePlay(true)
+            e.stopPropagation()
+            self.handlePlay()
           }
         } else if (e.keyCode === 40) {
           if (self.checkIsFullScreen()) {

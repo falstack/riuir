@@ -5,12 +5,12 @@
     bottom: 40px;
     width: 90px;
     height: 40px;
-    background-color: darkgray;
+    background-color: transparent;
   }
 </style>
 
 <template>
-  <div id="music">{{ state }}</div>
+  <div id="music"></div>
 </template>
 
 <script>
@@ -30,13 +30,11 @@
     },
     data () {
       return {
-        state: 0
+
       }
     },
     created () {
-      setInterval(() => {
-        this.state++
-      }, 1000)
+
     },
     methods: {
 

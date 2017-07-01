@@ -13,6 +13,7 @@
       overflow: hidden;
       border-radius: 4px;
       position: relative;
+      cursor: pointer;
       flex: 1;
     }
 
