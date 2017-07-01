@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
   import vFooter from '~components/Footer.vue'
 
@@ -87,7 +87,7 @@
       vBanner, vFooter
     },
     asyncData () {
-      return axios.get('http://api.riuir.com/bangumi/news')
+      return axios.get('/bangumi/news')
         .then((res) => {
           return { list: res.data }
         })

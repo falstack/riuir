@@ -1,7 +1,8 @@
+const webpack = require('webpack')
+
 module.exports = {
   css: [
-    // 项目中的 Sass 文件
-    { src: '~static/stylesheet/global.scss', lang: 'scss' } // 指定 scss 而非 sass
+    { src: '~static/stylesheet/global.scss', lang: 'scss' }
   ],
   /*
   ** Headers of the page

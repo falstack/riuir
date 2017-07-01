@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
   import vFooter from '~components/Footer.vue'
   import vVideo from '~components/video/video.vue'

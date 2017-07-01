@@ -84,7 +84,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from '~plugins/axios'
   import vFooter from '~components/Footer.vue'
 
   export default {

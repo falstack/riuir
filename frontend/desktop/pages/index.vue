@@ -26,12 +26,12 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from '~plugins/axios'
 
   export default {
     name: 'index',
     asyncData () {
-      return axios.get('http://api.riuir.com/cartoon/banner')
+      return axios.get('/cartoon/banner')
         .then((res) => {
           return { banner: res.data }
         })
@@ -47,7 +47,7 @@
     methods: {
       loopBanner () {
         setInterval(() => {
-          axios.get('http://api.riuir.com/cartoon/banner').then((res) => {
+          axios.get('/cartoon/banner').then((res) => {
             this.banner = res.data
           }).catch(() => {
 
