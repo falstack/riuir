@@ -38,7 +38,8 @@
     },
     data () {
       return {
-        banner: null
+        banner: null,
+        timer: null
       }
     },
     created () {
@@ -46,13 +47,19 @@
     },
     methods: {
       loopBanner () {
-        setInterval(() => {
+        this.timer = setInterval(() => {
           axios.get('/cartoon/banner').then((res) => {
             this.banner = res.data
           }).catch(() => {
 
           })
         }, 20000)
+      }
+    },
+    beforeDestroy () {
+      if (this.timer) {
+        clearInterval(this.timer)
+        this.timer = null
       }
     }
   }
