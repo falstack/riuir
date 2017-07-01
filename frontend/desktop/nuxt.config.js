@@ -27,8 +27,7 @@ module.exports = {
   */
   build: {
     vendor: [
-      'axios',
-      '~plugins/imagelazyLoader.js'
+      'axios'
     ],
     /*
     ** Run ESLINT on save
