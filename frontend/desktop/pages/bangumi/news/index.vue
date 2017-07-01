@@ -58,7 +58,7 @@
     <div class="container">
       <div class="list col-8">
         <div class="bangumi" v-for="item in list">
-          <router-link :to="`/bangumi/${item.id}`" tag="div" class="face" :style="{ backgroundImage: `url(${item.avatar})` }"></router-link>
+          <router-link :to="`/bangumi/${item.id}`" tag="div" class="face" :data-src="item.avatar"></router-link>
           <div class="content">
             <div class="head">
               <router-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></router-link>
@@ -113,7 +113,8 @@
 
     },
     mounted () {
-
+      window.$imageLazyLoader.init()
+      window.$imageLazyLoader.heartbeat()
     }
   }
 </script>
