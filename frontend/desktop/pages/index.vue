@@ -4,7 +4,7 @@
     height: 100%;
   }
 
-  #banner {
+  .banner {
     position: absolute;
     left: 0;
     right: 0;
@@ -14,14 +14,20 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    transition: background-image 1s ease-in-out;
     z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    &.show {
+      opacity: 1;
+    }
   }
 </style>
 
 <template>
   <div id="banner-wrap">
-    <div id="banner" :style="{ backgroundImage: `url(${banner.url})` }"></div>
+    <div class="banner" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${banner1.url})` : '' }"></div>
+    <div class="banner" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${banner2.url})` : '' }"></div>
   </div>
 </template>
 
@@ -33,13 +39,15 @@
     asyncData () {
       return axios.get('/cartoon/banner')
         .then((res) => {
-          return { banner: res.data }
+          return { banner1: res.data }
         })
     },
     data () {
       return {
-        banner: null,
-        timer: null
+        banner1: null,
+        banner2: null,
+        timer: null,
+        toggle: true
       }
     },
     created () {
@@ -49,7 +57,14 @@
       loopBanner () {
         this.timer = setInterval(() => {
           axios.get('/cartoon/banner').then((res) => {
-            this.banner = res.data
+            if (this.toggle) {
+              this.banner2 = res.data
+            } else {
+              this.banner1 = res.data
+            }
+            setTimeout(() => {
+              this.toggle = !this.toggle
+            }, 10000)
           }).catch(() => {
 
           })
