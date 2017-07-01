@@ -6,8 +6,8 @@
   <div id="main">
     <v-banner></v-banner>
     <div class="container">
-      <h2 class="subtitle">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
-      <v-video :sourceissrc="true" :source="info.url" :poster="info.poster"></v-video>
+      <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
+      <v-video :sourceissrc="true" :source="info.url" :poster="info.poster" v-if="info"></v-video>
     </div>
     <v-footer></v-footer>
   </div>

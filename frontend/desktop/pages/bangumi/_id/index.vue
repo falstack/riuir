@@ -67,7 +67,7 @@
 <template>
   <div id="main">
     <div id="banner">
-      <div class="img face" :style="{ backgroundImage: `url(${info.banner})` }"></div>
+      <div class="img face" :style="{ backgroundImage: info ? `url(${info.banner})` : '' }"></div>
     </div>
     <div class="container">
       <div id="videos" class="clearfix" v-if="videos.length">
