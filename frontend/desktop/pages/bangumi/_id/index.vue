@@ -70,7 +70,7 @@
       <div class="img face" :style="{ backgroundImage: info ? `url(${info.banner})` : '' }"></div>
     </div>
     <div class="container">
-      <div id="videos" class="clearfix" v-if="videos.length">
+      <div id="videos" class="clearfix">
         <h2 class="subtitle">视频列表</h2>
         <div class="video" v-for="video in videos">
           <router-link tag="div" class="poster face oneline" :to="`/video/${video.id}`" :style="{ backgroundImage: `url(${video.poster})` }"></router-link>
