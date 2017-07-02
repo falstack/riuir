@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Bangumi;
 use App\Models\Video;
-use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
@@ -14,6 +13,7 @@ class VideoController extends Controller
 
         return response()->json([
             'info' => $info,
+            'videos' => Video::where('bangumi_id', $info->bangumi_id)->get(),
             'bangumi' => Bangumi::find($info->bangumi_id)
         ], 200);
     }

@@ -400,6 +400,34 @@
         default: false
       }
     },
+    watch: {
+      'source': {
+        handler () {
+          this.state = {
+            playing: false,
+            isMuted: false,
+            isFull: false,
+            showTool: true,
+            waiting: true,
+            firstPlay: true,
+            init: true,
+            ended: false,
+            seeking: false,
+            error: false
+          }
+          this.value = {
+            duration: 0,
+            loading: 0,
+            playing: 0,
+            curTime: '00:00',
+            allTime: '00:00',
+            voiceTemp: 0,
+            timer: null
+          }
+        },
+        deep: true
+      }
+    },
     computed: {
       fullScreenStyle () {
         if (this.state.isFull) {
@@ -445,6 +473,7 @@
     },
     methods: {
       handlePlay () {
+        console.log('handle play'); //eslint-disable-line
         if (this.state.waiting) return
 
         if (this.video.paused) {
