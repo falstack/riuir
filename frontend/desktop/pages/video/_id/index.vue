@@ -58,7 +58,7 @@
     <v-banner></v-banner>
     <div class="container">
       <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
-      <div class="metas clearfix" v-if="videos.length && maxWidth">
+      <div class="metas clearfix" v-if="maxWidth">
         <nuxt-link class="meta" v-for="meta in videos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
           <span>{{ meta.part }}</span>{{ meta.name }}
         </nuxt-link>
