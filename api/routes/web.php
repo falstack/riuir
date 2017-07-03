@@ -17,6 +17,8 @@ Route::group(['prefix' => '/bangumi'], function ()
 {
     Route::get('/news', 'BangumiController@news');
 
+    Route::get('/generate', 'BangumiController@generate');
+
     Route::group(['prefix' => '/{id}'], function ()
     {
         Route::get('/info', 'BangumiController@info');

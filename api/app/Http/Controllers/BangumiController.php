@@ -19,4 +19,9 @@ class BangumiController extends Controller
             'videos' => Video::where('bangumi_id', $id)->get()
         ], 200);
     }
+
+    public function generate()
+    {
+        return Bangumi::all()->pluck('id');
+    }
 }

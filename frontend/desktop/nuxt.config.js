@@ -1,6 +1,24 @@
-const webpack = require('webpack')
+const axios = require('axios')
+const baseUrl = process.env.NODE_ENV !== 'production' ? 'http://riuir.dev' : 'http://api.riuir.com'
+axios.create({
+  baseURL: baseUrl,
+  timeout: 10000
+})
 
 module.exports = {
+  env: {
+    baseUrl
+  },
+  generate: {
+    routes: function () {
+      return axios.get(`${baseUrl}/bangumi/generate`)
+        .then((res) => {
+          return res.data.map((bangumi) => {
+            return '/bangumi/' + bangumi
+          })
+        })
+    }
+  },
   css: [
     { src: '~static/stylesheet/global.scss', lang: 'scss' }
   ],
