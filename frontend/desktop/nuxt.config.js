@@ -1,8 +1,5 @@
 const axios = require('axios')
-const baseUrl = process.env.NODE_ENV !== 'production' ? 'http://riuir.dev' : 'http://api.riuir.com'
-axios.create({
-  timeout: 10000
-})
+const baseUrl = 'http://api.riuir.com'
 
 module.exports = {
   generate: {
