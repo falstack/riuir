@@ -6,8 +6,8 @@ module.exports = {
     routes: function () {
       return axios.get(`${baseUrl}/bangumi/generate`)
         .then((res) => {
-          return res.data.map((bangumi) => {
-            return '/bangumi/' + bangumi
+          return res.data.forEach((id) => {
+            return `/bangumi/${id}`
           })
         })
     }
