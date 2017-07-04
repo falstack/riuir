@@ -96,7 +96,7 @@
       return /^\d+$/.test(params.id)
     },
     asyncData ({ params }) {
-      return axios.get(`http://riuir.dev/bangumi/${params.id}/info`)
+      return axios.get(`/bangumi/${params.id}/info`)
         .then((res) => {
           return {
             videos: res.data.videos,
@@ -122,14 +122,14 @@
         videos: []
       }
     },
-    created () {
-
-    },
-    methods: {
-
-    },
     mounted () {
-
+//      if (!this.info) {
+//        axios.get(`/bangumi/${this.id}/info`)
+//          .then((res) => {
+//            this.videos = res.data.videos
+//            this.info = res.data.info
+//          })
+//      }
     }
   }
 </script>

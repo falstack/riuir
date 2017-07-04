@@ -87,7 +87,7 @@
       return /^\d+$/.test(params.id)
     },
     asyncData ({ params }) {
-      return axios.get(`http://riuir.dev/video/${params.id}/info`)
+      return axios.get(`/video/${params.id}/info`)
         .then((res) => {
           return {
             bangumi: res.data.bangumi,
@@ -118,9 +118,6 @@
         maxWidth: 0
       }
     },
-    created () {
-
-    },
     methods: {
       computedMeta () {
         let maxlength = 0
@@ -143,6 +140,14 @@
       }
     },
     mounted () {
+//      if (!this.info) {
+//        axios.get(`/video/${this.id}/info`)
+//          .then((res) => {
+//            this.bangumi = res.data.bangumi
+//            this.videos = res.data.videos
+//            this.info = res.data.info
+//          })
+//      }
       this.computedMeta()
     },
     updated () {
