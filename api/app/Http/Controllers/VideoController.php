@@ -17,4 +17,9 @@ class VideoController extends Controller
             'bangumi' => Bangumi::find($info->bangumi_id)
         ], 200);
     }
+
+    public function generate()
+    {
+        return Video::all()->pluck('id');
+    }
 }

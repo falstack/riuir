@@ -4,14 +4,19 @@ const baseUrl = 'http://api.riuir.com'
 module.exports = {
   generate: {
     routes: function () {
-      return axios.get(`${baseUrl}/bangumi/generate`)
-        .then((res) => {
-          return res.data.map((id) => {
-            return `/bangumi/${id}`
-          })
-        }).catch((err) => {
-          console.log(err);
+      const bangumi = axios.get(`${baseUrl}/bangumi/generate`).then((res) => {
+        return res.data.map((id) => {
+          return `/bangumi/${id}`
         })
+      })
+      const video = axios.get(`${baseUrl}/video/generate`).then((res) => {
+        return res.data.map((id) => {
+          return `/video/${id}`
+        })
+      })
+      return Promise.all([bangumi, video]).then(values => {
+        return values.join().split(',');
+      })
     }
   },
   css: [

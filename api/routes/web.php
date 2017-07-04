@@ -28,6 +28,8 @@ Route::group(['prefix' => '/bangumi'], function ()
 Route::group(['prefix' => '/video/{id}'], function ()
 {
     Route::get('/info', 'VideoController@info');
+
+    Route::get('/generate', 'VideoController@generate');
 });
 
 Route::group(['prefix' => '/cartoon'], function ()
