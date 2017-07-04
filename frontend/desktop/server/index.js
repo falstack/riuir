@@ -1,5 +1,5 @@
-import Koa from 'koa'
-import Nuxt from 'nuxt'
+const Koa = require('koa')
+const Nuxt = require('nuxt')
 
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
