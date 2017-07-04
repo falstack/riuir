@@ -25,11 +25,14 @@ Route::group(['prefix' => '/bangumi'], function ()
     });
 });
 
-Route::group(['prefix' => '/video/{id}'], function ()
+Route::group(['prefix' => '/video'], function ()
 {
-    Route::get('/info', 'VideoController@info');
-
     Route::get('/generate', 'VideoController@generate');
+
+    Route::group(['prefix' => '/{id}'], function ()
+    {
+        Route::get('/info', 'VideoController@info');
+    });
 });
 
 Route::group(['prefix' => '/cartoon'], function ()
