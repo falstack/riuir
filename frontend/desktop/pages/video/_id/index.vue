@@ -140,14 +140,6 @@
       }
     },
     mounted () {
-//      if (!this.info) {
-//        axios.get(`/video/${this.id}/info`)
-//          .then((res) => {
-//            this.bangumi = res.data.bangumi
-//            this.videos = res.data.videos
-//            this.info = res.data.info
-//          })
-//      }
       this.computedMeta()
     },
     updated () {

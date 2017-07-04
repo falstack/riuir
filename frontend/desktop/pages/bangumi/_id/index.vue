@@ -121,15 +121,6 @@
         info: null,
         videos: []
       }
-    },
-    mounted () {
-//      if (!this.info) {
-//        axios.get(`/bangumi/${this.id}/info`)
-//          .then((res) => {
-//            this.videos = res.data.videos
-//            this.info = res.data.info
-//          })
-//      }
     }
   }
 </script>
