@@ -47,7 +47,6 @@ module.exports = {
     */
     extend (config, ctx) {
       if (ctx.isClient) {
-        config.devtool = 'eval-source-map'
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

@@ -129,7 +129,7 @@
         }
         this.maxWidth = 46 + maxlength * 8 + 'px'
         this.$nextTick(() => {
-          if (document.querySelector('.metas').offsetHeight > metaBoxHeight) {
+          if (document.querySelector('.metas') && document.querySelector('.metas').offsetHeight > metaBoxHeight) {
             this.hasMore = true
           }
         })
