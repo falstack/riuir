@@ -90,6 +90,8 @@
       return axios.get('/bangumi/news')
         .then((res) => {
           return { list: res.data }
+        }).catch((err) => {
+          console.log(err)
         })
     },
     props: {

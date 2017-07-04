@@ -94,6 +94,8 @@
             videos: res.data.videos,
             info: res.data.info
           }
+        }).catch((err) => {
+          console.log(err)
         })
     },
     props: {

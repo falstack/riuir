@@ -40,6 +40,8 @@
       return axios.get('/cartoon/banner')
         .then((res) => {
           return { banner1: res.data }
+        }).catch((err) => {
+          console.log(err)
         })
     },
     data () {
@@ -65,8 +67,8 @@
             setTimeout(() => {
               this.toggle = !this.toggle
             }, 10000)
-          }).catch(() => {
-
+          }).catch((res) => {
+            console.log(res)
           })
         }, 20000)
       }

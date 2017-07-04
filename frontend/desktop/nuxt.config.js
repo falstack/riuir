@@ -9,6 +9,8 @@ module.exports = {
           return res.data.map((id) => {
             return `/bangumi/${id}`
           })
+        }).catch((err) => {
+          console.log(err);
         })
     }
   },
