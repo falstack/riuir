@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \TCG\Voyager\Facades\Voyager::useModel('User', \App\Admin::class);
+        //
     }
 
     /**

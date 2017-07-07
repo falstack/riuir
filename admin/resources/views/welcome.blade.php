@@ -46,13 +46,12 @@
             }
 
             .title {
-                letter-spacing: 3px;
                 font-size: 84px;
             }
 
             .links > a {
                 color: #636b6f;
-                padding: 0 12px;
+                padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
                 letter-spacing: .1rem;
@@ -67,18 +66,28 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @if (Auth::check())
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('/register') }}">Register</a>
+                    @endif
+                </div>
+            @endif
+
             <div class="content">
                 <div class="title m-b-md">
-                    riuir
+                    Laravel
                 </div>
+
                 <div class="links">
-                    <a href="#">天</a>
-                    <a href="#">下</a>
-                    <a href="#">漫</a>
-                    <a href="#">友</a>
-                    <a href="#">是</a>
-                    <a href="#">一</a>
-                    <a href="#">家</a>
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>
