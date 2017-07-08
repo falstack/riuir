@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,10 +25,4 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
-
-
-    public function index()
-    {
-        return Auth::check() ? view('index') : redirect('login');
-    }
 }
