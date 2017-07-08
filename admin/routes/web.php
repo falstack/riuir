@@ -15,6 +15,8 @@ Route::group(['middleware' => ['auth']], function ()
 
     Route::group(['prefix' => 'bangumi'], function () {
         Route::get('/', 'PageController@bangumi')->name('bangumi');
+
+        Route::get('/list', 'BangumiController@list');
     });
 
     Route::group(['prefix' => 'banner'], function () {
