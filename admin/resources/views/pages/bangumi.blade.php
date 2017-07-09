@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="list">
+    <div id="list" v-cloak>
         <el-table
                 :data="list"
                 style="width: 100%"
