@@ -12,27 +12,24 @@
                 <template scope="props">
                     <el-form label-position="left" inline class="demo-table-expand">
                         <div>
-                            <el-form-item label="ID">
+                            <el-form-item label="视频 ID">
                                 <span v-text="props.row.id"></span>
                             </el-form-item>
-                        </div>
-                        <el-form-item label="简介">
-                            <span v-html="props.row.summary"></span>
-                        </el-form-item>
-                        <div>
-                            <el-form-item label="横幅">
-                                <span style="cursor: pointer;" v-text="props.row.banner" @click="preview(props.row.banner)"></span>
-                            </el-form-item>
-                            <el-form-item label="头像">
-                                <span style="cursor: pointer;" v-text="props.row.avatar" @click="preview(props.row.avatar)"></span>
+                            <el-form-item label="番剧 ID">
+                                <span v-html="props.row.bangumi_id"></span>
                             </el-form-item>
                         </div>
                         <div>
-                            <el-form-item label="关注人数">
-                                <span>@{{ props.row.like ? props.row.like : 0 }}</span>
+                            <el-form-item label="海报">
+                                <span style="cursor: pointer;" v-text="props.row.poster" @click="preview(props.row.poster)"></span>
                             </el-form-item>
-                            <el-form-item label="总评分数">
-                                <span>@{{ props.row.score ? props.row.score : 0 }}</span>
+                        </div>
+                        <div>
+                            <el-form-item label="播放量">
+                                <span v-text="props.row.count_played"></span>
+                            </el-form-item>
+                            <el-form-item label="评论数">
+                                <span v-text="props.row.count_comment"></span>
                             </el-form-item>
                         </div>
                         <div>
@@ -56,8 +53,26 @@
                     label="索引">
             </el-table-column>
             <el-table-column
-                    prop="name"
+                    prop="bname"
                     label="番名">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="名称">
+            </el-table-column>
+            <el-table-column
+                    prop="part"
+                    label="集数">
+            </el-table-column>
+            <el-table-column
+                    sortable
+                    prop="count_played"
+                    label="播放量">
+            </el-table-column>
+            <el-table-column
+                    sortable
+                    prop="count_comment"
+                    label="评论数">
             </el-table-column>
             <el-table-column
                     width="200"
@@ -205,134 +220,134 @@
     </div>
     <script>
       new Vue({
-          el: '#list',
-          data () {
-            return {
-              list: <?php echo $list ?>,
-              uptoken: '<?php echo $uptoken ?>',
-              editDialogFormVisible: false,
-              createDialogFormVisible: false,
-              dialogTitle: '',
-              editForm: {
-                name: '',
-                avatar: '',
-                banner: '',
-                summary: ''
-              },
-              createForm: {
-                name: '',
-                avatar: '',
-                banner: '',
-                summary: ''
-              },
-              uploadHeaders: {
-                token: '<?php echo $uptoken ?>'
-              },
-              CDNPrefixp: 'http://cdn.riuir.com/'
+        el: '#list',
+        data () {
+          return {
+            list: <?php echo $list ?>,
+            uptoken: '<?php echo $uptoken ?>',
+            editDialogFormVisible: false,
+            createDialogFormVisible: false,
+            dialogTitle: '',
+            editForm: {
+              name: '',
+              avatar: '',
+              banner: '',
+              summary: ''
+            },
+            createForm: {
+              name: '',
+              avatar: '',
+              banner: '',
+              summary: ''
+            },
+            uploadHeaders: {
+              token: '<?php echo $uptoken ?>'
+            },
+            CDNPrefixp: 'http://cdn.riuir.com/'
+          }
+        },
+        methods : {
+          handleEditOpen(index, row) {
+            this.dialogTitle = row.name;
+            this.editForm = {
+              index: index,
+              id: row.id,
+              name: row.name,
+              banner: row.banner,
+              avatar: row.avatar,
+              summary: row.summary
+            };
+            this.editDialogFormVisible = true;
+          },
+          preview(url) {
+            if (url) {
+              window.open(url)
             }
           },
-          methods : {
-            handleEditOpen(index, row) {
-              this.dialogTitle = row.name;
-              this.editForm = {
-                index: index,
-                id: row.id,
-                name: row.name,
-                banner: row.banner,
-                avatar: row.avatar,
-                summary: row.summary
-              };
-              this.editDialogFormVisible = true;
-            },
-            preview(url) {
-              if (url) {
-                window.open(url)
-              }
-            },
-            beforeUpload(file) {
-              const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
-              const isLt2M = file.size / 1024 / 1024 < 2;
+          beforeUpload(file) {
+            const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
+            const isLt2M = file.size / 1024 / 1024 < 2;
 
-              if (!isJPG) {
-                this.$message.error('上传头像图片只能是 JPG 格式!');
-              }
-              if (!isLt2M) {
-                this.$message.error('上传头像图片大小不能超过 2MB!');
-              }
-              return isJPG && isLt2M;
-            },
-            handleEditAvatarSuccess(res, file) {
-              this.editForm.avatar = `${this.CDNPrefixp}${res.key}`
-            },
-            handleEditBannerSuccess(res, file) {
-              this.editForm.banner = `${this.CDNPrefixp}${res.key}`
-            },
-            handleEditDone() {
-              this.$http.post('/bangumi/edit', {
-                id: this.editForm.id,
-                name: this.editForm.name,
-                avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
-                banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
-                summary: this.editForm.summary.replace(/\n/g, '<br/>')
+            if (!isJPG) {
+              this.$message.error('上传头像图片只能是 JPG 格式!');
+            }
+            if (!isLt2M) {
+              this.$message.error('上传头像图片大小不能超过 2MB!');
+            }
+            return isJPG && isLt2M;
+          },
+          handleEditAvatarSuccess(res, file) {
+            this.editForm.avatar = `${this.CDNPrefixp}${res.key}`
+          },
+          handleEditBannerSuccess(res, file) {
+            this.editForm.banner = `${this.CDNPrefixp}${res.key}`
+          },
+          handleEditDone() {
+            this.$http.post('/bangumi/edit', {
+              id: this.editForm.id,
+              name: this.editForm.name,
+              avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
+              banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
+              summary: this.editForm.summary.replace(/\n/g, '<br/>')
+            }).then(() => {
+              this.list[this.editForm.index].name = this.editForm.name;
+              this.list[this.editForm.index].avatar = this.editForm.avatar;
+              this.list[this.editForm.index].banner = this.editForm.banner;
+              this.list[this.editForm.index].summary = this.editForm.summary;
+              this.editDialogFormVisible = false;
+              this.$message.success('操作成功');
+            }, (err) => {
+              this.$message.error('操作失败');
+              console.log(err);
+            });
+          },
+          handleDelete(index, row) {
+            const isDeleted = row.deleted_at !== null;
+            this.$confirm(`确定要${isDeleted ? '恢复' : '删除'}《${row.name}》吗?`, '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              this.$http.post('/bangumi/delete', {
+                id: row.id,
+                isDeleted: isDeleted
               }).then(() => {
-                this.list[this.editForm.index].name = this.editForm.name;
-                this.list[this.editForm.index].avatar = this.editForm.avatar;
-                this.list[this.editForm.index].banner = this.editForm.banner;
-                this.list[this.editForm.index].summary = this.editForm.summary;
-                this.editDialogFormVisible = false;
+                this.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
                 this.$message.success('操作成功');
               }, (err) => {
                 this.$message.error('操作失败');
                 console.log(err);
               });
-            },
-            handleDelete(index, row) {
-              const isDeleted = row.deleted_at !== null;
-              this.$confirm(`确定要${isDeleted ? '恢复' : '删除'}《${row.name}》吗?`, '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-              }).then(() => {
-                this.$http.post('/bangumi/delete', {
-                  id: row.id,
-                  isDeleted: isDeleted
-                }).then(() => {
-                  this.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
-                  this.$message.success('操作成功');
-                }, (err) => {
-                  this.$message.error('操作失败');
-                  console.log(err);
-                });
-              })
-            },
-            handleCreateAvatarSuccess(res, file) {
-              this.createForm.avatar = `${this.CDNPrefixp}${res.key}`
-            },
-            handleCreateBannerSuccess(res, file) {
-              this.createForm.banner = `${this.CDNPrefixp}${res.key}`
-            },
-            handleCreateDone() {
-              this.$http.post('/bangumi/create', {
+            })
+          },
+          handleCreateAvatarSuccess(res, file) {
+            this.createForm.avatar = `${this.CDNPrefixp}${res.key}`
+          },
+          handleCreateBannerSuccess(res, file) {
+            this.createForm.banner = `${this.CDNPrefixp}${res.key}`
+          },
+          handleCreateDone() {
+            this.$http.post('/bangumi/create', {
+              name: this.createForm.name,
+              avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
+              banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
+              summary: this.createForm.summary.replace(/\n/g, '<br/>')
+            }).then((res) => {
+              this.list.unshift({
+                id: res.data,
                 name: this.createForm.name,
-                avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
-                banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
+                avatar: this.createForm.avatar,
+                banner: this.createForm.banner,
                 summary: this.createForm.summary.replace(/\n/g, '<br/>')
-              }).then((res) => {
-                this.list.unshift({
-                  id: res.data,
-                  name: this.createForm.name,
-                  avatar: this.createForm.avatar,
-                  banner: this.createForm.banner,
-                  summary: this.createForm.summary.replace(/\n/g, '<br/>')
-                });
-                this.createDialogFormVisible = false;
-                this.$message.success('操作成功');
-              }, (err) => {
-                  this.$message.error('操作失败');
-                  console.log(err);
               });
-            }
+              this.createDialogFormVisible = false;
+              this.$message.success('操作成功');
+            }, (err) => {
+              this.$message.error('操作失败');
+              console.log(err);
+            });
           }
-       });
+        }
+      });
     </script>
 @endsection

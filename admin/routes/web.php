@@ -24,6 +24,17 @@ Route::group(['middleware' => ['auth']], function ()
         Route::post('/delete', 'BangumiController@delete');
     });
 
+    Route::group(['prefix' => 'video'], function ()
+    {
+        Route::get('/', 'PageController@video')->name('video');
+
+        Route::post('/create', 'VideoController@create');
+
+        Route::post('/edit', 'VideoController@edit');
+
+        Route::post('/delete', 'VideoController@delete');
+    });
+
     Route::group(['prefix' => 'banner'], function ()
     {
         Route::get('/', 'PageController@banner')->name('banner');

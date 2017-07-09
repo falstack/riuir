@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use App\Models\Bangumi;
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
@@ -24,6 +25,20 @@ class PageController extends Controller
 
         return view('pages.bangumi', [
             'list' => Bangumi::withTrashed()->get(),
+            'uptoken' => $auth->uploadToken()
+        ]);
+    }
+
+    public function video()
+    {
+        $auth = new \App\Http\Services\Qiniu\Auth();
+        $list = Video::withTrashed()
+            ->join('bangumis', 'videos.bangumi_id', '=', 'bangumis.id')
+            ->select('videos.*', 'bangumis.name AS bname')
+            ->get();
+
+        return view('pages.video', [
+            'list' => $list,
             'uptoken' => $auth->uploadToken()
         ]);
     }
