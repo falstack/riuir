@@ -146,7 +146,7 @@ final class Response
      * @throws \InvalidArgumentException if the JSON cannot be parsed.
      * @link http://www.php.net/manual/en/function.json-decode.php
      */
-    function json_decode($json, $assoc = false, $depth = 512)
+    static function json_decode($json, $assoc = false, $depth = 512)
     {
         static $jsonErrors = array(
             JSON_ERROR_DEPTH => 'JSON_ERROR_DEPTH - Maximum stack depth exceeded',
