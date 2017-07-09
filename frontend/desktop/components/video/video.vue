@@ -473,12 +473,11 @@
     },
     methods: {
       handlePlay () {
-        console.log('handle play'); //eslint-disable-line
         if (this.state.waiting) return
-
         if (this.video.paused) {
           this.video.play()
           this.state.playing = true
+          this.$emit('playing')
         } else {
           this.video.pause()
           this.state.playing = false

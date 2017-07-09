@@ -64,7 +64,7 @@
         </nuxt-link>
         <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
       </div>
-      <v-video :sourceissrc="true" :source="info.url" :poster="info.poster" v-if="info"></v-video>
+      <v-video :sourceissrc="true" :source="info.url" :poster="info.poster" v-if="info" @playing="handlePlaying"></v-video>
     </div>
     <v-footer></v-footer>
   </div>
@@ -115,7 +115,8 @@
         bangumi: null,
         hasMore: false,
         noMore: false,
-        maxWidth: 0
+        maxWidth: 0,
+        firstPlay: true
       }
     },
     methods: {
@@ -137,6 +138,12 @@
       resizeMeta () {
         document.querySelector('.metas').style.height = this.noMore ? 'auto' : `${metaBoxHeight}px`
         this.noMore = !this.noMore
+      },
+      handlePlaying () {
+        if (this.firstPlay) {
+          this.firstPlay = false
+          axios.post(`/video/${this.id}/playing`)
+        }
       }
     },
     mounted () {

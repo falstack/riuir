@@ -22,4 +22,9 @@ class VideoController extends Controller
     {
         return Video::all()->pluck('id');
     }
+
+    public function playing($id)
+    {
+        Video::find($id)->increment('count_played');
+    }
 }
