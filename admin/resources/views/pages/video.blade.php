@@ -134,7 +134,7 @@
                 </el-row>
                 <el-row>
                     <el-col :span="18">
-                        <el-form-item label="地址" :label-width="'60px'">
+                        <el-form-item label="资源" :label-width="'60px'">
                             <el-input v-model="editForm.url" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
@@ -191,7 +191,7 @@
                 </el-row>
                 <el-row>
                     <el-col :span="18">
-                        <el-form-item label="地址" :label-width="'60px'">
+                        <el-form-item label="资源" :label-width="'60px'">
                             <el-input v-model="createForm.url" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
