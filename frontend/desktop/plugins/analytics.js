@@ -2,6 +2,8 @@
 /*
  ** 只在生产模式的客户端中使用
  */
+import VueRouter from 'vue-router'
+
 if (process.BROWSER_BUILD && process.env.NODE_ENV === 'production') {
   const _hmt = _hmt || [];
   (function() {
@@ -13,6 +15,7 @@ if (process.BROWSER_BUILD && process.env.NODE_ENV === 'production') {
   /*
    ** 每次路由变更时进行pv统计
    */
+  const router = new VueRouter()
   router.afterEach((to, from) => {
     /*
      ** 告诉 GA 增加一个 PV
