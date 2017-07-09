@@ -62,15 +62,18 @@
             </el-table-column>
             <el-table-column
                     prop="part"
+                    width="100"
                     label="集数">
             </el-table-column>
             <el-table-column
                     sortable
+                    width="110"
                     prop="count_played"
                     label="播放量">
             </el-table-column>
             <el-table-column
                     sortable
+                    width="110"
                     prop="count_comment"
                     label="评论数">
             </el-table-column>
