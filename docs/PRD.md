@@ -8,3 +8,4 @@
 2. `webpack watcher`方向，当资源刷新的时候，自动 `npm run generate`
 3. 设法将`npm run generatr`的静态`HTML`文件批量更新到七牛云
 4. 将`www`的 CDN 指向 七牛云
+5. 百度统计
