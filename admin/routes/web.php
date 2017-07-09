@@ -13,13 +13,19 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('register', 'RegisterController@register');
 
 
-    Route::group(['prefix' => 'bangumi'], function () {
+    Route::group(['prefix' => 'bangumi'], function ()
+    {
         Route::get('/', 'PageController@bangumi')->name('bangumi');
 
-        Route::get('/list', 'BangumiController@list');
+        Route::post('/create', 'BangumiController@create');
+
+        Route::post('/edit', 'BangumiController@edit');
+
+        Route::post('/delete', 'BangumiController@delete');
     });
 
-    Route::group(['prefix' => 'banner'], function () {
+    Route::group(['prefix' => 'banner'], function ()
+    {
         Route::get('/', 'PageController@banner')->name('banner');
     });
 });

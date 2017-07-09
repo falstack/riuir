@@ -20,7 +20,12 @@ class PageController extends Controller
 
     public function bangumi()
     {
-        return view('pages.bangumi', ['list' => Bangumi::all()]);
+        $auth = new \App\Http\Services\Qiniu\Auth();
+
+        return view('pages.bangumi', [
+            'list' => Bangumi::withTrashed()->get(),
+            'uptoken' => $auth->uploadToken()
+        ]);
     }
 
     public function banner()

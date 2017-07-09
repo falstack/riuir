@@ -10,8 +10,13 @@
     <!-- Styles -->
     <link href="https://cdn.bootcss.com/element-ui/1.3.7/theme-default/index.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
-    <script src="http://cdn.bootcss.com/element-ui/1.3.7/index.js"></script>
+    <script src="//cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+    <script src="//cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+    <script src="//cdn.bootcss.com/element-ui/1.3.7/index.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.18.1/moment.min.js"></script>
+    <script>
+      Vue.prototype.$http = axios
+    </script>
 </head>
 <body>
     <div id="app">
