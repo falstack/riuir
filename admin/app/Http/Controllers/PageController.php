@@ -39,6 +39,7 @@ class PageController extends Controller
 
         return view('pages.video', [
             'list' => $list,
+            'bangumis' => Bangumi::withTrashed()->select('id', 'name', 'deleted_at')->get(),
             'uptoken' => $auth->uploadToken()
         ]);
     }

@@ -92,63 +92,56 @@
             </el-table-column>
         </el-table>
         <el-dialog :visible.sync="editDialogFormVisible">
-            <h3 slot="title">@{{ `番剧编辑：《${dialogTitle}》`  }}</h3>
+            <h3 slot="title">@{{ `视频编辑：《${dialogTitle}》`  }}</h3>
             <el-form :model="editForm">
-                <el-form-item label="番名" :label-width="'60px'">
+                <el-form-item label="番剧" :label-width="'60px'">
+                    <el-select v-model="editForm.bname" placeholder="请选择">
+                        <el-option
+                            v-for="item in bangumis"
+                            :key="item.id"
+                            :value="item.name"
+                            :disabled="item.deleted_at">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="名称" :label-width="'60px'">
                     <el-input v-model="editForm.name" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="头像" :label-width="'60px'">
-                            <el-input v-model="editForm.avatar" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(editForm.avatar)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleEditAvatarSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="横幅" :label-width="'60px'">
-                            <el-input v-model="editForm.banner" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(editForm.banner)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleEditBannerSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-form-item label="简介" :label-width="'60px'">
-                    <el-input
-                            type="textarea"
-                            :rows="5"
-                            placeholder="请输入番剧简介"
-                            v-model="editForm.summary">
-                    </el-input>
+                <el-form-item label="集数" :label-width="'60px'">
+                    <el-input v-model="editForm.part" auto-complete="off"></el-input>
                 </el-form-item>
+                <el-row>
+                    <el-col :span="18">
+                        <el-form-item label="海报" :label-width="'60px'">
+                            <el-input v-model="editForm.poster" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-button icon="more" @click="preview(editForm.poster)"></el-button>
+                    </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-form-item>
+                            <el-upload
+                                    action="http://up.qiniu.com"
+                                    :data="uploadHeaders"
+                                    :show-file-list="false"
+                                    :on-success="handleEditPosterSuccess"
+                                    :before-upload="beforeUpload">
+                                <i class="el-icon-plus"></i>
+                            </el-upload>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="18">
+                        <el-form-item label="地址" :label-width="'60px'">
+                            <el-input v-model="editForm.url" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-button icon="more" @click="preview(editForm.url)"></el-button>
+                    </el-col>
+                </el-row>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="editDialogFormVisible = false">取 消</el-button>
@@ -158,68 +151,61 @@
         <el-dialog :visible.sync="createDialogFormVisible">
             <h3 slot="title">创建番剧</h3>
             <el-form :model="createForm">
-                <el-form-item label="番名" :label-width="'60px'">
+                <el-form-item label="番剧" :label-width="'60px'">
+                    <el-select v-model="createForm.bname" placeholder="请选择">
+                        <el-option
+                                v-for="item in bangumis"
+                                :key="item.id"
+                                :value="item.name"
+                                :disabled="item.deleted_at">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="名称" :label-width="'60px'">
                     <el-input v-model="createForm.name" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="头像" :label-width="'60px'">
-                            <el-input v-model="createForm.avatar" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(createForm.avatar)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleCreateAvatarSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="横幅" :label-width="'60px'">
-                            <el-input v-model="createForm.banner" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(createForm.banner)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleCreateBannerSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-form-item label="简介" :label-width="'60px'">
-                    <el-input
-                            type="textarea"
-                            :rows="5"
-                            placeholder="请输入番剧简介"
-                            v-model="createForm.summary">
-                    </el-input>
+                <el-form-item label="集数" :label-width="'60px'">
+                    <el-input v-model="createForm.part" auto-complete="off"></el-input>
                 </el-form-item>
+                <el-row>
+                    <el-col :span="18">
+                        <el-form-item label="海报" :label-width="'60px'">
+                            <el-input v-model="createForm.poster" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-button icon="more" @click="preview(createForm.poster)"></el-button>
+                    </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-form-item>
+                            <el-upload
+                                    action="http://up.qiniu.com"
+                                    :data="uploadHeaders"
+                                    :show-file-list="false"
+                                    :on-success="handleCreatePosterSuccess"
+                                    :before-upload="beforeUpload">
+                                <i class="el-icon-plus"></i>
+                            </el-upload>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="18">
+                        <el-form-item label="地址" :label-width="'60px'">
+                            <el-input v-model="createForm.url" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-button icon="more" @click="preview(createForm.url)"></el-button>
+                    </el-col>
+                </el-row>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="createDialogFormVisible = false">取 消</el-button>
                 <el-button type="primary" @click="handleCreateDone">确 定</el-button>
             </div>
         </el-dialog>
-        <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="createDialogFormVisible = true">创建番剧</el-button>
+        <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="createDialogFormVisible = true">新建视频</el-button>
     </div>
     <script>
       new Vue({
@@ -227,24 +213,27 @@
         data () {
           return {
             list: <?php echo $list ?>,
+            bangumis: <?php echo $bangumis ?>,
             uptoken: '<?php echo $uptoken ?>',
+            uploadHeaders: {
+              token: '<?php echo $uptoken ?>'
+            },
             editDialogFormVisible: false,
             createDialogFormVisible: false,
             dialogTitle: '',
             editForm: {
+              bname: '',
               name: '',
-              avatar: '',
-              banner: '',
-              summary: ''
+              part: '',
+              poster: '',
+              url: ''
             },
             createForm: {
+              bname: '',
               name: '',
-              avatar: '',
-              banner: '',
-              summary: ''
-            },
-            uploadHeaders: {
-              token: '<?php echo $uptoken ?>'
+              part: '',
+              poster: '',
+              url: ''
             },
             CDNPrefixp: 'http://cdn.riuir.com/'
           }
@@ -254,11 +243,12 @@
             this.dialogTitle = row.name;
             this.editForm = {
               index: index,
+              bname: row.bname,
               id: row.id,
               name: row.name,
-              banner: row.banner,
-              avatar: row.avatar,
-              summary: row.summary
+              poster: row.poster,
+              url: row.url,
+              part: row.part
             };
             this.editDialogFormVisible = true;
           },
@@ -279,24 +269,33 @@
             }
             return isJPG && isLt2M;
           },
-          handleEditAvatarSuccess(res, file) {
+          handleEditPosterSuccess(res, file) {
             this.editForm.avatar = `${this.CDNPrefixp}${res.key}`
           },
-          handleEditBannerSuccess(res, file) {
-            this.editForm.banner = `${this.CDNPrefixp}${res.key}`
+          computedBangumiId(bname) {
+            for (const bangumi of this.bangumis) {
+              if (bangumi.name === bname) {
+                return bangumi.id
+              }
+            }
+            return 0;
           },
           handleEditDone() {
-            this.$http.post('/bangumi/edit', {
+            const bangumi_id = this.computedBangumiId(this.editForm.bname);
+            this.$http.post('/video/edit', {
               id: this.editForm.id,
               name: this.editForm.name,
-              avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
-              banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
-              summary: this.editForm.summary.replace(/\n/g, '<br/>')
+              bangumi_id: bangumi_id,
+              poster: this.editForm.poster.replace(this.CDNPrefixp, ''),
+              url: this.editForm.url.replace(this.CDNPrefixp, ''),
+              part: this.editForm.part
             }).then(() => {
               this.list[this.editForm.index].name = this.editForm.name;
-              this.list[this.editForm.index].avatar = this.editForm.avatar;
-              this.list[this.editForm.index].banner = this.editForm.banner;
-              this.list[this.editForm.index].summary = this.editForm.summary;
+              this.list[this.editForm.index].bname = this.editForm.bname;
+              this.list[this.editForm.index].bangumi_id = bangumi_id;
+              this.list[this.editForm.index].url = this.editForm.url;
+              this.list[this.editForm.index].part = this.editForm.part;
+              this.list[this.editForm.index].poster = this.editForm.poster;
               this.editDialogFormVisible = false;
               this.$message.success('操作成功');
             }, (err) => {
@@ -311,7 +310,7 @@
               cancelButtonText: '取消',
               type: 'warning'
             }).then(() => {
-              this.$http.post('/bangumi/delete', {
+              this.$http.post('/video/delete', {
                 id: row.id,
                 isDeleted: isDeleted
               }).then(() => {
@@ -323,25 +322,26 @@
               });
             })
           },
-          handleCreateAvatarSuccess(res, file) {
-            this.createForm.avatar = `${this.CDNPrefixp}${res.key}`
-          },
-          handleCreateBannerSuccess(res, file) {
-            this.createForm.banner = `${this.CDNPrefixp}${res.key}`
+          handleCreatePosterSuccess(res, file) {
+            this.createForm.poster = `${this.CDNPrefixp}${res.key}`
           },
           handleCreateDone() {
-            this.$http.post('/bangumi/create', {
+            const bangumi_id = this.computedBangumiId(this.createForm.bname);
+            this.$http.post('/video/create', {
               name: this.createForm.name,
-              avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
-              banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
-              summary: this.createForm.summary.replace(/\n/g, '<br/>')
+              poster: this.createForm.poster.replace(this.CDNPrefixp, ''),
+              url: this.createForm.url.replace(this.CDNPrefixp, ''),
+              bangumi_id: bangumi_id,
+              part: this.createForm.part
             }).then((res) => {
               this.list.unshift({
                 id: res.data,
                 name: this.createForm.name,
-                avatar: this.createForm.avatar,
-                banner: this.createForm.banner,
-                summary: this.createForm.summary.replace(/\n/g, '<br/>')
+                poster: this.createForm.poster,
+                url: this.createForm.url,
+                part: this.createForm.part,
+                bname: this.createForm.bname,
+                bangumi_id: bangumi_id
               });
               this.createDialogFormVisible = false;
               this.$message.success('操作成功');
