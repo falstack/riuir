@@ -149,7 +149,7 @@
             </div>
         </el-dialog>
         <el-dialog :visible.sync="createDialogFormVisible">
-            <h3 slot="title">创建番剧</h3>
+            <h3 slot="title">新建视频</h3>
             <el-form :model="createForm">
                 <el-form-item label="番剧" :label-width="'60px'">
                     <el-select v-model="createForm.bname" placeholder="请选择">
@@ -198,14 +198,46 @@
                     <el-col :span="2" :offset="1">
                         <el-button icon="more" @click="preview(createForm.url)"></el-button>
                     </el-col>
+                    <el-col :span="2" :offset="1">
+                        <el-form-item>
+                            <el-upload
+                                    action="http://up.qiniu.com"
+                                    :data="uploadHeaders"
+                                    :show-file-list="false"
+                                    :on-progress="handleVideoUploadProgress"
+                                    :on-success="handleVideoUploadSuccess"
+                                    :before-upload="beforeVideoUpload">
+                                <i class="el-icon-plus"></i>
+                            </el-upload>
+                        </el-form-item>
+                    </el-col>
                 </el-row>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="createDialogFormVisible = false">取 消</el-button>
+                <el-button @click="handleCreateCancel">取 消</el-button>
                 <el-button type="primary" @click="handleCreateDone">确 定</el-button>
             </div>
         </el-dialog>
-        <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="createDialogFormVisible = true">新建视频</el-button>
+        <el-row>
+            <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="openCreateDialog">新建视频</el-button>
+        </el-row>
+        <el-row style="margin-bottom: 30px">
+            <el-row style="margin-top: 20px" class="item" v-for="item in createForms" v-if="item.show">
+                <el-col :span="3" :offset="1">
+                    <el-progress type="circle"
+                                 width="100"
+                                 :percentage="item.percent"
+                                 :status="item.response === null ? '' : item.response ? 'success' : 'exception'">
+                    </el-progress>
+                </el-col>
+                <el-col :span="20">
+                    <p>番剧：@{{ item.bname }}</p>
+                    <p>名称：@{{ item.name }}</p>
+                    <p>集数：@{{ item.part }}</p>
+                    <p>海报：@{{ item.poster }}</p>
+                </el-col>
+            </el-row>
+        </el-row>
     </div>
     <script>
       new Vue({
@@ -235,6 +267,8 @@
               poster: '',
               url: ''
             },
+            createFormId: -1,
+            createForms: [],
             CDNPrefixp: 'http://cdn.riuir.com/'
           }
         },
@@ -268,6 +302,14 @@
               this.$message.error('上传头像图片大小不能超过 2MB!');
             }
             return isJPG && isLt2M;
+          },
+          beforeVideoUpload(file) {
+            this.createForms[this.createFormId].uid = file.uid;
+            return new Promise((resolve, reject) => {
+              this.$on(`createFormDone-${this.createFormId}`, () => {
+                resolve();
+              });
+            });
           },
           handleEditPosterSuccess(res, file) {
             this.editForm.avatar = `${this.CDNPrefixp}${res.key}`
@@ -322,33 +364,94 @@
               });
             })
           },
+          openCreateDialog() {
+            this.createFormId++;
+            this.createForms.push({
+              bname: '',
+              name: '',
+              part: '',
+              poster: '',
+              url: '',
+              show: false,
+              percent: 0,
+              response: null
+            });
+            this.createDialogFormVisible = true;
+          },
+          handleCreateCancel() {
+            this.createForm = {
+              bname: '',
+              name: '',
+              part: '',
+              poster: '',
+              url: ''
+            };
+            this.createForms[this.createFormId].show = false;
+            this.createDialogFormVisible = false
+          },
           handleCreatePosterSuccess(res, file) {
-            this.createForm.poster = `${this.CDNPrefixp}${res.key}`
+            const image = `${this.CDNPrefixp}${res.key}`;
+            this.createForm.poster = image;
+            this.createForms[this.createFormId].poster = image
+          },
+          handleVideoUploadSuccess(res, file) {
+            const uid = file.uid;
+            for (let i=0; i<this.createForms.length; ++i) {
+              if (this.createForms[i].uid === uid) {
+                this.createForms[i].url = `${this.CDNPrefixp}${res.key}`;
+                const form = this.createForms[i];
+                const bangumi_id = this.computedBangumiId(form.bname);
+                this.$http.post('/video/create', {
+                  name: form.name,
+                  poster: form.poster.replace(this.CDNPrefixp, ''),
+                  url: form.url.replace(this.CDNPrefixp, ''),
+                  bangumi_id: bangumi_id,
+                  part: form.part
+                }).then((res) => {
+                  this.list.unshift({
+                    id: res.data,
+                    name: form.name,
+                    poster: form.poster,
+                    url: form.url,
+                    part: form.part,
+                    bname: form.bname,
+                    bangumi_id: bangumi_id,
+                    count_comment: 0,
+                    count_played: 0
+                  });
+                  this.createForms[i].response = true;
+                  this.$message.success('操作成功');
+                }, (err) => {
+                  this.createForms[i].response = false;
+                  this.$message.error('操作失败');
+                  console.log(err);
+                });
+              }
+            }
           },
           handleCreateDone() {
-            const bangumi_id = this.computedBangumiId(this.createForm.bname);
-            this.$http.post('/video/create', {
-              name: this.createForm.name,
-              poster: this.createForm.poster.replace(this.CDNPrefixp, ''),
-              url: this.createForm.url.replace(this.CDNPrefixp, ''),
-              bangumi_id: bangumi_id,
-              part: this.createForm.part
-            }).then((res) => {
-              this.list.unshift({
-                id: res.data,
-                name: this.createForm.name,
-                poster: this.createForm.poster,
-                url: this.createForm.url,
-                part: this.createForm.part,
-                bname: this.createForm.bname,
-                bangumi_id: bangumi_id
-              });
-              this.createDialogFormVisible = false;
-              this.$message.success('操作成功');
-            }, (err) => {
-              this.$message.error('操作失败');
-              console.log(err);
-            });
+            this.$emit(`createFormDone-${this.createFormId}`);
+            this.createForms[this.createFormId].show = true;
+            this.createForms[this.createFormId].bname = this.createForm.bname;
+            this.createForms[this.createFormId].name = this.createForm.name;
+            this.createForms[this.createFormId].part = this.createForm.part;
+            this.createForms[this.createFormId].poster = this.createForm.poster;
+            this.createForm = {
+              bname: '',
+              name: '',
+              part: '',
+              poster: '',
+              url: ''
+            };
+            this.createDialogFormVisible = false
+          },
+          handleVideoUploadProgress(event, file, fileList) {
+            const uid = file.uid;
+            for (let i=0;  i<this.createForms.length; ++i) {
+              if (this.createForms[i].uid === uid) {
+                this.createForms[i].percent = parseInt(event.percent, 10);
+              }
+            }
           }
         }
       });
