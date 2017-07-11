@@ -27,7 +27,7 @@ module.exports = {
   ],
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
-    { src: '~plugins/imageLazyLoader.js', ssr: false }
+    { src: '~plugins/image.js', ssr: false }
   ],
   /*
   ** Headers of the page
@@ -51,7 +51,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    analyze: true,
     //publicPath: qiniuConfig.domain,
     vendor: [
       'axios'
