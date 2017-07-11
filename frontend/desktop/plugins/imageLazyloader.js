@@ -1,22 +1,26 @@
-class ImageLazyLoader {
+class ImageLoader {
   /**
-   * [constructor 初始化 ImageLazyLoader 的参数]
+   * [constructor 初始化 ImageLoader 的参数]
    *
-   * @param {string} meta           [ 需要做懒加载的 HTML 标记 ]
+   * @param {string} attr           [ 需要做懒加载的 HTML 标记 ]
    * @param {string} loading        [ 为懒加载的图片设置一个全局的 loading 图，传入图片的 url ]
    * @param {array} events          [ 需要监听的窗口事件 ]
-   * @param {number} scale          [ 触发图片记载的比率，如果为 1，代表刚刚进入屏幕就加载，如果为2，代表距离可视窗口一个屏幕就加载 ]
+   * @param {number} scale          [ 触发图片加载的比率，如果为 1，代表刚刚进入屏幕就加载，如果为 2，代表距离可视窗口一个屏幕就加载 ]
    * @param {string} filled         [ 需要做懒加载的图片，当已经加入监听队列时的标记，防止重复监听同一张图片 ]
    *
    * @return {null}
    */
-  constructor ({ meta, loading, events, scale, filled } = {}) {
-    this.listeners = {}
-    this.meta = meta || 'data-src'
+  constructor ({ attr, loading, events, scale, filled } = {}) {
+    this.imageLoadListeners = {}
     this.events = events || ['scroll']
-    this.loading = loading || 'http://cdn.riuir.com/avatar'
-    this.scale = scale || 1.5
-    this.filled = filled || 'data-src-filled'
+    this.image = {
+      loading,
+      scale: scale || 1.5,
+      attr: {
+        resource: attr || 'data-src',
+        filled: filled || 'data-src-filled'
+      }
+    }
     this.id = 0
   }
 
@@ -33,7 +37,7 @@ class ImageLazyLoader {
   addListener (ele, evt, handler, capture = false) {
     const id = this.id++
     ele.addEventListener(evt, handler, capture)
-    this.listeners[id] = {
+    this.imageLoadListeners[id] = {
       element: ele,
       event: evt,
       handler,
@@ -51,10 +55,10 @@ class ImageLazyLoader {
    * @return {null}
    */
   removeListener (id) {
-    if (this.listeners[id]) {
-      const h = this.listeners[id]
+    if (this.imageLoadListeners[id]) {
+      const h = this.imageLoadListeners[id]
       h.element.removeEventListener(h.event, h.handler, h.capture)
-      this.listeners[id] = null
+      this.imageLoadListeners[id] = null
     }
   }
 
@@ -69,7 +73,7 @@ class ImageLazyLoader {
         for (let j = 0; j < images.length; ++j) {
           const image = images[j]
           if (this.shouldListening(image)) {
-            image.setAttribute(this.filled, '')
+            image.setAttribute(this.image.attr.filled, '')
             this.changeLoadingImage(image)
             for (let k = 0; k < events.length; ++k) {
               const id = this.addListener(document, events[k], this.throttle(() => {
@@ -107,11 +111,15 @@ class ImageLazyLoader {
    * @return {null}
    */
   changeLoadingImage (image) {
-    if (this.loading) {
-      if (image.tagName.toLowerCase() === 'img') {
-        image.setAttribute('src', this.loading)
+    if (this.image.loading) {
+      if (this.image.loading.match(/#/)) {
+        image.style.backgroundColor = this.image.loading
       } else {
-        image.style.backgroundImage = `url(${this.loading})`
+        if (image.tagName.toLowerCase() === 'img') {
+          image.setAttribute('src', this.image.loading)
+        } else {
+          image.style.backgroundImage = `url(${this.image.loading})`
+        }
       }
     }
   }
@@ -124,14 +132,14 @@ class ImageLazyLoader {
    * @return {null}
    */
   loadImageResource (image) {
-    const resource = image.getAttribute(this.meta)
+    const resource = image.getAttribute(this.image.attr.resource)
     if (image.tagName.toLowerCase() === 'img') {
       image.setAttribute('src', resource)
     } else {
       image.style.backgroundImage = `url(${resource})`
     }
-    image.removeAttribute(this.meta)
-    image.removeAttribute(this.filled)
+    image.removeAttribute(this.image.attr.resource)
+    image.removeAttribute(this.image.attr.filled)
   }
 
   /**
@@ -140,7 +148,7 @@ class ImageLazyLoader {
    * @return {NodeList}
    */
   getImages () {
-    return document.querySelectorAll(`[${this.meta}]`)
+    return document.querySelectorAll(`[${this.image.attr.resource}]`)
   }
 
   /**
@@ -150,7 +158,7 @@ class ImageLazyLoader {
    * @return {boolean}
    */
   shouldListening (image) {
-    return image.getAttribute(this.filled) === null
+    return image.getAttribute(this.image.attr.filled) === null
   }
 
   /**
@@ -162,7 +170,7 @@ class ImageLazyLoader {
    */
   checkInView (ele) {
     const rect = ele.getBoundingClientRect()
-    return (rect.top < window.innerHeight * this.scale && rect.bottom > 0) && (rect.left < window.innerWidth * this.scale && rect.right > 0)
+    return (rect.top < window.innerHeight * this.image.scale && rect.bottom > 0) && (rect.left < window.innerWidth * this.image.scale && rect.right > 0)
   }
 
   /**
@@ -189,4 +197,8 @@ class ImageLazyLoader {
   }
 }
 
-window.$imageLazyLoader = new ImageLazyLoader()
+window.imageLoader = new ImageLoader({
+  loading: '#EAEAEA'
+})
+
+window.imageLoader.init()

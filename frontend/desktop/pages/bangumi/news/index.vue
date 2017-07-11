@@ -17,6 +17,8 @@
     }
 
     .content {
+      flex: auto;
+
       .head {
         display: flex;
         flex-direction: row;
@@ -58,15 +60,15 @@
     <div class="container">
       <div class="list col-8">
         <div class="bangumi" v-for="item in list">
-          <router-link :to="`/bangumi/${item.id}`" tag="div" class="face" :style="{ backgroundImage: `url(${item.avatar})` }"></router-link>
+          <router-link :to="`/bangumi/${item.id}`" tag="div" class="face" :data-src="item.avatar"></router-link>
           <div class="content">
             <div class="head">
               <router-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></router-link>
-              <span v-text="item.count_score"></span>
+              <!--<span v-text="item.count_score"></span>-->
             </div>
             <div class="body" v-html="item.summary"></div>
             <div class="foot">
-              <span v-text="item.count_like"></span>
+              <!--<span v-text="item.count_like"></span>-->
             </div>
           </div>
         </div>
@@ -115,7 +117,7 @@
 
     },
     mounted () {
-
+      window.imageLoader.heartbeat()
     }
   }
 </script>
