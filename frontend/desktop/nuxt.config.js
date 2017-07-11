@@ -1,6 +1,9 @@
 const axios = require('axios')
 const baseUrl = 'http://api.riuir.com'
 
+const qiniuConfig = require('./.env').qiniu
+const QiniuPlugin = require('qiniu-webpack-plugin')
+
 module.exports = {
   generate: {
     routes: function () {
@@ -47,6 +50,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    //publicPath: qiniuConfig.domain,
     vendor: [
       'axios'
     ],
@@ -61,6 +65,15 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+      if (!ctx.isDev) {
+        config.plugins.push(new QiniuPlugin({
+          ACCESS_KEY: qiniuConfig.access,
+          SECRET_KEY: qiniuConfig.secret,
+          bucket: qiniuConfig.bucket,
+          path: '/staticFile',
+          include: [/dist\/_nuxt\/*/]
+        }))
       }
     }
   }

@@ -10,3 +10,6 @@ build
 
 # Nuxt generate
 dist
+
+# secret
+.env.js
