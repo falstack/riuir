@@ -10,10 +10,10 @@
     .face {
       width: 90px;
       height: 90px;
-      background-color: gray;
       flex-shrink: 0;
       margin-right: 15px;
       cursor: pointer;
+      background-color: #eaeaea;
     }
 
     .content {
