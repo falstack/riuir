@@ -273,7 +273,7 @@
                 name: this.editForm.name,
                 avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
-                summary: this.editForm.summary.replace(/\n/g, '<br/>')
+                summary: this.editForm.summary
               }).then(() => {
                 this.list[this.editForm.index].name = this.editForm.name;
                 this.list[this.editForm.index].avatar = this.editForm.avatar;
@@ -316,14 +316,14 @@
                 name: this.createForm.name,
                 avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
-                summary: this.createForm.summary.replace(/\n/g, '<br/>')
+                summary: this.createForm.summary
               }).then((res) => {
                 this.list.unshift({
                   id: res.data,
                   name: this.createForm.name,
                   avatar: this.createForm.avatar,
                   banner: this.createForm.banner,
-                  summary: this.createForm.summary.replace(/\n/g, '<br/>')
+                  summary: this.createForm.summary
                 });
                 this.createDialogFormVisible = false;
                 this.$message.success('操作成功');
