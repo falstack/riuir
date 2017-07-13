@@ -66,7 +66,7 @@
               <router-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></router-link>
               <!--<span v-text="item.count_score"></span>-->
             </div>
-            <div class="body" v-html="item.summary"></div>
+            <div class="body twoline" v-text="item.summary"></div>
             <div class="foot">
               <!--<span v-text="item.count_like"></span>-->
             </div>
