@@ -23,11 +23,7 @@ class DoorController extends Controller
     {
         $commands = [
             'cd /var/www/riuir',
-            'git pull',
-            'cd /var/www/riuir/api',
-            'composer install',
-            'cd /var/www/riuir/admin',
-            'composer install'
+            'git pull'
         ];
         $signature = $request->header('X-Hub-Signature');
         $payload = file_get_contents('php://input');
