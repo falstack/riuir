@@ -21,7 +21,14 @@ class DoorController extends Controller
 
     public function deploy(Request $request)
     {
-        $commands = ['cd /var/www/riuir/api', 'git pull', 'composer install'];
+        $commands = [
+            'cd /var/www/riuir',
+            'git pull',
+            'cd /var/www/riuir/api',
+            'composer install',
+            'cd /var/www/riuir/admin',
+            'composer install'
+        ];
         $signature = $request->header('X-Hub-Signature');
         $payload = file_get_contents('php://input');
         if ($this->isFromGithub($payload, $signature)) {
