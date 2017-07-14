@@ -41,7 +41,9 @@
       .body {
         margin: 10px 0 20px 0;
         text-indent: 2em;
-        line-height: 1.5;
+        color: #99a2aa;
+        font-size: 12px;
+        line-height: 18px;
       }
 
       .foot {
