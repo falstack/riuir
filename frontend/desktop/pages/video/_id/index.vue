@@ -80,6 +80,9 @@
 
   export default {
     name: 'video-index',
+    head: {
+      title: '视频'
+    },
     components: {
       vBanner, vFooter, vVideo
     },
@@ -97,15 +100,6 @@
         }).catch((err) => {
           console.log(err)
         })
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
-    computed: {
-
     },
     data () {
       return {

@@ -85,6 +85,9 @@
 
   export default {
     name: 'bangumi-news',
+    head: {
+      title: '新番 index'
+    },
     components: {
       vBanner, vFooter
     },

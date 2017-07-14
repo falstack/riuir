@@ -89,6 +89,9 @@
 
   export default {
     name: 'bangumi-home',
+    head: {
+      title: '番剧'
+    },
     components: {
       vFooter
     },
@@ -105,15 +108,6 @@
         }).catch((err) => {
           console.log(err)
         })
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
-    computed: {
-
     },
     data () {
       return {
