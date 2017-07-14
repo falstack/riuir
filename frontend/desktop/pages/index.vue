@@ -11,9 +11,6 @@
     top: 0;
     bottom: 0;
     background-color: RGB(238, 238, 238);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     z-index: -1;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -26,8 +23,8 @@
 
 <template>
   <div id="banner-wrap">
-    <div class="banner" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${banner1.url})` : '' }"></div>
-    <div class="banner" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${banner2.url})` : '' }"></div>
+    <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${banner1.url})` : '' }"></div>
+    <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${banner2.url})` : '' }"></div>
   </div>
 </template>
 

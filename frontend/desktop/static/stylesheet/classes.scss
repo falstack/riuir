@@ -2,11 +2,16 @@
   display: none
 }
 
+.bg,
 .face,
 .avatar {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.face {
+  border-radius: 5px;
 }
 
 .avatar {

@@ -34,6 +34,14 @@
       height: 60px;
       margin: 0 20px 20px 0;
       background-color: #f4f5f7;
+      cursor: pointer;
+      padding-right: 12px;
+
+      &:hover {
+        .part {
+          color: #00a1d6;
+        }
+      }
 
       .poster {
         width: 96px;
@@ -47,18 +55,15 @@
         display: block;
         color: #000;
         font-size: 12px;
+        line-height: 14px;
         margin-top: 6px;
         margin-bottom: 5px;
-
-        &:hover {
-          color: #00a1d6;
-        }
       }
 
       .name {
         font-size: 12px;
+        line-height: 14px;
         color: #99a2aa;
-        cursor: default;
       }
     }
   }
@@ -67,15 +72,15 @@
 <template>
   <div id="main">
     <div id="banner">
-      <div class="img face" :style="{ backgroundImage: info ? `url(${info.banner})` : '' }"></div>
+      <div class="img bg" :style="{ backgroundImage: info ? `url(${info.banner})` : '' }"></div>
     </div>
     <div class="container">
       <div id="videos" class="clearfix">
         <h2 class="subtitle">视频列表</h2>
         <div class="video" v-for="video in videos">
-          <router-link tag="div" class="poster face oneline" :to="`/video/${video.id}`" :style="{ backgroundImage: `url(${video.poster})` }"></router-link>
-          <router-link class="part twoline" :to="`/video/${video.id}`">第{{ video.part }}话</router-link>
-          <span class="name" v-text="video.name"></span>
+          <router-link tag="div" class="poster bg" :to="`/video/${video.id}`" :style="{ backgroundImage: `url(${video.poster})` }"></router-link>
+          <router-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</router-link>
+          <span class="name twoline" v-text="video.name"></span>
         </div>
       </div>
     </div>
