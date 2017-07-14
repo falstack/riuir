@@ -37,10 +37,8 @@
       cursor: pointer;
       padding-right: 12px;
 
-      &:hover {
-        .part {
+      &:hover .part {
           color: #00a1d6;
-        }
       }
 
       .poster {
