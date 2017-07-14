@@ -5,6 +5,7 @@ const qiniuConfig = require('./.env').qiniu
 const QiniuPlugin = require('qiniu-webpack-plugin')
 
 module.exports = {
+  cache: true,
   generate: {
     routes: function () {
       const bangumi = axios.get(`${baseUrl}/bangumi/generate`).then((res) => {
