@@ -71,7 +71,7 @@
     <div class="container">
       <div class="title">
         <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
-        <div class="social-share" data-disabled="google,twitter,facebook,linkedin,diandian"></div>
+        <div class="share" data-disabled="google,twitter,facebook,linkedin,diandian" ref="share"></div>
       </div>
       <div class="metas clearfix" v-if="maxWidth">
         <nuxt-link class="meta" v-for="meta in videos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
@@ -163,6 +163,7 @@
     },
     mounted () {
       this.computedMeta()
+      new socialShare(this.$refs.share) // eslint-disable-line
     },
     updated () {
       this.computedMeta()
