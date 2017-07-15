@@ -9,6 +9,10 @@
     z-index: 1;
     height: $banner-height;
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     .img {
       width: 110%;
@@ -23,6 +27,28 @@
       background-repeat: no-repeat;
       background-size: cover;
       z-index: -1;
+    }
+
+    .info {
+      width: 60%;
+      min-width: 600px;
+      color: #fff;
+      text-shadow: 0 1px 10px gray;
+
+      h1 {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+
+      p {
+        word-break: break-all;
+        word-wrap: break-word;
+        text-indent: 2em;
+        font-size: 13px;
+        line-height: 20px;
+      }
     }
   }
 
@@ -71,6 +97,10 @@
   <div id="main">
     <div id="banner">
       <div class="img bg" :style="{ backgroundImage: info ? `url(${info.banner})` : '' }"></div>
+      <div class="info">
+        <h1 v-text="info.name"></h1>
+        <p v-text="info.summary"></p>
+      </div>
     </div>
     <div class="container">
       <div id="videos" class="clearfix">
