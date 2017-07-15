@@ -1,6 +1,18 @@
 <style lang="scss">
   $meta-height: 30px;
   $meta-margin-bottom: 8px;
+  $subTitle-marginBottom: 30px;
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -$subTitle-marginBottom;
+
+    .subtitle {
+      margin-top: $subTitle-marginBottom;
+    }
+  }
 
   .metas {
     margin-bottom: 20px;
@@ -57,7 +69,10 @@
   <div id="main">
     <v-banner></v-banner>
     <div class="container">
-      <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
+      <div class="title">
+        <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
+        <div class="social-share" data-disabled="google,twitter,facebook,linkedin,diandian"></div>
+      </div>
       <div class="metas clearfix" v-if="maxWidth">
         <nuxt-link class="meta" v-for="meta in videos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
           <span>{{ meta.part }}</span>{{ meta.name }}

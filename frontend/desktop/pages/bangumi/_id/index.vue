@@ -39,7 +39,6 @@
         text-align: center;
         font-size: 24px;
         font-weight: 700;
-        margin-bottom: 30px;
       }
 
       p {
@@ -48,6 +47,11 @@
         text-indent: 2em;
         font-size: 13px;
         line-height: 20px;
+        margin: 40px 0 20px 0;
+      }
+
+      .social-share {
+        text-align: center;
       }
     }
   }
@@ -100,6 +104,7 @@
       <div class="info">
         <h1 v-text="info.name"></h1>
         <p v-text="info.summary"></p>
+        <div class="social-share" data-disabled="google,twitter,facebook,linkedin,diandian"></div>
       </div>
     </div>
     <div class="container">
