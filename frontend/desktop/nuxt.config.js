@@ -1,7 +1,8 @@
 const axios = require('axios')
-const baseUrl = 'http://api.riuir.com'
+const env = require('./.env');
+const baseUrl = env.api.baseUrl
 
-const qiniuConfig = require('./.env').qiniu
+const qiniuConfig = env.qiniu
 const QiniuPlugin = require('qiniu-webpack-plugin')
 
 module.exports = {
