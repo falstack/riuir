@@ -80,8 +80,14 @@
 
   export default {
     name: 'video-index',
-    head: {
-      title: '视频'
+    head () {
+      return {
+        title: `${this.bangumi.name}：第${this.info.part}话 ${this.info.name}`,
+        meta: [
+          { hid: 'description', name: 'description', content: this.bangumi.summary },
+          { hid: 'keywords', name: 'keywords', content: `${this.bangumi.name}，第${this.info.part}话，${this.info.name}` }
+        ]
+      }
     },
     components: {
       vBanner, vFooter, vVideo

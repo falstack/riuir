@@ -38,7 +38,9 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { name: 'renderer', content: 'webkit' },
+      { hid: 'description', name: 'description', content: '二次元综合网站，致力于践行天下漫友是一家，兴趣使然的无名小站' },
+      { hid: 'keywords', name: 'keywords', content: '动漫，ACG，二次元，视频，番剧，动画，新番，神作' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

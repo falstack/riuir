@@ -15,7 +15,6 @@
 
       .header-left, .header-right {
         height: 100%;
-        font-size: 16px;
         font-weight: bold;
       }
 
@@ -28,6 +27,7 @@
           border-radius: 10px;
           transition: .4s;
           margin: 0 5px;
+          font-size: 15px;
 
           &:hover {
             background-color: #fff;

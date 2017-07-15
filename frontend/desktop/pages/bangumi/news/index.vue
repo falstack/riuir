@@ -42,7 +42,7 @@
         margin: 10px 0 20px 0;
         text-indent: 2em;
         color: #99a2aa;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 18px;
       }
 

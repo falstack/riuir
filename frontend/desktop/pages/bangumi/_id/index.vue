@@ -92,8 +92,14 @@
 
   export default {
     name: 'bangumi-home',
-    head: {
-      title: '番剧'
+    head () {
+      return {
+        title: this.info.name,
+        meta: [
+          { hid: 'description', name: 'description', content: this.info.summary },
+          { hid: 'keywords', name: 'keywords', content: this.info.name }
+        ]
+      }
     },
     components: {
       vFooter
