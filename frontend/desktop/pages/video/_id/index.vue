@@ -1,18 +1,6 @@
 <style lang="scss">
   $meta-height: 30px;
   $meta-margin-bottom: 8px;
-  $subTitle-marginBottom: 30px;
-  .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: -$subTitle-marginBottom;
-
-    .subtitle {
-      margin-top: $subTitle-marginBottom;
-    }
-  }
 
   .metas {
     margin-bottom: 20px;
@@ -63,16 +51,21 @@
       text-align: center;
     }
   }
+
+  .social {
+    margin-top: 20px;
+
+    .share {
+      float: right;
+    }
+  }
 </style>
 
 <template>
   <div id="main">
     <v-banner></v-banner>
     <div class="container">
-      <div class="title">
-        <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
-        <div class="share" data-disabled="google,twitter,facebook,linkedin,diandian" ref="share"></div>
-      </div>
+      <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
       <div class="metas clearfix" v-if="maxWidth">
         <nuxt-link class="meta" v-for="meta in videos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
           <span>{{ meta.part }}</span>{{ meta.name }}
@@ -80,6 +73,9 @@
         <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
       </div>
       <v-video :sourceissrc="true" :source="info.url" :poster="info.poster" v-if="info" @playing="handlePlaying"></v-video>
+      <div class="social">
+        <div class="share" data-disabled="google,twitter,facebook,linkedin,diandian" ref="share"></div>
+      </div>
     </div>
     <v-footer></v-footer>
   </div>

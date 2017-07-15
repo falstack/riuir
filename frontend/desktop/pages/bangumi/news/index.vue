@@ -1,11 +1,15 @@
 <style lang="scss" scoped="">
   .bangumi {
-    border-bottom: 1px solid darkgray;
+    border-bottom: 1px solid #dae9f4;
     padding: 20px 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
 
     .face {
       width: 90px;
