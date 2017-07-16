@@ -122,13 +122,11 @@
         </div>
       </div>
     </div>
-    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
   import axios from '~plugins/axios'
-  import vFooter from '~components/Footer.vue'
 
   export default {
     name: 'bangumi-home',
@@ -140,9 +138,6 @@
           { hid: 'keywords', name: 'keywords', content: this.info.name }
         ]
       }
-    },
-    components: {
-      vFooter
     },
     validate ({ params }) {
       return /^\d+$/.test(params.id)

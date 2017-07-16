@@ -77,14 +77,12 @@
         <div class="share" data-disabled="google,twitter,facebook,linkedin,diandian" ref="share"></div>
       </div>
     </div>
-    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
   import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
-  import vFooter from '~components/Footer.vue'
   import vVideo from '~components/video/video.vue'
 
   const metaBoxHeight = 76
@@ -101,7 +99,7 @@
       }
     },
     components: {
-      vBanner, vFooter, vVideo
+      vBanner, vVideo
     },
     validate ({ params }) {
       return /^\d+$/.test(params.id)

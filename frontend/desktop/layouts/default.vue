@@ -1,14 +1,11 @@
 <style lang="scss">
   #layout-default {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     >#main {
-      display: flex;
-      flex-direction: column;
-
-      >.container {
-        flex: 1;
-      }
+      flex: auto;
     }
   }
 </style>
@@ -18,16 +15,18 @@
     <v-header></v-header>
     <nuxt/>
     <v-music></v-music>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
   import vHeader from '~components/Header.vue'
   import vMusic from '~components/Music.vue'
+  import vFooter from '~components/Footer.vue'
 
   export default {
     components: {
-      vHeader, vMusic
+      vHeader, vMusic, vFooter
     }
   }
 </script>

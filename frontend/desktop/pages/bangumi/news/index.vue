@@ -86,14 +86,12 @@
         </div>
       </div>
     </div>
-    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
   import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
-  import vFooter from '~components/Footer.vue'
 
   export default {
     name: 'bangumi-news',
@@ -101,7 +99,7 @@
       title: '新番 index'
     },
     components: {
-      vBanner, vFooter
+      vBanner
     },
     asyncData () {
       return axios.get('/bangumi/news')

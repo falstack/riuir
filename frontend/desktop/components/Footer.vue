@@ -1,10 +1,12 @@
 <style lang="scss" scoped>
   footer {
     width: 100%;
-    height: 80px;
+    z-index: -1;
+    padding: 0 30px;
 
     .hr {
       margin-top: 30px;
+      margin-bottom: 50px;
     }
   }
 </style>
