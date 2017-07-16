@@ -110,7 +110,7 @@
     <div class="container">
       <div id="videos" class="clearfix">
         <h2 class="subtitle">视频列表</h2>
-        <div class="video" v-for="video in videos">
+        <div class="video" v-for="video in sortVideos">
           <router-link tag="img"
                        class="poster bg"
                        :to="`/video/${video.id}`"
@@ -127,6 +127,7 @@
 
 <script>
   import axios from '~plugins/axios'
+  import orderBy from 'lodash/orderBy'
 
   export default {
     name: 'bangumi-home',
@@ -152,6 +153,11 @@
         }).catch((err) => {
           console.log(err)
         })
+    },
+    computed: {
+      sortVideos () {
+        return orderBy(this.videos, parseInt('part', 10), 'asc')
+      }
     },
     data () {
       return {

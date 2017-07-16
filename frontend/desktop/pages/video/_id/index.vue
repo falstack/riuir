@@ -67,7 +67,7 @@
     <div class="container">
       <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
       <div class="metas clearfix" v-if="maxWidth">
-        <nuxt-link class="meta" v-for="meta in videos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
+        <nuxt-link class="meta" v-for="meta in sortVideos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
           <span>{{ meta.part }}</span>{{ meta.name }}
         </nuxt-link>
         <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
@@ -84,6 +84,7 @@
   import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
   import vVideo from '~components/video/video.vue'
+  import orderBy from 'lodash/orderBy'
 
   const metaBoxHeight = 76
 
@@ -115,6 +116,11 @@
         }).catch((err) => {
           console.log(err)
         })
+    },
+    computed: {
+      sortVideos () {
+        return orderBy(this.videos, parseInt('part', 10), 'asc')
+      }
     },
     data () {
       return {
