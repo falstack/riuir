@@ -66,7 +66,13 @@
     <div class="container">
       <div class="list col-8">
         <div class="bangumi" v-for="item in list">
-          <router-link :to="`/bangumi/${item.id}`" tag="div" class="face" :data-src="item.avatar"></router-link>
+          <router-link
+            tag="img"
+            class="face"
+            :alt="item.name"
+            :to="`/bangumi/${item.id}`"
+            :data-src="$resize(item.avatar, { width: 180 })">
+          </router-link>
           <div class="content">
             <div class="head">
               <router-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></router-link>
