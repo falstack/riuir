@@ -365,9 +365,15 @@
             })
           },
           openCreateDialog() {
+            let bname = '',
+                part = '';
+            if (this.createFormId !== -1) {
+              bname = this.createForms[this.createFormId].bname;
+              part = parseInt(this.createForms[this.createFormId].part, 10) + 1;
+            }
             this.createForms.push({
-              bname: this.createForms[this.createFormId].bname,
-              part: parseInt(this.createForms[this.createFormId].part, 10) + 1,
+              bname: bname,
+              part: part,
               name: '',
               poster: '',
               url: '',
