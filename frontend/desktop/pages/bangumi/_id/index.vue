@@ -127,7 +127,6 @@
 
 <script>
   import axios from '~plugins/axios'
-  import orderBy from 'lodash/orderBy'
 
   export default {
     name: 'bangumi-home',
@@ -156,7 +155,7 @@
     },
     computed: {
       sortVideos () {
-        return orderBy(this.videos, parseInt('part', 10), 'asc')
+        return this.$orderBy(this.videos, 'part')
       }
     },
     data () {

@@ -84,7 +84,6 @@
   import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
   import vVideo from '~components/video/video.vue'
-  import orderBy from 'lodash/orderBy'
 
   const metaBoxHeight = 76
 
@@ -119,7 +118,7 @@
     },
     computed: {
       sortVideos () {
-        return orderBy(this.videos, parseInt('part', 10), 'asc')
+        return this.$orderBy(this.videos, 'part')
       }
     },
     data () {

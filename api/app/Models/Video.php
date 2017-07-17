@@ -19,6 +19,10 @@ class Video extends Model
         'count_comment'
     ];
 
+    protected $casts = [
+        'part' => 'integer'
+    ];
+
     public function bangumi()
     {
         return $this->belongsTo(Bangumi::class, 'id', 'bangumi_id');

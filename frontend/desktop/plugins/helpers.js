@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import orderBy from 'lodash/orderBy'
 
 const Helpers = {}
 
@@ -12,6 +13,8 @@ Helpers.install = function (Vue, options) {
     }
     return url
   }
+
+  Vue.prototype.$orderBy = orderBy
 }
 
 Vue.use(Helpers)
