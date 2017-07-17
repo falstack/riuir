@@ -365,15 +365,9 @@
             })
           },
           openCreateDialog() {
-            let bname = '',
-                part = '';
-            if (this.createFormId !== -1) {
-              bname = this.createForms[this.createFormId].bname;
-              part = parseInt(this.createForms[this.createFormId].part, 10) + 1;
-            }
             this.createForms.push({
-              bname: bname,
-              part: part,
+              bname: '',
+              part: '',
               name: '',
               poster: '',
               url: '',
@@ -443,9 +437,9 @@
             this.createForms[this.createFormId].part = this.createForm.part;
             this.createForms[this.createFormId].poster = this.createForm.poster;
             this.createForm = {
-              bname: '',
+              bname: this.createForm.bname,
+              part: parseInt(this.createForm.part, 10) + 1,
               name: '',
-              part: '',
               poster: '',
               url: ''
             };
