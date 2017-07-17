@@ -104,11 +104,11 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="名称" :label-width="'60px'">
-                    <el-input v-model="editForm.name" auto-complete="off"></el-input>
-                </el-form-item>
                 <el-form-item label="集数" :label-width="'60px'">
                     <el-input v-model="editForm.part" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="名称" :label-width="'60px'">
+                    <el-input v-model="editForm.name" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-row>
                     <el-col :span="18">
@@ -365,17 +365,17 @@
             })
           },
           openCreateDialog() {
-            this.createFormId++;
             this.createForms.push({
-              bname: '',
+              bname: this.createForms[this.createFormId].bname,
+              part: parseInt(this.createForms[this.createFormId].part, 10) + 1,
               name: '',
-              part: '',
               poster: '',
               url: '',
               show: false,
               percent: 0,
               response: null
             });
+            this.createFormId++;
             this.createDialogFormVisible = true;
           },
           handleCreateCancel() {
