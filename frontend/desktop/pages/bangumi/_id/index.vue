@@ -95,6 +95,23 @@
       }
     }
   }
+
+  #tags {
+    .tag {
+      background-color: rgba(32,160,255,.1);
+      color: #20a0ff;
+      margin-right: 10px;
+      display: inline-block;
+      padding: 0 5px;
+      height: 24px;
+      line-height: 22px;
+      font-size: 12px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      border: 1px solid rgba(32,160,255,.2);
+      white-space: nowrap;
+    }
+  }
 </style>
 
 <template>
@@ -108,17 +125,25 @@
       </div>
     </div>
     <div class="container">
-      <div id="videos" class="clearfix">
-        <h2 class="subtitle">视频列表</h2>
-        <div class="video" v-for="video in sortVideos">
-          <nuxt-link tag="img"
+      <div class="col-9">
+        <div id="videos" class="clearfix">
+          <h2 class="subtitle">视频列表</h2>
+          <div class="video" v-for="video in sortVideos">
+            <nuxt-link tag="img"
                        class="poster bg"
                        :to="`/video/${video.id}`"
                        :alt="video.name"
                        :data-src="$resize(video.poster, { width: 192, height: 120 })">
-          </nuxt-link>
-          <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
-          <span class="name twoline" v-text="video.name"></span>
+            </nuxt-link>
+            <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
+            <span class="name twoline" v-text="video.name"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div id="tags">
+          <h2 class="subtitle">标签</h2>
+          <span class="tag" v-for="tag in tags" v-text="tag.name"></span>
         </div>
       </div>
     </div>
@@ -147,6 +172,7 @@
         .then((res) => {
           return {
             videos: res.data.videos,
+            tags: res.data.tags,
             info: res.data.info
           }
         }).catch((err) => {
@@ -162,6 +188,7 @@
       return {
         id: this.$route.params.id,
         info: null,
+        tags: [],
         videos: []
       }
     },

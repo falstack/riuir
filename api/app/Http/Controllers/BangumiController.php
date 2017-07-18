@@ -14,8 +14,11 @@ class BangumiController extends Controller
 
     public function info($id)
     {
+        $bangumi = Bangumi::find($id);
+
         return response()->json([
-            'info' => Bangumi::find($id),
+            'info' => $bangumi,
+            'tags' => $bangumi->tags()->get(),
             'videos' => Video::where('bangumi_id', $id)->get()
         ], 200);
     }
