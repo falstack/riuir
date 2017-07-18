@@ -24,8 +24,15 @@ class PageController extends Controller
     {
         $auth = new \App\Http\Services\Qiniu\Auth();
 
+        $list = Bangumi::withTrashed()->get();
+
+        foreach ($list as $i => $row) {
+            $row['tags'] = $row->tags()->get();
+        }
+
         return view('pages.bangumi', [
-            'list' => Bangumi::withTrashed()->get(),
+            'list' => $list,
+            'tags' => Tag::where('model', 0)->select('id', 'name')->get(),
             'uptoken' => $auth->uploadToken()
         ]);
     }

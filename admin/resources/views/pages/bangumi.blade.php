@@ -16,9 +16,6 @@
                                 <span v-text="props.row.id"></span>
                             </el-form-item>
                         </div>
-                        <el-form-item label="简介">
-                            <span v-html="props.row.summary"></span>
-                        </el-form-item>
                         <div>
                             <el-form-item label="横幅">
                                 <span style="cursor: pointer;" v-text="props.row.banner" @click="preview(props.row.banner)"></span>
@@ -27,6 +24,14 @@
                                 <span style="cursor: pointer;" v-text="props.row.avatar" @click="preview(props.row.avatar)"></span>
                             </el-form-item>
                         </div>
+                        <div v-if="props.row.tags.length">
+                            <el-form-item label="标签">
+                                <el-tag type="gray" v-for="tag in props.row.tags" style="margin-right: 10px" v-text="tag.name"></el-tag>
+                            </el-form-item>
+                        </div>
+                        <el-form-item label="简介">
+                            <span v-html="props.row.summary"></span>
+                        </el-form-item>
                         <div>
                             <el-form-item label="关注人数">
                                 <span>@{{ props.row.like ? props.row.like : 0 }}</span>
@@ -123,6 +128,16 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+                <el-form-item label="标签" :label-width="'60px'">
+                    <el-select v-model="editForm.tags" style="width:100%" multiple placeholder="请选择">
+                        <el-option
+                                v-for="item in tags"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
                 <el-form-item label="简介" :label-width="'60px'">
                     <el-input
                             type="textarea"
@@ -209,6 +224,7 @@
           data () {
             return {
               list: <?php echo $list ?>,
+              tags: <?php echo $tags ?>,
               uptoken: '<?php echo $uptoken ?>',
               editDialogFormVisible: false,
               createDialogFormVisible: false,
@@ -217,13 +233,15 @@
                 name: '',
                 avatar: '',
                 banner: '',
-                summary: ''
+                summary: '',
+                tags: []
               },
               createForm: {
                 name: '',
                 avatar: '',
                 banner: '',
-                summary: ''
+                summary: '',
+                tags: []
               },
               uploadHeaders: {
                 token: '<?php echo $uptoken ?>'
@@ -231,7 +249,7 @@
               CDNPrefixp: 'http://cdn.riuir.com/'
             }
           },
-          methods : {
+          methods: {
             handleEditOpen(index, row) {
               this.dialogTitle = row.name;
               this.editForm = {
@@ -240,7 +258,8 @@
                 name: row.name,
                 banner: row.banner,
                 avatar: row.avatar,
-                summary: row.summary
+                summary: row.summary,
+                tags: row.tags
               };
               this.editDialogFormVisible = true;
             },
@@ -268,17 +287,23 @@
               this.editForm.banner = `${this.CDNPrefixp}${res.key}`
             },
             handleEditDone() {
+              let tags = [];
+              for (const tag of this.editForm.tags) {
+                tags.push(tag.id)
+              }
               this.$http.post('/bangumi/edit', {
                 id: this.editForm.id,
                 name: this.editForm.name,
                 avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
-                summary: this.editForm.summary
+                summary: this.editForm.summary,
+                tags: tags
               }).then(() => {
                 this.list[this.editForm.index].name = this.editForm.name;
                 this.list[this.editForm.index].avatar = this.editForm.avatar;
                 this.list[this.editForm.index].banner = this.editForm.banner;
                 this.list[this.editForm.index].summary = this.editForm.summary;
+                this.list[this.editForm.index].tags = this.editForm.tags;
                 this.editDialogFormVisible = false;
                 this.$message.success('操作成功');
               }, (err) => {
