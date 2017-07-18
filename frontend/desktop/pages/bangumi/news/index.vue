@@ -66,16 +66,16 @@
     <div class="container">
       <div class="list col-8">
         <div class="bangumi" v-for="item in list">
-          <router-link
+          <nuxt-link
             tag="img"
             class="face"
             :alt="item.name"
             :to="`/bangumi/${item.id}`"
             :data-src="$resize(item.avatar, { width: 180 })">
-          </router-link>
+          </nuxt-link>
           <div class="content">
             <div class="head">
-              <router-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></router-link>
+              <nuxt-link :to="`/bangumi/${item.id}`" class="name" v-text="item.name"></nuxt-link>
               <!--<span v-text="item.count_score"></span>-->
             </div>
             <div class="body twoline" v-text="item.summary"></div>

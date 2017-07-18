@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use App\Models\Bangumi;
+use App\Models\Tag;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +33,7 @@ class PageController extends Controller
     public function video()
     {
         $auth = new \App\Http\Services\Qiniu\Auth();
+
         $list = Video::withTrashed()
             ->join('bangumis', 'videos.bangumi_id', '=', 'bangumis.id')
             ->select('videos.*', 'bangumis.name AS bname')
@@ -47,5 +49,12 @@ class PageController extends Controller
     public function banner()
     {
         return view('pages.banner');
+    }
+
+    public function tag()
+    {
+        return view('pages.tag', [
+            'list' => Tag::all()
+        ]);
     }
 }

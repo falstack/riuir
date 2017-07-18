@@ -18,6 +18,11 @@ class Bangumi extends Model
         'count_score'
     ];
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function getAvatarAttribute($avatar)
     {
         return $avatar ? 'http://cdn.riuir.com/' . $avatar : 'http://cdn.riuir.com/avatar';

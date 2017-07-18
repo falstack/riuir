@@ -10,7 +10,7 @@
                 stripe>
             <el-table-column type="expand">
                 <template scope="props">
-                    <el-form label-position="left" inline class="demo-table-expand">
+                    <el-form label-position="left" inline>
                         <div>
                             <el-form-item label="视频 ID">
                                 <span v-text="props.row.id"></span>

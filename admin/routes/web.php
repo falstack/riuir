@@ -39,4 +39,13 @@ Route::group(['middleware' => ['auth']], function ()
     {
         Route::get('/', 'PageController@banner')->name('banner');
     });
+
+    Route::group(['prefix' => 'tag'], function ()
+    {
+        Route::get('/', 'PageController@tag')->name('tag');
+
+        Route::post('/create', 'TagController@create');
+
+        Route::post('/edit', 'TagController@edit');
+    });
 });

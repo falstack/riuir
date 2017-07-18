@@ -111,13 +111,13 @@
       <div id="videos" class="clearfix">
         <h2 class="subtitle">视频列表</h2>
         <div class="video" v-for="video in sortVideos">
-          <router-link tag="img"
+          <nuxt-link tag="img"
                        class="poster bg"
                        :to="`/video/${video.id}`"
                        :alt="video.name"
                        :data-src="$resize(video.poster, { width: 192, height: 120 })">
-          </router-link>
-          <router-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</router-link>
+          </nuxt-link>
+          <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
           <span class="name twoline" v-text="video.name"></span>
         </div>
       </div>

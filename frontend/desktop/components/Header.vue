@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-  $header-height: 45px;
+  $header-height: 46px;
 
   #header {
     position: absolute;
@@ -16,6 +16,13 @@
       .header-left, .header-right {
         height: 100%;
         font-weight: bold;
+
+        >ul {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
       }
 
       .header-left {
@@ -28,11 +35,36 @@
           transition: .4s;
           margin: 0 5px;
           font-size: 15px;
+          cursor: pointer;
 
           &:hover {
             background-color: #fff;
             color: #00a1d6;
             transition: 0s;
+          }
+        }
+
+        .bangumi {
+          position: relative;
+
+          &:hover ul {
+            /*opacity: 1;*/
+            height: $header-height * 2;
+          }
+
+          ul {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            height: 0;
+            opacity: 0;
+            transition: .2s;
+            overflow: hidden;
+
+            li {
+              position: relative;
+            }
           }
         }
       }
@@ -58,8 +90,12 @@
   <header id="header">
     <div class="container">
       <div class="header-left">
-        <router-link to="/">riuir</router-link>
-        <router-link to="/bangumi/news">番剧</router-link>
+        <ul>
+          <li><nuxt-link to="/">riuir</nuxt-link></li>
+          <li class="bangumi">
+            <nuxt-link to="/bangumi/news">番剧</nuxt-link>
+          </li>
+        </ul>
       </div>
       <div class="header-right"></div>
       <div class="mask" v-if="theme === 'default'"></div>
