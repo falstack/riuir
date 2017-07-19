@@ -252,6 +252,10 @@
           methods: {
             handleEditOpen(index, row) {
               this.dialogTitle = row.name;
+              let tags = [];
+              for (const tag of row.tags) {
+                tags.push(tag.name)
+              }
               this.editForm = {
                 index: index,
                 id: row.id,
@@ -259,7 +263,7 @@
                 banner: row.banner,
                 avatar: row.avatar,
                 summary: row.summary,
-                tags: row.tags
+                tags: tags
               };
               this.editDialogFormVisible = true;
             },
