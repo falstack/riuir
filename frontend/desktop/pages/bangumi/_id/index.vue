@@ -103,6 +103,7 @@
       background-color: rgba(32,160,255,.1);
       color: #20a0ff;
       margin-right: 10px;
+      margin-bottom: 10px;
       display: inline-block;
       padding: 0 5px;
       height: 24px;
