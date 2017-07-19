@@ -125,6 +125,15 @@
             });
           },
           handleCreateDone() {
+            for (const tag of this.list) {
+              if (tag.name === this.createForm.name) {
+                this.$message({
+                  message: '标签已存在',
+                  type: 'warning'
+                });
+                return;
+              }
+            }
             this.$http.post('/tag/create', {
               name: this.createForm.name,
               model: this.modelFormat(this.createForm.model)

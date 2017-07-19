@@ -290,10 +290,17 @@
             handleEditBannerSuccess(res, file) {
               this.editForm.banner = `${this.CDNPrefixp}${res.key}`
             },
+            getTagIdByName(name) {
+              for (const tag of this.tags) {
+                if (tag.name === name) {
+                  return tag.id
+                }
+              }
+            },
             handleEditDone() {
               let tags = [];
               for (const tag of this.editForm.tags) {
-                tags.push(tag.id)
+                tags.push(tag.id ? tag.id : this.getTagIdByName(tag));
               }
               this.$http.post('/bangumi/edit', {
                 id: this.editForm.id,
