@@ -14,7 +14,10 @@ class BangumiController extends Controller
 
     public function info($id)
     {
-        $bangumi = Bangumi::find($id);
+        $bangumi = Bangumi::where('id', $id)->select('name', 'banner', 'summary', 'alias')->first();
+
+        $bangumi->alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
+
         $tags = $bangumi->tags()->select('name')->get()->toArray();
 
         foreach ($tags as $i => $tag)

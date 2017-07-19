@@ -26,7 +26,13 @@ class PageController extends Controller
 
         $list = Bangumi::withTrashed()->get();
 
-        foreach ($list as $i => $row) {
+        foreach ($list as $row)
+        {
+            $row['alias'] = $row['alias'] === 'null' ? '' : json_decode($row['alias'])->search;
+        }
+
+        foreach ($list as $row)
+        {
             $row['tags'] = $row->tags()->get();
         }
 

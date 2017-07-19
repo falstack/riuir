@@ -15,6 +15,9 @@ class BangumiController extends Controller
             'avatar' => $request->get('avatar'),
             'banner' => $request->get('banner'),
             'summary' => $request->get('summary'),
+            'alias' => json_encode([
+                'search' => $request->get('alias')
+            ]),
             'count_score' => 0
         ]);
     }
@@ -50,7 +53,10 @@ class BangumiController extends Controller
                 'name' => $request->get('name'),
                 'avatar' => $request->get('avatar'),
                 'banner' => $request->get('banner'),
-                'summary' => $request->get('summary')
+                'summary' => $request->get('summary'),
+                'alias' => json_encode([
+                    'search' => $request->get('alias')
+                ])
             ]);
         if ($result === false)
         {

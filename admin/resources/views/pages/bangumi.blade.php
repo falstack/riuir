@@ -12,8 +12,8 @@
                 <template scope="props">
                     <el-form label-position="left" inline>
                         <div>
-                            <el-form-item label="ID">
-                                <span v-text="props.row.id"></span>
+                            <el-form-item label="别名">
+                                <span v-text="props.row.alias"></span>
                             </el-form-item>
                         </div>
                         <div>
@@ -83,6 +83,9 @@
             <el-form :model="editForm">
                 <el-form-item label="番名" :label-width="'60px'">
                     <el-input v-model="editForm.name" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="别名" :label-width="'60px'">
+                    <el-input v-model="editForm.alias" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-row>
                     <el-col :span="18">
@@ -157,6 +160,9 @@
             <el-form :model="createForm">
                 <el-form-item label="番名" :label-width="'60px'">
                     <el-input v-model="createForm.name" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="别名" :label-width="'60px'">
+                    <el-input v-model="createForm.alias" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-row>
                     <el-col :span="18">
@@ -234,12 +240,14 @@
                 avatar: '',
                 banner: '',
                 summary: '',
+                alias: '',
                 tags: []
               },
               createForm: {
                 name: '',
                 avatar: '',
                 banner: '',
+                alias: '',
                 summary: '',
                 tags: []
               },
@@ -263,6 +271,7 @@
                 banner: row.banner,
                 avatar: row.avatar,
                 summary: row.summary,
+                alias: row.alias,
                 tags: tags
               };
               this.editDialogFormVisible = true;
@@ -307,6 +316,7 @@
                 name: this.editForm.name,
                 avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
+                alias: this.editForm.alias.split(/,|，/).join(','),
                 summary: this.editForm.summary,
                 tags: tags
               }).then(() => {
@@ -315,6 +325,7 @@
                 this.list[this.editForm.index].banner = this.editForm.banner;
                 this.list[this.editForm.index].summary = this.editForm.summary;
                 this.list[this.editForm.index].tags = this.editForm.tags;
+                this.list[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
                 this.editDialogFormVisible = false;
                 this.$message.success('操作成功');
               }, (err) => {
@@ -352,6 +363,7 @@
                 name: this.createForm.name,
                 avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
+                alias: this.createForm.alias.split(/,|，/).join(','),
                 summary: this.createForm.summary
               }).then((res) => {
                 this.list.unshift({
@@ -359,7 +371,8 @@
                   name: this.createForm.name,
                   avatar: this.createForm.avatar,
                   banner: this.createForm.banner,
-                  summary: this.createForm.summary
+                  summary: this.createForm.summary,
+                  alias: this.createForm.alias.split(/,|，/).join(',')
                 });
                 this.createDialogFormVisible = false;
                 this.$message.success('操作成功');

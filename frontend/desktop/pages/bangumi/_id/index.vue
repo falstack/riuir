@@ -163,7 +163,7 @@
         title: this.info.name,
         meta: [
           { hid: 'description', name: 'description', content: this.info.summary },
-          { hid: 'keywords', name: 'keywords', content: `${this.info.name},${this.tags}` }
+          { hid: 'keywords', name: 'keywords', content: `${this.info.alias},${this.tags}` }
         ]
       }
     },
