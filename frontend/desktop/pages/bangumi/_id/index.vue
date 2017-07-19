@@ -60,12 +60,14 @@
 
     .video {
       float: left;
-      width: 216px;
+      width: 200px;
       height: 60px;
-      margin: 0 20px 20px 0;
+      margin: 0 15px 15px 0;
       background-color: #f4f5f7;
       cursor: pointer;
       padding-right: 12px;
+      border-radius: 3px;
+      overflow: hidden;
 
       &:hover .part {
           color: #00a1d6;
@@ -143,7 +145,7 @@
       <div class="col-3">
         <div id="tags">
           <h2 class="subtitle">标签</h2>
-          <span class="tag" v-for="tag in tags" v-text="tag.name"></span>
+          <span class="tag" v-for="tag in tags" v-text="tag"></span>
         </div>
       </div>
     </div>
@@ -160,7 +162,7 @@
         title: this.info.name,
         meta: [
           { hid: 'description', name: 'description', content: this.info.summary },
-          { hid: 'keywords', name: 'keywords', content: this.info.name }
+          { hid: 'keywords', name: 'keywords', content: `${this.info.name},${this.tags}` }
         ]
       }
     },

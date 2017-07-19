@@ -15,11 +15,19 @@ class BangumiController extends Controller
     public function info($id)
     {
         $bangumi = Bangumi::find($id);
+        $tags = $bangumi->tags()->select('name')->get()->toArray();
+
+        foreach ($tags as $i => $tag)
+        {
+            $tags[$i] = $tag['name'];
+        }
+
+        $video = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster')->get();
 
         return response()->json([
             'info' => $bangumi,
-            'tags' => $bangumi->tags()->get(),
-            'videos' => Video::where('bangumi_id', $id)->get()
+            'tags' => $tags,
+            'videos' => $video
         ], 200);
     }
 
