@@ -320,11 +320,20 @@
                 summary: this.editForm.summary,
                 tags: tags
               }).then(() => {
+                let newTags = [];
+                for (const tag of this.tags) {
+                  for (const item of tags) {
+                    if (item === tag.id) {
+                      console.log(tag.name);
+                      newTags.push(tag);
+                    }
+                  }
+                }
                 this.list[this.editForm.index].name = this.editForm.name;
                 this.list[this.editForm.index].avatar = this.editForm.avatar;
                 this.list[this.editForm.index].banner = this.editForm.banner;
                 this.list[this.editForm.index].summary = this.editForm.summary;
-                this.list[this.editForm.index].tags = this.editForm.tags;
+                this.list[this.editForm.index].tags = newTags;
                 this.list[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
                 this.editDialogFormVisible = false;
                 this.$message.success('操作成功');
