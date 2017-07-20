@@ -53,6 +53,45 @@
   }
 }
 
+.breadcrumb {
+  height: 20px;
+  padding-left: 40px;
+  background-image: url("~assets/breadcrumb.png");
+  background-repeat: no-repeat;
+  background-position: 13px center;
+  background-size: contain;
+  margin-bottom: 30px;
+
+  &, * {
+    font-size: 16px;
+    color: #333;
+    line-height: 20px;
+    font-weight: 400;
+  }
+
+  a {
+    position: relative;
+    margin-right: 20px;
+
+    &:hover {
+      color: #00a1d6;
+    }
+
+    &:after {
+      content: '>';
+      position: absolute;
+      right: -20px;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      text-align: center;
+      line-height: 18px;
+      font-size: 13px;
+      color: #333;
+    }
+  }
+}
+
 .clearfix {
   &:after {
     clear: both;

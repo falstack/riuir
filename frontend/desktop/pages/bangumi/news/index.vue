@@ -16,8 +16,8 @@
       height: 90px;
       flex-shrink: 0;
       margin-right: 15px;
-      cursor: pointer;
       background-color: #eaeaea;
+      display: block;
     }
 
     .content {
@@ -67,11 +67,12 @@
       <div class="list col-8">
         <div class="bangumi" v-for="item in list">
           <nuxt-link
-            tag="img"
-            class="face"
-            :alt="item.name"
-            :to="`/bangumi/${item.id}`"
-            :data-src="$resize(item.avatar, { width: 180 })">
+            :to="`/bangumi/${item.id}`">
+            <v-img
+              class="face"
+              :alt="item.name"
+              :src="$resize(item.avatar, { width: 180 })">
+            </v-img>
           </nuxt-link>
           <div class="content">
             <div class="head">
@@ -109,28 +110,10 @@
           console.log(err)
         })
     },
-    props: {
-
-    },
-    watch: {
-
-    },
-    computed: {
-
-    },
     data () {
       return {
         list: []
       }
-    },
-    created () {
-
-    },
-    methods: {
-
-    },
-    mounted () {
-      window.imageLoader.heartbeat()
     }
   }
 </script>

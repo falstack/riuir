@@ -29,7 +29,7 @@ module.exports = {
   ],
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
-    { src: '~plugins/image.js', ssr: false },
+    { src: '~plugins/image.js' },
     { src: '~plugins/helpers.js' }
   ],
   /*
@@ -44,8 +44,8 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'renderer', content: 'webkit' },
-      { hid: 'description', name: 'description', content: '二次元综合网站，兴趣使然的无名小站，为实现天下漫友是一家' },
-      { hid: 'keywords', name: 'keywords', content: '动漫，ACG，二次元，视频，番剧，动画，新番，神作' }
+      { hid: 'description', name: 'description', content: 'riuir是一家二次元综合网站，为实现天下漫友是一家，兴趣使然的无名小站' },
+      { hid: 'keywords', name: 'keywords', content: 'riuir，动漫，ACG，二次元，视频，番剧，动画，新番，神作' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

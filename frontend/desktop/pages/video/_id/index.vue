@@ -65,7 +65,11 @@
   <div id="main">
     <v-banner></v-banner>
     <div class="container">
-      <h2 class="subtitle" v-if="bangumi && info">《{{ bangumi.name }}》 第{{ info.part }}话 ：{{ info.name }}</h2>
+      <h2 class="breadcrumb" v-if="bangumi && info">
+        <nuxt-link to="/">主站</nuxt-link>
+        <nuxt-link :to="`/bangumi/${bangumi.id}`" v-text="bangumi.name"></nuxt-link>
+        第{{ info.part }}话&nbsp;{{ info.name }}
+      </h2>
       <div class="metas clearfix" v-if="maxWidth">
         <nuxt-link class="meta" v-for="meta in sortVideos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
           <span>{{ meta.part }}</span>{{ meta.name }}
@@ -91,7 +95,7 @@
     name: 'video-index',
     head () {
       return {
-        title: `${this.bangumi.name}：第${this.info.part}话 ${this.info.name}`,
+        title: `${this.bangumi.name}：第${this.info.part}话 ${this.info.name} - 视频`,
         meta: [
           { hid: 'description', name: 'description', content: this.bangumi.summary },
           { hid: 'keywords', name: 'keywords', content: `${this.bangumi.name}，第${this.info.part}话，${this.info.name}` }

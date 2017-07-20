@@ -132,11 +132,11 @@
         <div id="videos" class="clearfix">
           <h2 class="subtitle">视频列表</h2>
           <div class="video" v-for="video in sortVideos">
-            <nuxt-link tag="img"
-                       class="poster bg"
-                       :to="`/video/${video.id}`"
-                       :alt="video.name"
-                       :data-src="$resize(video.poster, { width: 192, height: 120 })">
+            <nuxt-link :to="`/video/${video.id}`">
+              <v-img class="poster bg"
+                     :alt="video.name"
+                     :src="$resize(video.poster, { width: 192, height: 120 })">
+              </v-img>
             </nuxt-link>
             <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
             <span class="name twoline" v-text="video.name"></span>
@@ -160,7 +160,7 @@
     name: 'bangumi-home',
     head () {
       return {
-        title: this.info.name,
+        title: `${this.info.name} - 番剧`,
         meta: [
           { hid: 'description', name: 'description', content: this.info.summary },
           { hid: 'keywords', name: 'keywords', content: `${this.info.alias},${this.tags}` }
@@ -196,7 +196,6 @@
       }
     },
     mounted () {
-      window.imageLoader.heartbeat()
       new socialShare(this.$refs.share) // eslint-disable-line
     }
   }
