@@ -14,7 +14,7 @@ class BangumiController extends Controller
 
     public function info($id)
     {
-        $bangumi = Bangumi::where('id', $id)->select('name', 'banner', 'summary', 'alias')->first();
+        $bangumi = Bangumi::where('id', $id)->select('id', 'name', 'banner', 'summary', 'alias')->first();
 
         $bangumi->alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
 
