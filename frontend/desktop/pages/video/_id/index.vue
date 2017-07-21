@@ -8,8 +8,12 @@
     overflow: hidden;
     position: relative;
 
-    .meta, .more {
+    li {
+      float: left;
       margin: 0 8px $meta-margin-bottom 0;
+    }
+
+    .meta, .more {
       border: 1px solid #e5e9ef;
       height: $meta-height;
       border-radius: 4px;
@@ -19,7 +23,6 @@
       font-size: 14px;
       color: #6d757a;
       line-height: 28px;
-      float: left;
 
       span {
         min-width: 16px;
@@ -70,10 +73,14 @@
         <nuxt-link :to="`/bangumi/${bangumi.id}`" v-text="bangumi.name"></nuxt-link>
         第{{ info.part }}话&nbsp;{{ info.name }}
       </h2>
-      <div class="metas clearfix" v-if="maxWidth">
-        <nuxt-link class="meta" v-for="meta in sortVideos" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
-          <span>{{ meta.part }}</span>{{ meta.name }}
-        </nuxt-link>
+      <div class="metas" v-if="maxWidth">
+        <ul class="clearfix">
+          <li v-for="meta in sortVideos">
+            <nuxt-link class="meta" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
+              <span>{{ meta.part }}</span>{{ meta.name }}
+            </nuxt-link>
+          </li>
+        </ul>
         <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
       </div>
       <v-video :sourceissrc="true" :source="info.url" :poster="info.poster" v-if="info" @playing="handlePlaying"></v-video>
@@ -95,7 +102,7 @@
     name: 'video-index',
     head () {
       return {
-        title: `${this.bangumi.name}：第${this.info.part}话 ${this.info.name} - 视频`,
+        title: `${this.bangumi.name} : 第${this.info.part}话 ${this.info.name}`,
         meta: [
           { hid: 'description', name: 'description', content: this.bangumi.summary },
           { hid: 'keywords', name: 'keywords', content: `${this.bangumi.name}，第${this.info.part}话，${this.info.name}` }

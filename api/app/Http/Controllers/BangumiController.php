@@ -9,7 +9,13 @@ class BangumiController extends Controller
 {
     public function news()
     {
-        return Bangumi::all();
+        $bangumis = Bangumi::all();
+        foreach ($bangumis as $row)
+        {
+            $row->tags = $row->tags()->select('name')->get();
+        }
+
+        return $bangumis;
     }
 
     public function info($id)

@@ -89,15 +89,15 @@
 <template>
   <header id="header">
     <div class="container">
-      <div class="header-left">
+      <nav class="header-left">
         <ul>
           <li><nuxt-link to="/">riuir</nuxt-link></li>
           <li class="bangumi">
             <nuxt-link to="/bangumi/news">番剧</nuxt-link>
           </li>
         </ul>
-      </div>
-      <div class="header-right"></div>
+      </nav>
+      <nav class="header-right"></nav>
       <div class="mask" v-if="theme === 'default'"></div>
     </div>
   </header>

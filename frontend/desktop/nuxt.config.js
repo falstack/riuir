@@ -36,7 +36,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - riuir',
+    titleTemplate: '%s | riuir 天下漫友是一家',
     htmlAttrs: {
       lang: 'zh-cmn-Hans'
     },

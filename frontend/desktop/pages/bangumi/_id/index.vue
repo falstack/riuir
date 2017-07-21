@@ -129,24 +129,28 @@
     </div>
     <div class="container">
       <div class="col-9">
-        <div id="videos" class="clearfix">
+        <div id="videos">
           <h2 class="subtitle">视频列表</h2>
-          <div class="video" v-for="video in sortVideos">
-            <nuxt-link :to="`/video/${video.id}`">
-              <v-img class="poster bg"
-                     :alt="video.name"
-                     :src="$resize(video.poster, { width: 192, height: 120 })">
-              </v-img>
-            </nuxt-link>
-            <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
-            <span class="name twoline" v-text="video.name"></span>
-          </div>
+          <ul class="clearfix">
+            <li class="video" v-for="video in sortVideos">
+              <nuxt-link :to="`/video/${video.id}`">
+                <v-img class="poster bg"
+                       :alt="video.name"
+                       :src="$resize(video.poster, { width: 192, height: 120 })">
+                </v-img>
+              </nuxt-link>
+              <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
+              <span class="name twoline" v-text="video.name"></span>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="col-3">
         <div id="tags">
           <h2 class="subtitle">标签</h2>
-          <span class="tag" v-for="tag in tags" v-text="tag"></span>
+          <ul>
+            <li class="tag" v-for="tag in tags" v-text="tag"></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -160,7 +164,7 @@
     name: 'bangumi-home',
     head () {
       return {
-        title: `${this.info.name} - 番剧`,
+        title: `${this.info.name}`,
         meta: [
           { hid: 'description', name: 'description', content: this.info.summary },
           { hid: 'keywords', name: 'keywords', content: `${this.info.alias},${this.tags}` }

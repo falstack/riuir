@@ -128,3 +128,19 @@ $base-font-size: 14px;
     padding: 0 10px;
   }
 }
+
+.icon-item {
+  display: inline-block;
+  color: #99a2aa;
+  font-size: 13px;
+  line-height: 16px;
+  height: 16px;
+  padding-left: 20px;
+  background-repeat: no-repeat;
+  background-size: 14px;
+  background-position: left center;
+
+  &.icon-item-tag {
+    background-image: url("~assets/icon-tag.png");
+  }
+}
