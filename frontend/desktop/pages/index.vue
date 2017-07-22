@@ -51,8 +51,7 @@
   export default {
     name: 'index',
     head: {
-      title: 'riuir 天下漫友是一家',
-      titleTemplate: null
+      title: '首页'
     },
     asyncData () {
       return axios.get('/cartoon/banner')
