@@ -32,13 +32,13 @@ class VideoController extends Controller
     public function playing($id)
     {
         $key = 'video_played_counter_' . $id;
-        $value = json_decode(Cache::rememberForever($key, function () use ($id)
+        $value = Cache::rememberForever($key, function () use ($id)
         {
-            return json_encode([
+            return [
                 'data' => Video::where('id', $id)->select('count_played')->first()->count_played,
                 'time' => time()
-            ]);
-        }));
+            ];
+        });
 
         $value->data++;
         if (time() - $value->time > env('CACHE_TTL') * 60)
@@ -48,6 +48,6 @@ class VideoController extends Controller
             ]);
         }
 
-        Cache::forever($key, json_encode($value));
+        Cache::forever($key, $value);
     }
 }

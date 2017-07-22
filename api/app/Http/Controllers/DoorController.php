@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Laravist\GeeCaptcha\GeeCaptcha;
 use Overtrue\LaravelPinyin\Facades\Pinyin as Overtrue;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -39,7 +40,11 @@ class DoorController extends Controller
 
     public function banner()
     {
-        return Banner::inRandomOrder()->first();
+        $banners = Cache::remember('index_banner', env('CACHE_TTL'), function () {
+            return Banner::select('id', 'url', 'user_id', 'bangumi_id')->get()->toArray();
+        });
+
+        return $banners[array_rand($banners)];
     }
 
     public function register(RegisterRequest $request)
