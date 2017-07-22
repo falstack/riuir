@@ -40,11 +40,12 @@ class VideoController extends Controller
             ];
         });
 
-        $value->data++;
-        if (time() - $value->time > env('CACHE_TTL') * 60)
+        $value['data']++;
+        if (time() - $value['time'] > env('CACHE_TTL') * 60)
         {
+            $value['time'] = time();
             Video::find($id)->update([
-                'count_played' => $value->data
+                'count_played' => $value['data']
             ]);
         }
 
