@@ -35,7 +35,7 @@ Route::group(['prefix' => '/video'], function ()
     {
         Route::get('/info', 'VideoController@info');
 
-        Route::get('/playing', 'VideoController@playing');
+        Route::post('/playing', 'VideoController@playing');
     });
 });
 
