@@ -19,7 +19,7 @@ Route::group(['prefix' => '/bangumi'], function ()
 {
     Route::get('/news', 'BangumiController@news');
 
-    Route::get('/generate', 'BangumiController@generate');
+//    Route::get('/generate', 'BangumiController@generate');
 
     Route::group(['prefix' => '/{id}'], function ()
     {
@@ -29,7 +29,7 @@ Route::group(['prefix' => '/bangumi'], function ()
 
 Route::group(['prefix' => '/video'], function ()
 {
-    Route::get('/generate', 'VideoController@generate');
+//    Route::get('/generate', 'VideoController@generate');
 
     Route::group(['prefix' => '/{id}'], function ()
     {
