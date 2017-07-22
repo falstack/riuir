@@ -275,26 +275,18 @@
 
 <template>
   <div class="vue-pwa-video"
-       :class="[ cover ? 'vue-pwa-video-cover' : 'vue-pwa-video-flex', clazz ]"
+       :class="[ cover ? 'vue-pwa-video-cover' : 'vue-pwa-video-flex' ]"
        ref="box">
     <div class="vue-pwa-video-box"
          ref="mask"
          @click.stop="screenclick ? handlePlay() : ''"
          @dblclick="screenclick ? screen() : ''"
          @mousemove="tool">
-      <video :preload="auto ? 'auto' : 'metadata'"
+      <video :autoplay="auto"
              :poster="poster"
-             :autoplay="auto"
              :src="source"
-             v-if="sourceissrc"
+             preload="metadata"
              ref="video">
-      </video>
-      <video :preload="auto ? 'auto' : 'metadata'"
-             :poster="poster"
-             :autoplay="auto"
-             ref="video"
-             v-else>
-        <source v-for="data in source" :src="data.src" :type="data.type">
       </video>
       <div class="vue-pwa-video-init"
            v-if="state.init">
@@ -359,15 +351,9 @@
     },
     props: {
       source: {
-        default: null,
+        type: String,
+        default: '',
         required: true
-      },
-      sourceissrc: {
-        type: Boolean,
-        default: false
-      },
-      clazz: {
-        type: String
       },
       poster: {
         type: String
@@ -401,40 +387,8 @@
       }
     },
     watch: {
-      'source': {
-        handler () {
-          this.state = {
-            playing: false,
-            isMuted: false,
-            isFull: false,
-            showTool: true,
-            waiting: true,
-            firstPlay: true,
-            init: true,
-            ended: false,
-            seeking: false,
-            error: false
-          }
-          this.value = {
-            duration: 0,
-            loading: 0,
-            playing: 0,
-            curTime: '00:00',
-            allTime: '00:00',
-            voiceTemp: 0,
-            timer: null
-          }
-        },
-        deep: true
-      }
-    },
-    computed: {
-      fullScreenStyle () {
-        if (this.state.isFull) {
-          return {
-            'z-index': 2147483649
-          }
-        }
+      source () {
+        this.initVideo()
       }
     },
     data () {
@@ -472,6 +426,29 @@
       }
     },
     methods: {
+      initVideo () {
+        this.state = {
+          playing: false,
+          isMuted: false,
+          isFull: false,
+          showTool: true,
+          waiting: true,
+          firstPlay: true,
+          init: true,
+          ended: false,
+          seeking: false,
+          error: false
+        }
+        this.value = {
+          duration: 0,
+          loading: 0,
+          playing: 0,
+          curTime: '00:00',
+          allTime: '00:00',
+          voiceTemp: 0,
+          timer: null
+        }
+      },
       handlePlay () {
         if (this.state.waiting) return
         if (this.video.paused) {
@@ -613,16 +590,19 @@
       },
       debugLog (log) {
         if (this.debug) {
-          console.log(log)
-          console.log(this.state)
+          console.log(log)        // eslint-disable-line
+          console.log(this.state) // eslint-disable-line
           this.logs.push(log + JSON.stringify(this.state))
         }
       }
     },
     mounted () {
-      let self = this
-      self.video = self.$refs.video
-      let video = self.$refs.video
+      this.video = this.$refs.video
+      const self = this
+      const video = self.$refs.video
+      video.removeAttribute('src')
+      video.load()
+      video.src = this.source
       video.volume = self.value.voice / 100
       video.controls = false
 
