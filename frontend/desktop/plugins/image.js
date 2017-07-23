@@ -12,7 +12,7 @@ const Image = {
     },
     scale: {
       type: Number,
-      default: 1.5
+      default: 2
     },
     events: {
       type: Array,
