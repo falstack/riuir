@@ -59,6 +59,7 @@
     margin-top: 20px;
 
     #share {
+      height: 40px;
       float: right;
     }
   }

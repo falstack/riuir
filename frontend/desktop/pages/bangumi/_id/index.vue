@@ -51,6 +51,7 @@
       }
 
       #share {
+        height: 40px;
         text-align: center;
       }
     }
