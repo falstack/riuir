@@ -17,6 +17,7 @@ const Share = {
         url: window.location.href.split('?')[0],
         title: document.title,
         source: 'riuir 天下漫友是一家',
+        description: document.getElementsByTagName('meta')['description'].content,
         disabled: ['google', 'twitter', 'facebook', 'linkedin', 'diandian']
       })
       this.$el.removeAttribute('data-new')
@@ -38,6 +39,7 @@ export default ({ app }) => {
           url: window.location.href.split('?')[0],
           title: document.title,
           source: 'riuir 天下漫友是一家',
+          description: document.getElementsByTagName('meta')['description'].content,
           disabled: ['google', 'twitter', 'facebook', 'linkedin', 'diandian']
         })
       }, 0)
