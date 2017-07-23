@@ -58,7 +58,7 @@
   .social {
     margin-top: 20px;
 
-    .share {
+    #share {
       float: right;
     }
   }
@@ -85,7 +85,7 @@
       </div>
       <v-video :source="info.url" :poster="info.poster" v-if="info" @playing="handlePlaying"></v-video>
       <div class="social">
-        <div class="share" data-disabled="google,twitter,facebook,linkedin,diandian" ref="share"></div>
+        <v-share></v-share>
       </div>
     </div>
   </div>
@@ -173,7 +173,7 @@
     },
     mounted () {
       this.computedMeta()
-      new socialShare(this.$refs.share) // eslint-disable-line
+//      new socialShare(this.$refs.share) // eslint-disable-line
     },
     updated () {
       this.computedMeta()

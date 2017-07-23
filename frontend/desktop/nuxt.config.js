@@ -29,8 +29,9 @@ module.exports = {
   ],
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
-    { src: '~plugins/image.js' },
-    { src: '~plugins/helpers.js' }
+    { src: '~plugins/helpers.js' },
+    { src: '~plugins/share.js' },
+    { src: '~plugins/image.js' }
   ],
   /*
   ** Headers of the page

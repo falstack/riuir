@@ -50,7 +50,7 @@
         margin: 40px 0 20px 0;
       }
 
-      .share {
+      #share {
         text-align: center;
       }
     }
@@ -124,7 +124,7 @@
       <div class="info">
         <h1 v-text="info.name"></h1>
         <p v-text="info.summary"></p>
-        <div class="share" data-disabled="google,twitter,facebook,linkedin,diandian" ref="share"></div>
+        <v-share></v-share>
       </div>
     </div>
     <div class="container">
@@ -198,9 +198,6 @@
         tags: [],
         videos: []
       }
-    },
-    mounted () {
-      new socialShare(this.$refs.share) // eslint-disable-line
     }
   }
 </script>
