@@ -25,7 +25,7 @@ module.exports = {
     }
   },
   css: [
-    { src: '~static/stylesheet/global.scss', lang: 'scss' }
+    { src: '~assets/stylesheet/global.scss', lang: 'scss' }
   ],
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },

@@ -1,10 +1,10 @@
 <style lang="scss">
   @font-face {font-family: "iconfont-video";
-    src: url('~static/fonts/iconfont.eot?t=1491818377252');
-    src: url('~static/fonts/iconfont.eot?t=1491818377252#iefix') format('embedded-opentype'),
-    url('~static/fonts/iconfont.woff?t=1491818377252') format('woff'),
-    url('~static/fonts/iconfont.ttf?t=1491818377252') format('truetype'),
-    url('~static/fonts/iconfont.svg?t=1491818377252#iconfont') format('svg');
+    src: url('~assets/fonts/iconfont.eot?t=1491818377252');
+    src: url('~assets/fonts/iconfont.eot?t=1491818377252#iefix') format('embedded-opentype'),
+    url('~assets/fonts/iconfont.woff?t=1491818377252') format('woff'),
+    url('~assets/fonts/iconfont.ttf?t=1491818377252') format('truetype'),
+    url('~assets/fonts/iconfont.svg?t=1491818377252#iconfont') format('svg');
   }
 
   $color-border : #e5e9ef;
