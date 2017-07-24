@@ -103,7 +103,7 @@
     name: 'video-index',
     head () {
       return {
-        title: `${this.bangumi.name} : 第${this.info.part}话 ${this.info.name}`,
+        title: `${this.bangumi.name} : 第${this.info.part}话 ${this.info.name} - 视频`,
         meta: [
           { hid: 'description', name: 'description', content: this.bangumi.summary },
           { hid: 'keywords', name: 'keywords', content: `${this.bangumi.name}，第${this.info.part}话，${this.info.name}` }
@@ -174,7 +174,6 @@
     },
     mounted () {
       this.computedMeta()
-//      new socialShare(this.$refs.share) // eslint-disable-line
     },
     updated () {
       this.computedMeta()
