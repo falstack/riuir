@@ -20,7 +20,7 @@ class VideoController extends Controller
                 'name' => $video['name']
             ]);
         }
-        Video::create($arr);
+        Video::insert($arr);
     }
 
     public function edit(Request $request)

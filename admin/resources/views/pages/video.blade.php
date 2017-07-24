@@ -136,16 +136,16 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="集数" :label-width="'60px'">
-                    <el-input v-model="createForm.part" placeholder="0-n" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="名称" :label-width="'60px'">
-                    <el-input v-model="createForm.name" placeholder="\分割" auto-complete="off"></el-input>
+                    <el-input v-model="createForm.part" placeholder="1-n" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="海报" :label-width="'60px'">
                     <el-input v-model="createForm.poster" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="资源" :label-width="'60px'">
                     <el-input v-model="createForm.url" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="名称" :label-width="'60px'">
+                    <el-input v-model="createForm.name" type="textarea" placeholder="一行一个" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -275,9 +275,13 @@
               this.$message.error('集数不对');
               return;
             }
-            const names = this.createForm.name.split('\\');
+            const names = this.createForm.name.split('\n');
             if (names.length !== length) {
               this.$message.error('名称个数不对');
+              return;
+            }
+            if (this.createForm.poster.match('${name}') !== null || this.createForm.url.match('${}name') !== null) {
+              this.$message.error('未修改链接中的番剧名');
               return;
             }
             let arr = [], j =0;
