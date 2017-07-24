@@ -130,7 +130,7 @@
     </div>
     <div class="container">
       <div class="col-9">
-        <div id="videos">
+        <div id="videos" v-if="videos.length">
           <h2 class="subtitle">视频列表</h2>
           <ul class="clearfix">
             <li class="video" v-for="video in sortVideos">
