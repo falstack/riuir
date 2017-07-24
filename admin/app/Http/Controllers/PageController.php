@@ -45,8 +45,6 @@ class PageController extends Controller
 
     public function video()
     {
-        $auth = new \App\Http\Services\Qiniu\Auth();
-
         $list = Video::withTrashed()
             ->join('bangumis', 'videos.bangumi_id', '=', 'bangumis.id')
             ->select('videos.*', 'bangumis.name AS bname')
@@ -54,8 +52,7 @@ class PageController extends Controller
 
         return view('pages.video', [
             'list' => $list,
-            'bangumis' => Bangumi::withTrashed()->select('id', 'name', 'deleted_at')->get(),
-            'uptoken' => $auth->uploadToken()
+            'bangumis' => Bangumi::withTrashed()->select('id', 'name', 'deleted_at')->get()
         ]);
     }
 

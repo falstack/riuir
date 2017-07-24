@@ -9,13 +9,18 @@ class VideoController extends Controller
 {
     public function create(Request $request)
     {
-        return Video::insertGetId([
-            'name' => $request->get('name'),
-            'bangumi_id' => $request->get('bangumi_id'),
-            'part' => $request->get('part'),
-            'poster' => $request->get('poster'),
-            'url' => $request->get('url')
-        ]);
+        $arr = [];
+        foreach($request->get('arr') as $video)
+        {
+            array_push($arr, [
+                'bangumi_id' => $video['bangumi_id'],
+                'url' => $video['url'],
+                'poster' => $video['poster'],
+                'part' => $video['part'],
+                'name' => $video['name']
+            ]);
+        }
+        Video::create($arr);
     }
 
     public function edit(Request $request)
