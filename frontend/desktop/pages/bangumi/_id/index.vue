@@ -121,7 +121,7 @@
 <template>
   <div id="main">
     <div id="banner">
-      <div class="img bg" :style="{ backgroundImage: info ? `url(${info.banner})` : '' }"></div>
+      <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner)})` : '' }"></div>
       <div class="info">
         <h1 v-text="info.name"></h1>
         <p v-text="info.summary"></p>
