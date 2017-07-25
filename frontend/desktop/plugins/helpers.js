@@ -27,7 +27,7 @@ Helpers.install = function (Vue, options) {
       return false
     }
 
-    const format = canUseWebP() ? 'format/webp' : ''
+    const format = canUseWebP() ? '/format/webp' : ''
 
     if (options.width && options.width > 0) {
       const width = options.width
@@ -35,7 +35,7 @@ Helpers.install = function (Vue, options) {
 
       return `${url}?imageMogr2/auto-orient/strip|imageView2/1/w/${width}/h/${height}${format}`
     }
-    return `${url}?imageMogr2/${format}`
+    return `${url}?imageMogr2/auto-orient/strip${format}`
   }
 
   Vue.prototype.$orderBy = orderBy
