@@ -36,6 +36,11 @@ class PageController extends Controller
             $row['tags'] = $row->tags()->get();
         }
 
+        foreach ($list as $row)
+        {
+            $row['season'] = $row['season'] === 'null' ? '' : json_decode($row['season']);
+        }
+
         return view('pages.bangumi', [
             'list' => $list,
             'tags' => Tag::where('model', 0)->select('id', 'name')->get(),

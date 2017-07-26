@@ -33,12 +33,12 @@
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 24px;
   color: #333;
-  line-height: 20px;
+  line-height: 24px;
   padding-left: 20px;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-weight: 400;
 
   &:before {
@@ -51,6 +51,14 @@
     background-color: #00a1d6;
     border-radius: 8px;
   }
+}
+
+.celltitle {
+  color: #999;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 20px;
 }
 
 .breadcrumb {

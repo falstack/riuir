@@ -141,10 +141,18 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="季度" :label-width="'60px'">
+                    <el-input
+                            type="textarea"
+                            :rows="2"
+                            placeholder="请输入番剧季度信息，JSON格式，包含 part，time，name 字段"
+                            v-model="editForm.season">
+                    </el-input>
+                </el-form-item>
                 <el-form-item label="简介" :label-width="'60px'">
                     <el-input
                             type="textarea"
-                            :rows="5"
+                            :rows="4"
                             placeholder="请输入番剧简介"
                             v-model="editForm.summary">
                     </el-input>
@@ -235,12 +243,14 @@
               editDialogFormVisible: false,
               createDialogFormVisible: false,
               dialogTitle: '',
+              defaultSeason: '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx-xx-xx", "xxxx-xx-xx"]}',
               editForm: {
                 name: '',
                 avatar: '',
                 banner: '',
                 summary: '',
                 alias: '',
+                season: '',
                 tags: []
               },
               createForm: {
@@ -248,6 +258,7 @@
                 avatar: '',
                 banner: '',
                 alias: '',
+                season: '',
                 summary: '',
                 tags: []
               },
@@ -271,6 +282,7 @@
                 banner: row.banner,
                 avatar: row.avatar,
                 summary: row.summary,
+                season: row.season ? JSON.stringify(row.season) : this.defaultSeason,
                 alias: row.alias,
                 tags: tags
               };
@@ -311,12 +323,51 @@
               for (const tag of this.editForm.tags) {
                 tags.push(tag.id ? tag.id : this.getTagIdByName(tag));
               }
+              const season = this.editForm.season === this.defaultSeason ? '' : this.editForm.season;
+              if (season) {
+                try {
+                  let tempSeason = JSON.parse(season);
+                  const name = tempSeason.name;
+                  const part = tempSeason.part;
+                  const time = tempSeason.time;
+                  if (!name || !part || !time) {
+                    this.$message.error('season 缺少 key');
+                    return;
+                  }
+                  if (name.length !== time.length || name.length !== part.length -1 || part.length < 2) {
+                    this.$message.error('season 信息不完整');
+                    return;
+                  }
+                  if (part.some(item => typeof item !== 'number')) {
+                    this.$message.error('season 的 part 必须是数字');
+                    return;
+                  }
+                  if (!part.every((item, index, arr) => {
+                    if (index) {
+                      if (index === arr.length - 1) {
+                        return item === -1 || item > arr[index - 1];
+                      } else {
+                        return item > arr[index - 1];
+                      }
+                    } else {
+                      return item === 0;
+                    }
+                  })) {
+                    this.$message.error('season part 要从 0 开始，升序排列，最后一项可为 -1');
+                    return;
+                  }
+                } catch (e) {
+                  this.$message.error('season 不是 JSON 格式');
+                  return;
+                }
+              }
               this.$http.post('/bangumi/edit', {
                 id: this.editForm.id,
                 name: this.editForm.name,
                 avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
                 alias: this.editForm.alias.split(/,|，/).join(','),
+                season: season,
                 summary: this.editForm.summary,
                 tags: tags
               }).then(() => {
@@ -333,6 +384,7 @@
                 this.list[this.editForm.index].avatar = this.editForm.avatar;
                 this.list[this.editForm.index].banner = this.editForm.banner;
                 this.list[this.editForm.index].summary = this.editForm.summary;
+                this.list[this.editForm.index].season = season;
                 this.list[this.editForm.index].tags = newTags;
                 this.list[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
                 this.editDialogFormVisible = false;
