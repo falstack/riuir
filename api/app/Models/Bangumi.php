@@ -14,6 +14,8 @@ class Bangumi extends Model
         'summary',
         'avatar',
         'banner',
+        'alias',
+        'season',
         'count_like',
         'count_score'
     ];
