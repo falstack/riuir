@@ -16,7 +16,6 @@
       height: 90px;
       flex-shrink: 0;
       margin-right: 15px;
-      background-color: #eaeaea;
       display: block;
     }
 

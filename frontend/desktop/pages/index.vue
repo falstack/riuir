@@ -10,7 +10,7 @@
       right: 0;
       top: 0;
       bottom: 0;
-      background-color: RGB(238, 238, 238);
+      background-color: #333;
       z-index: -1;
       opacity: 0;
       transition: opacity 1s ease-in-out;
