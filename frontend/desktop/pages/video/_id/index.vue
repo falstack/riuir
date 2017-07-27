@@ -84,7 +84,7 @@
         </ul>
         <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
       </div>
-      <v-video :source="info.url" :poster="info.poster" v-if="info" @playing="handlePlaying"></v-video>
+      <v-video :source="info.url" :poster="$resize(info.poster)" v-if="info" @playing="handlePlaying"></v-video>
       <div class="social">
         <v-share></v-share>
       </div>
