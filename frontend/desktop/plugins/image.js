@@ -22,9 +22,13 @@ const Image = {
     }
   },
   render: function (createElement) {
-    return createElement(
-      this.tag
-    )
+    return createElement(this.tag, {
+      attrs: {
+        src: this.tag.toLowerCase() === 'img'
+          ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA'
+          : null
+      }
+    })
   },
   data () {
     return {
