@@ -233,11 +233,11 @@
         if (this.vertical) {
           baseOffset = this.dragState.y
           maxOffset = contentBox.height
-          delta = event.pageY - contentBox.top - baseOffset
+          delta = event.pageY - contentBox.top - baseOffset - document.body.scrollTop
         } else {
           baseOffset = this.dragState.x
           maxOffset = contentBox.width
-          delta = event.pageX - contentBox.left - baseOffset
+          delta = event.pageX - contentBox.left - baseOffset - document.body.scrollLeft
         }
 
         if (this.step) {
