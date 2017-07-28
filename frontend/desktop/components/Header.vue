@@ -91,7 +91,7 @@
     <div class="container">
       <nav class="header-left">
         <ul>
-          <li><nuxt-link to="/">riuir</nuxt-link></li>
+          <li><nuxt-link to="/">主站</nuxt-link></li>
           <li class="bangumi">
             <nuxt-link to="/bangumi/news">番剧</nuxt-link>
           </li>

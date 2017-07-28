@@ -286,6 +286,7 @@
              :poster="poster"
              :src="source"
              preload="metadata"
+             v-text="info"
              ref="video">
       </video>
       <div class="vue-pwa-video-init"
@@ -354,6 +355,9 @@
         type: String,
         default: '',
         required: true
+      },
+      info: {
+        type: String
       },
       poster: {
         type: String

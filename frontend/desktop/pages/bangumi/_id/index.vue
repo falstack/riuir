@@ -120,57 +120,66 @@
 
 <template>
   <div id="main">
-    <div id="banner">
+    <section id="banner">
       <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner)})` : '' }"></div>
       <div class="info">
         <h1 v-text="info.name"></h1>
         <p v-text="info.summary"></p>
         <v-share></v-share>
       </div>
-    </div>
+    </section>
     <div class="container">
       <div class="col-9">
-        <div id="videos" v-if="videos.length">
+        <section id="videos" v-if="videos.length">
           <h2 class="subtitle">视频列表</h2>
           <div v-if="info.season">
             <template v-for="season in videos">
               <h3 class="celltitle" v-text="season.name"></h3>
               <ul class="clearfix">
-                <li class="video" v-for="video in sortVideos(season.data)">
-                  <nuxt-link :to="`/video/${video.id}`">
-                    <v-img class="poster bg"
-                           :alt="video.name"
-                           :src="$resize(video.poster, { width: 192, height: 120 })">
-                    </v-img>
-                  </nuxt-link>
-                  <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
-                  <span class="name twoline" v-text="video.name"></span>
+                <li v-for="video in sortVideos(season.data)">
+                  <figure class="video">
+                    <nuxt-link :to="`/video/${video.id}`">
+                      <v-img class="poster bg"
+                             :alt="video.name"
+                             :src="$resize(video.poster, { width: 192, height: 120 })">
+                      </v-img>
+                    </nuxt-link>
+                    <figcaption>
+                      <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
+                      <span class="name twoline" v-text="video.name"></span>
+                    </figcaption>
+                  </figure>
                 </li>
               </ul>
             </template>
           </div>
           <ul class="clearfix" v-else>
-            <li class="video" v-for="video in sortVideos(videos)">
-              <nuxt-link :to="`/video/${video.id}`">
-                <v-img class="poster bg"
-                       :alt="video.name"
-                       :src="$resize(video.poster, { width: 192, height: 120 })">
-                </v-img>
-              </nuxt-link>
-              <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
-              <span class="name twoline" v-text="video.name"></span>
+            <li v-for="video in sortVideos(videos)">
+              <figure class="video">
+                <nuxt-link :to="`/video/${video.id}`">
+                  <v-img class="poster bg"
+                         :alt="video.name"
+                         :title="video.name"
+                         :src="$resize(video.poster, { width: 192, height: 120 })">
+                  </v-img>
+                </nuxt-link>
+                <figcaption>
+                  <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
+                  <span class="name twoline" v-text="video.name"></span>
+                </figcaption>
+              </figure>
             </li>
           </ul>
-        </div>
+        </section>
       </div>
-      <div class="col-3">
+      <aside class="col-3">
         <div id="tags">
           <h2 class="subtitle">标签</h2>
           <ul>
-            <li class="tag" v-for="tag in tags" v-text="tag"></li>
+            <li class="tag" v-for="tag in tags"><strong v-text="tag"></strong></li>
           </ul>
         </div>
-      </div>
+      </aside>
     </div>
   </div>
 </template>

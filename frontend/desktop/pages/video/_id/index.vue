@@ -69,11 +69,13 @@
   <div id="main">
     <v-banner></v-banner>
     <div class="container">
-      <h2 class="breadcrumb" v-if="bangumi && info">
-        <nuxt-link to="/">主站</nuxt-link>
-        <nuxt-link :to="`/bangumi/${bangumi.id}`" v-text="bangumi.name"></nuxt-link>
-        第{{ info.part }}话&nbsp;{{ info.name }}
-      </h2>
+      <nav>
+        <h1 class="breadcrumb" v-if="bangumi && info">
+          <nuxt-link to="/">主站</nuxt-link>
+          <nuxt-link :to="`/bangumi/${bangumi.id}`" v-text="bangumi.name"></nuxt-link>
+          第{{ info.part }}话&nbsp;{{ info.name }}
+        </h1>
+      </nav>
       <div class="metas" v-if="maxWidth">
         <ul class="clearfix">
           <li v-for="meta in sortVideos">
@@ -84,7 +86,7 @@
         </ul>
         <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
       </div>
-      <v-video :source="info.url" :poster="$resize(info.poster)" v-if="info" @playing="handlePlaying"></v-video>
+      <v-video :source="info.url" :info="`${bangumi.name} 第 ${info.part} 话 ${info.name}`" :poster="$resize(info.poster)" v-if="info" @playing="handlePlaying"></v-video>
       <div class="social">
         <v-share></v-share>
       </div>
