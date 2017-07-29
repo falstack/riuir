@@ -125,26 +125,65 @@
         <el-dialog :visible.sync="createDialogFormVisible">
             <h3 slot="title">新建视频</h3>
             <el-form :model="createForm">
-                <el-form-item label="番剧" :label-width="'60px'">
-                    <el-select v-model="createForm.bname" placeholder="请选择">
-                        <el-option
-                                v-for="item in bangumis"
-                                :key="item.id"
-                                :value="item.name"
-                                :disabled="item.deleted_at">
-                        </el-option>
-                    </el-select>
+                <el-row>
+                    <el-col :span="8">
+                        <el-form-item label="番剧" :label-width="'85px'">
+                            <el-select v-model="createForm.bname" placeholder="请选择">
+                                <el-option
+                                        v-for="item in bangumis"
+                                        :key="item.id"
+                                        :value="item.name"
+                                        :disabled="item.deleted_at">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item label="集数" :label-width="'85px'">
+                            <el-input v-model="createForm.part" placeholder="1-n" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-form-item label="名称" :label-width="'85px'">
+                            <el-input v-model="createForm.resourceName" placeholder="${name}" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-form-item label="画质" :label-width="'85px'">
+                    <div>
+                        <el-checkbox v-model="createForm.P720.show">720P</el-checkbox>
+                        <el-checkbox v-model="createForm.P1080.show">1080P</el-checkbox>
+                    </div>
                 </el-form-item>
-                <el-form-item label="集数" :label-width="'60px'">
-                    <el-input v-model="createForm.part" placeholder="1-n" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="海报" :label-width="'60px'">
-                    <el-input v-model="createForm.poster" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="资源" :label-width="'60px'">
+                <el-row v-if="createForm.P720.show">
+                    <el-form-item label="720P 资源" :label-width="'85px'">
+                        <el-input v-model="createForm.P720.src" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="720P 字幕" :label-width="'85px'">
+                        <el-col :span="18">
+                            <el-input v-model="createForm.P720.lyric" auto-complete="off"></el-input>
+                        </el-col>
+                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P720.useLyc"></el-switch>
+                    </el-form-item>
+                </el-row>
+                <el-row v-if="createForm.P1080.show">
+                    <el-form-item label="1080P 资源" :label-width="'85px'">
+                        <el-input v-model="createForm.P1080.src" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="1080P 字幕" :label-width="'85px'">
+                        <el-col :span="18">
+                            <el-input v-model="createForm.P1080.lyric" auto-complete="off"></el-input>
+                        </el-col>
+                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P1080.useLyc"></el-switch>
+                    </el-form-item>
+                </el-row>
+                <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="普通资源" :label-width="'85px'">
                     <el-input v-model="createForm.url" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="名称" :label-width="'60px'">
+                <el-form-item label="海报" :label-width="'85px'">
+                    <el-input v-model="createForm.poster" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="名称" :label-width="'85px'">
                     <el-input v-model="createForm.name" type="textarea" placeholder="一行一个" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
@@ -175,11 +214,24 @@
               url: ''
             },
             createForm: {
+              P720: {
+                show: false,
+                src: 'bangumi/${name}/video/720/${n}.mp4',
+                lyric: 'bangumi/${name}/video/720/${n}.aac',
+                useLyc: true
+              },
+              P1080: {
+                show: false,
+                src: 'bangumi/${name}/video/1080/${n}.mp4',
+                lyric: 'bangumi/${name}/video/1080/${n}.aac',
+                useLyc: true
+              },
+              resourceName: '',
               bname: '',
               name: '',
               part: '',
-              poster: 'bangumi/${name}/poster/${n}.${ext}',
-              url: 'bangumi/${name}/video/${n}.mp4'
+              url: 'bangumi/${name}/video/${n}.mp4',
+              poster: 'bangumi/${name}/poster/${n}.jpg',
             },
             CDNPrefixp: 'http://cdn.riuir.com/'
           }
@@ -255,16 +307,33 @@
           },
           handleCreateCancel() {
             this.createForm = {
+              checkP: ['P720'],
+              P720: {
+                src: 'bangumi/${name}/video/720/${n}.mp4',
+                lyric: 'bangumi/${name}/video/720/${n}.aac',
+                useLyc: true
+              },
+              P1080: {
+                src: 'bangumi/${name}/video/1080/${n}.mp4',
+                lyric: 'bangumi/${name}/video/1080/${n}.aac',
+                useLyc: true
+              },
+              panel: 'P720',
+              resourceName: '',
               bname: '',
               name: '',
               part: '',
-              poster: 'bangumi/${name}/poster/${n}.${ext}',
-              url: 'bangumi/${name}/video/${n}.mp4'
+              url: 'bangumi/${name}/video/${n}.mp4',
+              poster: 'bangumi/${name}/poster/${n}.jpg',
             };
             this.createDialogFormVisible = false
           },
           handleCreateDone() {
             const part = this.createForm.part.split('-');
+            if (!this.createForm.bname) {
+              this.$message.error('先选择番剧');
+              return;
+            }
             if (part.length !== 2) {
               this.$message.error('集数不符合规范');
               return;
@@ -272,7 +341,12 @@
             const [begin, end] = [part[0] - 0, part[1] - 0];
             const length = end - begin + 1;
             if (length <= 0 || begin === 0) {
-              this.$message.error('集数不对');
+              this.$message.error('集数不符合规范');
+              return;
+            }
+            const resName = this.createForm.resourceName;
+            if (resName === '') {
+              this.$message.error('未修改链接中的番剧名');
               return;
             }
             const names = this.createForm.name.split('\n');
@@ -280,19 +354,48 @@
               this.$message.error('名称个数不对');
               return;
             }
-            if (this.createForm.poster.match('${name}') !== null || this.createForm.url.match('${}name') !== null) {
-              this.$message.error('未修改链接中的番剧名');
-              return;
-            }
             let arr = [], j =0;
             const bangumi_id = this.computedBangumiId(this.createForm.bname);
+            const [use720P, use1080P] = [this.createForm.P720.show, this.createForm.P1080.show];
+            let url, resource;
+            const use720PLyc = this.createForm.P720.useLyc;
+            const use1080PLyc = this.createForm.P1080.useLyc;
             for (let i = begin; i <= end; i++) {
+              if (use1080P || use1080P) {
+                url = '';
+              } else {
+                url = undefined;
+              }
+              if (!use1080P && !use720P) {
+                resource = '';
+              } else {
+                resource = {}
+              }
+              if (use720P) {
+                resource['720'] = {
+                  useLyc: use720PLyc,
+                  video: this.createForm.P720.src.replace('${n}', i).replace('${name}', resName)
+                };
+                if (use720PLyc) {
+                  resource['720'].lyric = this.createForm.P720.lyric.replace('${n}', i).replace('${name}', resName);
+                }
+              }
+              if (use1080P) {
+                resource['1080'] = {
+                  useLyc: use1080PLyc,
+                  video: this.createForm.P1080.src.replace('${n}', i).replace('${name}', resName)
+                };
+                if (use1080PLyc) {
+                  resource['1080'].lyric = this.createForm.P1080.lyric.replace('${n}', i).replace('${name}', resName);
+                }
+              }
               arr.push({
+                'resource': resource,
                 'bangumi_id': bangumi_id,
                 'part': i,
                 'name': names[j++],
-                'poster': this.createForm.poster.replace('${n}', i).replace('${ext}', 'jpg'),
-                'url': this.createForm.url.replace('${n}', i)
+                'poster': this.createForm.poster.replace('${n}', i).replace('${name}', resName),
+                'url': url === undefined ? this.createForm.url.replace('${n}', i).replace('${name}', resName) : url
               });
             }
 
