@@ -94,22 +94,30 @@
         <el-dialog :visible.sync="editDialogFormVisible">
             <h3 slot="title">@{{ `视频编辑：《${dialogTitle}》`  }}</h3>
             <el-form :model="editForm">
-                <el-form-item label="番剧" :label-width="'60px'">
-                    <el-select v-model="editForm.bname" placeholder="请选择">
-                        <el-option
-                            v-for="item in bangumis"
-                            :key="item.id"
-                            :value="item.name"
-                            :disabled="item.deleted_at">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="集数" :label-width="'60px'">
-                    <el-input v-model="editForm.part" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="名称" :label-width="'60px'">
-                    <el-input v-model="editForm.name" auto-complete="off"></el-input>
-                </el-form-item>
+                <el-row>
+                    <el-col :span="8">
+                        <el-form-item label="番剧" :label-width="'60px'">
+                            <el-select v-model="editForm.bname" placeholder="请选择">
+                                <el-option
+                                        v-for="item in bangumis"
+                                        :key="item.id"
+                                        :value="item.name"
+                                        :disabled="item.deleted_at">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item label="集数" :label-width="'60px'">
+                            <el-input v-model="editForm.part" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="10">
+                        <el-form-item label="名称" :label-width="'60px'">
+                            <el-input v-model="editForm.name" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
                 <el-form-item label="海报" :label-width="'60px'">
                     <el-input v-model="editForm.poster" auto-complete="off"></el-input>
                 </el-form-item>

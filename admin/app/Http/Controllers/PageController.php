@@ -55,6 +55,11 @@ class PageController extends Controller
             ->select('videos.*', 'bangumis.name AS bname')
             ->get();
 
+        foreach ($list as $row)
+        {
+            $row['resource'] = $row['resource'] === 'null' ? '' : json_decode($row['resource']);
+        }
+
         return view('pages.video', [
             'list' => $list,
             'bangumis' => Bangumi::withTrashed()->select('id', 'name', 'deleted_at')->get()

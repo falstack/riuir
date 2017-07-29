@@ -17,7 +17,8 @@ class VideoController extends Controller
                 'url' => $video['url'],
                 'poster' => $video['poster'],
                 'part' => $video['part'],
-                'name' => $video['name']
+                'name' => $video['name'],
+                'resource' => $video['resource']
             ]);
         }
         Video::insert($arr);
@@ -31,7 +32,8 @@ class VideoController extends Controller
                 'bangumi_id' => $request->get('bangumi_id'),
                 'part' => $request->get('part'),
                 'poster' => $request->get('poster'),
-                'url' => $request->get('url')
+                'url' => $request->get('url'),
+                'resource' => $request->get('resource')
             ]);
     }
 
