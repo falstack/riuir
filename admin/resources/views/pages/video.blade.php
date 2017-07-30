@@ -96,7 +96,7 @@
             <el-form :model="editForm">
                 <el-row>
                     <el-col :span="8">
-                        <el-form-item label="番剧" :label-width="'60px'">
+                        <el-form-item label="番剧" :label-width="'85px'">
                             <el-select v-model="editForm.bname" placeholder="请选择">
                                 <el-option
                                         v-for="item in bangumis"
@@ -108,22 +108,38 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item label="集数" :label-width="'60px'">
+                        <el-form-item label="集数" :label-width="'85px'">
                             <el-input v-model="editForm.part" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="10">
-                        <el-form-item label="名称" :label-width="'60px'">
+                        <el-form-item label="名称" :label-width="'85px'">
                             <el-input v-model="editForm.name" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
-                <el-form-item label="海报" :label-width="'60px'">
+                <el-form-item label="海报" :label-width="'85px'">
                     <el-input v-model="editForm.poster" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="资源" :label-width="'60px'">
+                <el-form-item v-if="editForm.url" label="普通资源" :label-width="'85px'">
                     <el-input v-model="editForm.url" auto-complete="off"></el-input>
                 </el-form-item>
+                <template>
+                    <el-form-item label="720P 资源" :label-width="'85px'">
+                        <el-input v-model="editForm.resource[720].src" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="720P 字幕" :label-width="'85px'">
+                        <el-input v-model="editForm.resource[720].lyric" auto-complete="off"></el-input>
+                    </el-form-item>
+                </template>
+                <template v-if="editForm.resource && editForm.resource[1080]">
+                    <el-form-item label="1080P 资源" :label-width="'85px'">
+                        <el-input v-model="editForm.resource[1080].src" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="1080P 字幕" :label-width="'85px'">
+                        <el-input v-model="editForm.resource[1080].lyric" auto-complete="off"></el-input>
+                    </el-form-item>
+                </template>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="editDialogFormVisible = false">取 消</el-button>
@@ -168,10 +184,7 @@
                         <el-input v-model="createForm.P720.src" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="720P 字幕" :label-width="'85px'">
-                        <el-col :span="18">
-                            <el-input v-model="createForm.P720.lyric" auto-complete="off"></el-input>
-                        </el-col>
-                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P720.useLyc"></el-switch>
+                        <el-input v-model="createForm.P720.lyric" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-row>
                 <el-row v-if="createForm.P1080.show">
@@ -179,10 +192,7 @@
                         <el-input v-model="createForm.P1080.src" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="1080P 字幕" :label-width="'85px'">
-                        <el-col :span="18">
-                            <el-input v-model="createForm.P1080.lyric" auto-complete="off"></el-input>
-                        </el-col>
-                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P1080.useLyc"></el-switch>
+                        <el-input v-model="createForm.P1080.lyric" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-row>
                 <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="普通资源" :label-width="'85px'">
@@ -219,20 +229,28 @@
               name: '',
               part: '',
               poster: '',
-              url: ''
+              url: '',
+              resource: {
+                '720': {
+                  lyric: '',
+                  src: ''
+                },
+                '1080': {
+                  lyric: '',
+                  src: ''
+                }
+              }
             },
             createForm: {
               P720: {
                 show: false,
                 src: 'bangumi/${name}/video/720/${n}.mp4',
-                lyric: 'bangumi/${name}/video/720/${n}.aac',
-                useLyc: true
+                lyric: 'bangumi/${name}/video/720/${n}.aac'
               },
               P1080: {
                 show: false,
                 src: 'bangumi/${name}/video/1080/${n}.mp4',
-                lyric: 'bangumi/${name}/video/1080/${n}.aac',
-                useLyc: true
+                lyric: 'bangumi/${name}/video/1080/${n}.aac'
               },
               resourceName: '',
               bname: '',
@@ -247,6 +265,25 @@
         methods : {
           handleEditOpen(index, row) {
             this.dialogTitle = row.name;
+            const def = {
+              lyric: '',
+              src: ''
+            };
+            let resource = {};
+            if (row.resource) {
+              resource = row.resource;
+              if (!resource[720]) {
+                resource[720] = def;
+              }
+              if (!resource[1080]) {
+                resource[1080] = def;
+              }
+            } else {
+              resource = {
+                '720': def,
+                '1080': def
+              };
+            }
             this.editForm = {
               index: index,
               bname: row.bname,
@@ -254,7 +291,8 @@
               name: row.name,
               poster: row.poster,
               url: row.url,
-              part: row.part
+              part: row.part,
+              resource: resource
             };
             this.editDialogFormVisible = true;
           },
@@ -279,7 +317,8 @@
               bangumi_id: bangumi_id,
               poster: this.editForm.poster.replace(this.CDNPrefixp, ''),
               url: this.editForm.url.replace(this.CDNPrefixp, ''),
-              part: this.editForm.part
+              part: this.editForm.part,
+              resource: this.editForm.resource
             }).then(() => {
               this.list[this.editForm.index].name = this.editForm.name;
               this.list[this.editForm.index].bname = this.editForm.bname;
@@ -287,6 +326,7 @@
               this.list[this.editForm.index].url = this.editForm.url;
               this.list[this.editForm.index].part = this.editForm.part;
               this.list[this.editForm.index].poster = this.editForm.poster;
+              this.list[this.editForm.index].resource = this.editForm.resource;
               this.editDialogFormVisible = false;
               this.$message.success('操作成功');
             }, (err) => {
@@ -318,13 +358,11 @@
               checkP: ['P720'],
               P720: {
                 src: 'bangumi/${name}/video/720/${n}.mp4',
-                lyric: 'bangumi/${name}/video/720/${n}.aac',
-                useLyc: true
+                lyric: 'bangumi/${name}/video/720/${n}.aac'
               },
               P1080: {
                 src: 'bangumi/${name}/video/1080/${n}.mp4',
-                lyric: 'bangumi/${name}/video/1080/${n}.aac',
-                useLyc: true
+                lyric: 'bangumi/${name}/video/1080/${n}.aac'
               },
               panel: 'P720',
               resourceName: '',
@@ -366,10 +404,8 @@
             const bangumi_id = this.computedBangumiId(this.createForm.bname);
             const [use720P, use1080P] = [this.createForm.P720.show, this.createForm.P1080.show];
             let url, resource;
-            const use720PLyc = this.createForm.P720.useLyc;
-            const use1080PLyc = this.createForm.P1080.useLyc;
             for (let i = begin; i <= end; i++) {
-              if (use1080P || use1080P) {
+              if (use720P || use1080P) {
                 url = '';
               } else {
                 url = undefined;
@@ -381,21 +417,15 @@
               }
               if (use720P) {
                 resource['720'] = {
-                  useLyc: use720PLyc,
-                  video: this.createForm.P720.src.replace('${n}', i).replace('${name}', resName)
+                  src: this.createForm.P720.src.replace('${n}', i).replace('${name}', resName),
+                  lyric: this.createForm.P720.lyric ? this.createForm.P720.lyric.replace('${n}', i).replace('${name}', resName) : ''
                 };
-                if (use720PLyc) {
-                  resource['720'].lyric = this.createForm.P720.lyric.replace('${n}', i).replace('${name}', resName);
-                }
               }
               if (use1080P) {
                 resource['1080'] = {
-                  useLyc: use1080PLyc,
-                  video: this.createForm.P1080.src.replace('${n}', i).replace('${name}', resName)
+                  src: this.createForm.P1080.src.replace('${n}', i).replace('${name}', resName),
+                  lyric: this.createForm.P1080.lyric ? this.createForm.P1080.lyric.replace('${n}', i).replace('${name}', resName) : ''
                 };
-                if (use1080PLyc) {
-                  resource['1080'].lyric = this.createForm.P1080.lyric.replace('${n}', i).replace('${name}', resName);
-                }
               }
               arr.push({
                 'resource': resource,

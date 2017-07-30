@@ -14,6 +14,8 @@ class VideoController extends Controller
         {
             $info = Video::find($id);
 
+            $info['resource'] = $info['resource'] ? json_decode($info['resource']) : '';
+
             return json_encode([
                 'info' => $info,
                 'videos' => Video::where('bangumi_id', $info->bangumi_id)->get(),

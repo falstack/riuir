@@ -282,12 +282,22 @@
          @click.stop="screenclick ? handlePlay() : ''"
          @dblclick="screenclick ? screen() : ''"
          @mousemove="tool">
-      <video :autoplay="auto"
+      <video :preload="auto ? 'auto' : 'metadata'"
              :poster="poster"
-             :src="source"
-             preload="metadata"
-             v-text="info"
-             ref="video">
+             :autoplay="auto"
+             ref="video"
+             v-if="sourceissrc">
+        {{ info }}
+        <source :src="source" type="video/mp4">
+      </video>
+      <video :preload="auto ? 'auto' : 'metadata'"
+             :poster="poster"
+             :autoplay="auto"
+             ref="video"
+             v-else>
+        {{ info }}
+        <source :src="sourceType.src" type="video/mp4">
+        <track kind="subtitles" :src="sourceType.lyric" srclang="cn">
       </video>
       <div class="vue-pwa-video-init"
            v-if="state.init">
@@ -352,9 +362,12 @@
     },
     props: {
       source: {
-        type: String,
         default: '',
         required: true
+      },
+      sourceissrc: {
+        type: Boolean,
+        default: false
       },
       info: {
         type: String
@@ -408,7 +421,9 @@
           init: true,
           ended: false,
           seeking: false,
-          error: false
+          error: false,
+          type: [],
+          selected: ''
         },
         value: {
           duration: 0,
@@ -421,6 +436,14 @@
           timer: null
         },
         logs: []
+      }
+    },
+    computed: {
+      sourceType () {
+        if (!this.sourceissrc && !this.state.selected) {
+          this.computedSource()
+        }
+        return this.source[this.state.selected]
       }
     },
     created () {
@@ -441,7 +464,9 @@
           init: true,
           ended: false,
           seeking: false,
-          error: false
+          error: false,
+          type: [],
+          selected: ''
         }
         this.value = {
           duration: 0,
@@ -451,6 +476,15 @@
           allTime: '00:00',
           voiceTemp: 0,
           timer: null
+        }
+        this.computedSource()
+      },
+      computedSource () {
+        if (!this.sourceissrc) {
+          for (const key in this.source) {
+            this.state.type.push(key)
+          }
+          this.state.selected = this.state.type[0]
         }
       },
       handlePlay () {
@@ -606,9 +640,11 @@
       const video = self.$refs.video
       video.removeAttribute('src')
       video.load()
-      video.src = this.source
       video.volume = self.value.voice / 100
       video.controls = false
+      if (self.sourceissrc) {
+        video.src = self.source
+      }
 
       video.addEventListener('abort', function () {
         self.debugLog('abort : 音频/视频的加载已放弃时 | 在退出时运行')

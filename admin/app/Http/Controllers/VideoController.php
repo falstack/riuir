@@ -9,16 +9,17 @@ class VideoController extends Controller
 {
     public function create(Request $request)
     {
+        // 已经又720P的视频，然后又存1080P的视频
         $arr = [];
         foreach($request->get('arr') as $video)
         {
             array_push($arr, [
                 'bangumi_id' => $video['bangumi_id'],
-                'url' => $video['url'],
+                'url' => $video['url'] ? $video['url'] : '',
                 'poster' => $video['poster'],
                 'part' => $video['part'],
                 'name' => $video['name'],
-                'resource' => $video['resource']
+                'resource' => json_encode($video['resource'])
             ]);
         }
         Video::insert($arr);
