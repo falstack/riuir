@@ -30,10 +30,11 @@ Helpers.install = function (Vue, options) {
     const format = canUseWebP() ? '/format/webp' : ''
 
     if (options.width && options.width > 0) {
-      const width = options.width
-      const height = options.height || options.width
+      const width = `/w/${options.width}`
+      const crop = options.crop === false ? '0' : '1'
+      const height = options.height ? `/h/${options.height}` : crop === '1' ? `/h/${options.width}` : ''
 
-      return `${url}?imageMogr2/auto-orient/strip|imageView2/1/w/${width}/h/${height}${format}`
+      return `${url}?imageMogr2/auto-orient/strip|imageView2/${crop}${width}${height}${format}`
     }
     return `${url}?imageMogr2/auto-orient/strip${format}`
   }

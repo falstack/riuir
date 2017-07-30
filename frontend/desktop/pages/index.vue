@@ -37,8 +37,8 @@
 
 <template>
   <div id="index-wrap">
-    <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${$resize(banner1.url, { width: 1920 })})` : '' }"></div>
-    <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920 })})` : '' }"></div>
+    <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${$resize(banner1.url, { width: 1920, crop: false })})` : '' }"></div>
+    <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920, crop: false })})` : '' }"></div>
     <div>
       <div class="slogan bg"></div>
     </div>
