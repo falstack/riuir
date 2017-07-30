@@ -3,12 +3,11 @@
     width: 100%;
     height: 170px;
     margin-bottom: 40px;
-    background-image: url("http://cdn.riuir.com/banner/1.jpg");
   }
 </style>
 
 <template>
-  <div id="banner" class="bg"></div>
+  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${$resize('http://cdn.riuir.com/banner/1.jpg')})` }"></div>
 </template>
 
 <script>
