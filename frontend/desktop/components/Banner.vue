@@ -2,13 +2,13 @@
   #banner {
     width: 100%;
     height: 170px;
-    background: linear-gradient(4deg,#00e6ff,#00a1d6);
     margin-bottom: 40px;
+    background-image: url("http://cdn.riuir.com/banner/1.jpg");
   }
 </style>
 
 <template>
-  <div id="banner"></div>
+  <div id="banner" class="bg"></div>
 </template>
 
 <script>
