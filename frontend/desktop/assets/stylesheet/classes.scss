@@ -152,3 +152,11 @@ $base-font-size: 14px;
     background-image: url("~assets/images/icon-tag.png");
   }
 }
+
+.abs {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}

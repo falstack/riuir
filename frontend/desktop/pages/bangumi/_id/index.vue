@@ -58,43 +58,52 @@
   }
 
   #videos {
+    li {
+      margin: 0 15px 15px 0;
+    }
 
-    .video {
-      float: left;
+    a {
+      display: block;
+      position: relative;
+    }
+
+    figure {
       width: 200px;
       height: 60px;
-      margin: 0 15px 15px 0;
       background-color: #f4f5f7;
       cursor: pointer;
-      padding-right: 12px;
       border-radius: 3px;
       overflow: hidden;
 
-      &:hover .part {
+      &:hover p {
           color: #00a1d6;
       }
 
-      .poster {
+      img {
         width: 96px;
         height: 100%;
         cursor: pointer;
-        float: left;
         margin-right: 12px;
       }
 
-      .part {
-        display: block;
-        color: #000;
-        font-size: 12px;
-        line-height: 14px;
-        margin-top: 6px;
-        margin-bottom: 5px;
-      }
+      figcaption {
+        padding-left: 108px;
+        padding-right: 12px;
 
-      .name {
-        font-size: 12px;
-        line-height: 14px;
-        color: #99a2aa;
+        p {
+          display: block;
+          color: #000;
+          font-size: 12px;
+          line-height: 14px;
+          margin-top: 6px;
+          margin-bottom: 5px;
+        }
+
+        span {
+          font-size: 12px;
+          line-height: 14px;
+          color: #99a2aa;
+        }
       }
     }
   }
@@ -137,37 +146,36 @@
               <h3 class="celltitle" v-text="season.name"></h3>
               <ul class="clearfix">
                 <li v-for="video in sortVideos(season.data)">
-                  <figure class="video">
-                    <nuxt-link :to="`/video/${video.id}`">
-                      <v-img class="poster bg"
+                  <nuxt-link :to="`/video/${video.id}`">
+                    <figure>
+                      <v-img class="bg"
                              :alt="video.name"
                              :src="$resize(video.poster, { width: 192, height: 120 })">
                       </v-img>
-                    </nuxt-link>
-                    <figcaption>
-                      <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
-                      <span class="name twoline" v-text="video.name"></span>
-                    </figcaption>
-                  </figure>
+                      <figcaption class="abs">
+                        <p class="oneline">第{{ video.part }}话</p>
+                        <span class="twoline" v-text="video.name"></span>
+                      </figcaption>
+                    </figure>
+                  </nuxt-link>
                 </li>
               </ul>
             </template>
           </div>
           <ul class="clearfix" v-else>
             <li v-for="video in sortVideos(videos)">
-              <figure class="video">
-                <nuxt-link :to="`/video/${video.id}`">
-                  <v-img class="poster bg"
+              <nuxt-link :to="`/video/${video.id}`">
+                <figure>
+                  <v-img class="bg"
                          :alt="video.name"
-                         :title="video.name"
                          :src="$resize(video.poster, { width: 192, height: 120 })">
                   </v-img>
-                </nuxt-link>
-                <figcaption>
-                  <nuxt-link class="part oneline" :to="`/video/${video.id}`">第{{ video.part }}话</nuxt-link>
-                  <span class="name twoline" v-text="video.name"></span>
-                </figcaption>
-              </figure>
+                  <figcaption class="abs">
+                    <p class="oneline">第{{ video.part }}话</p>
+                    <span class="twoline" v-text="video.name"></span>
+                  </figcaption>
+                </figure>
+              </nuxt-link>
             </li>
           </ul>
         </section>
