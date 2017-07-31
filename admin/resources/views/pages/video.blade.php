@@ -215,6 +215,30 @@
         </el-row>
     </div>
     <script>
+/*    {
+        "resource": {
+          "video": {
+            "720": {
+              "useLyc": true,
+              "src": ""
+            },
+            "1080": {
+              "useLyc": false,
+              "src": ""
+            }
+          },
+          "lyric": {
+            "cn": "",
+            "en": ""
+          }
+        },
+        "poster": "",
+        "url": "",
+        "part": "",
+        "name": "",
+        "bangumi_id": "",
+        "id": ""
+      }     */
       new Vue({
         el: '#list',
         data () {
