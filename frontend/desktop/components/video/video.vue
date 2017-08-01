@@ -296,8 +296,8 @@
              ref="video"
              v-else>
         {{ info }}
-        <source :src="source.video[p].src" type="video/mp4">
-        <track kind="subtitles" :src="source.lyric[lang]" :srclang="lang">
+        <source :src="`${CDNPrefix}${source.video[p].src}`" type="video/mp4">
+        <track kind="subtitles" :src="`${CDNPrefix}${source.lyric[lang]}`" :srclang="lang">
       </video>
       <div class="vue-pwa-video-init"
            v-if="state.init">
@@ -417,6 +417,7 @@
     data () {
       return {
         video: null,
+        CDNPrefix: 'http://cdn.riuir.com/',
         state: {
           playing: false,
           isMuted: false,
