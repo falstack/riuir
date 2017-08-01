@@ -27,7 +27,7 @@ class Video extends Model
 
     public function getUrlAttribute($url)
     {
-        return 'http://cdn.riuir.com/' . $url;
+        return $url ? 'http://cdn.riuir.com/' . $url : '';
     }
 
     public function getPosterAttribute($poster)

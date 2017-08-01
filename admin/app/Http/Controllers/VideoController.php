@@ -33,8 +33,8 @@ class VideoController extends Controller
                 'bangumi_id' => $request->get('bangumi_id'),
                 'part' => $request->get('part'),
                 'poster' => $request->get('poster'),
-                'url' => $request->get('url'),
-                'resource' => $request->get('resource')
+                'url' => $request->get('url') ? $request->get('url') : '',
+                'resource' => json_encode($request->get('resource'))
             ]);
     }
 
