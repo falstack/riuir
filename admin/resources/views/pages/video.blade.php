@@ -351,7 +351,6 @@
             const bangumi_id = this.computedBangumiId(this.editForm.bname);
             let resource = this.editForm.resource;
             let url = this.editForm.url.replace(this.CDNPrefixp, '');
-            console.log(resource);
             if (!resource.video[720].src && !resource.video[1080].src) {
               resource = '';
               url = this.editForm.poster.replace(this.CDNPrefixp, '').split('poster')[0] + this.editForm.part + '.mp4'
@@ -367,7 +366,6 @@
                 }
               }
             }
-            console.log(resource);
             this.$http.post('/video/edit', {
               id: this.editForm.id,
               name: this.editForm.name,

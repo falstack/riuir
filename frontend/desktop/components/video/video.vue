@@ -296,8 +296,8 @@
              ref="video"
              v-else>
         {{ info }}
-        <source :src="sourceType.src" type="video/mp4">
-        <track kind="subtitles" :src="sourceType.lyric" srclang="cn">
+        <source :src="source.video[p].src" type="video/mp4">
+        <track kind="subtitles" :src="source.lyric[lang]" :srclang="lang">
       </video>
       <div class="vue-pwa-video-init"
            v-if="state.init">
@@ -361,6 +361,12 @@
       vRange
     },
     props: {
+      lang: {
+        default: 'cn'
+      },
+      p: {
+        default: '720'
+      },
       source: {
         default: '',
         required: true
@@ -422,8 +428,7 @@
           ended: false,
           seeking: false,
           error: false,
-          type: [],
-          selected: ''
+          progressive: []
         },
         value: {
           duration: 0,
@@ -438,19 +443,12 @@
         logs: []
       }
     },
-    computed: {
-      sourceType () {
-        if (!this.sourceissrc && !this.state.selected) {
-          this.computedSource()
-        }
-        return this.source[this.state.selected]
-      }
-    },
     created () {
       if (this.auto) {
         this.state.playing = true
         this.state.firstPlay = false
       }
+      this.computedProgressive()
     },
     methods: {
       initVideo () {
@@ -465,8 +463,7 @@
           ended: false,
           seeking: false,
           error: false,
-          type: [],
-          selected: ''
+          progressive: []
         }
         this.value = {
           duration: 0,
@@ -477,14 +474,14 @@
           voiceTemp: 0,
           timer: null
         }
-        this.computedSource()
+        this.computedProgressive()
       },
-      computedSource () {
+      computedProgressive () {
         if (!this.sourceissrc) {
-          for (const key in this.source) {
-            this.state.type.push(key)
+          for (const p in this.source.video) {
+            this.state.progressive.push(p)
           }
-          this.state.selected = this.state.type[0]
+          this.p = this.state.progressive[0]
         }
       },
       handlePlay () {
