@@ -305,6 +305,7 @@
         },
         methods : {
           handleEditOpen(index, row) {
+            console.log(row);
             this.dialogTitle = row.name;
             const def = {
               useLyc: false,
@@ -362,7 +363,7 @@
               }
               if (!resource.video[1080].src) {
                 resource.video = {
-                  '1080': resource.video[720]
+                  '720': resource.video[720]
                 }
               }
             }
@@ -375,6 +376,18 @@
               part: this.editForm.part,
               resource: resource
             }).then(() => {
+              if (!resource.video[720]) {
+                resource.video[720] = {
+                  "useLyc": false,
+                  "src": ""
+                }
+              }
+              if (!resource.video[1080]) {
+                resource.video[1080] = {
+                  "useLyc": false,
+                  "src": ""
+                }
+              }
               this.list[this.editForm.index].name = this.editForm.name;
               this.list[this.editForm.index].bname = this.editForm.bname;
               this.list[this.editForm.index].bangumi_id = bangumi_id;
