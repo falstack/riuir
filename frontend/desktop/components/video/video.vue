@@ -285,18 +285,18 @@
       <video :preload="auto ? 'auto' : 'metadata'"
              :poster="poster"
              :autoplay="auto"
+             :src="source"
              ref="video"
              v-if="sourceissrc">
         {{ info }}
-        <source :src="source" type="video/mp4">
       </video>
       <video :preload="auto ? 'auto' : 'metadata'"
              :poster="poster"
              :autoplay="auto"
              ref="video"
+             :src="`${CDNPrefix}${source.video[p].src}`"
              v-else>
         {{ info }}
-        <source :src="`${CDNPrefix}${source.video[p].src}`" type="video/mp4">
         <track kind="subtitles" :src="`${CDNPrefix}${source.lyric[lang]}`" :srclang="lang">
       </video>
       <div class="vue-pwa-video-init"
@@ -473,6 +473,7 @@
           curTime: '00:00',
           allTime: '00:00',
           voiceTemp: 0,
+          voice: 60,
           timer: null
         }
         this.computedProgressive()
