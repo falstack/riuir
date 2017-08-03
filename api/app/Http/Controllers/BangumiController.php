@@ -32,9 +32,14 @@ class BangumiController extends Controller
         {
             $bangumi = Bangumi::where('id', $id)->select('id', 'name', 'banner', 'summary', 'alias', 'season')->first();
 
-            $bangumi->alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
-
+            $alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
             $tags = $bangumi->tags()->select('name')->get()->toArray();
+            $keywords = $alias;
+            foreach ($tags as $tag)
+            {
+                $keywords = $keywords . ',' .$tag['name'];
+            }
+            $bangumi->keywords = trim($keywords, ',');
 
             $bangumi->season = $bangumi['season'] === 'null' ? '' : json_decode($bangumi['season']);
 
@@ -111,6 +116,11 @@ class BangumiController extends Controller
                 }
                 return $ret;
             });
+
+            if (empty($bangumi_id))
+            {
+                return response()->json(['tags' => $tagList, 'bangumis' => []], 200);
+            }
 
             $bangumis = [];
             foreach ($bangumi_id as $id)
