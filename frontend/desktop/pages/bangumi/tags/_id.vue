@@ -64,11 +64,20 @@
 
   .tags {
 
+    .tag, .btn {
+      display: inline-block;
+      padding: 0 5px;
+      height: 24px;
+      line-height: 22px;
+      font-size: 12px;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
     .tag {
-      background-color: rgba(32,160,255,.1);
       margin-right: 10px;
       margin-bottom: 10px;
-      display: inline-block;
+      background-color: rgba(32,160,255,.1);
       padding: 0 5px;
       height: 24px;
       line-height: 22px;
@@ -77,9 +86,23 @@
       box-sizing: border-box;
       border: 1px solid rgba(32,160,255,.2);
       white-space: nowrap;
+      color: #20a0ff;
+      cursor: pointer;
 
-      a {
-        color: #20a0ff;
+      &.selected {
+        background-color: #20a0ff;
+        color: #fff;
+      }
+    }
+
+    .btn {
+      background-color: #e4e8f1;
+      border-color: #e4e8f1;
+      color: #48576a;
+
+      &:hover {
+        color: #fff;
+        background-color: #8391a5;
       }
     }
   }
@@ -93,8 +116,14 @@
         <div class="tags">
           <h2 class="subtitle">标签列表</h2>
           <ul class="clearfix">
-            <li class="tag" v-for="tag in tags">
-              <nuxt-link :to="`/bangumi/tags/${tag.id}`" v-text="tag.name"></nuxt-link>
+            <li class="tag"
+                v-for="tag in tags"
+                :class="{ 'selected': tag.selected }"
+                @click="tag.selected = !tag.selected">
+              <strong v-text="tag.name"></strong>
+            </li>
+            <li>
+              <button class="btn" @click="getList">点击查找</button>
             </li>
           </ul>
         </div>
@@ -166,8 +195,13 @@
           id: params.id
         }
       }).then((res) => {
+        const tags = res.data.tags
+        const ids = params.id ? params.id.split('-') : undefined
+        for (let i = 0; i < tags.length; ++i) {
+          tags[i].selected = ids ? ids.indexOf(`${tags[i].id}`) !== -1 : false
+        }
         return {
-          tags: res.data.tags,
+          tags: tags,
           bangumis: res.data.bangumis
         }
       }).catch((err) => {
@@ -178,6 +212,22 @@
       return {
         tags: [],
         bangumis: []
+      }
+    },
+    methods: {
+      getList () {
+        const selected = []
+        for (const tag of this.tags) {
+          if (tag.selected) {
+            selected.push(tag.id)
+          }
+        }
+        this.$router.push({
+          name: 'bangumi-tags-id',
+          params: {
+            id: selected.join('-')
+          }
+        })
       }
     }
   }

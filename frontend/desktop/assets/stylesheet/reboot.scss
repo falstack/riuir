@@ -34,3 +34,13 @@ img {
   background-color: transparent;
   border: 0;
 }
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+
+  &:focus {
+    outline-width: 0;
+  }
+}

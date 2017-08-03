@@ -54,7 +54,7 @@ class BangumiController extends Controller
                 'avatar' => $request->get('avatar'),
                 'banner' => $request->get('banner'),
                 'summary' => $request->get('summary'),
-                'season' => $request->get('season'),
+                'season' => $request->get('season') ? $request->get('season') : 'null',
                 'alias' => json_encode([
                     'search' => $request->get('alias')
                 ])
