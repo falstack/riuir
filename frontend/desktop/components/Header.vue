@@ -94,6 +94,7 @@
           <li><nuxt-link to="/">主站</nuxt-link></li>
           <li class="bangumi">
             <nuxt-link to="/bangumi/news">番剧</nuxt-link>
+            <nuxt-link to="/bangumi/tags">分类</nuxt-link>
           </li>
         </ul>
       </nav>

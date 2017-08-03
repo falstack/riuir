@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bangumi;
+use App\Models\BangumiTag;
+use App\Models\Tag;
 use App\Models\Video;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class BangumiController extends Controller
@@ -32,11 +35,6 @@ class BangumiController extends Controller
             $bangumi->alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
 
             $tags = $bangumi->tags()->select('name')->get()->toArray();
-
-            foreach ($tags as $i => $tag)
-            {
-                $tags[$i] = $tag['name'];
-            }
 
             $bangumi->season = $bangumi['season'] === 'null' ? '' : json_decode($bangumi['season']);
 
@@ -72,6 +70,59 @@ class BangumiController extends Controller
         });
 
         return $data;
+    }
+
+    public function tags(Request $request)
+    {
+        $tagList = Cache::remember('bangumi_tags_all', env('CACHE_TTL'), function ()
+        {
+            return Tag::where('model', 0)->select('id', 'name')->get()->toArray();
+        });
+
+        $tags = $request->get('id');
+
+        if ($tags === null)
+        {
+            return response()->json(['tags' => $tagList, 'bangumis' => []], 200);
+        }
+        else
+        {
+            $arr = array_values(array_unique(array_filter(explode('-', $tags), function ($item) {
+                return !preg_match("/[^\d-., ]/", $item);
+            })));
+
+            if (empty($arr))
+            {
+                return null;
+            }
+
+            sort($arr);
+            $bangumi_id = Cache::remember('bangumi_tags_' . implode('_', $arr), env('CACHE_TTL'), function () use ($arr)
+            {
+                $count = count($arr);
+                $ids = array_count_values(BangumiTag::whereIn('tag_id', $arr)->pluck('bangumi_id')->toArray());
+                $ret = [];
+                foreach ($ids as $id => $c)
+                {
+                    if ($c === $count)
+                    {
+                        array_push($ret, $id);
+                    }
+                }
+                return $ret;
+            });
+
+            $bangumis = [];
+            foreach ($bangumi_id as $id)
+            {
+                array_push($bangumis, Cache::remember('bangumi_profile_' . $id, env('CACHE_TTL'), function () use ($id)
+                {
+                    return Bangumi::find($id)->toArray();
+                }));
+            }
+
+            return response()->json(['tags' => $tagList, 'bangumis' => $bangumis], 200);
+        }
     }
 
     public function generate()

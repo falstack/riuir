@@ -52,37 +52,34 @@
         }
 
         .foot {
-          .icon-item-tag {
 
-            li {
-              position: relative;
-              margin-right: 10px;
-
-              a {
-                color: #99a2aa;
-                font-weight: bold;
-              }
-
-              &:after {
-                content: '·';
-                position: absolute;
-                width: 10px;
-                right:-10px;
-                bottom: 0;
-                top: 0;
-                text-align: center;
-              }
-
-              &:last-child {
-                margin-right: 0;
-
-                &:after {
-                  content: '';
-                }
-              }
-            }
-          }
         }
+      }
+    }
+  }
+
+  .hr {
+    margin-bottom: 25px;
+  }
+
+  .tags {
+
+    .tag {
+      background-color: rgba(32,160,255,.1);
+      margin-right: 10px;
+      margin-bottom: 10px;
+      display: inline-block;
+      padding: 0 5px;
+      height: 24px;
+      line-height: 22px;
+      font-size: 12px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      border: 1px solid rgba(32,160,255,.2);
+      white-space: nowrap;
+
+      a {
+        color: #20a0ff;
       }
     }
   }
@@ -93,10 +90,19 @@
     <v-banner></v-banner>
     <div class="container">
       <section class="col-9">
-        <div>
+        <div class="tags">
+          <h2 class="subtitle">标签列表</h2>
+          <ul class="clearfix">
+            <li class="tag" v-for="tag in tags">
+              <nuxt-link :to="`/bangumi/tags/${tag.id}`" v-text="tag.name"></nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <div class="bangumis" v-if="bangumis.length">
+          <div class="hr"></div>
           <h2 class="subtitle">番剧列表</h2>
           <ul class="clearfix">
-            <li class="bangumi" v-for="item in list">
+            <li class="bangumi" v-for="item in bangumis">
               <figure>
                 <nuxt-link
                   :to="`/bangumi/${item.id}`">
@@ -114,11 +120,6 @@
                   </p>
                   <p class="body twoline" v-text="item.summary"></p>
                   <div class="foot">
-                    <ul class="icon-item icon-item-tag oneline" v-if="item.tags.length">
-                      <li v-for="tag in item.tags">
-                        <nuxt-link :to="`/bangumi/tags/${tag.pivot.tag_id}`" v-text="tag.name"></nuxt-link>
-                      </li>
-                    </ul>
                     <!--<span v-text="item.count_like"></span>-->
                   </div>
                 </figcaption>
@@ -137,24 +138,46 @@
   import vBanner from '~components/Banner.vue'
 
   export default {
-    name: 'bangumi-news',
+    name: 'bangumi-tags',
     head: {
       title: '番剧列表'
     },
     components: {
       vBanner
     },
-    asyncData () {
-      return axios.get('/bangumi/news')
-        .then((res) => {
-          return { list: res.data }
-        }).catch((err) => {
-          console.log(err)
-        })
+    validate ({ params }) {
+      const id = params.id
+      if (id === undefined || /^\d+$/.test(id)) {
+        return true
+      }
+      if (id.indexOf('-') !== -1) {
+        return id.split('-').every(item => /^\d+$/.test(item))
+      }
+      return false
+    },
+    watch: {
+      '$route' () {
+        this.bangumis = []
+      }
+    },
+    asyncData ({ params }) {
+      return axios.get(`/bangumi/tags`, {
+        params: {
+          id: params.id
+        }
+      }).then((res) => {
+        return {
+          tags: res.data.tags,
+          bangumis: res.data.bangumis
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
     },
     data () {
       return {
-        list: []
+        tags: [],
+        bangumis: []
       }
     }
   }

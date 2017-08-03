@@ -111,7 +111,6 @@
   #tags {
     .tag {
       background-color: rgba(32,160,255,.1);
-      color: #20a0ff;
       margin-right: 10px;
       margin-bottom: 10px;
       display: inline-block;
@@ -123,6 +122,10 @@
       box-sizing: border-box;
       border: 1px solid rgba(32,160,255,.2);
       white-space: nowrap;
+
+      a {
+        color: #20a0ff;
+      }
     }
   }
 </style>
@@ -184,7 +187,7 @@
         <div id="tags">
           <h2 class="subtitle">标签</h2>
           <ul>
-            <li class="tag" v-for="tag in tags"><strong v-text="tag"></strong></li>
+            <li class="tag" v-for="tag in tags"><nuxt-link :to="`/bangumi/tags/${tag.pivot.tag_id}`" v-text="tag.name"></nuxt-link></li>
           </ul>
         </div>
       </aside>
