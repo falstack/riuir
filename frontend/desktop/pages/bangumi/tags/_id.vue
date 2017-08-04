@@ -222,12 +222,14 @@
             selected.push(tag.id)
           }
         }
-        this.$router.push({
-          name: 'bangumi-tags-id',
-          params: {
-            id: selected.join('-')
-          }
-        })
+        if (selected.length) {
+          this.$router.push({
+            name: 'bangumi-tags-id',
+            params: {
+              id: selected.join('-')
+            }
+          })
+        }
       }
     }
   }
