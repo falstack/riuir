@@ -31,7 +31,7 @@ module.exports = {
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/helpers.js' },
     { src: '~plugins/share.js' },
-    { src: '~plugins/image.js' }
+    { src: '~plugins/imagelazy.js' }
   ],
   /*
   ** Headers of the page
