@@ -18,7 +18,7 @@ class BangumiController extends Controller
             $bangumis = Bangumi::select('id', 'name', 'summary', 'avatar', 'season')->get();
             foreach ($bangumis as $row)
             {
-                $published_at = 1970.10;
+                $published_at = '1970.10';
                 if ($row->season !== 'null') {
                     $data = json_decode($row->season);
                     if (isset($data->time)) {

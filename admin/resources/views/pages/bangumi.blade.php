@@ -365,11 +365,6 @@
                   } else if (name.length !== time.length) {
                     this.$message.error('time 数量不对');
                     return;
-                  } else {
-                    tempSeason.time = time.map((x) => {
-                      return x - 0
-                    })
-                    season = JSON.stringify(tempSeason)
                   }
                 } catch (e) {
                   this.$message.error('season 不是 JSON 格式');
