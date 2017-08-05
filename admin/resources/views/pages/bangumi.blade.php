@@ -243,7 +243,7 @@
               editDialogFormVisible: false,
               createDialogFormVisible: false,
               dialogTitle: '',
-              defaultSeason: '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx-xx-xx", "xxxx-xx-xx"]}',
+              defaultSeason: '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}',
               editForm: {
                 name: '',
                 avatar: '',
@@ -323,7 +323,7 @@
               for (const tag of this.editForm.tags) {
                 tags.push(tag.id ? tag.id : this.getTagIdByName(tag));
               }
-              const season = this.editForm.season === this.defaultSeason ? '' : this.editForm.season;
+              let season = this.editForm.season === this.defaultSeason ? '' : this.editForm.season;
               if (season) {
                 try {
                   let tempSeason = JSON.parse(season);
@@ -334,7 +334,7 @@
                     this.$message.error('season 缺少 key');
                     return;
                   }
-                  if (name.length !== time.length || name.length !== part.length -1 || part.length < 2) {
+                  if (name.length !== part.length -1 || part.length < 2) {
                     this.$message.error('season 信息不完整');
                     return;
                   }
@@ -355,6 +355,21 @@
                   })) {
                     this.$message.error('season part 要从 0 开始，升序排列，最后一项可为 -1');
                     return;
+                  }
+                  if (time.every(eif => eif === 'xxxx.xx')) {
+                    delete tempSeason.time;
+                    season = JSON.stringify(tempSeason)
+                  } else if (time.every(eif => !/^\d{4}\.\d{1,2}$/.test(eif))) {
+                    this.$message.error('time 格式不正确');
+                    return;
+                  } else if (name.length !== time.length) {
+                    this.$message.error('time 数量不对');
+                    return;
+                  } else {
+                    tempSeason.time = time.map((x) => {
+                      return x - 0
+                    })
+                    season = JSON.stringify(tempSeason)
                   }
                 } catch (e) {
                   this.$message.error('season 不是 JSON 格式');

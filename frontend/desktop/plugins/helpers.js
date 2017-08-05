@@ -1,10 +1,14 @@
 import Vue from 'vue'
-import orderBy from 'lodash/orderBy'
+import { groupBy, orderBy } from '~plugins/util/lodash'
 import { getStyle } from '~plugins/util/dom'
 
 const Helpers = {}
 
 Helpers.install = function (Vue, options) {
+  Vue.prototype.$orderBy = orderBy
+
+  Vue.prototype.$groupBy = groupBy
+
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {
       return ''
@@ -39,8 +43,6 @@ Helpers.install = function (Vue, options) {
     }
     return `${url}?imageMogr2/auto-orient/strip${format}`
   }
-
-  Vue.prototype.$orderBy = orderBy
 
   Vue.prototype.$gray = (ele) => {
     let [data, width, height, length, i = -4, count = 0] = []

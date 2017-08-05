@@ -15,9 +15,17 @@ class BangumiController extends Controller
     {
         $data = Cache::remember('bangumi_list_all', env('CACHE_TTL'), function ()
         {
-            $bangumis = Bangumi::all();
+            $bangumis = Bangumi::select('id', 'name', 'summary', 'avatar', 'season')->get();
             foreach ($bangumis as $row)
             {
+                $published_at = 1970.10;
+                if ($row->season !== 'null') {
+                    $data = json_decode($row->season);
+                    if (isset($data->time)) {
+                        $published_at = $data->time[0];
+                    }
+                }
+                $row->season = $published_at;
                 $row->tags = $row->tags()->select('name')->get();
             }
             return $bangumis;
