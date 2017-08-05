@@ -330,41 +330,47 @@
                   const name = tempSeason.name;
                   const part = tempSeason.part;
                   const time = tempSeason.time;
-                  if (!name || !part || !time) {
-                    this.$message.error('season 缺少 key');
-                    return;
-                  }
-                  if (name.length !== part.length -1 || part.length < 2) {
-                    this.$message.error('season 信息不完整');
-                    return;
-                  }
-                  if (part.some(item => typeof item !== 'number')) {
-                    this.$message.error('season 的 part 必须是数字');
-                    return;
-                  }
-                  if (!part.every((item, index, arr) => {
-                    if (index) {
-                      if (index === arr.length - 1) {
-                        return item === -1 || item > arr[index - 1];
-                      } else {
-                        return item > arr[index - 1];
-                      }
-                    } else {
-                      return item === 0;
-                    }
-                  })) {
-                    this.$message.error('season part 要从 0 开始，升序排列，最后一项可为 -1');
-                    return;
-                  }
-                  if (time.every(eif => eif === 'xxxx.xx')) {
-                    delete tempSeason.time;
+                  if (time.every(eif => /^\d{4}\.\d{1,2}$/.test(eif)) && part.some(item => typeof item !== 'number')) {
+                    delete tempSeason.name;
+                    delete tempSeason.part;
                     season = JSON.stringify(tempSeason)
-                  } else if (time.every(eif => !/^\d{4}\.\d{1,2}$/.test(eif))) {
-                    this.$message.error('time 格式不正确');
-                    return;
-                  } else if (name.length !== time.length) {
-                    this.$message.error('time 数量不对');
-                    return;
+                  } else {
+                    if (!name || !part || !time) {
+                      this.$message.error('season 缺少 key');
+                      return;
+                    }
+                    if (name.length !== part.length -1 || part.length < 2) {
+                      this.$message.error('season 信息不完整');
+                      return;
+                    }
+                    if (part.some(item => typeof item !== 'number')) {
+                      this.$message.error('season 的 part 必须是数字');
+                      return;
+                    }
+                    if (!part.every((item, index, arr) => {
+                        if (index) {
+                          if (index === arr.length - 1) {
+                            return item === -1 || item > arr[index - 1];
+                          } else {
+                            return item > arr[index - 1];
+                          }
+                        } else {
+                          return item === 0;
+                        }
+                      })) {
+                      this.$message.error('season part 要从 0 开始，升序排列，最后一项可为 -1');
+                      return;
+                    }
+                    if (time.every(eif => eif === 'xxxx.xx')) {
+                      delete tempSeason.time;
+                      season = JSON.stringify(tempSeason)
+                    } else if (time.every(eif => !/^\d{4}\.\d{1,2}$/.test(eif))) {
+                      this.$message.error('time 格式不正确');
+                      return;
+                    } else if (name.length !== time.length) {
+                      this.$message.error('time 数量不对');
+                      return;
+                    }
                   }
                 } catch (e) {
                   this.$message.error('season 不是 JSON 格式');

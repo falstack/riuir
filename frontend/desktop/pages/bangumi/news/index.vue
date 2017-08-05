@@ -205,7 +205,9 @@
             timeline: timeline.sort((a, b) => {
               return b - a
             }),
-            list: orderBy(groupBy(res.data, 'season'))
+            list: orderBy(groupBy(res.data, 'season'), (time) => {
+              return time[0].season
+            }).reverse()
           }
         }).catch((err) => {
           console.log(err)
