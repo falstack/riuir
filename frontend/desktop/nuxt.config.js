@@ -33,6 +33,9 @@ module.exports = {
     { src: '~plugins/share.js' },
     { src: '~plugins/imagelazy.js' }
   ],
+  modules: [
+    ['@nuxtjs/google-analytics', { ua: 'UA-80338273-2' }],
+  ],
   /*
   ** Headers of the page
   */
