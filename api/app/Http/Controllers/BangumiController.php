@@ -51,7 +51,7 @@ class BangumiController extends Controller
 
             $bangumi->season = $bangumi['season'] === 'null' ? '' : json_decode($bangumi['season']);
 
-            if ($bangumi->season !== '')
+            if ($bangumi->season !== '' && isset($bangumi->season->part) && isset($bangumi->season->name))
             {
                 $list = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster')->get()->toArray();
                 $part = $bangumi->season->part;
