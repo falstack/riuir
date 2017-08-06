@@ -285,20 +285,7 @@
       <video :preload="auto ? 'auto' : 'metadata'"
              :poster="poster"
              :autoplay="auto"
-             :src="source"
-             ref="video"
-             v-if="sourceissrc">
-        {{ info }}
-      </video>
-      <video :preload="auto ? 'auto' : 'metadata'"
-             :poster="poster"
-             :autoplay="auto"
-             ref="video"
-             :src="`${CDNPrefix}${source.video[p].src}`"
-             v-else>
-        {{ info }}
-        <!--<source :src="`${CDNPrefix}${source.video[p].src}`" type="video/mp4">-->
-        <track kind="subtitles" :src="`${CDNPrefix}${source.lyric[lang]}`" srclang="zh">
+             ref="video">
       </video>
       <div class="vue-pwa-video-init"
            v-if="state.init">
@@ -454,6 +441,8 @@
     },
     methods: {
       initVideo () {
+        this.video.innerHTML = ''
+        this.video.load()
         this.state = {
           playing: false,
           isMuted: false,
@@ -478,6 +467,7 @@
           timer: null
         }
         this.computedProgressive()
+        this.loadResource()
       },
       computedProgressive () {
         if (!this.sourceissrc) {
@@ -632,17 +622,27 @@
           console.log(this.state) // eslint-disable-line
           this.logs.push(log + JSON.stringify(this.state))
         }
+      },
+      loadResource () {
+        const html = this.sourceissrc ? [
+          this.info,
+          `<source src="${this.source}" type="video/mp4">`
+        ] : [
+          this.info,
+          `<source src="${this.CDNPrefix}${this.source.video[this.p].src}" type="video/mp4">`,
+          `<track kind="subtitles" label="zh-cn" src="${this.CDNPrefix}${this.source.lyric[this.lang]}" srclang="zh" default>`
+        ]
+        this.video.innerHTML = html.join('')
+        this.video.load()
       }
     },
     mounted () {
       this.video = this.$refs.video
       const self = this
       const video = self.$refs.video
-      video.removeAttribute('src')
-      video.load()
       video.volume = self.value.voice / 100
       video.controls = false
-      video.src = self.sourceissrc ? self.source : `${self.CDNPrefix}${self.source.video[self.p].src}`
+      self.loadResource()
 
       video.addEventListener('abort', function () {
         self.debugLog('abort : 音频/视频的加载已放弃时 | 在退出时运行')
