@@ -297,6 +297,7 @@
              :src="`${CDNPrefix}${source.video[p].src}`"
              v-else>
         {{ info }}
+        <!--<source :src="`${CDNPrefix}${source.video[p].src}`" type="video/mp4">-->
         <track kind="subtitles" :src="`${CDNPrefix}${source.lyric[lang]}`" :srclang="lang">
       </video>
       <div class="vue-pwa-video-init"
@@ -362,7 +363,7 @@
     },
     props: {
       lang: {
-        default: 'cn'
+        default: 'zh'
       },
       p: {
         default: '720'
@@ -641,9 +642,7 @@
       video.load()
       video.volume = self.value.voice / 100
       video.controls = false
-      if (self.sourceissrc) {
-        video.src = self.source
-      }
+      video.src = self.sourceissrc ? self.source : `${self.CDNPrefix}${self.source.video[self.p].src}`
 
       video.addEventListener('abort', function () {
         self.debugLog('abort : 音频/视频的加载已放弃时 | 在退出时运行')
