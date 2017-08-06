@@ -298,7 +298,7 @@
              v-else>
         {{ info }}
         <!--<source :src="`${CDNPrefix}${source.video[p].src}`" type="video/mp4">-->
-        <track kind="subtitles" :src="`${CDNPrefix}${source.lyric[lang]}`" :srclang="lang">
+        <track kind="subtitles" :src="`${CDNPrefix}${source.lyric[lang]}`" srclang="zh">
       </video>
       <div class="vue-pwa-video-init"
            v-if="state.init">
@@ -363,7 +363,7 @@
     },
     props: {
       lang: {
-        default: 'zh'
+        default: 'cn'
       },
       p: {
         default: '720'
