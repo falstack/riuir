@@ -285,6 +285,7 @@
       <video :preload="auto ? 'auto' : 'metadata'"
              :poster="poster"
              :autoplay="auto"
+             crossorigin="anonymous"
              ref="video">
       </video>
       <div class="vue-pwa-video-init"
