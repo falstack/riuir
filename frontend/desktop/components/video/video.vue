@@ -779,7 +779,7 @@
       video.addEventListener('progress', function () {
         self.debugLog('progress : 正在下载视频')
         let bf = this.buffered
-        if (this.duration > 0) {
+        if (this.duration > 0 && bf.length) {
           self.value.loading = bf.end(bf.length - 1)
         }
       })
