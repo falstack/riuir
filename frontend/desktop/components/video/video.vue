@@ -285,7 +285,6 @@
       <video :preload="auto ? 'auto' : 'metadata'"
              :poster="poster"
              :autoplay="auto"
-             crossorigin="anonymous"
              ref="video">
       </video>
       <div class="vue-pwa-video-init"
@@ -625,15 +624,19 @@
         }
       },
       loadResource () {
-        const html = this.sourceissrc ? [
-          this.info,
-          `<source src="${this.source}" type="video/mp4">`
-        ] : [
-          this.info,
-          `<source src="${this.CDNPrefix}${this.source.video[this.p].src}" type="video/mp4">`,
-          `<track kind="subtitles" label="zh-cn" src="${this.CDNPrefix}${this.source.lyric[this.lang]}" srclang="zh" default>`
-        ]
-        this.video.innerHTML = html.join('')
+//        const html = this.sourceissrc ? [
+//          this.info,
+//          `<source src="${this.source}" type="video/mp4">`
+//        ] : [
+//          this.info,
+//          `<source src="${this.CDNPrefix}${this.source.video[this.p].src}" type="video/mp4">`,
+//          `<track kind="subtitles" label="zh-cn" src="${this.CDNPrefix}${this.source.lyric[this.lang]}" srclang="zh" default>`
+//        ]
+//        this.video.innerHTML = html.join('')
+//        this.video.load()
+        this.video.src = ''
+        this.video.load()
+        this.video.src = this.sourceissrc ? this.source : `${this.CDNPrefix}${this.source.video[this.p].src}`
         this.video.load()
       }
     },
