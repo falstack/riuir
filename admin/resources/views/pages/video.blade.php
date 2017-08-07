@@ -125,7 +125,7 @@
                     <el-input v-model="editForm.url" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="字幕" :label-width="'85px'">
-                    <el-input v-model="editForm.resource.lyric.cn" auto-complete="off"></el-input>
+                    <el-input v-model="editForm.resource.lyric.zh" auto-complete="off"></el-input>
                 </el-form-item>
                 <template>
                     <el-form-item label="720P 资源" :label-width="'85px'">
@@ -202,7 +202,7 @@
                     <el-input v-model="createForm.url" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="字幕" :label-width="'85px'">
-                    <el-input v-model="createForm.lyric.cn" auto-complete="off"></el-input>
+                    <el-input v-model="createForm.lyric.zh" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="海报" :label-width="'85px'">
                     <el-input v-model="createForm.poster" auto-complete="off"></el-input>
@@ -234,7 +234,7 @@
             }
           },
           "lyric": {
-            "cn": "",
+            "zh": "",
             "en": ""
           }
         },
@@ -258,7 +258,7 @@
           }
         },
         "lyric": {
-          "cn": "",
+          "zh": "",
           "en": ""
         }
       };
@@ -291,7 +291,7 @@
                 useLyc: true
               },
               lyric: {
-                cn: 'bangumi/${name}/lyric/cn/${n}.aac'
+                zh: 'bangumi/${name}/lyric/zh/${n}.ass'
               },
               resourceName: '',
               bname: '',
@@ -434,7 +434,7 @@
                 useLyc: true
               },
               lyric: {
-                cn: 'bangumi/${name}/lyric/cn/${n}.aac'
+                zh: 'bangumi/${name}/lyric/zh/${n}.ass'
               },
               resourceName: '',
               bname: '',
@@ -513,7 +513,7 @@
               }
               if ((use720Lyc && use720P) || (use1080P && use1080Lyc)) {
                 resource.lyric = {
-                  'cn': this.createForm.lyric.cn.replace('${n}', i).replace('${name}', resName)
+                  'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', resName)
                 }
               }
               arr.push({
