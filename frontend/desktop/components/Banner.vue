@@ -7,7 +7,7 @@
 </style>
 
 <template>
-  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${$resize('http://cdn.riuir.com/banner/1.jpg', { width: 1920, crop: false })})` }"></div>
+  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${$resize('https://cdn.riuir.com/banner/1.jpg', { width: 1920, crop: false })})` }"></div>
 </template>
 
 <script>
