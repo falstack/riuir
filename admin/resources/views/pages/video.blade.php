@@ -305,7 +305,6 @@
         },
         methods : {
           handleEditOpen(index, row) {
-            console.log(row);
             this.dialogTitle = row.name;
             const def = {
               useLyc: false,
@@ -319,6 +318,12 @@
               }
               if (!resource.video[1080]) {
                 resource.video[1080] = def;
+              }
+              if (!row.resource.lyric) {
+                resource.lyric = {
+                  "zh": "",
+                  "en": ""
+                }
               }
             } else {
               resource = defaultResource;
