@@ -300,7 +300,7 @@
               url: 'bangumi/${name}/video/${n}.mp4',
               poster: 'bangumi/${name}/poster/${n}.jpg',
             },
-            CDNPrefixp: 'http://cdn.riuir.com/'
+            CDNPrefixp: 'https://cdn.riuir.com/'
           }
         },
         methods : {

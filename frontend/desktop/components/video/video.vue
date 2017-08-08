@@ -405,7 +405,7 @@
     data () {
       return {
         video: null,
-        CDNPrefix: 'http://cdn.riuir.com/',
+        CDNPrefix: 'https://cdn.riuir.com/',
         state: {
           playing: false,
           isMuted: false,

@@ -265,7 +265,7 @@
               uploadHeaders: {
                 token: '<?php echo $uptoken ?>'
               },
-              CDNPrefixp: 'http://cdn.riuir.com/'
+              CDNPrefixp: 'https://cdn.riuir.com/'
             }
           },
           methods: {

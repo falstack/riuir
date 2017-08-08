@@ -23,6 +23,6 @@ class Banner extends Model
 
     public function getUrlAttribute($url)
     {
-        return 'http://cdn.riuir.com/' . $url;
+        return 'https://cdn.riuir.com/' . $url;
     }
 }
