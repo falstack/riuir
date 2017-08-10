@@ -54,6 +54,9 @@ class BangumiController extends Controller
             if ($bangumi->season !== '' && isset($bangumi->season->part) && isset($bangumi->season->name))
             {
                 $list = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster')->get()->toArray();
+                usort($list, function($prev, $next) {
+                    return $prev['part'] - $next['part'];
+                });
                 $part = $bangumi->season->part;
                 $time = $bangumi->season->time;
                 $name = $bangumi->season->name;
