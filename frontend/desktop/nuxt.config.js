@@ -1,9 +1,22 @@
 const axios = require('axios')
 const env = require('./.env');
 const baseUrl = env.api.baseUrl
+const resolve = require('path').resolve
 
-const qiniuConfig = env.qiniu
-const QiniuPlugin = require('qiniu-webpack-plugin')
+const isVueRule = (rule) => {
+  return rule.test.toString() === '/\\.vue$/'
+}
+const isSASSRule = (rule) => {
+  return ['/\\.sass$/', '/\\.scss$/'].indexOf(rule.test.toString()) !== -1
+}
+const sassResourcesLoader = {
+  loader: 'sass-resources-loader',
+  options: {
+    resources: [
+      resolve(__dirname, 'assets/stylesheet/variables.scss')
+    ]
+  }
+}
 
 module.exports = {
   cache: true,
@@ -48,7 +61,7 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'renderer', content: 'webkit' },
-      { hid: 'description', name: 'description', content: 'riuir是一家二次元综合网站，为实现天下漫友是一家，兴趣使然的无名小站' },
+      { hid: 'description', name: 'description', content: 'riuir，兴趣使然的二次元综合网站' },
       { hid: 'keywords', name: 'keywords', content: 'riuir，动漫，ACG，二次元，视频，番剧，动画，新番，神作' }
     ],
     link: [
@@ -67,7 +80,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    //publicPath: qiniuConfig.domain,
     vendor: [
       'axios'
     ],
@@ -75,6 +87,15 @@ module.exports = {
     ** Run ESLINT on save
     */
     extend (config, ctx) {
+      config.module.rules.forEach((rule) => {
+        if (isVueRule(rule)) {
+          rule.query.loaders.sass.push(sassResourcesLoader)
+          rule.query.loaders.scss.push(sassResourcesLoader)
+        }
+        if (isSASSRule(rule)) {
+          rule.use.push(sassResourcesLoader)
+        }
+      })
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -82,15 +103,6 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
-      }
-      if (!ctx.isDev) {
-        config.plugins.push(new QiniuPlugin({
-          ACCESS_KEY: qiniuConfig.access,
-          SECRET_KEY: qiniuConfig.secret,
-          bucket: qiniuConfig.bucket,
-          path: '/staticFile',
-          include: [/dist\/_nuxt\/*/]
-        }))
       }
     }
   }

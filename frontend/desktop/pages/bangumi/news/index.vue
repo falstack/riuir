@@ -39,7 +39,7 @@
             width: $time-size;
             height: $time-size;
             border-radius: 50%;
-            border: 1px solid #00a1d6;
+            border: 1px solid $color-blue;
             background-color: #fff;
           }
         }

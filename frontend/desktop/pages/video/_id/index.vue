@@ -32,15 +32,15 @@
       }
 
       &:hover {
-        border-color: #00a1d6;
-        background-color: #00a1d6;
+        border-color: $color-blue;
+        background-color: $color-blue;
         color: #fff;
       }
     }
 
     .nuxt-link-active {
-      border-color: #00a1d6;
-      background-color: #00a1d6;
+      border-color: $color-blue;
+      background-color: $color-blue;
       color: #fff;
     }
 

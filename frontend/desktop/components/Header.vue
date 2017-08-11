@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
   $header-height: 46px;
 
   #header {
@@ -12,21 +12,14 @@
     .container {
       height: 100%;
       line-height: $header-height;
-
-      .header-left, .header-right {
-        height: 100%;
-        font-weight: bold;
-
-        >ul {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-        }
-      }
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
 
       .header-left {
-        float: left;
+        height: 100%;
+        font-weight: bold;
 
         a {
           color: #fff;
@@ -39,7 +32,7 @@
 
           &:hover {
             background-color: #fff;
-            color: #00a1d6;
+            color: $color-blue;
             transition: 0s;
           }
         }
@@ -70,7 +63,24 @@
       }
 
       .header-right {
-        float: right;
+        .search-box {
+          height: 32px;
+          background-color: rgba(0, 0, 0, 0.15);
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+          }
+
+          .search-ctx {
+            width: 88px;
+            background-color: transparent;
+
+            &:focus {
+              width: 150px;
+              background-color: #fff;
+            }
+          }
+        }
       }
     }
 
@@ -90,7 +100,7 @@
   <header id="header">
     <div class="container">
       <nav class="header-left">
-        <ul>
+        <ul class="flexbox">
           <li><nuxt-link to="/">主站</nuxt-link></li>
           <li class="bangumi">
             <nuxt-link to="/bangumi/news">番剧</nuxt-link>
@@ -98,17 +108,21 @@
           </li>
         </ul>
       </nav>
-      <nav class="header-right"></nav>
-      <div class="mask" v-if="theme === 'default'"></div>
+      <nav class="header-right flexbox">
+        <v-search :placeholder="'搜索'"></v-search>
+      </nav>
     </div>
+    <div class="mask" v-if="theme === 'default'"></div>
   </header>
 </template>
 
 <script>
+  import vSearch from '~components/Search.vue'
+
   export default {
     name: 'v-header',
     components: {
-
+      vSearch
     },
     props: {
 

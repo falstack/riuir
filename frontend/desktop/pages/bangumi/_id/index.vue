@@ -76,7 +76,7 @@
       overflow: hidden;
 
       &:hover p {
-          color: #00a1d6;
+          color: $color-blue;
       }
 
       img {
