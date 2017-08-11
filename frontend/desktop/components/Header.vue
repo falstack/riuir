@@ -80,10 +80,45 @@
             font-size: 12px;
             padding: 4px 10px 4px 15px;
 
+            &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+              color:    #fff;
+            }
+            &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+              color:    #fff;
+              opacity:  1;
+            }
+            &::-moz-placeholder { /* Mozilla Firefox 19+ */
+              color:    #fff;
+              opacity:  1;
+            }
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+              color:    #fff;
+            }
+            &::-ms-input-placeholder { /* Microsoft Edge */
+              color:    #fff;
+            }
+
             &:focus {
               width: 158px;
               background-color: #fff;
               color: #222;
+              &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+                color:    #222;
+              }
+              &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                color:    #222;
+                opacity:  1;
+              }
+              &::-moz-placeholder { /* Mozilla Firefox 19+ */
+                color:    #222;
+                opacity:  1;
+              }
+              &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color:    #222;
+              }
+              &::-ms-input-placeholder { /* Microsoft Edge */
+                color:    #222;
+              }
 
               &+.search-btn {
                 background-color: #fff;
