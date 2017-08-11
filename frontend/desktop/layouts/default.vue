@@ -1,4 +1,6 @@
 <style lang="scss">
+  @import '~assets/stylesheet/global.scss';
+
   #layout-default {
     height: 100%;
     display: flex;

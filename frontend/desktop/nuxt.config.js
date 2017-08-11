@@ -37,9 +37,6 @@ module.exports = {
       })
     }
   },
-  css: [
-    { src: '~assets/stylesheet/global.scss', lang: 'scss' }
-  ],
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/helpers.js' },
