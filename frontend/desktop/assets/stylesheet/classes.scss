@@ -18,6 +18,12 @@
   border-radius: 50%;
 }
 
+.icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 .oneline {
   overflow: hidden;
   text-overflow: ellipsis;

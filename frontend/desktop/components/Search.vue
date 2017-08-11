@@ -15,7 +15,7 @@
 <template>
   <div class="search-box flexbox">
     <input class="search-ctx" :placeholder="placeholder" type="search">
-    <button class="search-btn">搜</button>
+    <button class="search-btn icon"></button>
   </div>
 </template>
 
