@@ -138,6 +138,9 @@
     methods: {
       query (words) {
         const q = words || this.keywords
+        if (!q.length) {
+          return
+        }
         this.set(q)
         window.open(`${window.location.protocol}//${window.location.host}/bangumi/news`)
         // request
