@@ -13,7 +13,8 @@ const sassResourcesLoader = {
   loader: 'sass-resources-loader',
   options: {
     resources: [
-      resolve(__dirname, 'assets/stylesheet/variables.scss')
+      resolve(__dirname, 'assets/stylesheet/variables.scss'),
+      resolve(__dirname, 'assets/stylesheet/mixins.scss')
     ]
   }
 }

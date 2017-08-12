@@ -139,7 +139,7 @@
         <div class="history">
           <h2 class="subtitle">番剧时间轴</h2>
           <ul class="collections">
-            <ul v-for="(col, index) in list" class="clearfix collection">
+            <ul v-for="(col, index) in list" class="collection">
               <h3 class="time" v-text="formatTime(timeline[index])"></h3>
               <li class="bangumi" v-for="item in col">
                 <figure>

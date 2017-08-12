@@ -77,7 +77,7 @@
         </h1>
       </nav>
       <div class="metas" v-if="maxWidth">
-        <ul class="clearfix">
+        <ul>
           <li v-for="meta in sortVideos">
             <nuxt-link class="meta" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
               <span>{{ meta.part }}</span>{{ meta.name }}

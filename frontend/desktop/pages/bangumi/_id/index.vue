@@ -147,7 +147,7 @@
           <div v-if="info.season">
             <template v-for="season in videos">
               <h3 class="celltitle" v-text="season.name"></h3>
-              <ul class="clearfix">
+              <ul>
                 <li v-for="video in sortVideos(season.data)">
                   <nuxt-link :to="`/video/${video.id}`">
                     <figure>
@@ -165,7 +165,7 @@
               </ul>
             </template>
           </div>
-          <ul class="clearfix" v-else>
+          <ul v-else>
             <li v-for="video in sortVideos(videos)">
               <nuxt-link :to="`/video/${video.id}`">
                 <figure>
