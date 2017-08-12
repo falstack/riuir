@@ -81,6 +81,7 @@
             padding: 4px 10px 4px 15px;
             line-height: 24px;
             border-radius: 16px 0 0 16px;
+            color: #fff;
             @include input-placeholder();
 
             &:focus {
