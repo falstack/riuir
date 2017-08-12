@@ -18,10 +18,10 @@
 
     .search-history {
       position: absolute;
-      left: 0;
       right: 0;
       top: 120%;
       height: 192px;
+      width: 267px;
       background-color: #fff;
       opacity: 0;
       visibility: hidden;
