@@ -368,8 +368,8 @@
                       this.$message.error('time 格式不正确');
                       return;
                     } else if (name.length !== time.length) {
-                      this.$message.error('time 数量不对');
-                      return;
+//                      this.$message.error('time 数量不对');
+//                      return;
                     }
                   }
                 } catch (e) {
