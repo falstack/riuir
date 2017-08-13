@@ -58,11 +58,8 @@
     }
   }
 
-  .hr {
-    margin-bottom: 25px;
-  }
-
   .tags {
+    margin-bottom: 25px;
 
     .tag, .btn {
       display: inline-block;
@@ -128,7 +125,6 @@
           </ul>
         </div>
         <div class="bangumis" v-if="bangumis.length">
-          <div class="hr"></div>
           <h2 class="subtitle">番剧列表</h2>
           <ul>
             <li class="bangumi" v-for="item in bangumis">

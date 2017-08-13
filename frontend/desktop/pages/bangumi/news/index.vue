@@ -1,125 +1,143 @@
-<style lang="scss" scoped="">
-  .history {
-    $time-size: 30px;
-    .subtitle {
-      margin-left: $time-size / 2;
-    }
-
-    .collections {
-      position: relative;
-
-      &:before {
-        content: '';
-        position: absolute;
-        left: 14.5px;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background-color: #bfcbd9;
+<style lang="scss">
+  #bangumi-news {
+    .timeline {
+      h2 {
+        margin-left: 15px;
+        margin-right: 30px;
+        margin-bottom: 0;
       }
 
-      .collection {
-        padding-left: $time-size;
+      .card-wrap {
+        height: 300px;
 
-        .time {
-          height: $time-size;
-          line-height: $time-size;
-          padding-left: $time-size * 1.5;
-          margin-left: -$time-size;
-          position: relative;
-          font-weight: 400;
-          color: #97a8be;
-          font-size: 16px;
+        .nothing {
+          line-height: 100px;
+        }
+      }
+    }
 
-          &:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: $time-size;
+    .history {
+      $time-size: 30px;
+      .subtitle {
+        margin-left: $time-size / 2;
+      }
+
+      .collections {
+        position: relative;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 14.5px;
+          top: 0;
+          bottom: 0;
+          width: 1px;
+          background-color: #bfcbd9;
+        }
+
+        .collection {
+          padding-left: $time-size;
+
+          .time {
             height: $time-size;
-            border-radius: 50%;
-            border: 1px solid $color-blue;
-            background-color: #fff;
+            line-height: $time-size;
+            padding-left: $time-size * 1.5;
+            margin-left: -$time-size;
+            position: relative;
+            font-weight: 400;
+            color: #97a8be;
+            font-size: 16px;
+
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: $time-size;
+              height: $time-size;
+              border-radius: 50%;
+              border: 1px solid $color-blue;
+              background-color: #fff;
+            }
           }
         }
       }
-    }
 
-    .bangumi {
+      .bangumi {
 
-      figure {
-        padding: 20px 10px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
+        figure {
+          padding: 20px 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: flex-start;
 
-        .face {
-          width: 90px;
-          height: 90px;
-          flex-shrink: 0;
-          margin-right: 15px;
-          display: block;
-        }
+          .face {
+            width: 90px;
+            height: 90px;
+            flex-shrink: 0;
+            margin-right: 15px;
+            display: block;
+          }
 
-        .content {
-          flex: auto;
+          .content {
+            flex: auto;
 
-          .head {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            .head {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
 
-            .name {
-              font-size: 18px;
+              .name {
+                font-size: 18px;
 
-              &:hover {
-                text-decoration: underline;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+
+              .score {
+
               }
             }
 
-            .score {
-
+            .body {
+              margin: 8.5px 0;
+              text-indent: 2em;
+              color: #222;
+              font-size: 13px;
+              line-height: 18px;
             }
-          }
 
-          .body {
-            margin: 8.5px 0;
-            text-indent: 2em;
-            color: #222;
-            font-size: 13px;
-            line-height: 18px;
-          }
+            .foot {
+              .icon-item-tag {
 
-          .foot {
-            .icon-item-tag {
+                li {
+                  position: relative;
+                  margin-right: 10px;
 
-              li {
-                position: relative;
-                margin-right: 10px;
-
-                a {
-                  color: #99a2aa;
-                  font-weight: bold;
-                }
-
-                &:after {
-                  content: '·';
-                  position: absolute;
-                  width: 10px;
-                  right:-10px;
-                  bottom: 0;
-                  top: 0;
-                  text-align: center;
-                }
-
-                &:last-child {
-                  margin-right: 0;
+                  a {
+                    color: #99a2aa;
+                    font-weight: bold;
+                  }
 
                   &:after {
-                    content: '';
+                    content: '·';
+                    position: absolute;
+                    width: 10px;
+                    right:-10px;
+                    bottom: 0;
+                    top: 0;
+                    text-align: center;
+                  }
+
+                  &:last-child {
+                    margin-right: 0;
+
+                    &:after {
+                      content: '';
+                    }
                   }
                 }
               }
@@ -134,10 +152,23 @@
 <template>
   <div id="main">
     <v-banner></v-banner>
-    <div class="container">
-      <section class="col-9">
-        <div class="history">
-          <h2 class="subtitle">番剧时间轴</h2>
+    <div id="bangumi-news" class="container">
+      <div class="col-9">
+        <section class="timeline">
+          <tab-card :tabs="showtime" :show-index="thisWeek">
+            <h2 class="subtitle" slot="tabs-left">新番放送表</h2>
+            <template slot="card-item" scope="props">
+              <ul v-if="props.data.length">
+                {{ props.data }}
+              </ul>
+              <div class="nothing" v-else>
+                还什么都没有
+              </div>
+            </template>
+          </tab-card>
+        </section>
+        <section class="history">
+          <h2 class="subtitle">时间轴</h2>
           <ul class="collections">
             <ul v-for="(col, index) in list" class="collection">
               <h3 class="time" v-text="formatTime(timeline[index])"></h3>
@@ -171,8 +202,8 @@
               </li>
             </ul>
           </ul>
-        </div>
-      </section>
+        </section>
+      </div>
       <aside class="col-3"></aside>
     </div>
   </div>
@@ -181,6 +212,7 @@
 <script>
   import axios from '~plugins/axios'
   import vBanner from '~components/Banner.vue'
+  import tabCard from '~components/TabCard.vue'
   import { groupBy, orderBy } from '~plugins/util/lodash'
 
   export default {
@@ -189,7 +221,7 @@
       title: '番剧列表'
     },
     components: {
-      vBanner
+      vBanner, tabCard
     },
     asyncData () {
       return axios.get('/bangumi/news')
@@ -215,6 +247,8 @@
     },
     data () {
       return {
+        showtime: ['一', '二', '三', '四', '五', '六', '日'],
+        thisWeek: new Date().getDay() ? new Date().getDay() - 1 : 6,
         timeline: [],
         list: []
       }
