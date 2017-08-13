@@ -18,6 +18,7 @@ class BangumiController extends Controller
             'alias' => json_encode([
                 'search' => $request->get('alias')
             ]),
+            'season' => 'null',
             'count_score' => 0
         ]);
     }
