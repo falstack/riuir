@@ -2,7 +2,7 @@
   $meta-height: 30px;
   $meta-margin-bottom: 8px;
 
-  .metas {
+  #metas {
     margin-bottom: 20px;
     padding-right: 55px;
     overflow: hidden;
@@ -76,15 +76,15 @@
           第{{ info.part }}话&nbsp;{{ info.name }}
         </h1>
       </nav>
-      <div class="metas" v-if="maxWidth">
+      <div id="metas">
         <ul>
           <li v-for="meta in sortVideos">
-            <nuxt-link class="meta" :style="{ width: maxWidth }" :to="`/video/${meta.id}`" :key="meta">
+            <nuxt-link class="meta" :style="{ width: `${maxWidth}px` }" :to="`/video/${meta.id}`" :key="meta">
               <span>{{ meta.part }}</span>{{ meta.name }}
             </nuxt-link>
           </li>
         </ul>
-        <div class="more" v-if="hasMore" @click="resizeMeta">{{ noMore ? '展开' : '收起' }}</div>
+        <div class="more" v-if="page > 1" @click="showAll = !showAll">{{ showAll ? '收起' : '展开' }}</div>
       </div>
       <v-video :source="info.url ? info.url : info.resource" :sourceissrc="!!info.url" :info="`${bangumi.name} 第 ${info.part} 话 ${info.name}`" :poster="$resize(info.poster)" v-if="info" @playing="handlePlaying"></v-video>
       <div class="social">
@@ -99,7 +99,7 @@
   import vBanner from '~components/Banner.vue'
   import vVideo from '~components/video/video.vue'
 
-  const metaBoxHeight = 76
+  const metaMarginRgt = 8
 
   export default {
     name: 'video-index',
@@ -132,23 +132,35 @@
     },
     computed: {
       sortVideos () {
-        return this.$orderBy(this.videos, 'part')
+        const begin = (this.page - 1) * this.take
+        const metas = this.$orderBy(this.videos, 'part')
+        return this.showAll ? metas : metas.slice(begin, begin + this.take)
+      }
+    },
+    watch: {
+      '$route' () {
+        this.$nextTick(() => {
+          this.computeMaxWidth()
+          this.computePage()
+        })
       }
     },
     data () {
       return {
-        id: this.$route.params.id,
+        id: parseInt(this.$route.params.id, 10),
         info: null,
-        videos: [],
         bangumi: null,
-        hasMore: false,
-        noMore: false,
+        videos: [],
         maxWidth: 0,
+        take: 0,
+        part: 0,
+        page: 0,
+        showAll: false,
         firstPlay: true
       }
     },
     methods: {
-      computedMeta () {
+      computeMaxWidth () {
         let maxlength = 0
         for (const meta of this.videos) {
           const templength = meta.name.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length
@@ -156,16 +168,16 @@
             maxlength = templength
           }
         }
-        this.maxWidth = 46 + maxlength * 8 + 'px'
-        this.$nextTick(() => {
-          if (document.querySelector('.metas').offsetHeight > metaBoxHeight) {
-            this.hasMore = true
-          }
-        })
+        this.maxWidth = 46 + maxlength * 8
       },
-      resizeMeta () {
-        document.querySelector('.metas').style.height = this.noMore ? 'auto' : `${metaBoxHeight}px`
-        this.noMore = !this.noMore
+      computePage () {
+        this.take = Math.floor(document.getElementById('metas').offsetWidth / (this.maxWidth + metaMarginRgt)) * 2
+        for (const meta of this.videos) {
+          if (meta.id === this.id) {
+            this.part = meta.part
+          }
+        }
+        this.page = Math.ceil(this.part / this.take)
       },
       handlePlaying () {
         if (this.firstPlay) {
@@ -175,10 +187,8 @@
       }
     },
     mounted () {
-      this.computedMeta()
-    },
-    updated () {
-      this.computedMeta()
+      this.computeMaxWidth()
+      this.computePage()
     }
   }
 </script>
