@@ -137,6 +137,7 @@
 
     &.blur {
       overflow: hidden;
+      box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
 
       .text {
         background-color: rgba(0, 0, 0, 0.2);
