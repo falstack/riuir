@@ -106,6 +106,12 @@
         toggle: true
       }
     },
+    beforeCreate () {
+      this.$root.$emit('change-page-background', {
+        img: '',
+        theme: 'mask'
+      })
+    },
     created () {
       this.loopBanner()
     },

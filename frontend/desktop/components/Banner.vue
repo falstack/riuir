@@ -7,7 +7,7 @@
 </style>
 
 <template>
-  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${$resize('https://cdn.riuir.com/banner/1.jpg', { width: 1920, crop: false })})` }"></div>
+  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${bg})` }"></div>
 </template>
 
 <script>
@@ -15,14 +15,15 @@
     name: 'v-banner',
     data () {
       return {
-
+        bg: this.$resize('https://cdn.riuir.com/banner/1.jpg', { width: 1920, crop: false })
       }
     },
     created () {
-
-    },
-    methods: {
-
+      this.$root.$emit('change-page-background', {
+        theme: 'blur',
+        img: this.bg,
+        hgt: 170
+      })
     }
   }
 </script>

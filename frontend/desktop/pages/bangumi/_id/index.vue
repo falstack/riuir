@@ -232,6 +232,12 @@
         videos: []
       }
     },
+    created () {
+      this.$root.$emit('change-page-background', {
+        theme: 'mask',
+        img: ''
+      })
+    },
     methods: {
       sortVideos (videos) {
         return this.$orderBy(videos, 'part')

@@ -7,7 +7,7 @@
       height: 100%;
 
       &:focus {
-        outline-width: 0;
+        outline: none;
 
         &~.search-history {
           opacity: 1;
