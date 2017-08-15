@@ -16,6 +16,8 @@ class Bangumi extends Model
         'banner',
         'alias',
         'season',
+        'release',
+        'published_at',
         'count_like',
         'count_score'
     ];

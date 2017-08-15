@@ -83,6 +83,7 @@
     <input class="search-ctx"
            type="search"
            autocomplete="off"
+           spellcheck="false"
            v-model.trim="keywords"
            @keydown.enter="query()"
            :placeholder="placeholder"
@@ -104,9 +105,6 @@
 <script>
   export default {
     name: 'v-search',
-    components: {
-
-    },
     props: {
       placeholder: {
         default: '搜索二次元的一切'
