@@ -132,7 +132,9 @@
                         <el-col :span="18">
                             <el-input v-model="editForm.resource.video[720].src" auto-complete="off"></el-input>
                         </el-col>
-                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="editForm.resource.video[720].useLyc"></el-switch>
+                        <el-col :span="4" :offset="1">
+                            字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="editForm.resource.video[720].useLyc"></el-switch>
+                        </el-col>
                     </el-form-item>
                 </template>
                 <template>
@@ -140,7 +142,9 @@
                         <el-col :span="18">
                             <el-input v-model="editForm.resource.video[1080].src" auto-complete="off"></el-input>
                         </el-col>
-                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="editForm.resource.video[1080].useLyc"></el-switch>
+                        <el-col :span="4" :offset="1">
+                            字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="editForm.resource.video[1080].useLyc"></el-switch>
+                        </el-col>
                     </el-form-item>
                 </template>
             </el-form>
@@ -187,7 +191,9 @@
                         <el-col :span="18">
                             <el-input v-model="createForm.P720.src" auto-complete="off"></el-input>
                         </el-col>
-                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P720.useLyc"></el-switch>
+                        <el-col :span="4" :offset="1">
+                            字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P720.useLyc"></el-switch>
+                        </el-col>
                     </el-form-item>
                 </el-row>
                 <el-row v-if="createForm.P1080.show">
@@ -195,7 +201,9 @@
                         <el-col :span="18">
                             <el-input v-model="createForm.P1080.src" auto-complete="off"></el-input>
                         </el-col>
-                        <el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P1080.useLyc"></el-switch>
+                        <el-col :span="4" :offset="1">
+                            字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P1080.useLyc"></el-switch>
+                        </el-col>
                     </el-form-item>
                 </el-row>
                 <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="普通资源" :label-width="'85px'">
