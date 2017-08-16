@@ -53,15 +53,22 @@ Helpers.install = function (Vue, options) {
     const getRGB = (reallyImage) => {
       const canvas = document.createElement('canvas')
       const context = canvas.getContext && canvas.getContext('2d')
-      const rgb = {r: 0, g: 0, b: 0}
+      const rgb = { r: 0, g: 0, b: 0 }
       const blockSize = 5 // only visit every 5 pixels
 
-      context.drawImage(reallyImage, 0, 0, 300, 200)
       height = canvas.height = reallyImage.naturalHeight || reallyImage.offsetHeight || reallyImage.height
       width = canvas.width = reallyImage.naturalWidth || reallyImage.offsetWidth || reallyImage.width
 
-      context.drawImage(reallyImage, 0, 0)
-      data = context.getImageData(0, 0, width, height)
+      try {
+        context.drawImage(reallyImage, 0, 0, width, height)
+      } catch (e) {
+        return rgb
+      }
+      try {
+        data = context.getImageData(0, 0, width, height)
+      } catch (e) {
+        return rgb
+      }
 
       length = data.data.length
 
