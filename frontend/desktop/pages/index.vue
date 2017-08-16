@@ -143,8 +143,8 @@
             } else {
               this.banner1 = res.data
             }
-            this.imageIsBlack = this.$imageIsBlack(this.$refs.another)
             setTimeout(() => {
+              this.imageIsBlack = this.$imageIsBlack(this.$refs.another)
               this.toggle = !this.toggle
             }, 7500)
           }).catch((res) => {
