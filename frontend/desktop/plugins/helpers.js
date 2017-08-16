@@ -13,7 +13,7 @@ Helpers.install = function (Vue, options) {
       return ''
     }
     const canUseWebP = () => {
-      if (!(typeof window !== 'undefined' && window.document)) {
+      if (Vue.prototype.$isServer) {
         return false
       }
       if (window.supportWebP !== undefined) {
@@ -44,6 +44,10 @@ Helpers.install = function (Vue, options) {
   }
 
   Vue.prototype.$imageIsBlack = (ele) => {
+    if (Vue.prototype.$isServer) {
+      return true
+    }
+
     let [data, width, height, length, i = -4, count = 0] = []
 
     const getRGB = (reallyImage) => {
