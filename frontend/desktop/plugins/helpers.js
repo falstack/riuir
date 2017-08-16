@@ -89,7 +89,7 @@ Helpers.install = function (Vue, options) {
       return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114
     }
 
-    return getGray(getRGB(ele))
+    return parseInt(getGray(getRGB(ele)), 10)
   }
 }
 
