@@ -49,17 +49,25 @@ class BangumiController extends Controller
             $rollback = true;
         }
 
-        $result = Bangumi::where('id', $bangumi_id)
-            ->update([
-                'name' => $request->get('name'),
-                'avatar' => $request->get('avatar'),
-                'banner' => $request->get('banner'),
-                'summary' => $request->get('summary'),
-                'season' => $request->get('season') ? $request->get('season') : 'null',
-                'alias' => json_encode([
-                    'search' => $request->get('alias')
-                ])
-            ]);
+        $bangumi = Bangumi::where('id', $bangumi_id)->first();
+        $released_video_id = $request->get('released_video_id');
+        $arr = [
+            'name' => $request->get('name'),
+            'avatar' => $request->get('avatar'),
+            'banner' => $request->get('banner'),
+            'summary' => $request->get('summary'),
+            'released_at' => $request->get('released_at'),
+            'released_video_id' => $released_video_id,
+            'season' => $request->get('season') ? $request->get('season') : 'null',
+            'alias' => json_encode([
+                'search' => $request->get('alias')
+            ])
+        ];
+        if (intval($released_video_id) !== intval($bangumi->released_video_id)) {
+            $arr['published_at'] = time();
+        }
+
+        $result = $bangumi->update($arr);
         if ($result === false)
         {
             $rollback = true;

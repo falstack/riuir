@@ -18,10 +18,10 @@
                         </div>
                         <div>
                             <el-form-item label="横幅">
-                                <span style="cursor: pointer;" v-text="props.row.banner" @click="preview(props.row.banner)"></span>
+                                <span v-text="props.row.banner"></span>
                             </el-form-item>
                             <el-form-item label="头像">
-                                <span style="cursor: pointer;" v-text="props.row.avatar" @click="preview(props.row.avatar)"></span>
+                                <span v-text="props.row.avatar"></span>
                             </el-form-item>
                         </div>
                         <div v-if="props.row.tags.length">
@@ -81,53 +81,34 @@
         <el-dialog :visible.sync="editDialogFormVisible">
             <h3 slot="title">@{{ `番剧编辑：《${dialogTitle}》`  }}</h3>
             <el-form :model="editForm">
-                <el-form-item label="番名" :label-width="'60px'">
-                    <el-input v-model="editForm.name" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="别名" :label-width="'60px'">
-                    <el-input v-model="editForm.alias" auto-complete="off"></el-input>
-                </el-form-item>
                 <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="头像" :label-width="'60px'">
-                            <el-input v-model="editForm.avatar" auto-complete="off"></el-input>
+                    <el-col :span="8">
+                        <el-form-item label="番名" :label-width="'60px'">
+                            <el-input v-model="editForm.name" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(editForm.avatar)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleEditAvatarSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
+                    <el-col :span="16">
+                        <el-form-item label="别名" :label-width="'60px'">
+                            <el-input v-model="editForm.alias" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="横幅" :label-width="'60px'">
-                            <el-input v-model="editForm.banner" auto-complete="off"></el-input>
+                    <el-col :span="8">
+                        <el-form-item label="连载" :label-width="'60px'">
+                            <el-select v-model="editForm.released_at" style="width:100%" placeholder="请选择">
+                                <el-option
+                                        v-for="item in release_weekly"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(editForm.banner)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleEditBannerSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
+                    <el-col :span="8">
+                        <el-form-item label="视频" :label-width="'60px'">
+                            <el-input v-model="editForm.released_video_id" placeholder="最新视频id" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -141,6 +122,46 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
+                <el-row>
+                    <el-col :span="12">
+                        <el-col :span="21">
+                            <el-form-item label="头像" :label-width="'60px'">
+                                <el-input v-model="editForm.avatar" auto-complete="off"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="2" :offset="1">
+                            <el-form-item>
+                                <el-upload
+                                        action="http://up.qiniu.com"
+                                        :data="uploadHeaders"
+                                        :show-file-list="false"
+                                        :on-success="handleEditAvatarSuccess"
+                                        :before-upload="beforeUpload">
+                                    <i class="el-icon-plus"></i>
+                                </el-upload>
+                            </el-form-item>
+                        </el-col>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-col :span="21">
+                            <el-form-item label="横幅" :label-width="'60px'">
+                                <el-input v-model="editForm.banner" auto-complete="off"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="2" :offset="1">
+                            <el-form-item>
+                                <el-upload
+                                        action="http://up.qiniu.com"
+                                        :data="uploadHeaders"
+                                        :show-file-list="false"
+                                        :on-success="handleEditBannerSuccess"
+                                        :before-upload="beforeUpload">
+                                    <i class="el-icon-plus"></i>
+                                </el-upload>
+                            </el-form-item>
+                        </el-col>
+                    </el-col>
+                </el-row>
                 <el-form-item label="季度" :label-width="'60px'">
                     <el-input
                             type="textarea"
@@ -166,54 +187,56 @@
         <el-dialog :visible.sync="createDialogFormVisible">
             <h3 slot="title">创建番剧</h3>
             <el-form :model="createForm">
-                <el-form-item label="番名" :label-width="'60px'">
-                    <el-input v-model="createForm.name" auto-complete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="别名" :label-width="'60px'">
-                    <el-input v-model="createForm.alias" auto-complete="off"></el-input>
-                </el-form-item>
                 <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="头像" :label-width="'60px'">
-                            <el-input v-model="createForm.avatar" auto-complete="off"></el-input>
+                    <el-col :span="8">
+                        <el-form-item label="番名" :label-width="'60px'">
+                            <el-input v-model="createForm.name" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(createForm.avatar)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleCreateAvatarSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
+                    <el-col :span="16">
+                        <el-form-item label="别名" :label-width="'60px'">
+                            <el-input v-model="createForm.alias" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :span="18">
-                        <el-form-item label="横幅" :label-width="'60px'">
-                            <el-input v-model="createForm.banner" auto-complete="off"></el-input>
-                        </el-form-item>
+                    <el-col :span="12">
+                        <el-col :span="21">
+                            <el-form-item label="头像" :label-width="'60px'">
+                                <el-input v-model="createForm.avatar" auto-complete="off"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="2" :offset="1">
+                            <el-form-item>
+                                <el-upload
+                                        action="http://up.qiniu.com"
+                                        :data="uploadHeaders"
+                                        :show-file-list="false"
+                                        :on-success="handleCreateAvatarSuccess"
+                                        :before-upload="beforeUpload">
+                                    <i class="el-icon-plus"></i>
+                                </el-upload>
+                            </el-form-item>
+                        </el-col>
                     </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-button icon="more" @click="preview(createForm.banner)"></el-button>
-                    </el-col>
-                    <el-col :span="2" :offset="1">
-                        <el-form-item>
-                            <el-upload
-                                    action="http://up.qiniu.com"
-                                    :data="uploadHeaders"
-                                    :show-file-list="false"
-                                    :on-success="handleCreateBannerSuccess"
-                                    :before-upload="beforeUpload">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
-                        </el-form-item>
+                    <el-col :span="12">
+                        <el-col :span="21">
+                            <el-form-item label="横幅" :label-width="'60px'">
+                                <el-input v-model="createForm.banner" auto-complete="off"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="2" :offset="1">
+                            <el-form-item>
+                                <el-upload
+                                        action="http://up.qiniu.com"
+                                        :data="uploadHeaders"
+                                        :show-file-list="false"
+                                        :on-success="handleCreateBannerSuccess"
+                                        :before-upload="beforeUpload">
+                                    <i class="el-icon-plus"></i>
+                                </el-upload>
+                            </el-form-item>
+                        </el-col>
                     </el-col>
                 </el-row>
                 <el-form-item label="简介" :label-width="'60px'">
@@ -244,9 +267,45 @@
               createDialogFormVisible: false,
               dialogTitle: '',
               defaultSeason: '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}',
+              release_weekly: [
+                {
+                  id: '0',
+                  name: '不连载'
+                },
+                {
+                  id: '1',
+                  name: '周一'
+                },
+                {
+                  id: '2',
+                  name: '周二'
+                },
+                {
+                  id: '3',
+                  name: '周三'
+                },
+                {
+                  id: '4',
+                  name: '周四'
+                },
+                {
+                  id: '5',
+                  name: '周五'
+                },
+                {
+                  id: '6',
+                  name: '周六'
+                },
+                {
+                  id: '7',
+                  name: '周日'
+                }
+              ],
               editForm: {
                 name: '',
                 avatar: '',
+                released_at: '',
+                released_video_id: '',
                 banner: '',
                 summary: '',
                 alias: '',
@@ -281,17 +340,14 @@
                 name: row.name,
                 banner: row.banner,
                 avatar: row.avatar,
+                released_at: row.released_at,
+                released_video_id: row.released_video_id !== '0' ? row.released_video_id : '',
                 summary: row.summary,
                 season: row.season ? JSON.stringify(row.season) : this.defaultSeason,
                 alias: row.alias,
                 tags: tags
               };
               this.editDialogFormVisible = true;
-            },
-            preview(url) {
-              if (url) {
-                window.open(url)
-              }
             },
             beforeUpload(file) {
               const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -380,6 +436,8 @@
               this.$http.post('/bangumi/edit', {
                 id: this.editForm.id,
                 name: this.editForm.name,
+                released_at: parseInt(this.editForm.released_at, 10),
+                released_video_id: this.editForm.released_video_id ? parseInt(this.editForm.released_video_id, 10) : 0,
                 avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
                 banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
                 alias: this.editForm.alias.split(/,|，/).join(','),
@@ -391,11 +449,12 @@
                 for (const tag of this.tags) {
                   for (const item of tags) {
                     if (item === tag.id) {
-                      console.log(tag.name);
                       newTags.push(tag);
                     }
                   }
                 }
+                this.list[this.editForm.index].released_at = this.editForm.released_at;
+                this.list[this.editForm.index].released_video_id = this.editForm.released_video_id;
                 this.list[this.editForm.index].name = this.editForm.name;
                 this.list[this.editForm.index].avatar = this.editForm.avatar;
                 this.list[this.editForm.index].banner = this.editForm.banner;

@@ -14,8 +14,9 @@ class AddReleaseToBangumisTable extends Migration
     public function up()
     {
         Schema::table('bangumis', function (Blueprint $table) {
-            $table->tinyInteger('release')->default(0);
-            $table->timestamp('published_at')->nullable();
+            $table->tinyInteger('released_at')->default(0);
+            $table->unsignedInteger('released_video_id')->default(0);
+            $table->integer('published_at')->default(0);
         });
     }
 
@@ -27,7 +28,8 @@ class AddReleaseToBangumisTable extends Migration
     public function down()
     {
         Schema::table('bangumis', function (Blueprint $table) {
-            $table->dropColumn('release');
+            $table->dropColumn('released_at');
+            $table->dropColumn('released_video_id');
             $table->dropColumn('published_at');
         });
     }

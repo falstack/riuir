@@ -29,15 +29,7 @@ class PageController extends Controller
         foreach ($list as $row)
         {
             $row['alias'] = $row['alias'] === 'null' ? '' : json_decode($row['alias'])->search;
-        }
-
-        foreach ($list as $row)
-        {
             $row['tags'] = $row->tags()->get();
-        }
-
-        foreach ($list as $row)
-        {
             $row['season'] = $row['season'] === 'null' ? '' : json_decode($row['season']);
         }
 
