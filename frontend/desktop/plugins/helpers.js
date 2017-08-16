@@ -43,7 +43,7 @@ Helpers.install = function (Vue, options) {
     return `${url}?imageMogr2/auto-orient/strip${format}`
   }
 
-  Vue.prototype.$imageIsBlack = (ele) => {
+  Vue.prototype.$imageGrayLevel = (ele) => {
     if (Vue.prototype.$isServer) {
       return true
     }
@@ -89,7 +89,7 @@ Helpers.install = function (Vue, options) {
       return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114
     }
 
-    return getGray(getRGB(ele)) < 200
+    return getGray(getRGB(ele))
   }
 }
 

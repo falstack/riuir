@@ -82,10 +82,11 @@
     <img class="another"
          crossOrigin="anonymous"
          :src="`${another}?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/100`"
+         :flag="imageGrayLevel"
          ref="another"
          alt="another">
     <div class="index-panel abs flexbox flex-col">
-      <div class="slogan bg" :class="{ 'invert' : !imageIsBlack }"></div>
+      <div class="slogan bg" :class="{ 'invert' : imageGrayLevel > 200 }"></div>
       <v-search :placeholder="'搜索二次元的一切'" :auto="true" :suggess="true"></v-search>
     </div>
   </div>
@@ -121,7 +122,7 @@
         timer: null,
         toggle: true,
         another: '',
-        imageIsBlack: true
+        imageGrayLevel: 0
       }
     },
     beforeCreate () {
@@ -144,7 +145,7 @@
               this.banner1 = res.data
             }
             setTimeout(() => {
-              this.imageIsBlack = this.$imageIsBlack(this.$refs.another)
+              this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
               this.toggle = !this.toggle
             }, 7500)
           }).catch((res) => {
