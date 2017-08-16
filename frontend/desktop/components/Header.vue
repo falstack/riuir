@@ -123,6 +123,10 @@
       }
     }
 
+    .wrap {
+      z-index: -1;
+    }
+
     &.mask {
       .shim {
         width: 100%;
@@ -136,24 +140,27 @@
     }
 
     &.blur {
-      overflow: hidden;
       box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
 
       .text {
         background-color: rgba(0, 0, 0, 0.2);
       }
 
-      .shim {
-        position: absolute;
-        left: -12.5%;
-        top: 0;
-        width: 125%;
-        filter: blur(5px);
-        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 80%;
-        z-index: -1;
+      .wrap {
+        overflow: hidden;
+
+        .shim {
+          position: absolute;
+          left: -12.5%;
+          top: 0;
+          width: 125%;
+          filter: blur(5px);
+          filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 80%;
+          z-index: -1;
+        }
       }
     }
   }
@@ -177,7 +184,9 @@
         </nav>
       </div>
     </div>
-    <div class="shim" :style="computedBg"></div>
+    <div class="wrap abs">
+      <div class="shim" :style="computedBg"></div>
+    </div>
   </header>
 </template>
 
