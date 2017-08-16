@@ -154,12 +154,11 @@
           left: -12.5%;
           top: 0;
           width: 125%;
-          filter: blur(5px);
-          filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false);
           background-repeat: no-repeat;
           background-position: center;
           background-size: 80%;
           z-index: -1;
+          @include filter-blur();
         }
       }
     }

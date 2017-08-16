@@ -21,12 +21,11 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      filter: blur(5px);
-      filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=5, MakeShadow=false);
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       z-index: -1;
+      @include filter-blur();
     }
 
     .info {
