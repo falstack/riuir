@@ -20,6 +20,10 @@
       }
     }
 
+    .another {
+      display: none;
+    }
+
     .index-panel {
 
       .slogan {
@@ -27,6 +31,10 @@
         width: 435px;
         height: 65px;
         margin-bottom: 25px;
+
+        &.invert {
+          filter: invert(1);
+        }
       }
 
       $search-size: 40px;
@@ -71,8 +79,13 @@
   <div id="index-wrap">
     <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${$resize(banner1.url, { width: 1920, crop: false })})` : '' }"></div>
     <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920, crop: false })})` : '' }"></div>
+    <img class="another"
+         crossOrigin="anonymous"
+         :src="`${another}?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/100`"
+         ref="another"
+         alt="another">
     <div class="index-panel abs flexbox flex-col">
-      <div class="slogan bg"></div>
+      <div class="slogan bg" :class="{ 'invert' : !imageIsBlack }"></div>
       <v-search :placeholder="'搜索二次元的一切'" :auto="true" :suggess="true"></v-search>
     </div>
   </div>
@@ -93,7 +106,10 @@
     asyncData () {
       return axios.get('/cartoon/banner')
         .then((res) => {
-          return { banner1: res.data }
+          return {
+            banner1: res.data,
+            another: res.data.url
+          }
         }).catch((err) => {
           console.log(err)
         })
@@ -103,7 +119,9 @@
         banner1: null,
         banner2: null,
         timer: null,
-        toggle: true
+        toggle: true,
+        another: '',
+        imageIsBlack: true
       }
     },
     beforeCreate () {
@@ -119,18 +137,20 @@
       loopBanner () {
         this.timer = setInterval(() => {
           axios.get('/cartoon/banner').then((res) => {
+            this.another = res.data.url
             if (this.toggle) {
               this.banner2 = res.data
             } else {
               this.banner1 = res.data
             }
+            this.imageIsBlack = this.$imageIsBlack(this.$refs.another)
             setTimeout(() => {
               this.toggle = !this.toggle
-            }, 10000)
+            }, 7500)
           }).catch((res) => {
             console.log(res)
           })
-        }, 20000)
+        }, 15000)
       }
     },
     beforeDestroy () {

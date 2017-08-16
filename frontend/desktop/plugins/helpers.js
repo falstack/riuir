@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { groupBy, orderBy } from '~plugins/util/lodash'
-import { getStyle } from '~plugins/util/dom'
 
 const Helpers = {}
 
@@ -44,7 +43,7 @@ Helpers.install = function (Vue, options) {
     return `${url}?imageMogr2/auto-orient/strip${format}`
   }
 
-  Vue.prototype.$gray = (ele) => {
+  Vue.prototype.$imageIsBlack = (ele) => {
     let [data, width, height, length, i = -4, count = 0] = []
 
     const getRGB = (reallyImage) => {
@@ -79,31 +78,7 @@ Helpers.install = function (Vue, options) {
       return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114
     }
 
-    if (ele.nodeName.toLowerCase() === 'img') {
-      return getGray(getRGB(ele))
-    }
-    const color = getStyle(ele, 'backgroundColor')
-    const image = getStyle(ele, 'backgroundImage')
-
-    if (!color && !image) {
-      return 0
-    }
-
-    if (!image) {
-      const arr = color.replace(/(rgb\(|\))/g, '').split(',')
-      return getGray({
-        r: arr[0] - 0,
-        g: arr[1] - 0,
-        b: arr[2] - 0
-      })
-    }
-
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.src = image.replace(/^url\(["']?/, '').replace(/["']?\)$/, '')
-    img.onload = function () {
-      return getGray(getRGB(img))
-    }
+    return getGray(getRGB(ele)) < 127.5
   }
 }
 
