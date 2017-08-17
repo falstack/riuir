@@ -23,6 +23,12 @@ class Bangumi extends Model
         'count_score'
     ];
 
+    protected $casts = [
+        'released_at' => 'integer',
+        'released_video_id' => 'integer',
+        'published_at' => 'integer'
+    ];
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

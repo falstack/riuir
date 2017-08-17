@@ -155,11 +155,14 @@
     <div id="bangumi-news" class="container">
       <div class="col-9">
         <section class="timeline">
-          <tab-card :tabs="showtime" :show-index="thisWeek">
+          <tab-card :tabs="showtime"
+                    :card="released"
+                    :show-index="thisWeek">
             <h2 class="subtitle" slot="tabs-left">新番放送表</h2>
             <template slot="card-item" scope="props">
               <ul v-if="props.data.length">
-                {{ props.data }}
+                <li v-for="bangumi in props.data">
+                </li>
               </ul>
               <div class="nothing" v-else>
                 还什么都没有
@@ -227,13 +230,21 @@
       return axios.get('/bangumi/news')
         .then((res) => {
           const timeline = []
-          for (const one of res.data) {
-            const time = one.season
+          const released = {}
+          for (const bangumi of res.data) {
+            const time = bangumi.season
             if (timeline.indexOf(time) === -1) {
               timeline.push(time)
             }
+            if (bangumi.released_at) {
+              if (released[bangumi.released_at] === undefined) {
+                released[bangumi.released_at] = []
+              }
+              released[bangumi.released_at].push(bangumi)
+            }
           }
           return {
+            released: released,
             timeline: timeline.sort((a, b) => {
               return b - a
             }),
@@ -247,7 +258,8 @@
     },
     data () {
       return {
-        showtime: ['一', '二', '三', '四', '五', '六', '日'],
+        showtime: ['最新', '一', '二', '三', '四', '五', '六', '日'],
+        released: null,
         thisWeek: new Date().getDay() ? new Date().getDay() - 1 : 6,
         timeline: [],
         list: []
