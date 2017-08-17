@@ -357,7 +357,7 @@
       return {
         showtime: ['最新', '一', '二', '三', '四', '五', '六', '日'],
         released: null,
-        thisWeek: new Date().getDay() ? new Date().getDay() - 1 : 6,
+        thisWeek: new Date().getDay() ? new Date().getDay() : 7,
         timeline: [],
         list: []
       }

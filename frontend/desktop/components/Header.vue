@@ -140,10 +140,19 @@
     }
 
     &.blur {
-      box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
 
-      .text {
-        background-color: rgba(0, 0, 0, 0.2);
+      &.black {
+        box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
+        .text {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      &.white {
+        box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
+        .text {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
       }
 
       .wrap {
@@ -162,11 +171,15 @@
         }
       }
     }
+
+    .another {
+      display: none;
+    }
   }
 </style>
 
 <template>
-  <header id="header" :class="theme">
+  <header id="header" :class="[theme, imageGrayLevel > 190 ? 'white' : 'black']">
     <div class="text">
       <div class="container">
         <nav class="header-left">
@@ -186,6 +199,13 @@
     <div class="wrap abs">
       <div class="shim" :style="computedBg"></div>
     </div>
+    <img class="another"
+         v-if="img"
+         crossOrigin="anonymous"
+         ref="another"
+         :src="img"
+         :flag="imageGrayLevel"
+         alt="another">
   </header>
 </template>
 
@@ -201,7 +221,9 @@
       return {
         height: 0,
         theme: 'mask',
-        img: ''
+        img: '',
+        another: '',
+        imageGrayLevel: 0
       }
     },
     computed: {
@@ -217,6 +239,10 @@
         this.img = img
         this.theme = theme
         this.height = hgt
+
+        setTimeout(() => {
+          this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
+        }, 0)
       })
     }
   }

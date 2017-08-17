@@ -13,9 +13,17 @@
 <script>
   export default {
     name: 'v-banner',
+    props: {
+      image: {
+        type: String,
+        default: 'https://cdn.riuir.com/banner/1.jpg'
+      }
+    },
     data () {
       return {
-        bg: this.$resize('https://cdn.riuir.com/banner/1.jpg', { width: 1920, crop: false })
+        bg: this.$resize(this.image, { width: 1920, crop: false }),
+        another: '',
+        imageGrayLevel: 0
       }
     },
     created () {
