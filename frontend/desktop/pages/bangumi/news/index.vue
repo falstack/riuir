@@ -8,10 +8,72 @@
       }
 
       .card-wrap {
-        height: 300px;
+        height: 294px;
+        margin-left: 45px;
+        overflow-y: scroll;
+        margin-bottom: 26px;
 
         .nothing {
           line-height: 100px;
+        }
+      }
+
+      .bangumi {
+        width: 180px;
+        margin: 0 26px 26px 0;
+
+        figure {
+          position: relative;
+
+          >a {
+            margin-right: 12px;
+            width: 72px;
+            height: 72px;
+            display: block;
+            float: left;
+            position: relative;
+            z-index: 1;
+            
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          figcaption {
+            padding: 5px 0 5px 84px;
+            z-index: 0;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            span {
+              color: #aaa;
+              line-height: 18px;
+
+              .part {
+                border-radius: 9px;
+                color: #fff;
+                text-align: center;
+                padding: 0 4px;
+                height: 18px;
+                min-width: 36px;
+                max-width: 50px;
+                margin-left: 5px;
+                display: inline-block;
+                vertical-align: top;
+
+                &.new {
+                  background-color: #ff8eb3;
+                }
+
+                &.old {
+                  background-color: #b8c0cc;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -161,7 +223,35 @@
             <h2 class="subtitle" slot="tabs-left">新番放送表</h2>
             <template slot="card-item" scope="props">
               <ul v-if="props.data.length">
-                <li v-for="bangumi in props.data">
+                <li class="bangumi" :key="item.id" v-for="item in props.data">
+                  <figure class="clearfix">
+                    <nuxt-link
+                      :to="`/bangumi/${item.id}`">
+                      <v-img
+                        class="face"
+                        :title="item.name"
+                        :alt="item.name"
+                        :src="$resize(item.avatar, { width: 180 })">
+                      </v-img>
+                    </nuxt-link>
+                    <figcaption class="abs">
+                      <nuxt-link :to="`/bangumi/${item.id}`" class="href-fade-blue twoline" v-text="item.name"></nuxt-link>
+                      <span>
+                        更新至
+                        <nuxt-link v-if="item.released_video_id"
+                                   :class="[computePartStyle(item.published_at) ? 'new' : 'old']"
+                                   :to="`/video/${item.released_video_id}`"
+                                   class="part oneline">
+                          {{ `${item.released_part}话` }}
+                        </nuxt-link>
+                        <strong class="part oneline"
+                                :class="[computePartStyle(item.published_at) ? 'new' : 'old']"
+                                v-else>
+                          {{ `${item.released_part}话` }}
+                        </strong>
+                      </span>
+                    </figcaption>
+                  </figure>
                 </li>
               </ul>
               <div class="nothing" v-else>
@@ -231,6 +321,7 @@
         .then((res) => {
           const timeline = []
           const released = {}
+          const releaseNews = []
           for (const bangumi of res.data) {
             const time = bangumi.season
             if (timeline.indexOf(time) === -1) {
@@ -241,8 +332,12 @@
                 released[bangumi.released_at] = []
               }
               released[bangumi.released_at].push(bangumi)
+              releaseNews.push(bangumi)
             }
           }
+          released[0] = releaseNews.sort((a, b) => {
+            return b - a
+          })
           return {
             released: released,
             timeline: timeline.sort((a, b) => {
@@ -268,6 +363,9 @@
     methods: {
       formatTime (time) {
         return `${time.toString().replace('.', ' 年 ')} 月`
+      },
+      computePartStyle (timestamp) {
+        return new Date().getTime() / 1000 - timestamp < 604800
       }
     }
   }

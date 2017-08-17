@@ -18,6 +18,10 @@ class BangumiController extends Controller
             $bangumis = Bangumi::select('id', 'name', 'summary', 'avatar', 'season', 'released_at', 'published_at', 'released_video_id')->get();
             foreach ($bangumis as $row)
             {
+                $row->released_part = 0;
+                if ($row->released_video_id) {
+                    $row->released_part = Video::find($row->released_video_id)->pluck('part');
+                }
                 $published_at = '1970.10';
                 if ($row->season !== 'null') {
                     $data = json_decode($row->season);

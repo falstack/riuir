@@ -3,7 +3,7 @@
     overflow: hidden;
 
     .tabs {
-      margin-bottom: 20px;
+      margin-bottom: 26px;
 
       .tabs-selection {
         flex: auto;
@@ -81,7 +81,7 @@
       },
       card: {
         default: () => [],
-        type: Array
+        type: [Array, Object]
       },
       showIndex: {
         type: Number,
