@@ -308,6 +308,8 @@
   import tabCard from '~components/TabCard.vue'
   import { groupBy, orderBy } from '~plugins/util/lodash'
 
+  const nowTime = new Date().getTime()
+
   export default {
     name: 'bangumi-news',
     head: {
@@ -365,7 +367,7 @@
         return `${time.toString().replace('.', ' 年 ')} 月`
       },
       computePartStyle (timestamp) {
-        return new Date().getTime() / 1000 - timestamp < 604800
+        return nowTime / 1000 - timestamp < 604800
       }
     }
   }
