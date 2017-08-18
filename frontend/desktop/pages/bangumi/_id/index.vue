@@ -246,7 +246,7 @@
         return this.$orderBy(videos, 'part')
       },
       selfResource (url) {
-        return url.match(this.$cdn) !== null
+        return url === '' || url.match(this.$cdn) !== null
       }
     }
   }
