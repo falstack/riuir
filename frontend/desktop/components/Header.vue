@@ -240,9 +240,11 @@
         this.theme = theme
         this.height = hgt
 
-        setTimeout(() => {
-          this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
-        }, 0)
+        if (img) {
+          setTimeout(() => {
+            this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
+          }, 0)
+        }
       })
     }
   }
