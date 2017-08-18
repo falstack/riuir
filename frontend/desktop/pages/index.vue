@@ -126,7 +126,7 @@
       }
     },
     beforeCreate () {
-      this.$root.$emit('change-page-background', {
+      this.$channel.$emit('change-page-background', {
         img: '',
         theme: 'mask'
       })

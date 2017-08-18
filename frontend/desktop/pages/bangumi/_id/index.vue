@@ -236,7 +236,7 @@
       }
     },
     created () {
-      this.$root.$emit('change-page-background', {
+      this.$channel.$emit('change-page-background', {
         theme: 'mask',
         img: ''
       })

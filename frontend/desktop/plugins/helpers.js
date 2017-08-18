@@ -10,6 +10,8 @@ Helpers.install = function (Vue, options) {
 
   Vue.prototype.$cdn = 'https://cdn.riuir.com/'
 
+  Vue.prototype.$channel = new Vue()
+
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {
       return ''

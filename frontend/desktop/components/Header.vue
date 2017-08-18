@@ -119,6 +119,43 @@
               @include icon(16px);
             }
           }
+
+          button {
+            border-radius: 2px;
+            width: 52px;
+            height: 34px;
+            line-height: 32px;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+          }
+
+          .sign-in {
+            border: 1px solid #fff;
+            margin-left: 30px;
+
+            &:hover {
+              background: linear-gradient(#fff, #f7f7f7);
+              text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+              color: #000;
+              border: 1px solid #ccc;
+            }
+          }
+
+          .sign-up {
+            margin-left: 7px;
+            border: 1px solid $color-blue;
+            background-color: $color-blue;
+            opacity: .8;
+
+            &:hover {
+              background: linear-gradient(#00bfef, #00a7de);
+              text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+              color: #fff;
+              border: 1px solid #00a7de;
+              opacity: 1;
+            }
+          }
         }
       }
     }
@@ -193,6 +230,8 @@
         </nav>
         <nav class="header-right flexbox flex-row">
           <v-search :placeholder="'搜索'" :history="true"></v-search>
+          <button class="sign-in" @click="signIn">登录</button>
+          <button class="sign-up" @click="signUp">注册</button>
         </nav>
       </div>
     </div>
@@ -206,16 +245,18 @@
          :src="img"
          :flag="imageGrayLevel"
          alt="another">
+    <v-sign></v-sign>
   </header>
 </template>
 
 <script>
   import vSearch from '~components/Search.vue'
+  import vSign from '~components/Sign.vue'
 
   export default {
     name: 'v-header',
     components: {
-      vSearch
+      vSearch, vSign
     },
     data () {
       return {
@@ -234,8 +275,16 @@
         } : {}
       }
     },
+    methods: {
+      signIn () {
+        this.$channel.$emit('sign-in')
+      },
+      signUp () {
+        this.$channel.$emit('sign-up')
+      }
+    },
     created () {
-      this.$root.$on('change-page-background', ({ img, hgt, theme }) => {
+      this.$channel.$on('change-page-background', ({ img, hgt, theme }) => {
         this.img = img
         this.theme = theme
         this.height = hgt
