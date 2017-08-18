@@ -147,8 +147,10 @@
             <template v-for="season in videos">
               <h3 class="celltitle" v-text="season.name"></h3>
               <ul>
-                <li v-for="video in sortVideos(season.data)">
-                  <nuxt-link :to="`/video/${video.id}`">
+                <li v-for="video in sortVideos(season.data)" :key="video.id">
+                  <a :href="selfResource(video.url) ? `/video/${video.id}` : video.url"
+                     :rel="selfResource(video.url) ? '' : 'nofollow'"
+                     target="_blank">
                     <figure>
                       <v-img class="bg"
                              :alt="video.name"
@@ -159,14 +161,16 @@
                         <span class="twoline" v-text="video.name"></span>
                       </figcaption>
                     </figure>
-                  </nuxt-link>
+                  </a>
                 </li>
               </ul>
             </template>
           </div>
           <ul v-else>
-            <li v-for="video in sortVideos(videos)">
-              <nuxt-link :to="`/video/${video.id}`">
+            <li v-for="video in sortVideos(videos)" :key="video.id">
+              <a :href="selfResource(video.url) ? `/video/${video.id}` : video.url"
+                 :rel="selfResource(video.url) ? '' : 'nofollow'"
+                 target="_blank">
                 <figure>
                   <v-img class="bg"
                          :alt="video.name"
@@ -177,7 +181,7 @@
                     <span class="twoline" v-text="video.name"></span>
                   </figcaption>
                 </figure>
-              </nuxt-link>
+              </a>
             </li>
           </ul>
         </section>
@@ -240,6 +244,9 @@
     methods: {
       sortVideos (videos) {
         return this.$orderBy(videos, 'part')
+      },
+      selfResource (url) {
+        return url.match(this.$cdn) !== null
       }
     }
   }

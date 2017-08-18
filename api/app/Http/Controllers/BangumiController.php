@@ -40,8 +40,8 @@ class BangumiController extends Controller
 
     public function info($id)
     {
-        $data = Cache::remember('bangumi_info_' . $id, env('CACHE_TTL'), function () use ($id)
-        {
+//        $data = Cache::remember('bangumi_info_' . $id, env('CACHE_TTL'), function () use ($id)
+//        {
             $bangumi = Bangumi::where('id', $id)->select('id', 'name', 'banner', 'summary', 'alias', 'season')->first();
 
             $alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
@@ -57,7 +57,7 @@ class BangumiController extends Controller
 
             if ($bangumi->season !== '' && isset($bangumi->season->part) && isset($bangumi->season->name))
             {
-                $list = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster')->get()->toArray();
+                $list = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster', 'url')->get()->toArray();
                 usort($list, function($prev, $next) {
                     return $prev['part'] - $next['part'];
                 });
@@ -79,7 +79,7 @@ class BangumiController extends Controller
             else
             {
                 $bangumi->season = false;
-                $videos = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster')->get()->toArray();
+                $videos = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster', 'url')->get()->toArray();
             }
 
             return json_encode([
@@ -87,9 +87,9 @@ class BangumiController extends Controller
                 'tags' => $tags,
                 'videos' => $videos
             ]);
-        });
-
-        return $data;
+//        });
+//
+//        return $data;
     }
 
     public function tags(Request $request)

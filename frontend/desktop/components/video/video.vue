@@ -405,7 +405,6 @@
     data () {
       return {
         video: null,
-        CDNPrefix: 'https://cdn.riuir.com/',
         state: {
           playing: false,
           isMuted: false,
@@ -626,7 +625,7 @@
       loadResource () {
         this.video.src = ''
         this.video.load()
-        this.video.src = this.sourceissrc ? this.source : `${this.CDNPrefix}${this.source.video[this.p].src}`
+        this.video.src = this.sourceissrc ? this.source : `${this.$cdn}${this.source.video[this.p].src}`
         this.video.load()
       }
     },

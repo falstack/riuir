@@ -8,6 +8,8 @@ Helpers.install = function (Vue, options) {
 
   Vue.prototype.$groupBy = groupBy
 
+  Vue.prototype.$cdn = 'https://cdn.riuir.com/'
+
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {
       return ''
