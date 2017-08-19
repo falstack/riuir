@@ -319,7 +319,7 @@
       vBanner, tabCard
     },
     asyncData () {
-      return axios.get('/bangumi/news')
+      return axios.get('bangumi/news')
         .then((res) => {
           const timeline = []
           const released = {}

@@ -119,7 +119,7 @@
       return /^\d+$/.test(params.id)
     },
     asyncData ({ params }) {
-      return axios.get(`/video/${params.id}/info`)
+      return axios.get(`video/${params.id}/info`)
         .then((res) => {
           return {
             bangumi: res.data.bangumi,

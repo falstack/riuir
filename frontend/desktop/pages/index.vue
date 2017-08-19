@@ -105,7 +105,7 @@
       vSearch
     },
     asyncData () {
-      return axios.get('/cartoon/banner')
+      return axios.get('cartoon/banner')
         .then((res) => {
           return {
             banner1: res.data,
@@ -137,7 +137,7 @@
     methods: {
       loopBanner () {
         this.timer = setInterval(() => {
-          axios.get('/cartoon/banner').then((res) => {
+          axios.get('cartoon/banner').then((res) => {
             this.another = res.data.url
             if (this.toggle) {
               this.banner2 = res.data

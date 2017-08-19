@@ -186,7 +186,7 @@
       }
     },
     asyncData ({ params }) {
-      return axios.get(`/bangumi/tags`, {
+      return axios.get(`bangumi/tags`, {
         params: {
           id: params.id
         }
