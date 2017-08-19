@@ -27,43 +27,25 @@
     right: $pos-rig-left;
     top: $pos-top-down;
 
-    .toast-item {
+    .toast {
       padding: 15px 10px;
       font-size: 14px;
       font-weight: 700;
-      font-family: sans-serif;
-      line-height: 1.1;
       text-align: center;
       border-radius: 4px;
       position: relative;
       margin-bottom: 10px;
       pointer-events: auto;
       width: $item-width;
-      display: flex;
       opacity: .8;
       transition: .25s ease-in-out, opacity 0s;
       left: 0;
       cursor: pointer;
-    }
-
-    .toast-text {
       word-wrap: break-word;
-      flex: auto;
-    }
 
-    .toast-icon {
-      width: $icon-size;
-      height: $icon-size;
-      background-size: $icon-size;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin: 0 5px;
-    }
-
-    .toast-close {
-      width: $icon-size;
-      height: $icon-size;
-      margin: 0 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     .theme-info {
@@ -88,6 +70,7 @@
       // if you want to change position, rewrite here
       left: $item-width;
     }
+
     .toast-leave-active {
       opacity: 0;
       position: absolute;
@@ -102,13 +85,12 @@
   <div id="toast-container"
        :style="{ zIndex : index }">
     <transition-group name="toast" tag="div">
-      <div class="toast-item"
+      <div class="toast"
            :class="['theme-' + item.theme]"
            :key="item.id"
+           v-text="item.text"
            v-for="item in list"
            @click="close(item.id)">
-        <span class="toast-text" v-text="item.text"></span>
-        <span class="toast-close" v-if="!item.auto">&times;</span>
       </div>
     </transition-group>
   </div>
