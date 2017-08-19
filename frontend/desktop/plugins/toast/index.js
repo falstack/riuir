@@ -9,7 +9,7 @@ export default class {
   show (opt = {}) {
     if (typeof opt === 'string') {
       opt = {
-        content: opt
+        text: opt
       }
     }
     if (!document.getElementById('toast-container')) {
