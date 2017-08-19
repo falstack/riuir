@@ -43,6 +43,32 @@ button {
   border: 0;
 
   &:focus {
-    outline-width: 0;
+    outline: none;
   }
+}
+
+input {
+  vertical-align: middle;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 100px #e9fbfe inset !important;
+    background-color: #e9fbfe !important;
+    border-color: #e4f4f9 !important;
+  }
+}
+
+label {
+  display: inline-block;
+  cursor: pointer;
+  font-family: 'Hiragino Sans GB',Helvetica,Arial,sans-serif;
+  vertical-align: middle;
+  user-select: none;
+}
+
+input[type=checkbox], input[type=radio] {
+  cursor: pointer;
 }

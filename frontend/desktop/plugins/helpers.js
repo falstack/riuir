@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { groupBy, orderBy } from '~plugins/util/lodash'
+import Backdrop from '~plugins/backdrop'
 
 const Helpers = {}
 
@@ -11,6 +12,8 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$cdn = 'https://cdn.riuir.com/'
 
   Vue.prototype.$channel = new Vue()
+
+  Vue.prototype.$backdrop = new Backdrop()
 
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {
