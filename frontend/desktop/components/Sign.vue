@@ -134,7 +134,7 @@
           <em></em>
         </span>
         <div>
-          <button>登录</button>
+          <button @click="login">登录</button>
         </div>
         <span>
           <a>忘记密码?></a>
@@ -226,6 +226,9 @@
       },
       showCaptcha () {
 
+      },
+      login () {
+        this.$toast.show('暂不开放注册')
       }
     }
   }

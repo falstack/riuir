@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { groupBy, orderBy } from '~plugins/util/lodash'
 import Backdrop from '~plugins/backdrop'
+import Toast from '~plugins/toast'
 
 const Helpers = {}
 
@@ -14,6 +15,8 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$channel = new Vue()
 
   Vue.prototype.$backdrop = new Backdrop()
+
+  Vue.prototype.$toast = new Toast()
 
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {
