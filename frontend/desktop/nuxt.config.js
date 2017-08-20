@@ -20,6 +20,9 @@ const sassResourcesLoader = {
 
 module.exports = {
   cache: true,
+  router: {
+    middleware: 'csrf'
+  },
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/helpers.js' },
