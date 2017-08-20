@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-07-15.
+    * Generated on 2017-08-20.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -52,6 +52,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -195,6 +196,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -338,6 +340,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -481,6 +484,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -624,6 +628,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -767,6 +772,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -910,6 +916,7 @@ namespace PHPSTORM_META {
         'tymon.jwt.validators.payload' => Tymon\JWTAuth\Validators\PayloadValidator::class,
         'tymon.jwt.payload.factory' => Tymon\JWTAuth\PayloadFactory::class,
         'tymon.jwt.generate' => Tymon\JWTAuth\Commands\JWTGenerateCommand::class,
+        'Laravel\Scout\EngineManager' => Laravel\Scout\EngineManager::class,
         'blade.compiler' => Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,

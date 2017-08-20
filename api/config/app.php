@@ -180,6 +180,7 @@ return [
         Overtrue\LaravelPinyin\ServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*

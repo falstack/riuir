@@ -24,9 +24,9 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\Cors::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+            \Barryvdh\Cors\HandleCors::class,
             //\App\Http\Middleware\EncryptCookies::class,
             //\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             //\Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -55,6 +55,5 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
-        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

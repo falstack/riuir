@@ -1,6 +1,5 @@
 const axios = require('axios')
 const env = require('./.env');
-const baseUrl = env.api.baseUrl
 const resolve = require('path').resolve
 
 const isVueRule = (rule) => {
@@ -21,23 +20,6 @@ const sassResourcesLoader = {
 
 module.exports = {
   cache: true,
-  generate: {
-    routes: function () {
-      const bangumi = axios.get(`${baseUrl}/bangumi/generate`).then((res) => {
-        return res.data.map((id) => {
-          return `/bangumi/${id}`
-        })
-      })
-      const video = axios.get(`${baseUrl}/video/generate`).then((res) => {
-        return res.data.map((id) => {
-          return `/video/${id}`
-        })
-      })
-      return Promise.all([bangumi, video]).then(values => {
-        return values.join().split(',');
-      })
-    }
-  },
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/helpers.js' },
@@ -73,7 +55,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#FFFFFF' },
+  loading: { color: '#00a1d6' },
   /*
   ** Build configuration
   */

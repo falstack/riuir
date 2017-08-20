@@ -161,6 +161,9 @@
           <div ref="captcha"></div>
           <em></em>
         </span>
+        <div>
+          <button @click="register">注册</button>
+        </div>
         <span>
           <a></a>
           <a @click="showLogin">已有账号»</a>
@@ -171,6 +174,8 @@
 </template>
 
 <script>
+  import axios from '~plugins/axios'
+
   export default {
     name: 'v-sign',
     data () {
@@ -229,6 +234,17 @@
       },
       login () {
         this.$toast.show('暂不开放注册')
+      },
+      register () {
+        axios.post('door/register', {
+          name: this.signUp.name,
+          email: this.signUp.email,
+          password: this.signUp.password
+        }).then((res) => {
+          console.log(res); // eslint-disable-line
+        }).catch((err) => {
+          console.log(err); // eslint-disable-line
+        })
       }
     }
   }
