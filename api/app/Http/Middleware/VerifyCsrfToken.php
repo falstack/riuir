@@ -14,4 +14,15 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         //
     ];
+
+    protected function getTokenFromRequest($request)
+    {
+        $token = $request->cookie('XSRF-TOKEN');
+
+        if (! $token && $header = $request->header('X-XSRF-TOKEN')) {
+            $token = $this->encrypter->decrypt($header);
+        }
+
+        return $token;
+    }
 }
