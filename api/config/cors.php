@@ -14,7 +14,7 @@ return [
     'allowedOrigins' => ['*'],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
-    'exposedHeaders' => ['Set-Cookie'],
+    'exposedHeaders' => ['*'],
     'maxAge' => 0,
 ];
 
