@@ -84,7 +84,7 @@
             </nuxt-link>
           </li>
         </ul>
-        <div class="more" v-if="page > 1" @click="showAll = !showAll">{{ showAll ? '收起' : '展开' }}</div>
+        <div class="more" v-if="take < videos.length" @click="showAll = !showAll">{{ showAll ? '收起' : '展开' }}</div>
       </div>
       <v-video :source="info.url ? info.url : info.resource" :sourceissrc="!!info.url" :info="`${bangumi.name} 第 ${info.part} 话 ${info.name}`" :poster="$resize(info.poster)" v-if="info" @playing="handlePlaying"></v-video>
       <div class="social">

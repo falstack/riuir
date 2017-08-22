@@ -1,3 +1,16 @@
+%clearfix {
+  &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
+  &:before {
+    content: '';
+    display: table;
+  }
+}
+
 @mixin input-placeholder($color: #fff) {
   &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    $color;

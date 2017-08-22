@@ -109,7 +109,7 @@
   <div id="main">
     <v-banner></v-banner>
     <div class="container">
-      <section class="col-9">
+      <section class="col-main">
         <div class="tags">
           <h2 class="subtitle">标签列表</h2>
           <ul>
@@ -153,7 +153,7 @@
           </ul>
         </div>
       </section>
-      <aside class="col-3"></aside>
+      <aside class="col-aside"></aside>
     </div>
   </div>
 </template>

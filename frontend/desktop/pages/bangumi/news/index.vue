@@ -215,7 +215,7 @@
   <div id="main">
     <v-banner></v-banner>
     <div id="bangumi-news" class="container">
-      <div class="col-9">
+      <div class="col-main">
         <section class="timeline">
           <tab-card :tabs="showtime"
                     :card="released"
@@ -297,7 +297,7 @@
           </ul>
         </section>
       </div>
-      <aside class="col-3"></aside>
+      <aside class="col-aside"></aside>
     </div>
   </div>
 </template>

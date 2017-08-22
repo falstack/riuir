@@ -140,7 +140,7 @@
       </div>
     </section>
     <div class="container">
-      <div class="col-9">
+      <div class="col-main">
         <section id="videos" v-if="videos.length">
           <h2 class="subtitle">视频列表</h2>
           <div v-if="info.season">
@@ -186,7 +186,7 @@
           </ul>
         </section>
       </div>
-      <aside class="col-3">
+      <aside class="col-aside">
         <div id="tags">
           <h2 class="subtitle">标签</h2>
           <ul>
