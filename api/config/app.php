@@ -181,7 +181,6 @@ return [
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
-        Germey\Geetest\GeetestServiceProvider::class,
     ],
 
     /*
@@ -232,7 +231,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
-        'Geetest' => Germey\Geetest\Geetest::class,
     ],
 
 ];

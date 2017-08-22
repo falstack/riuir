@@ -6,7 +6,7 @@ Route::post('/deploy', 'DoorController@deploy');
 
 Route::group(['prefix' => '/door', 'middleware' => ['throttle:5,3']], function ()
 {
-    Route::get('/captcha', 'DoorController@getGeetest');
+    Route::post('/captcha', 'DoorController@captcha');
 
     Route::post('/register', 'DoorController@register');
 

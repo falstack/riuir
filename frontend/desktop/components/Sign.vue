@@ -230,7 +230,7 @@
       showCaptcha () {
         if (!this.captcha) {
           this.captcha = true
-          axios.get('door/captcha').then((res) => {
+          axios.post('door/captcha').then((res) => {
             const data = res.data
             window.initGeetest({
               gt: data.gt,
