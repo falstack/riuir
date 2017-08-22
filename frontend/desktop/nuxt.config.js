@@ -1,7 +1,4 @@
-const axios = require('axios')
-const env = require('./.env');
 const resolve = require('path').resolve
-
 const isVueRule = (rule) => {
   return rule.test.toString() === '/\\.vue$/'
 }
@@ -12,17 +9,14 @@ const sassResourcesLoader = {
   loader: 'sass-resources-loader',
   options: {
     resources: [
-      resolve(__dirname, 'assets/stylesheet/variables.scss'),
-      resolve(__dirname, 'assets/stylesheet/mixins.scss')
+      resolve(__dirname, 'assets/css/variables.scss'),
+      resolve(__dirname, 'assets/css/mixins.scss')
     ]
   }
 }
 
 module.exports = {
   cache: true,
-  router: {
-    middleware: 'csrf'
-  },
   plugins: [
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/helpers.js' },
@@ -56,6 +50,9 @@ module.exports = {
       { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }
     ]
   },
+  css: [
+    '~assets/css/global.scss'
+  ],
   /*
   ** Customize the progress-bar color
   */

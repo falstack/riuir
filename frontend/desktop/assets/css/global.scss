@@ -1,13 +1,12 @@
 @import '~normalize.css';
 @import "reboot";
-@import "colors";
 @import "layout";
 @import "classes";
-@import "styles/href";
+@import "dom/a";
 
 a {
   text-decoration: none;
   cursor: pointer;
-  color: $black;
+  color: $color-black;
   font-size: $font-size;
 }
