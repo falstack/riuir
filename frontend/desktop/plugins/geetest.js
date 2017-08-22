@@ -234,13 +234,6 @@
       config.protocol = window.location.protocol + '//'
     }
 
-    // for KFC
-    if (userConfig.gt === '050cffef4ae57b5d5e529fea9540b0d1' ||
-      userConfig.gt === '3bd38408ae4af923ed36e13819b14d42') {
-      config.apiserver = 'yumchina.geetest.com/' // for old js
-      config.api_server = 'yumchina.geetest.com'
-    }
-
     if (isObject(userConfig.getType)) {
       config._extend(userConfig.getType)
     }
