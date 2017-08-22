@@ -1,136 +1,138 @@
-<style lang="scss" scoped="">
-  $banner-height: 400px;
+<style lang="scss">
+  #bangumi-home {
+    $banner-height: 400px;
 
-  #banner {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: inset 0 0 15px 0 rgba(0,0,0,.5);
-    z-index: 1;
-    height: $banner-height;
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    .img {
-      width: 110%;
-      height: $banner-height;
-      margin: -$banner-height / 2 -55%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      z-index: -1;
-      @include filter-blur();
-    }
-
-    .info {
-      width: 60%;
-      min-width: 600px;
-      color: #fff;
-      text-shadow: 0 1px 10px gray;
-
-      h1 {
-        text-align: center;
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      p {
-        word-break: break-all;
-        word-wrap: break-word;
-        text-indent: 2em;
-        font-size: 13px;
-        line-height: 20px;
-        margin: 40px 0 20px 0;
-      }
-
-      #share {
-        height: 40px;
-        text-align: center;
-      }
-    }
-  }
-
-  #videos {
-    li {
-      margin: 0 15px 15px 0;
-    }
-
-    a {
-      display: block;
+    #banner {
       position: relative;
-    }
-
-    figure {
-      width: 200px;
-      height: 60px;
-      background-color: #f4f5f7;
-      cursor: pointer;
-      border-radius: 3px;
+      width: 100%;
       overflow: hidden;
+      box-shadow: inset 0 0 15px 0 rgba(0,0,0,.5);
+      z-index: 1;
+      height: $banner-height;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
 
-      &:hover p {
-          color: $color-blue;
+      .img {
+        width: 110%;
+        height: $banner-height;
+        margin: -$banner-height / 2 -55%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+        @include filter-blur();
       }
 
-      img {
-        width: 96px;
-        height: 100%;
-        cursor: pointer;
-        margin-right: 12px;
-      }
+      .info {
+        width: 60%;
+        min-width: 600px;
+        color: #fff;
+        text-shadow: 0 1px 10px gray;
 
-      figcaption {
-        padding-left: 108px;
-        padding-right: 12px;
+        h1 {
+          text-align: center;
+          font-size: 24px;
+          font-weight: 700;
+        }
 
         p {
-          display: block;
-          color: #000;
-          font-size: 12px;
-          line-height: 14px;
-          margin-top: 6px;
-          margin-bottom: 5px;
+          word-break: break-all;
+          word-wrap: break-word;
+          text-indent: 2em;
+          font-size: 13px;
+          line-height: 20px;
+          margin: 40px 0 20px 0;
         }
 
-        span {
-          font-size: 12px;
-          line-height: 14px;
-          color: #99a2aa;
+        #share {
+          height: 40px;
+          text-align: center;
         }
       }
     }
-  }
 
-  #tags {
-    .tag {
-      background-color: rgba(32,160,255,.1);
-      margin-right: 10px;
-      margin-bottom: 10px;
-      display: inline-block;
-      padding: 0 5px;
-      height: 24px;
-      line-height: 22px;
-      font-size: 12px;
-      border-radius: 4px;
-      box-sizing: border-box;
-      border: 1px solid rgba(32,160,255,.2);
-      white-space: nowrap;
+    #videos {
+      li {
+        margin: 0 14px 15px 0;
+      }
 
       a {
-        color: #20a0ff;
+        display: block;
+        position: relative;
+      }
+
+      figure {
+        width: 200px;
+        height: 60px;
+        background-color: #f4f5f7;
+        cursor: pointer;
+        border-radius: 3px;
+        overflow: hidden;
+
+        &:hover p {
+          color: $color-blue;
+        }
+
+        img {
+          width: 96px;
+          height: 100%;
+          cursor: pointer;
+          margin-right: 12px;
+        }
+
+        figcaption {
+          padding-left: 108px;
+          padding-right: 12px;
+
+          p {
+            display: block;
+            color: #000;
+            font-size: 12px;
+            line-height: 14px;
+            margin-top: 6px;
+            margin-bottom: 5px;
+          }
+
+          span {
+            font-size: 12px;
+            line-height: 14px;
+            color: #99a2aa;
+          }
+        }
+      }
+    }
+
+    #tags {
+      .tag {
+        background-color: rgba(32,160,255,.1);
+        margin-right: 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+        padding: 0 5px;
+        height: 24px;
+        line-height: 22px;
+        font-size: 12px;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1px solid rgba(32,160,255,.2);
+        white-space: nowrap;
+
+        a {
+          color: #20a0ff;
+        }
       }
     }
   }
 </style>
 
 <template>
-  <div id="main">
+  <div id="bangumi-home" class="main">
     <section id="banner">
       <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner, { width: 1920, crop: false })})` : '' }"></div>
       <div class="info">
@@ -139,7 +141,7 @@
         <v-share></v-share>
       </div>
     </section>
-    <div class="container">
+    <div class="container clearfix">
       <div class="col-main">
         <section id="videos" v-if="videos.length">
           <h2 class="subtitle">视频列表</h2>

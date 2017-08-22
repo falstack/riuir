@@ -1,72 +1,74 @@
 <style lang="scss">
-  $meta-height: 30px;
-  $meta-margin-bottom: 8px;
+  #video-show {
+    $meta-height: 30px;
+    $meta-margin-bottom: 8px;
 
-  #metas {
-    margin-bottom: 20px;
-    padding-right: 55px;
-    overflow: hidden;
-    position: relative;
+    #metas {
+      margin-bottom: 20px;
+      padding-right: 55px;
+      overflow: hidden;
+      position: relative;
 
-    li {
-      float: left;
-      margin: 0 8px $meta-margin-bottom 0;
-    }
-
-    .meta, .more {
-      border: 1px solid #e5e9ef;
-      height: $meta-height;
-      border-radius: 4px;
-      display: block;
-      transition: .2s;
-      padding: 0 15px 0 8px;
-      font-size: 14px;
-      color: #6d757a;
-      line-height: 28px;
-
-      span {
-        min-width: 16px;
-        margin-right: 5px;
-        display: inline-block;
-        text-align: right;
+      li {
+        float: left;
+        margin: 0 8px $meta-margin-bottom 0;
       }
 
-      &:hover {
+      .meta, .more {
+        border: 1px solid #e5e9ef;
+        height: $meta-height;
+        border-radius: 4px;
+        display: block;
+        transition: .2s;
+        padding: 0 15px 0 8px;
+        font-size: 14px;
+        color: #6d757a;
+        line-height: 28px;
+
+        span {
+          min-width: 16px;
+          margin-right: 5px;
+          display: inline-block;
+          text-align: right;
+        }
+
+        &:hover {
+          border-color: $color-blue;
+          background-color: $color-blue;
+          color: #fff;
+        }
+      }
+
+      .nuxt-link-active {
         border-color: $color-blue;
         background-color: $color-blue;
         color: #fff;
       }
+
+      .more {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+        padding-right: 8px;
+        text-align: center;
+      }
     }
 
-    .nuxt-link-active {
-      border-color: $color-blue;
-      background-color: $color-blue;
-      color: #fff;
-    }
+    .social {
+      margin-top: 20px;
 
-    .more {
-      cursor: pointer;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 50px;
-      padding-right: 8px;
-      text-align: center;
-    }
-  }
-
-  .social {
-    margin-top: 20px;
-
-    #share {
-      height: 40px;
-      float: right;
+      #share {
+        height: 40px;
+        float: right;
+      }
     }
   }
 </style>
 
 <template>
-  <div id="main">
+  <div id="video-show" class="main">
     <v-banner></v-banner>
     <div class="container">
       <nav>
@@ -102,7 +104,7 @@
   const metaMarginRgt = 8
 
   export default {
-    name: 'video-index',
+    name: 'video-show',
     head () {
       return {
         title: `${this.bangumi.name} : 第${this.info.part}话 ${this.info.name} - 视频`,

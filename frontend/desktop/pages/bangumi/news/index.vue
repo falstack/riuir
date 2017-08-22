@@ -212,9 +212,9 @@
 </style>
 
 <template>
-  <div id="main">
+  <div id="bangumi-news" class="main">
     <v-banner></v-banner>
-    <div id="bangumi-news" class="container">
+    <div class="container clearfix">
       <div class="col-main">
         <section class="timeline">
           <tab-card :tabs="showtime"

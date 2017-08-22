@@ -1,114 +1,116 @@
-<style lang="scss" scoped="">
-  .bangumi {
-    border-bottom: 1px solid #dae9f4;
+<style lang="scss">
+  #bangumi-tags {
+    .bangumi {
+      border-bottom: 1px solid #dae9f4;
 
-    &:last-child {
-      border-bottom-width: 0;
-    }
-
-    figure {
-      padding: 20px 10px;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-
-      .face {
-        width: 90px;
-        height: 90px;
-        flex-shrink: 0;
-        margin-right: 15px;
-        display: block;
+      &:last-child {
+        border-bottom-width: 0;
       }
 
-      .content {
-        flex: auto;
+      figure {
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
 
-        .head {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
+        .face {
+          width: 90px;
+          height: 90px;
+          flex-shrink: 0;
+          margin-right: 15px;
+          display: block;
+        }
 
-          .name {
-            font-size: 18px;
+        .content {
+          flex: auto;
 
-            &:hover {
-              text-decoration: underline;
+          .head {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .name {
+              font-size: 18px;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+
+            .score {
+
             }
           }
 
-          .score {
+          .body {
+            margin: 8.5px 0;
+            text-indent: 2em;
+            color: #222;
+            font-size: 13px;
+            line-height: 18px;
+          }
+
+          .foot {
 
           }
         }
-
-        .body {
-          margin: 8.5px 0;
-          text-indent: 2em;
-          color: #222;
-          font-size: 13px;
-          line-height: 18px;
-        }
-
-        .foot {
-
-        }
-      }
-    }
-  }
-
-  .tags {
-    margin-bottom: 25px;
-
-    .tag, .btn {
-      display: inline-block;
-      padding: 0 5px;
-      height: 24px;
-      line-height: 22px;
-      font-size: 12px;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    .tag {
-      margin-right: 10px;
-      margin-bottom: 10px;
-      background-color: rgba(32,160,255,.1);
-      padding: 0 5px;
-      height: 24px;
-      line-height: 22px;
-      font-size: 12px;
-      border-radius: 4px;
-      box-sizing: border-box;
-      border: 1px solid rgba(32,160,255,.2);
-      white-space: nowrap;
-      color: #20a0ff;
-      cursor: pointer;
-
-      &.selected {
-        background-color: #20a0ff;
-        color: #fff;
       }
     }
 
-    .btn {
-      background-color: #e4e8f1;
-      border-color: #e4e8f1;
-      color: #48576a;
+    .tags {
+      margin-bottom: 25px;
 
-      &:hover {
-        color: #fff;
-        background-color: #8391a5;
+      .tag, .btn {
+        display: inline-block;
+        padding: 0 5px;
+        height: 24px;
+        line-height: 22px;
+        font-size: 12px;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .tag {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(32,160,255,.1);
+        padding: 0 5px;
+        height: 24px;
+        line-height: 22px;
+        font-size: 12px;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1px solid rgba(32,160,255,.2);
+        white-space: nowrap;
+        color: #20a0ff;
+        cursor: pointer;
+
+        &.selected {
+          background-color: #20a0ff;
+          color: #fff;
+        }
+      }
+
+      .btn {
+        background-color: #e4e8f1;
+        border-color: #e4e8f1;
+        color: #48576a;
+
+        &:hover {
+          color: #fff;
+          background-color: #8391a5;
+        }
       }
     }
   }
 </style>
 
 <template>
-  <div id="main">
+  <div id="bangumi-tags" class="main">
     <v-banner></v-banner>
-    <div class="container">
+    <div class="container clearfix">
       <section class="col-main">
         <div class="tags">
           <h2 class="subtitle">标签列表</h2>

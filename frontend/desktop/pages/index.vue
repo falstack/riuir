@@ -1,5 +1,5 @@
 <style lang="scss">
-  #index-wrap {
+  #index {
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -76,7 +76,7 @@
 </style>
 
 <template>
-  <div id="index-wrap">
+  <div id="index">
     <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${$resize(banner1.url, { width: 1920, crop: false })})` : '' }"></div>
     <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920, crop: false })})` : '' }"></div>
     <img class="another"

@@ -6,8 +6,8 @@
     display: flex;
     flex-direction: column;
 
-    >#main {
-      flex: auto;
+    >.main {
+      flex-grow: 1;
     }
   }
 </style>
