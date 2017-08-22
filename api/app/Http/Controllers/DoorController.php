@@ -63,7 +63,7 @@ class DoorController extends Controller
 
     public function captcha()
     {
-        $captcha = new GeeCaptcha(env('GEETEST_ID'), env('GEETEST_KEY'));
+        $captcha = new GeeCaptcha(config('geetest.id'), config('geetest.key'));
 
         return $captcha->GTServerIsNormal();
     }
