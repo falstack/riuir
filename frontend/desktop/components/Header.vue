@@ -109,6 +109,16 @@
               }
             }
 
+            @media (max-width: 768px) {
+              .search-ctx {
+                width: 85px;
+
+                &:focus {
+                  width: 155px;
+                }
+              }
+            }
+
             .search-btn {
               width: 32px;
               height: 32px;

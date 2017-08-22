@@ -1,5 +1,5 @@
-<style lang="scss" scoped>
-  footer {
+<style lang="scss">
+  #footer {
     width: 100%;
     z-index: -1;
 
@@ -10,7 +10,7 @@
 </style>
 
 <template>
-  <footer>
+  <footer id="footer">
     <p class="slogan" data-text="riuir - 天下漫友是一家"></p>
   </footer>
 </template>
