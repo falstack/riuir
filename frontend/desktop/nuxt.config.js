@@ -27,7 +27,8 @@ module.exports = {
     { src: '~plugins/analytics.js', ssr: false },
     { src: '~plugins/helpers.js' },
     { src: '~plugins/share.js' },
-    { src: '~plugins/imagelazy.js' }
+    { src: '~plugins/imagelazy.js' },
+    { src: '~plugins/geetest.js', ssr: false }
   ],
   modules: [
     ['@nuxtjs/google-analytics', { ua: 'UA-80338273-2' }],

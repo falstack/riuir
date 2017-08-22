@@ -161,9 +161,6 @@
           <div ref="captcha"></div>
           <em></em>
         </span>
-        <div>
-          <button @click="register">注册</button>
-        </div>
         <span>
           <a></a>
           <a @click="showLogin">已有账号»</a>
@@ -194,7 +191,8 @@
           name: '',
           password: '',
           email: ''
-        }
+        },
+        captcha: false
       }
     },
     watch: {
@@ -230,20 +228,41 @@
         this.showSignUp = false
       },
       showCaptcha () {
+        if (!this.captcha) {
+          this.captcha = true
+          axios.get('door/captcha').then((res) => {
+            const data = res.data
+            window.initGeetest({
+              gt: data.gt,
+              challenge: data.challenge,
+              product: 'float',
+              offline: !data.success
+            }, (captchaObj) => {
+              captchaObj.appendTo(this.$refs.captcha)
+              captchaObj.onSuccess(() => {
+                this.register().then((res) => {
+                  console.log(res); // eslint-disable-line
+                }).catch((res) => {
+                  console.log(res); // eslint-disable-line
+                  setTimeout(() => {
+                    captchaObj.refresh()
+                  }, 500)
+                })
+              })
+            })
+          }).catch((res) => {
 
+          })
+        }
       },
       login () {
         this.$toast.show('暂不开放注册')
       },
       register () {
-        axios.post('door/register', {
+        return axios.post('door/register', {
           name: this.signUp.name,
           email: this.signUp.email,
           password: this.signUp.password
-        }).then((res) => {
-          console.log(res); // eslint-disable-line
-        }).catch((err) => {
-          console.log(err); // eslint-disable-line
         })
       }
     }

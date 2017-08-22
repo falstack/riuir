@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Cache;
 use Laravist\GeeCaptcha\GeeCaptcha;
 use Overtrue\LaravelPinyin\Facades\Pinyin as Overtrue;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Germey\Geetest\GeetestCaptcha;
 
 class DoorController extends Controller
 {
+    use GeetestCaptcha;
+
     public function index()
     {
         return view('welcome');
@@ -59,13 +62,6 @@ class DoorController extends Controller
         ];
 
         User::create($data);
-    }
-
-    public function captcha()
-    {
-        $captcha = new GeeCaptcha(env('GEETEST_ID'), env('GEETEST_KEY'));
-
-        return $captcha->GTServerIsNormal();
     }
 
     public function login(Request $request)

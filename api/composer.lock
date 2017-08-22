@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e43fd7ca7c6fbb33713efd70fe2f5b3f",
-    "content-hash": "96d2f6ee4f3f215bc31b6c066e0ea1fe",
+    "hash": "a45dd249ac9b8ca5a1a8268c400aa254",
+    "content-hash": "7e06120e1db3ebfd1c4d2c24592701ad",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -261,6 +261,57 @@
                 "parser"
             ],
             "time": "2017-03-29 16:04:15"
+        },
+        {
+            "name": "germey/geetest",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Germey/LaravelGeetest.git",
+                "reference": "844148dd961d59e70255812359b473f1b4802a7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/Germey/LaravelGeetest/844148dd961d59e70255812359b473f1b4802a7d.zip",
+                "reference": "844148dd961d59e70255812359b473f1b4802a7d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.0.*|5.1.*|5.2.*|5.3.*|5.4.*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Germey\\Geetest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Germey",
+                    "email": "cqc@cuiqingcai.com"
+                }
+            ],
+            "description": "Geetest Package for Laravel5",
+            "keywords": [
+                "Germey",
+                "geetest",
+                "laravel"
+            ],
+            "time": "2017-07-11 02:32:21"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -706,39 +757,6 @@
                 "psysh"
             ],
             "time": "2017-06-01 16:31:26"
-        },
-        {
-            "name": "laravist/geecaptcha",
-            "version": "1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/JellyBool/geeCaptcha.git",
-                "reference": "931432be8cb44404773e892f49ba4afc78837d9c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/JellyBool/geeCaptcha/931432be8cb44404773e892f49ba4afc78837d9c.zip",
-                "reference": "931432be8cb44404773e892f49ba4afc78837d9c",
-                "shasum": ""
-            },
-            "type": "php",
-            "autoload": {
-                "psr-4": {
-                    "Laravist\\GeeCaptcha\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "JellyBool",
-                    "email": "jellybool@outlook.com"
-                }
-            ],
-            "description": "A geetest captcha package by laravist",
-            "time": "2016-04-10 15:36:31"
         },
         {
             "name": "league/flysystem",
@@ -2931,6 +2949,39 @@
                 "test"
             ],
             "time": "2015-05-11 14:41:42"
+        },
+        {
+            "name": "laravist/geecaptcha",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JellyBool/geeCaptcha.git",
+                "reference": "931432be8cb44404773e892f49ba4afc78837d9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/JellyBool/geeCaptcha/931432be8cb44404773e892f49ba4afc78837d9c.zip",
+                "reference": "931432be8cb44404773e892f49ba4afc78837d9c",
+                "shasum": ""
+            },
+            "type": "php",
+            "autoload": {
+                "psr-4": {
+                    "Laravist\\GeeCaptcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JellyBool",
+                    "email": "jellybool@outlook.com"
+                }
+            ],
+            "description": "A geetest captcha package by laravist",
+            "time": "2016-04-10 15:36:31"
         },
         {
             "name": "mockery/mockery",
