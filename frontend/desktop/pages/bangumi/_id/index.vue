@@ -110,7 +110,7 @@
 
     #tags {
       .tag {
-        background-color: rgba(32,160,255,.1);
+        background-color: $color-pink-light;
         margin-right: 10px;
         margin-bottom: 10px;
         display: inline-block;
@@ -120,11 +120,11 @@
         font-size: 12px;
         border-radius: 4px;
         box-sizing: border-box;
-        border: 1px solid rgba(32,160,255,.2);
+        border: 1px solid $color-pink-light;
         white-space: nowrap;
 
         a {
-          color: #20a0ff;
+          color: $color-white;
         }
       }
     }
