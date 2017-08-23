@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bangumi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +20,8 @@ class BangumiController extends Controller
                 'search' => $request->get('alias')
             ]),
             'season' => 'null',
-            'count_score' => 0
+            'count_score' => 0,
+            'deleted_at' => Carbon::now()
         ]);
     }
 

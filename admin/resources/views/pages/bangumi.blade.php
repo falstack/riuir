@@ -508,7 +508,8 @@
                   avatar: this.createForm.avatar,
                   banner: this.createForm.banner,
                   summary: this.createForm.summary,
-                  alias: this.createForm.alias.split(/,|，/).join(',')
+                  alias: this.createForm.alias.split(/,|，/).join(','),
+                  deleted_at: moment().format('YYYY-MM-DD H:m:s')
                 });
                 this.createDialogFormVisible = false;
                 this.$message.success('操作成功');

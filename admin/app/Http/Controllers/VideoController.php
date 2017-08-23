@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
@@ -19,7 +20,8 @@ class VideoController extends Controller
                 'poster' => $video['poster'],
                 'part' => $video['part'],
                 'name' => $video['name'],
-                'resource' => json_encode($video['resource'])
+                'resource' => json_encode($video['resource']),
+                'deleted_at' => Carbon::now()
             ]);
         }
         Video::insert($arr);

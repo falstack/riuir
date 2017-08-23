@@ -535,7 +535,8 @@
                 'part': i,
                 'name': names[j++],
                 'poster': this.createForm.poster.replace('${n}', i).replace('${name}', resName),
-                'url': url === undefined ? this.createForm.url.replace('${n}', i).replace('${name}', resName) : url
+                'url': url === undefined ? this.createForm.url.replace('${n}', i).replace('${name}', resName) : url,
+                'deleted_at': moment().format('YYYY-MM-DD H:m:s')
               });
             }
 
