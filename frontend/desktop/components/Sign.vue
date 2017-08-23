@@ -25,7 +25,7 @@
 
       .sign-modal {
         padding: 50px 60px;
-        background-color: #fff;
+        background-color: $color-white;
         border-radius: 4px;
         position: fixed;
         top: 50%;
@@ -43,11 +43,11 @@
         input[type="text"], input[type="password"], input[type="email"] {
           width: 100%;
           height: 40px;
-          color: #a5a5a5;
           font-size: 12px;
           padding: 8px 12px;
           border-radius: 4px;
-          border: 1px solid #e5e9ef;
+          color: $color-text-deep;
+          border: 1px solid $color-gray-deep;
         }
 
         input[type=checkbox] {
@@ -63,7 +63,7 @@
           font-weight: bold;
 
           &:hover {
-            background-color: $color-blue-deep;
+            background-color: $color-blue-light;
           }
         }
 

@@ -1,4 +1,4 @@
-<style lang="scss" scoped="">
+<style lang="scss">
   .tab-card {
     overflow: hidden;
 
@@ -15,6 +15,12 @@
           border-bottom-style: solid;
           padding: 2px 4px 7px 4px;
           position: relative;
+          transition-duration: $fade-time;
+          cursor: pointer;
+
+          &:hover {
+            color: $color-blue-normal;
+          }
         }
 
         .tabs-on {
@@ -55,8 +61,7 @@
     <div class="tabs flexbox flex-row">
       <slot name="tabs-left"></slot>
       <ul class="tabs-selection flexbox flex-row">
-        <li class="href-fade-blue"
-            v-for="(item, index) in tabs"
+        <li v-for="(item, index) in tabs"
             v-text="item"
             :class="[ index === idx ? 'tabs-on' : 'tabs-off' ]"
             @click="switchCard(index)"

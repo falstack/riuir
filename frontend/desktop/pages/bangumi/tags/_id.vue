@@ -47,7 +47,7 @@
           .body {
             margin: 8.5px 0;
             text-indent: 2em;
-            color: #222;
+            color: $color-link;
             font-size: 13px;
             line-height: 18px;
           }
@@ -75,32 +75,31 @@
       .tag {
         margin-right: 10px;
         margin-bottom: 10px;
-        background-color: rgba(32,160,255,.1);
+        background-color: $color-pink-light;
         padding: 0 5px;
         height: 24px;
         line-height: 22px;
         font-size: 12px;
         border-radius: 4px;
         box-sizing: border-box;
-        border: 1px solid rgba(32,160,255,.2);
+        border: 1px solid $color-pink-light;
         white-space: nowrap;
-        color: #20a0ff;
+        color: $color-white;
         cursor: pointer;
 
         &.selected {
-          background-color: #20a0ff;
+          background-color: $color-pink-deep;
+          border: 1px solid $color-pink-deep;
           color: #fff;
         }
       }
 
       .btn {
-        background-color: #e4e8f1;
-        border-color: #e4e8f1;
-        color: #48576a;
+        background-color: $color-white;
+        border: 1px solid $color-gray-deep;
 
         &:hover {
-          color: #fff;
-          background-color: #8391a5;
+          background-color: $color-gray-deep;
         }
       }
     }

@@ -44,7 +44,7 @@
 
         &:hover {
           .search-ctx {
-            border: 1px solid #fff;
+            border: 1px solid $color-white;
             background: rgba(0, 0, 0, 0.3);
           }
         }

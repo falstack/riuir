@@ -15,14 +15,14 @@
       }
 
       .meta, .more {
-        border: 1px solid #e5e9ef;
+        border: 1px solid $color-gray-deep;
         height: $meta-height;
+        color: $color-link;
         border-radius: 4px;
         display: block;
         transition: .2s;
         padding: 0 15px 0 8px;
         font-size: 14px;
-        color: #6d757a;
         line-height: 28px;
 
         span {
@@ -35,14 +35,14 @@
         &:hover {
           border-color: $color-blue-light;
           background-color: $color-blue-light;
-          color: #fff;
+          color: $color-white;
         }
       }
 
       .nuxt-link-active {
         border-color: $color-blue-light;
         background-color: $color-blue-light;
-        color: #fff;
+        color: $color-white;
       }
 
       .more {

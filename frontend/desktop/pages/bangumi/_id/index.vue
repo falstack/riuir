@@ -41,7 +41,7 @@
           font-weight: 700;
         }
 
-        p {
+        .summary {
           word-break: break-all;
           word-wrap: break-word;
           text-indent: 2em;
@@ -70,7 +70,7 @@
       figure {
         width: 200px;
         height: 60px;
-        background-color: #f4f5f7;
+        background-color: $color-gray-light;
         cursor: pointer;
         border-radius: 3px;
         overflow: hidden;
@@ -92,7 +92,7 @@
 
           p {
             display: block;
-            color: #000;
+            color: $color-link;
             font-size: 12px;
             line-height: 14px;
             margin-top: 6px;
@@ -102,7 +102,7 @@
           span {
             font-size: 12px;
             line-height: 14px;
-            color: #99a2aa;
+            color: $color-text-light;
           }
         }
       }
@@ -137,7 +137,7 @@
       <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner, { width: 1920, crop: false })})` : '' }"></div>
       <div class="info">
         <h1 v-text="info.name"></h1>
-        <p v-text="info.summary"></p>
+        <p class="summary" v-text="info.summary"></p>
         <v-share></v-share>
       </div>
     </section>

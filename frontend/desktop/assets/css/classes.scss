@@ -34,7 +34,7 @@
 
 .subtitle {
   font-size: 24px;
-  color: #333;
+  color: $color-text-normal;
   line-height: 24px;
   padding-left: 20px;
   position: relative;
@@ -54,7 +54,7 @@
 }
 
 .celltitle {
-  color: #999;
+  color: $color-text-light;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
@@ -72,7 +72,7 @@
 
   &, * {
     font-size: 16px;
-    color: #333;
+    color: $color-link;
     line-height: 20px;
     font-weight: 400;
   }
@@ -95,7 +95,7 @@
       text-align: center;
       line-height: 18px;
       font-size: 13px;
-      color: #333;
+      color: $color-link;
     }
   }
 }
@@ -106,7 +106,7 @@
 
 .icon-item {
   display: inline-block;
-  color: #99a2aa;
+  color: $color-text-light;
   font-size: 13px;
   line-height: 16px;
   height: 16px;

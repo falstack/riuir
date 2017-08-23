@@ -7,12 +7,8 @@
     url('./fonts/iconfont.svg?t=1491818377252#iconfont') format('svg');
   }
 
-  $color-border : #e5e9ef;
-  $color-over : #00a1d6;
-  $color-load : #8adced;
   $tool-height : 40px;
   $tool-btn-width : 40px;
-  $tool-color: #fff;
 
   .vue-pwa-video {
     box-sizing: border-box;
@@ -20,9 +16,8 @@
     background-color: #000;
     width: 100%;
     height: 100%;
-    border-bottom: 1px solid $color-border;
+    border-bottom: 1px solid $color-gray-normal;
     position: relative;
-    font-family: 'Microsoft YaHei',Arial,Helvetica,sans-serif;
 
     &.vue-pwa-video-flex {
       display: flex;
@@ -69,8 +64,6 @@
         border-radius: 5px;
         background-color: rgba(0, 0, 0, 0.8);
         font-family: 'iconfont-video';
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
         z-index: 1;
 
         &:before {
@@ -83,8 +76,20 @@
           font-size: 40px;
           text-align: center;
           line-height: 60px;
-          color: #fff;
+          color: $color-white;
           -webkit-animation: unlimited 1s infinite linear;
+        }
+      }
+
+      @keyframes unlimited {
+        0%{
+          -webkit-transform: rotate(0deg);
+        }
+        50%{
+          -webkit-transform: rotate(180deg);
+        }
+        100%{
+          -webkit-transform: rotate(360deg);
         }
       }
 
@@ -134,9 +139,9 @@
 
     .vue-pwa-video-tool {
       height: $tool-height;
-      background-color: $tool-color;
-      border-left: 1px solid $color-border;
-      border-right: 1px solid $color-border;
+      background-color: $color-white;
+      border-left: 1px solid $color-gray-normal;
+      border-right: 1px solid $color-gray-normal;
       font-size: 13px;
       display: flex;
       z-index: 3;
@@ -154,7 +159,7 @@
         -moz-osx-font-smoothing: grayscale;
         position: relative;
         color: #99A2AA;
-        background-color: $tool-color;
+        background-color: $color-white;
 
         &:before {
           position: absolute;
@@ -171,7 +176,7 @@
         }
 
         &:hover, &:active {
-          background-color: #F4F5F7;
+          background-color: $color-gray-normal;
           color: #6D757A;
         }
       }
@@ -227,16 +232,16 @@
   }
 
   .vue-pwa-video-voice-bar {
-    background-color: $tool-color;
+    background-color: $color-white;
     position: absolute;
     width: 40px;
     height: 70px;
     left: 0;
     bottom: 100%;
     border-radius: 5px 5px 0 0;
-    border-top: 1px solid $color-border;
-    border-left: 1px solid $color-border;
-    border-right: 1px solid $color-border;
+    border-top: 1px solid $color-gray-normal;
+    border-left: 1px solid $color-gray-normal;
+    border-right: 1px solid $color-gray-normal;
     padding: 15px 0;
     box-sizing: content-box;
     display: flex;
@@ -251,10 +256,10 @@
   }
 
   .vue-pwa-video-time {
-    background-color: $tool-color;
+    background-color: $color-white;
     width: $tool-btn-width;
     height: 100%;
-    color: #999999;
+    color: $color-text-light;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -262,7 +267,7 @@
   }
 
   .vue-pwa-video-progress-bar {
-    background-color: $tool-color;
+    background-color: $color-white;
     box-sizing: border-box;
     height: 100%;
     margin: 0 10px;

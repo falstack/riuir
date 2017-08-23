@@ -23,7 +23,7 @@
       right: 0;
       bottom: 0;
       top: 0;
-      background-color: #e5e9ef;
+      background-color: $color-gray-normal;
     }
 
     .vue-pwa-range-progress {

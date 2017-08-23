@@ -20,10 +20,10 @@
       top: 120%;
       height: 192px;
       width: 267px;
-      background-color: #fff;
+      background-color: $color-white;
+      border: 1px solid $color-gray-normal;
       opacity: 0;
       visibility: hidden;
-      border: 1px solid #e5e9ef;
       border-radius: 4px;
       box-shadow: rgba(0, 0, 0, 0.16) 0 2px 4px;
       font-size: 12px;
@@ -45,7 +45,7 @@
           position: relative;
 
           &:hover {
-            background-color: #e5e9ef;
+            background-color: $color-gray-normal;
           }
 
           a {

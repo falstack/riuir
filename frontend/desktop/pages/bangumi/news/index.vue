@@ -14,7 +14,9 @@
         margin-bottom: 26px;
 
         .nothing {
+          font-size: 13px;
           line-height: 100px;
+          color: $color-text-light;
         }
       }
 
@@ -49,12 +51,12 @@
             justify-content: space-between;
 
             span {
-              color: #aaa;
+              color: $color-text-light;
               line-height: 18px;
 
               .part {
                 border-radius: 9px;
-                color: #fff;
+                color: $color-white;
                 text-align: center;
                 padding: 0 4px;
                 height: 18px;
@@ -65,11 +67,11 @@
                 vertical-align: top;
 
                 &.new {
-                  background-color: #ff8eb3;
+                  background-color: $color-pink-normal;
                 }
 
                 &.old {
-                  background-color: #b8c0cc;
+                  background-color: $color-dark-light;
                 }
               }
             }
@@ -94,7 +96,7 @@
           top: 0;
           bottom: 0;
           width: 1px;
-          background-color: #bfcbd9;
+          background-color: $color-dark-light;
         }
 
         .collection {
@@ -107,7 +109,7 @@
             margin-left: -$time-size;
             position: relative;
             font-weight: 400;
-            color: #97a8be;
+            color: $color-text-light;
             font-size: 16px;
 
             &:before {
@@ -153,6 +155,7 @@
 
               .name {
                 font-size: 18px;
+                font-weight: bold;
 
                 &:hover {
                   text-decoration: underline;
@@ -167,7 +170,7 @@
             .body {
               margin: 8.5px 0;
               text-indent: 2em;
-              color: #222;
+              color: $color-text-light;
               font-size: 13px;
               line-height: 18px;
             }
@@ -180,8 +183,7 @@
                   margin-right: 10px;
 
                   a {
-                    color: #99a2aa;
-                    font-weight: bold;
+                    color: $color-text-light;
                   }
 
                   &:after {

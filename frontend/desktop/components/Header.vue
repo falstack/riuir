@@ -24,56 +24,16 @@
         .header-left {
           height: 100%;
           font-weight: bold;
-
-          a {
-            color: #fff;
-            padding: 5px 20px;
-            border-radius: 10px;
-            transition: .4s;
-            margin: 0 5px;
-            font-size: 15px;
-            cursor: pointer;
-
-            &:hover {
-              background-color: #fff;
-              color: $color-blue-normal;
-              transition: 0s;
-            }
-          }
-
-          .bangumi {
-            position: relative;
-
-            &:hover ul {
-              /*opacity: 1;*/
-              height: $header-height * 2;
-            }
-
-            ul {
-              position: absolute;
-              left: 0;
-              top: 100%;
-              width: 100%;
-              height: 0;
-              opacity: 0;
-              transition: .2s;
-              overflow: hidden;
-
-              li {
-                position: relative;
-              }
-            }
-          }
         }
 
         .header-right {
           .search-box {
             height: 32px;
             border-radius: 16px;
-            background-color: rgba(0, 0, 0, 0.15);
+            background-color: rgba(0, 0, 0, 0.2);
 
             &:hover {
-              background-color: rgba(0, 0, 0, 0.3);
+              background-color: rgba(0, 0, 0, 0.4);
             }
 
             $transition: .2s;
@@ -85,17 +45,17 @@
               padding: 4px 10px 4px 15px;
               line-height: 24px;
               border-radius: 16px 0 0 16px;
-              color: #fff;
+              color: $color-white;
               @include input-placeholder();
 
               &:focus {
                 width: 235px;
-                background-color: #fff;
+                background-color: $color-white;
                 color: #222;
                 @include input-placeholder(#222);
 
                 &+.search-btn {
-                  background-color: #fff;
+                  background-color: $color-white;
                   background-image: url(data:image/png;base64,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);
 
                   &:hover {
@@ -135,17 +95,17 @@
             width: 52px;
             height: 34px;
             line-height: 32px;
-            color: #fff;
+            color: $color-white;
             text-align: center;
             font-size: 14px;
           }
 
           .sign-in {
-            border: 1px solid #fff;
+            border: 1px solid $color-white;
             margin-left: 30px;
 
             &:hover {
-              background: linear-gradient(#fff, #f7f7f7);
+              background: linear-gradient($color-white, #f7f7f7);
               text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
               color: #000;
               border: 1px solid #ccc;
@@ -161,7 +121,7 @@
             &:hover {
               background: linear-gradient(#00bfef, #00a7de);
               text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-              color: #fff;
+              color: $color-white;
               border: 1px solid #00a7de;
               opacity: 1;
             }
@@ -175,6 +135,23 @@
     }
 
     &.mask {
+      .header-left {
+        a {
+          color: $color-white;
+          padding: 5px 20px;
+          border-radius: 10px;
+          margin: 0 5px;
+          font-size: 15px;
+          transition: .4s background-color, .4s color;
+
+          &:hover {
+            background-color: $color-white;
+            color: $color-blue-normal;
+            transition-duration: 0s;
+          }
+        }
+      }
+
       .shim {
         width: 100%;
         height: 100px;
@@ -187,6 +164,23 @@
     }
 
     &.blur {
+      .header-left {
+        li {
+          margin: 0 5px;
+        }
+
+        a {
+          color: $color-white;
+          padding: 0 20px;
+          font-size: 15px;
+          height: 100%;
+          display: block;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.24);
+          }
+        }
+      }
 
       &.black {
         box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
@@ -231,9 +225,13 @@
       <div class="container">
         <nav class="header-left">
           <ul class="flexbox">
-            <li><nuxt-link to="/">主站</nuxt-link></li>
-            <li class="bangumi">
+            <li>
+              <nuxt-link to="/">主站</nuxt-link>
+            </li>
+            <li>
               <nuxt-link to="/bangumi/news">番剧</nuxt-link>
+            </li>
+            <li>
               <nuxt-link to="/bangumi/tags">分类</nuxt-link>
             </li>
           </ul>
