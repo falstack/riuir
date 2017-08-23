@@ -75,22 +75,22 @@
       .tag {
         margin-right: 10px;
         margin-bottom: 10px;
-        background-color: $color-pink-light;
+        background-color: $color-white;
         padding: 0 5px;
         height: 24px;
         line-height: 22px;
         font-size: 12px;
         border-radius: 4px;
         box-sizing: border-box;
-        border: 1px solid $color-pink-light;
+        border: 1px solid $color-pink-normal;
         white-space: nowrap;
-        color: $color-white;
+        color: $color-pink-normal;
         cursor: pointer;
 
         &.selected {
           background-color: $color-pink-deep;
           border: 1px solid $color-pink-deep;
-          color: #fff;
+          color: $color-white;
         }
       }
 

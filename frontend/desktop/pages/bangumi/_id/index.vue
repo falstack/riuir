@@ -110,7 +110,7 @@
 
     #tags {
       .tag {
-        background-color: $color-pink-light;
+        background-color: $color-white;
         margin-right: 10px;
         margin-bottom: 10px;
         display: inline-block;
@@ -119,12 +119,11 @@
         line-height: 22px;
         font-size: 12px;
         border-radius: 4px;
-        box-sizing: border-box;
-        border: 1px solid $color-pink-light;
+        border: 1px solid $color-pink-normal;
         white-space: nowrap;
 
         a {
-          color: $color-white;
+          color: $color-pink-normal;
         }
       }
     }
