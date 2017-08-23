@@ -33,6 +33,7 @@
 
             .name {
               font-size: 18px;
+              font-weight: bold;
 
               &:hover {
                 text-decoration: underline;
@@ -47,7 +48,7 @@
           .body {
             margin: 8.5px 0;
             text-indent: 2em;
-            color: $color-link;
+            color: $color-text-light;
             font-size: 13px;
             line-height: 18px;
           }
