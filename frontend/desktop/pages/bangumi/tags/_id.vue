@@ -1,7 +1,7 @@
 <style lang="scss">
   #bangumi-tags {
     .bangumi {
-      border-bottom: 1px solid #dae9f4;
+      border-bottom: 1px solid $color-gray-normal;
 
       &:last-child {
         border-bottom-width: 0;

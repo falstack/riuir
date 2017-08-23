@@ -59,11 +59,11 @@
           width: 100%;
           color: #fff;
           border-radius: 3px;
-          background-color: $color-blue;
+          background-color: $color-blue-normal;
           font-weight: bold;
 
           &:hover {
-            background-color: $color-blue-hover;
+            background-color: $color-blue-deep;
           }
         }
 

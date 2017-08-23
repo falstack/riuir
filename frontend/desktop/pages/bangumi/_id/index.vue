@@ -32,7 +32,7 @@
       .info {
         width: 60%;
         min-width: 600px;
-        color: #fff;
+        color: $color-white;
         text-shadow: 0 1px 10px gray;
 
         h1 {
@@ -76,7 +76,7 @@
         overflow: hidden;
 
         &:hover p {
-          color: $color-blue;
+          color: $color-blue-normal;
         }
 
         img {

@@ -118,8 +118,8 @@
               width: $time-size;
               height: $time-size;
               border-radius: 50%;
-              border: 1px solid $color-blue;
-              background-color: #fff;
+              border: 1px solid $color-blue-light;
+              background-color: $color-white;
             }
           }
         }

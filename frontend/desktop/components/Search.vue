@@ -67,7 +67,7 @@
             cursor: pointer;
 
             &:hover {
-              color: $color-blue;
+              color: $color-blue-normal;
             }
           }
         }

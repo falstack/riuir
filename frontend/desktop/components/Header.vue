@@ -36,7 +36,7 @@
 
             &:hover {
               background-color: #fff;
-              color: $color-blue;
+              color: $color-blue-normal;
               transition: 0s;
             }
           }
@@ -154,8 +154,8 @@
 
           .sign-up {
             margin-left: 7px;
-            border: 1px solid $color-blue;
-            background-color: $color-blue;
+            border: 1px solid $color-blue-normal;
+            background-color: $color-blue-normal;
             opacity: .8;
 
             &:hover {

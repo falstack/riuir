@@ -18,8 +18,8 @@
         }
 
         .tabs-on {
-          color: $color-blue;
-          border-bottom-color: $color-blue;
+          color: $color-blue-normal;
+          border-bottom-color: $color-blue-normal;
 
           &:after {
             content: '';
@@ -29,7 +29,7 @@
             bottom: 0;
             width: 0;
             height: 0;
-            border: 3px solid $color-blue;
+            border: 3px solid $color-blue-normal;
             border-top-width: 0;
             border-left-color: transparent;
             border-right-color: transparent;
@@ -37,7 +37,7 @@
         }
 
         .tabs-off {
-          border-bottom-color: $color-gray-line;
+          border-bottom-color: $color-gray-normal;
         }
       }
     }

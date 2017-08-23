@@ -30,20 +30,20 @@
       position: absolute;
       left: 0;
       display: block;
-      background-color: #00a1d6;
+      background-color: $color-blue-normal;
     }
 
     .vue-pwa-range-loading {
       position: absolute;
       display: block;
-      background-color: #8adced;
+      background-color: $color-blue-light;
       top: 50%;
       transform: translateY(-50%);
       width: 0;
     }
 
     .vue-pwa-range-thumb {
-      background-color: #fff;
+      background-color: $color-white;
       position: absolute;
       left: 0;
       top: 0;
