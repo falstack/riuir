@@ -26,11 +26,6 @@ class VideoController extends Controller
         return $data;
     }
 
-    public function generate()
-    {
-        return Video::all()->pluck('id');
-    }
-
     public function playing($id)
     {
         $key = 'video_played_counter_' . $id;

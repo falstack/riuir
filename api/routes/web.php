@@ -6,20 +6,18 @@ Route::post('/deploy', 'DoorController@deploy');
 
 Route::group(['prefix' => '/door', 'middleware' => ['throttle:5,3']], function ()
 {
-    Route::post('/captcha', 'DoorController@captcha');
+    Route::get('/captcha', 'DoorController@captcha');
 
     Route::post('/register', 'DoorController@register');
 
     Route::post('/login', 'DoorController@login');
 
-    Route::post('/logout', 'DoorController@logout');
+    Route::get('/logout', 'DoorController@logout');
 });
 
 Route::group(['prefix' => '/bangumi'], function ()
 {
     Route::get('/news', 'BangumiController@news');
-
-//    Route::get('/generate', 'BangumiController@generate');
 
     Route::get('/tags', 'BangumiController@tags');
 
@@ -31,8 +29,6 @@ Route::group(['prefix' => '/bangumi'], function ()
 
 Route::group(['prefix' => '/video'], function ()
 {
-//    Route::get('/generate', 'VideoController@generate');
-
     Route::group(['prefix' => '/{id}'], function ()
     {
         Route::get('/info', 'VideoController@info');

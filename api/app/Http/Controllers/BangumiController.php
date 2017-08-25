@@ -40,8 +40,8 @@ class BangumiController extends Controller
 
     public function info($id)
     {
-//        $data = Cache::remember('bangumi_info_' . $id, env('CACHE_TTL'), function () use ($id)
-//        {
+        $data = Cache::remember('bangumi_info_' . $id, env('CACHE_TTL'), function () use ($id)
+        {
             $bangumi = Bangumi::where('id', $id)->select('id', 'name', 'banner', 'summary', 'alias', 'season')->first();
 
             $alias = $bangumi['alias'] === 'null' ? '' : json_decode($bangumi['alias'])->search;
@@ -87,9 +87,9 @@ class BangumiController extends Controller
                 'tags' => $tags,
                 'videos' => $videos
             ]);
-//        });
-//
-//        return $data;
+        });
+
+        return $data;
     }
 
     public function tags(Request $request)
@@ -148,10 +148,5 @@ class BangumiController extends Controller
 
             return response()->json(['tags' => $tagList, 'bangumis' => $bangumis], 200);
         }
-    }
-
-    public function generate()
-    {
-        return Bangumi::all()->pluck('id');
     }
 }
