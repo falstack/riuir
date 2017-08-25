@@ -161,8 +161,8 @@
 </template>
 
 <script>
-  import axios from '~plugins/axios'
-  import vBanner from '~components/Banner.vue'
+  import axios from '~/apis/_base'
+  import vBanner from '~/components/Banner.vue'
 
   export default {
     name: 'bangumi-tags',

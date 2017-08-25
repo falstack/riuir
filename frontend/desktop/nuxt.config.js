@@ -18,11 +18,11 @@ const sassResourcesLoader = {
 module.exports = {
   cache: true,
   plugins: [
-    { src: '~plugins/analytics.js', ssr: false },
-    { src: '~plugins/helpers.js' },
-    { src: '~plugins/share.js' },
-    { src: '~plugins/imagelazy.js' },
-    { src: '~plugins/geetest.js', ssr: false }
+    { src: '~/plugins/analytics.js', ssr: false },
+    { src: '~/plugins/helpers.js' },
+    { src: '~/plugins/share.js' },
+    { src: '~/plugins/imagelazy.js' },
+    { src: '~/plugins/geetest.js', ssr: false }
   ],
   modules: [
     ['@nuxtjs/google-analytics', { ua: 'UA-80338273-2' }],
@@ -51,7 +51,7 @@ module.exports = {
     ]
   },
   css: [
-    '~assets/css/global.scss'
+    '~/assets/css/global.scss'
   ],
   /*
   ** Customize the progress-bar color
@@ -70,8 +70,8 @@ module.exports = {
     extend (config, ctx) {
       config.module.rules.forEach((rule) => {
         if (isVueRule(rule)) {
-          rule.query.loaders.sass.push(sassResourcesLoader)
-          rule.query.loaders.scss.push(sassResourcesLoader)
+          rule.options.loaders.sass.push(sassResourcesLoader)
+          rule.options.loaders.scss.push(sassResourcesLoader)
         }
         if (isSASSRule(rule)) {
           rule.use.push(sassResourcesLoader)

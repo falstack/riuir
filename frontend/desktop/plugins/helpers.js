@@ -1,7 +1,8 @@
 import Vue from 'vue'
-import { groupBy, orderBy } from '~plugins/util/lodash'
-import Backdrop from '~plugins/backdrop'
-import Toast from '~plugins/toast'
+import { groupBy, orderBy } from '~/plugins/util/lodash'
+import Backdrop from '~/plugins/backdrop'
+import Toast from '~/plugins/toast'
+import { host } from '~/.env'
 
 const Helpers = {}
 
@@ -10,7 +11,7 @@ Helpers.install = function (Vue, options) {
 
   Vue.prototype.$groupBy = groupBy
 
-  Vue.prototype.$cdn = 'https://cdn.riuir.com/'
+  Vue.prototype.$cdn = host.cdn
 
   Vue.prototype.$channel = new Vue()
 

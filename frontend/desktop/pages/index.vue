@@ -93,8 +93,8 @@
 </template>
 
 <script>
-  import axios from '~plugins/axios'
-  import vSearch from '~components/Search.vue'
+  import axios from '~/apis/_base'
+  import vSearch from '~/components/Search.vue'
 
   export default {
     name: 'index',

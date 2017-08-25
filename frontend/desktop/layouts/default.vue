@@ -20,9 +20,9 @@
 </template>
 
 <script>
-  import vHeader from '~components/Header.vue'
-  import vMusic from '~components/Music.vue'
-  import vFooter from '~components/Footer.vue'
+  import vHeader from '~/components/Header.vue'
+  import vMusic from '~/components/Music.vue'
+  import vFooter from '~/components/Footer.vue'
 
   export default {
     components: {

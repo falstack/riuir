@@ -97,9 +97,9 @@
 </template>
 
 <script>
-  import axios from '~plugins/axios'
-  import vBanner from '~components/Banner.vue'
-  import vVideo from '~components/video/video.vue'
+  import axios from '~/apis/_base'
+  import vBanner from '~/components/Banner.vue'
+  import vVideo from '~/components/video/video.vue'
 
   const metaMarginRgt = 8
 

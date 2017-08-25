@@ -305,10 +305,10 @@
 </template>
 
 <script>
-  import axios from '~plugins/axios'
-  import vBanner from '~components/Banner.vue'
-  import tabCard from '~components/TabCard.vue'
-  import { groupBy, orderBy } from '~plugins/util/lodash'
+  import axios from '~/apis/_base'
+  import vBanner from '~/components/Banner.vue'
+  import tabCard from '~/components/TabCard.vue'
+  import { groupBy, orderBy } from '~/plugins/util/lodash'
 
   const nowTime = new Date().getTime()
 
