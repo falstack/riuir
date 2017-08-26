@@ -212,7 +212,7 @@
           <div ref="signUpCaptcha"></div>
         </div>
         <span>
-          <div>test</div>
+          <div></div>
           <a @click="showLogin">已有账号»</a>
         </span>
       </div>
