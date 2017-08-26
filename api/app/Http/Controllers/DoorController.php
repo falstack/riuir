@@ -9,7 +9,7 @@ use App\Models\UserZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Laravist\GeeCaptcha\GeeCaptcha;
+use App\Services\GeeCaptcha;
 use Overtrue\LaravelPinyin\Facades\Pinyin as Overtrue;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -63,7 +63,7 @@ class DoorController extends Controller
 
     public function captcha()
     {
-        $captcha = new GeeCaptcha(config('geetest.id'), config('geetest.key'));
+        $captcha = new GeeCaptcha();
 
         return $captcha->GTServerIsNormal();
     }

@@ -55,7 +55,7 @@
         }
 
         button {
-          height: 40px;
+          height: 44px;
           width: 100%;
           color: #fff;
           border-radius: 3px;
@@ -71,7 +71,12 @@
           margin-top: 15px;
         }
 
-        span {
+        .captcha {
+          height: 44px;
+          background-color: $color-gray-normal;
+        }
+
+        >span {
           margin-top: 15px;
           display: flex;
           align-items: center;
@@ -133,8 +138,8 @@
           <label>记住我<input type="checkbox" :checked="signIn.remember" v-model="signIn.remember"></label>
           <em></em>
         </span>
-        <div>
-          <button @click="login">登录</button>
+        <div class="captcha">
+          <div ref="signInCaptcha"></div>
         </div>
         <span>
           <a>忘记密码?></a>
@@ -157,10 +162,9 @@
         <div>
           <input type="password" v-model="signUp.password" placeholder="密码（6-16个字符组成，区分大小写）">
         </div>
-        <span>
-          <div ref="captcha"></div>
-          <em></em>
-        </span>
+        <div class="captcha">
+          <div ref="signUpCaptcha"></div>
+        </div>
         <span>
           <a></a>
           <a @click="showLogin">已有账号»</a>
@@ -181,18 +185,18 @@
         showSignIn: false,
         showSignUp: false,
         signIn: {
+          captcha: false,
           remember: true,
           nickname: '',
           password: '',
           method: ''
         },
         signUp: {
-          captcha: true,
+          captcha: false,
           nickname: '',
           password: '',
           email: ''
-        },
-        captcha: false
+        }
       }
     },
     watch: {
@@ -215,30 +219,36 @@
         this.showModal = true
         this.showSignIn = true
         this.showSignUp = false
+        this.showSignInCaptcha()
       },
       showRegister () {
         this.showModal = true
         this.showSignUp = true
         this.showSignIn = false
-        this.showCaptcha()
+        this.showSignUpCaptcha()
       },
       hiddenSign () {
         this.showModal = false
         this.showSignIn = false
         this.showSignUp = false
       },
-      showCaptcha () {
-        if (!this.captcha) {
-          this.captcha = true
-          axios.get('door/captcha').then((res) => {
+      getCaptcha () {
+        return axios.get('door/captcha')
+      },
+      showSignInCaptcha () {
+        if (!this.signIn.captcha) {
+          this.signIn.captcha = true
+          this.getCaptcha().then((res) => {
             const data = res.data
             window.initGeetest({
               gt: data.gt,
               challenge: data.challenge,
               product: 'float',
-              offline: !data.success
+              width: '100%',
+              offline: !data.success,
+              new_captcha: data.new_captcha
             }, (captchaObj) => {
-              captchaObj.appendTo(this.$refs.captcha)
+              captchaObj.appendTo(this.$refs.signInCaptcha)
               captchaObj.onSuccess(() => {
                 this.register().then((res) => {
                   console.log(res); // eslint-disable-line
@@ -251,14 +261,51 @@
               })
             })
           }).catch(() => {
-            this.captcha = false
+            this.signIn.captcha = false
+          })
+        }
+      },
+      showSignUpCaptcha () {
+        if (!this.signUp.captcha) {
+          this.signUp.captcha = true
+          this.getCaptcha().then((res) => {
+            const data = res.data
+            window.initGeetest({
+              gt: data.gt,
+              challenge: data.challenge,
+              product: 'float',
+              width: '100%',
+              offline: !data.success,
+              new_captcha: data.new_captcha
+            }, (captchaObj) => {
+              captchaObj.appendTo(this.$refs.signUpCaptcha)
+              captchaObj.onSuccess(() => {
+                this.register().then((res) => {
+                  console.log(res); // eslint-disable-line
+                }).catch((res) => {
+                  console.log(res); // eslint-disable-line
+                  setTimeout(() => {
+                    captchaObj.refresh()
+                  }, 500)
+                })
+              })
+            })
+          }).catch(() => {
+            this.signUp.captcha = false
           })
         }
       },
       login () {
-        this.$toast.show('暂不开放注册')
+        this.$toast.show('暂不开放登录')
+        return axios.post('door/login', {
+          email: this.signIn.email,
+          nickname: this.signIn.nickname,
+          password: this.signIn.password,
+          remember: this.signIn.remember
+        })
       },
       register () {
+        this.$toast.show('暂不开放注册')
         return axios.post('door/register', {
           email: this.signUp.email,
           nickname: this.signUp.nickname,
