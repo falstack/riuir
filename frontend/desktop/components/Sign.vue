@@ -233,12 +233,8 @@
         this.showSignUp = false
       },
       getCaptcha () {
-        return axios.get('door/captcha')
-      },
-      showSignInCaptcha () {
-        if (!this.signIn.captcha) {
-          this.signIn.captcha = true
-          this.getCaptcha().then((res) => {
+        return new Promise((resolve, reject) => {
+          axios.get('door/captcha').then((res) => {
             const data = res.data
             window.initGeetest({
               gt: data.gt,
@@ -248,16 +244,26 @@
               offline: !data.success,
               new_captcha: data.new_captcha
             }, (captchaObj) => {
-              captchaObj.appendTo(this.$refs.signInCaptcha)
-              captchaObj.onSuccess(() => {
-                this.register().then((res) => {
-                  console.log(res); // eslint-disable-line
-                }).catch((res) => {
-                  console.log(res); // eslint-disable-line
-                  setTimeout(() => {
-                    captchaObj.refresh()
-                  }, 500)
-                })
+              resolve(captchaObj)
+            })
+          }).catch(() => {
+            reject()
+          })
+        })
+      },
+      showSignInCaptcha () {
+        if (!this.signIn.captcha) {
+          this.signIn.captcha = true
+          this.getCaptcha().then((captcha) => {
+            captcha.appendTo(this.$refs.signInCaptcha)
+            captcha.onSuccess(() => {
+              this.register().then((res) => {
+                console.log(res); // eslint-disable-line
+              }).catch((res) => {
+                console.log(res); // eslint-disable-line
+                setTimeout(() => {
+                  captcha.reset()
+                }, 500)
               })
             })
           }).catch(() => {
@@ -268,26 +274,16 @@
       showSignUpCaptcha () {
         if (!this.signUp.captcha) {
           this.signUp.captcha = true
-          this.getCaptcha().then((res) => {
-            const data = res.data
-            window.initGeetest({
-              gt: data.gt,
-              challenge: data.challenge,
-              product: 'float',
-              width: '100%',
-              offline: !data.success,
-              new_captcha: data.new_captcha
-            }, (captchaObj) => {
-              captchaObj.appendTo(this.$refs.signUpCaptcha)
-              captchaObj.onSuccess(() => {
-                this.register().then((res) => {
-                  console.log(res); // eslint-disable-line
-                }).catch((res) => {
-                  console.log(res); // eslint-disable-line
-                  setTimeout(() => {
-                    captchaObj.refresh()
-                  }, 500)
-                })
+          this.getCaptcha().then((captcha) => {
+            captcha.appendTo(this.$refs.signUpCaptcha)
+            captcha.onSuccess(() => {
+              this.register().then((res) => {
+                console.log(res); // eslint-disable-line
+              }).catch((res) => {
+                console.log(res); // eslint-disable-line
+                setTimeout(() => {
+                  captcha.reset()
+                }, 500)
               })
             })
           }).catch(() => {
