@@ -24,3 +24,9 @@ const config = {
 }
 
 Vue.use(VeeValidate, config)
+
+VeeValidate.Validator.extend('nickname', (value, [range]) => {
+  const result = value.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length
+  const length = range.split('-')
+  return result >= length[0] && result <= length[1]
+})

@@ -158,7 +158,7 @@
           <input name="password"
                  type="password"
                  v-validate="{
-                   rules: 'min:6|max:16',
+                   rules: 'required|min:6|max:16',
                    scope: 'sign-in'
                  }"
                  v-model="signIn.password"
@@ -185,7 +185,7 @@
           <input type="text"
                  name="nickname"
                  v-validate="{
-                   rules: 'required|max:12',
+                   rules: 'required|nickname:2-12',
                    scope: 'sign-up'
                  }"
                  v-model="signUp.nickname"
@@ -207,7 +207,7 @@
           <input type="password"
                  name="password"
                  v-validate="{
-                   rules: 'min:6|max:16',
+                   rules: 'required|min:6|max:16',
                    scope: 'sign-up'
                  }"
                  v-model="signUp.password"
@@ -300,42 +300,50 @@
         })
       },
       showSignInCaptcha () {
-        if (!this.signIn.captcha && this.$validate('sign-in')) {
-          this.signIn.captcha = true
-          this.getCaptcha().then((captcha) => {
-            captcha.appendTo(this.$refs.signInCaptcha)
-            captcha.onSuccess(() => {
-              this.login().then((res) => {
-                console.log(res); // eslint-disable-line
-              }).catch((res) => {
-                console.log(res); // eslint-disable-line
-                setTimeout(() => {
-                  captcha.reset()
-                }, 500)
+        if (!this.signIn.captcha) {
+          this.$validator.validateAll('sign-in').then((result) => {
+            if (result) {
+              this.signIn.captcha = true
+              this.getCaptcha().then((captcha) => {
+                captcha.appendTo(this.$refs.signInCaptcha)
+                captcha.onSuccess(() => {
+                  this.login().then((res) => {
+                    console.log(res); // eslint-disable-line
+                  }).catch((res) => {
+                    console.log(res); // eslint-disable-line
+                    setTimeout(() => {
+                      captcha.reset()
+                    }, 500)
+                  })
+                })
+              }).catch(() => {
+                this.signIn.captcha = false
               })
-            })
-          }).catch(() => {
-            this.signIn.captcha = false
+            }
           })
         }
       },
       showSignUpCaptcha () {
-        if (!this.signUp.captcha && this.$validate('sign-up')) {
-          this.signUp.captcha = true
-          this.getCaptcha().then((captcha) => {
-            captcha.appendTo(this.$refs.signUpCaptcha)
-            captcha.onSuccess(() => {
-              this.register().then((res) => {
-                console.log(res); // eslint-disable-line
-              }).catch((res) => {
-                console.log(res); // eslint-disable-line
-                setTimeout(() => {
-                  captcha.reset()
-                }, 500)
+        if (!this.signUp.captcha) {
+          this.$validator.validateAll('sign-up').then((result) => {
+            if (result) {
+              this.signUp.captcha = true
+              this.getCaptcha().then((captcha) => {
+                captcha.appendTo(this.$refs.signUpCaptcha)
+                captcha.onSuccess(() => {
+                  this.register().then((res) => {
+                    console.log(res); // eslint-disable-line
+                  }).catch((res) => {
+                    console.log(res); // eslint-disable-line
+                    setTimeout(() => {
+                      captcha.reset()
+                    }, 500)
+                  })
+                })
+              }).catch(() => {
+                this.signUp.captcha = false
               })
-            })
-          }).catch(() => {
-            this.signUp.captcha = false
+            }
           })
         }
       },

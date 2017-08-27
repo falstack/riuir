@@ -23,8 +23,7 @@ module.exports = {
     { src: '~/plugins/share.js' },
     { src: '~/plugins/imagelazy.js' },
     { src: '~/plugins/geetest.js', ssr: false },
-    { src: '~/plugins/validate.js', ssr: false },
-    { src: '~/plugins/mixins.js', ssr: false }
+    { src: '~/plugins/validate.js', ssr: false }
   ],
   modules: [
     ['@nuxtjs/google-analytics', { ua: 'UA-80338273-2' }],
