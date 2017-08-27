@@ -20,6 +20,7 @@ class VerifyCsrfToken extends BaseVerifier
     public function handle($request, Closure $next)
     {
         \Log::info($request->headers->get('Origin'));
+        \Log::info($request->ip());
         if (
             $this->isReading($request) ||
             $this->runningUnitTests() ||
