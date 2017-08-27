@@ -21,6 +21,6 @@ class Csrf
             return $next($request);
         }
 
-        return response()->json(['error' => 'TokenMismatchException'], 500);
+        return response('token mismatch exception', 500);
     }
 }
