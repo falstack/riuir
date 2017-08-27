@@ -2,45 +2,29 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 use Illuminate\Session\TokenMismatchException;
 use Closure;
 
-class VerifyCsrfToken extends BaseVerifier
+class Csrf
 {
-    /**
-     * The URIs that should be excluded from CSRF verification.
-     *
-     * @var array
-     */
-    protected $except = [
-        //
+    protected $allows = [
+        'https://www.riuir.com',
+        'https://m.riuir.com'
     ];
 
     public function handle($request, Closure $next)
     {
-        \Log::info($request->headers->get('Origin'));
+        $origin = $request->headers->get('Origin');
         \Log::info($request->ip());
+        \Log::info($origin);
+        \Log::info($request);
         if (
-            $this->isReading($request) ||
-            $this->runningUnitTests() ||
-            $this->inExceptArray($request) ||
-            $this->tokensMatch($request)
+            in_array($origin, $this->allows) ||
+            empty($origin) && $request->ip() === '127.0.0.1'
         ) {
-            return $this->addCookieToResponse($request, $next($request));
+            return $next($request);
         }
 
         throw new TokenMismatchException;
-    }
-
-    protected function getTokenFromRequest($request)
-    {
-        $token = $request->cookie('XSRF-TOKEN');
-
-        if (! $token && $header = $request->header('X-XSRF-TOKEN')) {
-            $token = $this->encrypter->decrypt($header);
-        }
-
-        return $token;
     }
 }
