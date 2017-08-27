@@ -63,7 +63,7 @@
     .tags {
       margin-bottom: 25px;
 
-      .tag, .btn {
+      .btn {
         display: inline-block;
         padding: 0 5px;
         height: 24px;
@@ -71,28 +71,6 @@
         font-size: 12px;
         border-radius: 4px;
         box-sizing: border-box;
-      }
-
-      .tag {
-        margin-right: 10px;
-        margin-bottom: 10px;
-        background-color: $color-white;
-        padding: 0 5px;
-        height: 24px;
-        line-height: 22px;
-        font-size: 12px;
-        border-radius: 4px;
-        box-sizing: border-box;
-        border: 1px solid $color-pink-normal;
-        white-space: nowrap;
-        color: $color-pink-normal;
-        cursor: pointer;
-
-        &.selected {
-          background-color: $color-pink-deep;
-          border: 1px solid $color-pink-deep;
-          color: $color-white;
-        }
       }
 
       .btn {

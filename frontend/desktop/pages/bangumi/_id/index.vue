@@ -107,26 +107,6 @@
         }
       }
     }
-
-    #tags {
-      .tag {
-        background-color: $color-white;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        display: inline-block;
-        padding: 0 5px;
-        height: 24px;
-        line-height: 22px;
-        font-size: 12px;
-        border-radius: 4px;
-        border: 1px solid $color-pink-normal;
-        white-space: nowrap;
-
-        a {
-          color: $color-pink-normal;
-        }
-      }
-    }
   }
 </style>
 
