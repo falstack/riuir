@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Session\TokenMismatchException;
 use Closure;
 
 class Csrf
@@ -22,6 +21,6 @@ class Csrf
             return $next($request);
         }
 
-        throw new TokenMismatchException;
+        return response()->json(['error' => 'TokenMismatchException'], 500);
     }
 }
