@@ -8,7 +8,8 @@ class Csrf
 {
     protected $allows = [
         'https://www.riuir.com',
-        'https://m.riuir.com'
+        'https://m.riuir.com',
+        'http://riuir.dev'
     ];
 
     public function handle($request, Closure $next)
