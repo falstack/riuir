@@ -33,9 +33,12 @@
         width: 60%;
         min-width: 600px;
         color: $color-white;
-        text-shadow: 0 1px 10px gray;
 
-        h1 {
+        .title, .summary {
+          text-shadow: 0 1px 10px gray;
+        }
+
+        .title {
           text-align: center;
           font-size: 24px;
           font-weight: 700;
@@ -115,7 +118,7 @@
     <section id="banner">
       <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner, { width: 1920, crop: false })})` : '' }"></div>
       <div class="info">
-        <h1 v-text="info.name"></h1>
+        <h1 class="title" v-text="info.name"></h1>
         <p class="summary" v-text="info.summary"></p>
         <v-share></v-share>
       </div>
