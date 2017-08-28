@@ -10,8 +10,8 @@
       .card-wrap {
         height: 294px;
         margin-left: 45px;
-        overflow-y: scroll;
         margin-bottom: 26px;
+        overflow-y: auto;
 
         .nothing {
           font-size: 13px;
