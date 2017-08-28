@@ -73,7 +73,7 @@
       figure {
         width: 200px;
         height: 60px;
-        background-color: $color-gray-light;
+        background-color: $color-gray-normal;
         cursor: pointer;
         border-radius: 3px;
         overflow: hidden;
@@ -95,7 +95,7 @@
 
           p {
             display: block;
-            color: $color-link;
+            color: $color-text-deep;
             font-size: 12px;
             line-height: 14px;
             margin-top: 6px;
@@ -105,7 +105,7 @@
           span {
             font-size: 12px;
             line-height: 14px;
-            color: $color-text-light;
+            color: $color-text-normal;
           }
         }
       }
