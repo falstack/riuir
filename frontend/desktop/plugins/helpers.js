@@ -6,6 +6,17 @@ import { host } from '~/.env'
 
 const Helpers = {}
 
+if (typeof window !== 'undefined') {
+  window.requestAnimFrame = (function () {
+    return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      function (callback) {
+        window.setTimeout(callback, 1000 / 60)
+      }
+  }())
+}
+
 Helpers.install = function (Vue, options) {
   Vue.prototype.$orderBy = orderBy
 
@@ -101,6 +112,41 @@ Helpers.install = function (Vue, options) {
     }
 
     return parseInt(getGray(getRGB(ele)), 10)
+  }
+
+  Vue.prototype.$scrollY = (targetY, timer, ease) => {
+    window.requestAnimFrame = (function () {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+          window.setTimeout(callback, 1000 / 60)
+        }
+    }())
+
+    let currentTime = 0
+    const scrollY = window.scrollY
+    const scrollTargetY = targetY || 0
+    const speed = timer || 2000
+    const easing = ease || 'easeOutSine'
+    const time = Math.max(0.1, Math.min(Math.abs(scrollY - scrollTargetY) / speed, 0.8))
+    const easingEquations = {
+      easeOutSine: function (pos) {
+        return Math.sin(pos * (Math.PI / 2))
+      }
+    }
+    const tick = () => {
+      currentTime += 1 / 60
+      const p = currentTime / time
+      const t = easingEquations[easing](p)
+      if (p < 1) {
+        window.requestAnimFrame(tick)
+        window.scrollTo(0, scrollY + ((scrollTargetY - scrollY) * t))
+      } else {
+        window.scrollTo(0, scrollTargetY)
+      }
+    }
+    tick()
   }
 }
 
