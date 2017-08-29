@@ -16,6 +16,7 @@
     <nuxt/>
     <v-music></v-music>
     <v-footer></v-footer>
+    <v-side-bar></v-side-bar>
   </div>
 </template>
 
@@ -23,10 +24,11 @@
   import vHeader from '~/components/Header.vue'
   import vMusic from '~/components/Music.vue'
   import vFooter from '~/components/Footer.vue'
+  import vSideBar from '~/components/SideBar.vue'
 
   export default {
     components: {
-      vHeader, vMusic, vFooter
+      vHeader, vMusic, vFooter, vSideBar
     }
   }
 </script>
