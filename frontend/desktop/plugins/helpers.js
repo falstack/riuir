@@ -3,6 +3,7 @@ import { groupBy, orderBy } from '~/plugins/util/lodash'
 import Backdrop from '~/plugins/backdrop'
 import Toast from '~/plugins/toast'
 import { host } from '~/.env'
+import format from '~/plugins/util/format'
 
 const Helpers = {}
 
@@ -29,6 +30,8 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$backdrop = new Backdrop()
 
   Vue.prototype.$toast = new Toast()
+
+  Vue.prototype.$format = format
 
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {
