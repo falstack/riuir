@@ -293,7 +293,7 @@
     },
     created () {
       this.$channel.$on('change-page-background', ({ img, hgt, theme }) => {
-        this.img = img
+        this.img = `${img.split('?')[0]}?imageMogr2/auto-orient/strip/crop/x46`
         this.theme = theme
         this.height = hgt
 

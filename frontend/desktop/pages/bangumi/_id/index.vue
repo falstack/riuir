@@ -116,7 +116,7 @@
 <template>
   <div id="bangumi-home" class="main">
     <section id="banner">
-      <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner, { width: 1920, crop: false })})` : '' }"></div>
+      <div class="img bg" :style="{ backgroundImage: info ? `url(${$resize(info.banner, { width: 1920, mode: 0 })})` : '' }"></div>
       <div class="info">
         <h1 class="title" v-text="info.name"></h1>
         <p class="summary" v-text="info.summary"></p>

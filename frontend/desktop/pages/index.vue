@@ -77,11 +77,11 @@
 
 <template>
   <div id="index">
-    <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${$resize(banner1.url, { width: 1920, crop: false })})` : '' }"></div>
-    <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920, crop: false })})` : '' }"></div>
+    <div class="banner bg" :class="{'show' : toggle}" :style="{ backgroundImage: banner1 ? `url(${$resize(banner1.url, { width: 1920, mode: 0 })})` : '' }"></div>
+    <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920, mode: 0 })})` : '' }"></div>
     <img class="another"
          crossOrigin="anonymous"
-         :src="`${another}?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/100`"
+         :src="`${another}?imageMogr2/auto-orient/strip/gravity/Center/crop/435x140`"
          :flag="imageGrayLevel"
          ref="another"
          alt="another">
@@ -145,7 +145,7 @@
               this.banner1 = res.data
             }
             setTimeout(() => {
-              this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
+              this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 65)
               this.toggle = !this.toggle
             }, 7500)
           }).catch((res) => {

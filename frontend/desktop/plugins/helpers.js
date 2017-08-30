@@ -57,17 +57,17 @@ Helpers.install = function (Vue, options) {
 
     if (options.width && options.width > 0) {
       const width = `/w/${options.width}`
-      const crop = options.crop === false ? '0' : '1'
-      const height = options.height ? `/h/${options.height}` : crop === '1' ? `/h/${options.width}` : ''
+      const mode = options.mode === undefined ? 1 : options.mode
+      const height = options.height ? `/h/${options.height}` : mode === 1 ? `/h/${options.width}` : ''
 
-      return `${url}?imageMogr2/auto-orient/strip|imageView2/${crop}${width}${height}${format}`
+      return `${url}?imageMogr2/auto-orient/strip|imageView2/${mode}${width}${height}${format}`
     }
     return `${url}?imageMogr2/auto-orient/strip${format}`
   }
 
-  Vue.prototype.$imageGrayLevel = (ele) => {
-    if (Vue.prototype.$isServer) {
-      return true
+  Vue.prototype.$imageGrayLevel = (ele, hgt = 0) => {
+    if (typeof window === 'undefined') {
+      return 0
     }
 
     let [data, width, height, length, i = -4, count = 0] = []
@@ -78,7 +78,7 @@ Helpers.install = function (Vue, options) {
       const rgb = { r: 0, g: 0, b: 0 }
       const blockSize = 5 // only visit every 5 pixels
 
-      height = canvas.height = reallyImage.naturalHeight || reallyImage.offsetHeight || reallyImage.height
+      height = canvas.height = hgt || reallyImage.naturalHeight || reallyImage.offsetHeight || reallyImage.height
       width = canvas.width = reallyImage.naturalWidth || reallyImage.offsetWidth || reallyImage.width
 
       try {

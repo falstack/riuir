@@ -21,7 +21,7 @@
     },
     data () {
       return {
-        bg: this.$resize(this.image, { width: 1920, crop: false }),
+        bg: this.$resize(this.image, { width: 1920, mode: 0 }),
         another: '',
         imageGrayLevel: 0
       }
