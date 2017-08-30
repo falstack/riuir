@@ -10,9 +10,9 @@ final class Auth
 
     public function __construct()
     {
-        $this->accessKey = env('QINIU_ACCESS_KEY');
-        $this->secretKey = env('QINIU_SECRET_KEY');
-        $this->bucket = env('QINIU_BUCKET');
+        $this->accessKey = config('filesystems.access');
+        $this->secretKey = config('filesystems.secret');
+        $this->bucket = config('filesystems.bucket');
     }
 
     public function getAccessKey()

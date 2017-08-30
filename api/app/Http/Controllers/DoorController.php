@@ -40,7 +40,7 @@ class DoorController extends Controller
 
     public function banner()
     {
-        $banners = Cache::remember('index_banner', env('CACHE_TTL'), function () {
+        $banners = Cache::remember('index_banner', config('cache.ttl'), function () {
             return Banner::select('id', 'url', 'user_id', 'bangumi_id')->get()->toArray();
         });
 
@@ -136,6 +136,6 @@ class DoorController extends Controller
 
     private function isFromGithub($payload, $signature)
     {
-        return 'sha1=' . hash_hmac('sha1', $payload, env('GITHUB_DEPLOY_TOKEN'), false) === $signature;
+        return 'sha1=' . hash_hmac('sha1', $payload, config('services.webhook'), false) === $signature;
     }
 }

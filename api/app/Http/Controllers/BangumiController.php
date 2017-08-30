@@ -13,7 +13,7 @@ class BangumiController extends Controller
 {
     public function news()
     {
-        $data = Cache::remember('bangumi_list_all', env('CACHE_TTL'), function ()
+        $data = Cache::remember('bangumi_list_all', config('cache.ttl'), function ()
         {
             $bangumis = Bangumi::select('id', 'name', 'summary', 'avatar', 'season', 'released_at', 'published_at', 'released_video_id')->get();
             foreach ($bangumis as $row)
@@ -40,7 +40,7 @@ class BangumiController extends Controller
 
     public function info($id)
     {
-        $data = Cache::remember('bangumi_info_' . $id, env('CACHE_TTL'), function () use ($id)
+        $data = Cache::remember('bangumi_info_' . $id, config('cache.ttl'), function () use ($id)
         {
             $bangumi = Bangumi::where('id', $id)->select('id', 'name', 'banner', 'summary', 'alias', 'season')->first();
 
@@ -94,7 +94,7 @@ class BangumiController extends Controller
 
     public function tags(Request $request)
     {
-        $tagList = Cache::remember('bangumi_tags_all', env('CACHE_TTL'), function ()
+        $tagList = Cache::remember('bangumi_tags_all', config('cache.ttl'), function ()
         {
             return Tag::where('model', 0)->select('id', 'name')->get()->toArray();
         });
@@ -117,7 +117,7 @@ class BangumiController extends Controller
             }
 
             sort($arr);
-            $bangumi_id = Cache::remember('bangumi_tags_' . implode('_', $arr), env('CACHE_TTL'), function () use ($arr)
+            $bangumi_id = Cache::remember('bangumi_tags_' . implode('_', $arr), config('cache.ttl'), function () use ($arr)
             {
                 $count = count($arr);
                 $ids = array_count_values(BangumiTag::whereIn('tag_id', $arr)->pluck('bangumi_id')->toArray());
@@ -140,7 +140,7 @@ class BangumiController extends Controller
             $bangumis = [];
             foreach ($bangumi_id as $id)
             {
-                array_push($bangumis, Cache::remember('bangumi_profile_' . $id, env('CACHE_TTL'), function () use ($id)
+                array_push($bangumis, Cache::remember('bangumi_profile_' . $id, config('cache.ttl'), function () use ($id)
                 {
                     return Bangumi::find($id)->toArray();
                 }));

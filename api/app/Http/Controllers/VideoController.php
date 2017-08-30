@@ -10,7 +10,7 @@ class VideoController extends Controller
 {
     public function info($id)
     {
-        $data = Cache::remember('video_info_' . $id, env('CACHE_TTL'), function () use ($id)
+        $data = Cache::remember('video_info_' . $id, config('cache.ttl'), function () use ($id)
         {
             $info = Video::find($id);
 
@@ -38,7 +38,7 @@ class VideoController extends Controller
         });
 
         $value['data']++;
-        if (time() - $value['time'] > env('CACHE_TTL') * 60)
+        if (time() - $value['time'] > config('cache.ttl') * 60)
         {
             $value['time'] = time();
             Video::find($id)->update([
