@@ -220,7 +220,7 @@
 </style>
 
 <template>
-  <header id="header" :class="[theme, imageGrayLevel > 190 ? 'white' : 'black']">
+  <header id="header" :class="[theme, imageGrayLevel > 165 ? 'white' : 'black']">
     <div class="text">
       <div class="container">
         <nav class="header-left">
@@ -293,7 +293,7 @@
     },
     created () {
       this.$channel.$on('change-page-background', ({ img, hgt, theme }) => {
-        this.img = `${img.split('?')[0]}?imageMogr2/auto-orient/strip/crop/x46`
+        this.img = img
         this.theme = theme
         this.height = hgt
 
