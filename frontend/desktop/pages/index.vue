@@ -47,6 +47,10 @@
             border: 1px solid $color-white;
             background: rgba(0, 0, 0, 0.3);
           }
+
+          .search-btn {
+            color: $color-white;
+          }
         }
 
         .search-ctx {
@@ -67,8 +71,13 @@
           top: 0;
           width: $search-size;
           height: $search-size;
-          background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyBzdHlsZT0id2lkdGg6MzA4cHg7aGVpZ2h0OjMwOHB4OyIgdmVyc2lvbj0iMS4xIiBpZD0i5Zu+5b2iIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEwMjRweCIgaGVpZ2h0PSIxMDI0cHgiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDEwMjQgMTAyNCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CiAgPHBhdGggY2xhc3M9InN2Z3BhdGgiIGRhdGEtaW5kZXg9InBhdGhfMCIgZmlsbD0iI2ZmZmZmZiIgZD0iTTk2MS4yMTk1ODQgOTE2LjMxNjE2IDY4OC44NTA5NDQgNjQzLjk0NjQ5NmM1My40NzAyMDgtNjIuMjE3MjE2IDg2LjAxMTkwNC0xNDIuODkxMDA4IDg2LjAxMTkwNC0yMzEuMTY5MDI0IDAtMTk1Ljk3MzEyLTE1OS40Mjc1ODQtMzU1LjQwMDcwNC0zNTUuNDAwNzA0LTM1NS40MDA3MDQtMTk1Ljk3MzEyIDAtMzU1LjQwMDcwNCAxNTkuNDI3NTg0LTM1NS40MDA3MDQgMzU1LjQwMDcwNCAwIDE5NS45NzMxMiAxNTkuNDI3NTg0IDM1NS40MDA3MDQgMzU1LjQwMDcwNCAzNTUuNDAwNzA0IDc3LjYwMTc5MiAwIDE0OS4yMjAzNTItMjUuMjc2NDE2IDIwNy43MzE3MTItNjcuNjM4MjcybDI3NC45MDA5OTIgMjc0LjkwMDk5Mkw5NjEuMjE5NTg0IDkxNi4zMTYxNnpNMTA1Ljg3MzQwOCA0MTIuNzc3NDcyYzAtMTcyLjkxNDY4OCAxNDAuNjg2MzM2LTMxMy41ODg3MzYgMzEzLjU4ODczNi0zMTMuNTg4NzM2IDE3Mi45MDI0IDAgMzEzLjU4ODczNiAxNDAuNjc0MDQ4IDMxMy41ODg3MzYgMzEzLjU4ODczNiAwIDE3Mi45MTI2NC0xNDAuNjg3MzYgMzEzLjU4ODczNi0zMTMuNTg4NzM2IDMxMy41ODg3MzZDMjQ2LjU1ODcyIDcyNi4zNjYyMDggMTA1Ljg3MzQwOCA1ODUuNjkwMTEyIDEwNS44NzM0MDggNDEyLjc3NzQ3MnoiIC8+Cgo8L3N2Zz4K);
-          @include icon(24px);
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 26px;
+          font-family: 'iconfont';
+
+          &:before {
+            content: '\e607';
+          }
         }
       }
     }
