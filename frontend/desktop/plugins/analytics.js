@@ -3,7 +3,6 @@
  */
 export default ({ app }) => {
   if (process.BROWSER_BUILD && process.env.NODE_ENV === 'production') {
-    let _hmt = _hmt || [];
     (function () {
       const s = document.getElementsByTagName('script')[0]
       /* 360统计 */
@@ -17,6 +16,7 @@ export default ({ app }) => {
      ** 每次路由变更时进行pv统计
      */
     app.router.afterEach((to) => {
+      // eslint-disable-next-line
       _hmt.push(['_trackPageview', to.fullPath])
     })
   }
