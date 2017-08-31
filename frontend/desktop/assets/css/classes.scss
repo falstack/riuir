@@ -63,12 +63,19 @@
 
 .breadcrumb {
   height: 20px;
-  padding-left: 40px;
-  background-image: url("~assets/img/breadcrumb.png");
-  background-repeat: no-repeat;
-  background-position: 13px center;
-  background-size: contain;
   margin-bottom: 30px;
+  font-family: 'iconfont';
+  position: relative;
+  padding-left: 40px;
+
+  &:before {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    content: "\e6fc";
+    color: $color-blue-normal;
+    font-size: 20px;
+  }
 
   &, * {
     font-size: 16px;
@@ -111,12 +118,20 @@
   line-height: 16px;
   height: 16px;
   padding-left: 20px;
-  background-repeat: no-repeat;
-  background-size: 14px;
-  background-position: left center;
+  position: relative;
+  font-family: 'iconfont';
+
+  &:before {
+    position: absolute;
+    left: 3px;
+    top: 0;
+    font-size: 14px;
+  }
 
   &.icon-item-tag {
-    background-image: url("~assets/img/icon-tag.png");
+    &:before {
+      content: "\e662";
+    }
   }
 }
 

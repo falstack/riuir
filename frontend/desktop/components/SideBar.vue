@@ -26,6 +26,7 @@
       line-height: 50px;
       color: $color-white;
       cursor: pointer;
+      font-family: 'iconfont';
 
       &:last-child {
         margin-bottom: 0;
@@ -37,7 +38,7 @@
 <template>
   <transition name="fade">
     <div id="side-bar" v-show="show" :style="{ right: `${right}px` }">
-      <div class="item fa fa-arrow-up" aria-hidden="true" @click="$scrollY(0)"></div>
+      <div class="item icon-fanhuidingbu" aria-hidden="true" @click="$scrollY(0)"></div>
     </div>
   </transition>
 </template>

@@ -1,12 +1,4 @@
 <style lang="scss">
-  @font-face {font-family: "iconfont-video";
-    src: url('./fonts/iconfont.eot?t=1491818377252');
-    src: url('./fonts/iconfont.eot?t=1491818377252#iefix') format('embedded-opentype'),
-    url('./fonts/iconfont.woff?t=1491818377252') format('woff'),
-    url('./fonts/iconfont.ttf?t=1491818377252') format('truetype'),
-    url('./fonts/iconfont.svg?t=1491818377252#iconfont') format('svg');
-  }
-
   $tool-height : 40px;
   $tool-btn-width : 40px;
 
@@ -62,7 +54,7 @@
         height: 60px;
         border-radius: 5px;
         background-color: rgba(0, 0, 0, 0.8);
-        font-family: 'iconfont-video';
+        font-family: 'iconfont';
         z-index: 1;
 
         &:before {
@@ -71,7 +63,7 @@
           top: 0;
           width: 100%;
           height: 100%;
-          content: '\e756';
+          content: '\e639';
           font-size: 40px;
           text-align: center;
           line-height: 60px;
@@ -82,13 +74,13 @@
 
       @keyframes unlimited {
         0%{
-          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
         }
         50%{
-          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
         }
         100%{
-          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
         }
       }
 
@@ -153,9 +145,7 @@
         outline: none;
         border: none;
         cursor: pointer;
-        font-family: 'iconfont-video' !important;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        font-family: 'iconfont';
         position: relative;
         color: #99A2AA;
         background-color: $color-white;
@@ -201,27 +191,27 @@
   }
 
   .vue-pwa-video-btn-playing:before {
-    content: "\e62a";
+    content: "\e635";
   }
 
   .vue-pwa-video-btn-paused:before {
-    content: "\e6c5";
+    content: "\e640";
   }
 
   .vue-pwa-video-btn-volume:before {
-    content: "\e691";
+    content: "\e617";
   }
 
   .vue-pwa-video-btn-silent:before {
-    content: "\e690";
+    content: "\e689";
   }
 
   .vue-pwa-video-btn-screen:before {
-    content: "\e63e";
+    content: "\e60e";
   }
 
   .vue-pwa-video-btn-full:before {
-    content: "\e79f";
+    content: "\e816";
   }
 
   .vue-pwa-video-btn-voice:hover {

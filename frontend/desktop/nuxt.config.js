@@ -45,8 +45,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '//cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' },
-      { rel: 'stylesheet', href: '//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css' }
+      { rel: 'stylesheet', href: '//cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
     ],
     script: [
       { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }

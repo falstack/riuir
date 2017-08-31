@@ -176,7 +176,7 @@
             }
 
             .foot {
-              .icon-item-tag {
+              .icon-item {
 
                 li {
                   position: relative;
