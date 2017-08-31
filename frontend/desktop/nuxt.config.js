@@ -48,8 +48,10 @@ module.exports = {
       { rel: 'stylesheet', href: '//cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
     ],
     script: [
+      { innerHTML: 'var _hmt = _hmt || [];(function () {var hm = document.createElement(\'script\');var s = document.getElementsByTagName(\'script\')[0];hm.src = \'//hm.baidu.com/hm.js?5c22f3db91001090bfc7d5096c296534\';s.parentNode.insertBefore(hm, s);})();', type: 'text/javascript' },
       { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }
-    ]
+    ],
+    __dangerouslyDisableSanitizers: 'script'
   },
   css: [
     '~/assets/css/global.scss'
