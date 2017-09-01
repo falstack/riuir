@@ -7,7 +7,6 @@
     top: 0;
     width: 100%;
     height: $header-height;
-    background-color: $color-white;
     z-index: 10;
 
     .text {
@@ -170,6 +169,8 @@
     }
 
     &.blur {
+      background-color: $color-white;
+
       .header-left {
         li {
           margin: 0 5px;
