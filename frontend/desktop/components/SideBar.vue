@@ -26,7 +26,7 @@
       line-height: 50px;
       color: $color-white;
       cursor: pointer;
-      font-family: 'iconfont';
+      font-family: 'iconfont' !important;
 
       &:last-child {
         margin-bottom: 0;

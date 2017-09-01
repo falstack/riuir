@@ -86,7 +86,7 @@
               background-color: transparent;
               transition: $transition;
               color: $color-white;
-              font-family: 'iconfont';
+              font-family: 'iconfont' !important;
               font-size: 18px;
 
               &:before {

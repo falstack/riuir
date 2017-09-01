@@ -54,7 +54,7 @@
         height: 60px;
         border-radius: 5px;
         background-color: rgba(0, 0, 0, 0.8);
-        font-family: 'iconfont';
+        font-family: 'iconfont' !important;
         z-index: 1;
 
         &:before {
@@ -145,7 +145,7 @@
         outline: none;
         border: none;
         cursor: pointer;
-        font-family: 'iconfont';
+        font-family: 'iconfont' !important;
         position: relative;
         color: #99A2AA;
         background-color: $color-white;

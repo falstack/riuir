@@ -73,7 +73,7 @@
           height: $search-size;
           color: rgba(255, 255, 255, 0.8);
           font-size: 26px;
-          font-family: 'iconfont';
+          font-family: 'iconfont' !important;
 
           &:before {
             content: '\e607';

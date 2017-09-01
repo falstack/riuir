@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import './style.scss'
+import '~/plugins/share/style.scss'
 
 const Share = {
   name: 'v-share',
