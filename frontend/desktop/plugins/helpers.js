@@ -69,7 +69,7 @@ Helpers.install = function (Vue, options) {
   }
 
   Vue.prototype.$imageGrayLevel = (ele, hgt = 0) => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !ele) {
       return 0
     }
 

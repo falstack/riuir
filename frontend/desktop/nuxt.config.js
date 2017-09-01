@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/analytics.js', ssr: false },
     { src: '~/plugins/helpers.js' },
-    { src: '~/plugins/share.js' },
+    { src: '~/plugins/share/index.js' },
     { src: '~/plugins/imagelazy.js' },
     { src: '~/plugins/geetest.js', ssr: false },
     { src: '~/plugins/validate.js', ssr: false }
@@ -44,8 +44,7 @@ module.exports = {
       { hid: 'keywords', name: 'keywords', content: 'riuir，动漫，ACG，二次元，视频，番剧，动画，新番，神作' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '//cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
       { innerHTML: 'var _hmt = _hmt || [];(function () {var hm = document.createElement(\'script\');var s = document.getElementsByTagName(\'script\')[0];hm.src = \'//hm.baidu.com/hm.js?5c22f3db91001090bfc7d5096c296534\';s.parentNode.insertBefore(hm, s);})();', type: 'text/javascript' },

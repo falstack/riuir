@@ -34,6 +34,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-tengxunweibo:before { content: "\f0056"; }
+
 .icon-biaoqian:before { content: "\e662"; }
 
 .icon-loading:before { content: "\e639"; }
@@ -42,6 +44,10 @@
 
 .icon-sousuo:before { content: "\e607"; }
 
+.icon-iconfontdouban:before { content: "\e673"; }
+
+.icon-weibo:before { content: "\e63d"; }
+
 .icon-fanhuidingbu:before { content: "\e669"; }
 
 .icon-shengyin:before { content: "\e617"; }
@@ -49,6 +55,12 @@
 .icon-bofang:before { content: "\e635"; }
 
 .icon-quanping:before { content: "\e60e"; }
+
+.icon-icon-wechat:before { content: "\e659"; }
+
+.icon-qqkongjian:before { content: "\e507"; }
+
+.icon-qq:before { content: "\e503"; }
 
 .icon-zanting:before { content: "\e640"; }
 
