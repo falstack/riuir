@@ -2,11 +2,12 @@
   $header-height: 46px;
 
   #header {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: $header-height;
+    background-color: $color-white;
     z-index: 10;
 
     .text {
