@@ -56,7 +56,7 @@
       computeShow () {
         const result = window.screen.height < document.body.scrollTop
         if (result) {
-          this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2
+          this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2 + 18
         }
         return result
       }
