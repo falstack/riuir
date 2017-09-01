@@ -1,30 +1,5 @@
 import Vue from 'vue'
-import './style.scss'
-
-const Share = {
-  name: 'v-share',
-  render: (createElement) => {
-    return createElement('div', {
-      attrs: {
-        'id': 'share',
-        'data-new': ''
-      }
-    })
-  },
-  mounted () {
-    setTimeout(() => {
-      // eslint-disable-next-line
-      new socialShare(this.$el, {
-        url: window.location.href.split('?')[0],
-        title: document.title,
-        source: 'riuir 天下漫友是一家',
-        description: document.getElementsByTagName('meta')['description'].content,
-        disabled: ['google', 'twitter', 'facebook', 'linkedin', 'diandian']
-      })
-      this.$el.removeAttribute('data-new')
-    }, 200)
-  }
-}
+import Share from './share.vue'
 
 Vue.component(Share.name, Share)
 
