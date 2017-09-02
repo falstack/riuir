@@ -6,6 +6,8 @@ Route::post('/deploy', 'DoorController@deploy');
 
 Route::group(['prefix' => '/door'], function ()
 {
+    Route::get('/csrf', 'DoorController@csrf');
+
     Route::get('/captcha', 'DoorController@captcha');
 
     Route::post('/register', 'DoorController@register');

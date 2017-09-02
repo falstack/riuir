@@ -1,5 +1,6 @@
 import { isVueRule, isSASSRule, sassResourcesLoader } from './config/loader'
 import { stat } from './.env'
+import axiosCfg from './config/http'
 
 module.exports = {
   cache: true,
@@ -13,6 +14,7 @@ module.exports = {
   ],
   modules: [
     ['@nuxtjs/google-analytics', { ua: 'UA-80338273-2' }],
+    ['@nuxtjs/axios', axiosCfg],
   ],
   /*
   ** Headers of the page

@@ -5,6 +5,7 @@
   "author": "falstack <icesilt@outlook.com>",
   "private": true,
   "dependencies": {
+    "@nuxtjs/axios": "^4.0.0",
     "@nuxtjs/google-analytics": "^1.0.0",
     "axios": "^0.16.2",
     "cross-env": "^5.0.0",
