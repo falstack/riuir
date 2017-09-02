@@ -1,4 +1,4 @@
-import { host } from '~/.env'
+import { host } from '../.env'
 
 export default {
   baseURL: process.env.NODE_ENV !== 'production' ? host.dev : typeof window === 'undefined' ? '/' : host.prod,

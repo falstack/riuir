@@ -1,4 +1,4 @@
-// import { csrfToken } from '~/apis/session'
+import { token } from '~/.env'
 
 export const state = () => ({
   user: null,
@@ -17,11 +17,17 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit ({ commit }, { app }) {
-    return app.$axios.$get('door/csrf', {
-      params: { token: '...' }
-    }).then((res) => {
-      commit('SET_CSRF', res.data)
+    const token = await app.$axios.$get('door/csrf', {
+      params: { token }
     })
+    commit('SET_CSRF', token)
+    // return app.$axios.$get('door/csrf', {
+    //   params: { token }
+    // }).then((res) => {
+    //   commit('SET_CSRF', res.data)
+    // }).catch((err) => {
+    //   console.log(err); // eslint-disable-line
+    // })
     // return csrfToken().then((res) => {
     //   commit('SET_CSRF', res.data)
     // }).catch((err) => {

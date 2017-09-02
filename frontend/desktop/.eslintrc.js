@@ -8,7 +8,8 @@ module.exports = {
   extends: 'standard',
   // required to lint *.vue files
   plugins: [
-    'html'
+    'html',
+    'transform-async-to-generator'
   ],
   // add your custom rules here
   rules: {},
