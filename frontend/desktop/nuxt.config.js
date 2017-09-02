@@ -1,19 +1,5 @@
-const resolve = require('path').resolve
-const isVueRule = (rule) => {
-  return rule.test.toString() === '/\\.vue$/'
-}
-const isSASSRule = (rule) => {
-  return ['/\\.sass$/', '/\\.scss$/'].indexOf(rule.test.toString()) !== -1
-}
-const sassResourcesLoader = {
-  loader: 'sass-resources-loader',
-  options: {
-    resources: [
-      resolve(__dirname, 'assets/css/variables.scss'),
-      resolve(__dirname, 'assets/css/mixins.scss')
-    ]
-  }
-}
+import { isVueRule, isSASSRule, sassResourcesLoader } from './config/loader'
+import { stat } from './.env'
 
 module.exports = {
   cache: true,
@@ -47,7 +33,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { innerHTML: 'var _hmt = _hmt || [];(function () {var hm = document.createElement(\'script\');var s = document.getElementsByTagName(\'script\')[0];hm.src = \'//hm.baidu.com/hm.js?5c22f3db91001090bfc7d5096c296534\';s.parentNode.insertBefore(hm, s);})();', type: 'text/javascript' },
+      { innerHTML: stat.baidu, type: 'text/javascript' },
       { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }
     ],
     __dangerouslyDisableSanitizers: 'script'
