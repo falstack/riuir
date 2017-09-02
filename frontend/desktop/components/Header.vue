@@ -47,6 +47,8 @@
               border-radius: 16px 0 0 16px;
               color: $color-white;
               @include input-placeholder();
+              border: 1px solid transparent;
+              border-right: 0;
 
               &:focus {
                 width: 235px;
@@ -88,6 +90,9 @@
               color: $color-white;
               font-family: 'iconfont' !important;
               font-size: 18px;
+              border: 1px solid transparent;
+              border-left: 0;
+              line-height: 30px;
 
               &:before {
                 content: '\e660';
@@ -106,7 +111,7 @@
           }
 
           .sign-in {
-            border: 1px solid $color-white;
+            border: 1px solid rgba(255,255,255,.8);
             margin-left: 30px;
 
             &:hover {
@@ -140,31 +145,75 @@
     }
 
     &.mask {
-      .header-left {
-        a {
-          color: $color-white;
-          padding: 5px 20px;
-          border-radius: 10px;
-          margin: 0 5px;
-          font-size: 15px;
-          transition: .4s background-color, .4s color;
+      background-color: transparent;
 
-          &:hover {
-            background-color: $color-white;
-            color: $color-blue-normal;
-            transition-duration: 0s;
+      &.scroll-show,
+      &.scroll-hide {
+        .header-left {
+          a {
+            padding: 5px 20px;
+            border-radius: 10px;
+            margin: 0 5px;
+            font-size: 15px;
+            transition: .4s background-color, .4s color;
+
+            &:hover {
+              background-color: $color-white;
+              color: $color-blue-normal;
+              transition-duration: 0s;
+            }
           }
         }
       }
 
-      .shim {
-        width: 100%;
-        height: 100px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: -1;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAABkCAYAAABOx/oaAAAAAXNSR0IArs4c6QAAAX5JREFUSA2llAtuwzAMQ5NtN9r9r9bUZP0I2VW7ATWQ2KZISv4k53Ecv+NZ2tcym5MOvDrwBLyKjZkCzvEQOH8mIGICkosBy0E8xTIwXpfkam+ZJiCvzAPQHrzIztxyEnkyI+0yW8/s0pJdngKybvlS0sLsQK99l3s/ZYPcPYkUoKUkAPd17ZJa3mbfwTA9QKq+y+5lVqbHbHINHDuoOnOXxIRt5m0A3BCNW7nByKYinlIp2MqdUCU5KupsuQwA6r12SiJhmABhLsBAfZoVbJkCn1b0IegruR+cKulPc2d+mF2JvEvOaLPHa8nOxmSX6neU6805mU2di69uMixy3WAKWBJVYPFEakKVC/CVBKROy/fvyDYwPeElJqXQP13vlyUtXxyW3k9N4qdJTaS52mvmI14s/pQnGUwBbEp+gM46zXOakSrwPR7JIhUoT7WF2YEXUuTq7QU7Nkr01CorQYE1s8c2HgF6sdtA/gxhaEBDTm98mcCsvQn/Y1XZ+/EdtDiR1Lr0wCcAAAAASUVORK5CYII=);
+      &.scroll-show {
+        background-color: $color-white;
+        box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
+
+        .header-left {
+          a {
+            color: $color-link;
+          }
+        }
+
+        .header-right {
+          .search-ctx:focus {
+            border: 1px solid #D9D9D9;
+            border-right: 0;
+
+            &+.search-btn {
+              border: 1px solid #D9D9D9;
+              border-left: 0;
+            }
+          }
+          .sign-in {
+            color: $color-link;
+            border: 1px solid #D9D9D9;
+            background: linear-gradient( #FAFAFA, #F2F2F2);
+
+            &:hover {
+              box-shadow: inset 0 1px 0 white, 0 1px 0 rgba(255,255,255,.05);
+            }
+          }
+        }
+      }
+
+      &.scroll-hide {
+        .header-left {
+          a {
+            color: $color-white;
+          }
+        }
+
+        .shim {
+          width: 100%;
+          height: 100px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: -1;
+          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAABkCAYAAABOx/oaAAAAAXNSR0IArs4c6QAAAX5JREFUSA2llAtuwzAMQ5NtN9r9r9bUZP0I2VW7ATWQ2KZISv4k53Ecv+NZ2tcym5MOvDrwBLyKjZkCzvEQOH8mIGICkosBy0E8xTIwXpfkam+ZJiCvzAPQHrzIztxyEnkyI+0yW8/s0pJdngKybvlS0sLsQK99l3s/ZYPcPYkUoKUkAPd17ZJa3mbfwTA9QKq+y+5lVqbHbHINHDuoOnOXxIRt5m0A3BCNW7nByKYinlIp2MqdUCU5KupsuQwA6r12SiJhmABhLsBAfZoVbJkCn1b0IegruR+cKulPc2d+mF2JvEvOaLPHa8nOxmSX6neU6805mU2di69uMixy3WAKWBJVYPFEakKVC/CVBKROy/fvyDYwPeElJqXQP13vlyUtXxyW3k9N4qdJTaS52mvmI14s/pQnGUwBbEp+gM46zXOakSrwPR7JIhUoT7WF2YEXUuTq7QU7Nkr01CorQYE1s8c2HgF6sdtA/gxhaEBDTm98mcCsvQn/Y1XZ+/EdtDiR1Lr0wCcAAAAASUVORK5CYII=);
+        }
       }
     }
 
@@ -227,7 +276,7 @@
 </style>
 
 <template>
-  <header id="header" :class="[theme, imageGrayLevel > 165 ? 'white' : 'black']">
+  <header id="header" :class="[theme, imageGrayLevel > 165 ? 'white' : 'black', scrollFlag ? 'scroll-show' : 'scroll-hide']">
     <div class="text">
       <div class="container">
         <nav class="header-left">
@@ -279,7 +328,8 @@
         theme: 'mask',
         img: '',
         another: '',
-        imageGrayLevel: 0
+        imageGrayLevel: 0,
+        scrollFlag: false
       }
     },
     computed: {
@@ -309,6 +359,11 @@
             this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
           }, 0)
         }
+      })
+    },
+    mounted () {
+      document.addEventListener('scroll', () => {
+        this.scrollFlag = document.body.scrollTop > 200
       })
     }
   }
