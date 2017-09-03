@@ -1,6 +1,6 @@
-import { isVueRule, isSASSRule, sassResourcesLoader } from './config/loader'
-import { env } from './.env'
-import axiosCfg from './config/http'
+const env = require('./.env')
+const http = require('./config/http')
+const loader = require('./config/loader')
 
 module.exports = {
   cache: true,
@@ -14,7 +14,7 @@ module.exports = {
   ],
   modules: [
     ['@nuxtjs/google-analytics', { ua: 'UA-80338273-2' }],
-    ['@nuxtjs/axios', axiosCfg],
+    ['@nuxtjs/axios', http.config],
   ],
   /*
   ** Headers of the page
@@ -58,12 +58,12 @@ module.exports = {
     */
     extend (config, ctx) {
       config.module.rules.forEach((rule) => {
-        if (isVueRule(rule)) {
-          rule.options.loaders.sass.push(sassResourcesLoader)
-          rule.options.loaders.scss.push(sassResourcesLoader)
+        if (loader.isVueRule(rule)) {
+          rule.options.loaders.sass.push(loader.sassResourcesLoader)
+          rule.options.loaders.scss.push(loader.sassResourcesLoader)
         }
-        if (isSASSRule(rule)) {
-          rule.use.push(sassResourcesLoader)
+        if (loader.isSASSRule(rule)) {
+          rule.use.push(loader.sassResourcesLoader)
         }
       })
       if (ctx.isClient) {

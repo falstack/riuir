@@ -1,14 +1,14 @@
 const resolve = require('path').resolve
 
-export const isVueRule = (rule) => {
+const isVueRule = (rule) => {
   return rule.test.toString() === '/\\.vue$/'
 }
 
-export const isSASSRule = (rule) => {
+const isSASSRule = (rule) => {
   return ['/\\.sass$/', '/\\.scss$/'].indexOf(rule.test.toString()) !== -1
 }
 
-export const sassResourcesLoader = {
+const sassResourcesLoader = {
   loader: 'sass-resources-loader',
   options: {
     resources: [
@@ -16,4 +16,10 @@ export const sassResourcesLoader = {
       resolve(__dirname, '../assets/css/mixins.scss')
     ]
   }
+}
+
+module.exports = {
+  isVueRule,
+  isSASSRule,
+  sassResourcesLoader
 }

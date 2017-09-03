@@ -1,6 +1,6 @@
-import { host } from '../.env'
+const host = require('../.env').host
 
-export default {
+exports.config = {
   baseURL: process.env.NODE_ENV !== 'production' ? host.dev : typeof window === 'undefined' ? '/' : host.prod,
   headers: { Accept: 'application/json' },
   withCredentials: true,
