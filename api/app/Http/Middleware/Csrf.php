@@ -13,9 +13,7 @@ class Csrf extends BaseVerifier
         'http://riuir.dev'
     ];
 
-    protected $except = [
-        'door/csrf'
-    ];
+    protected $except = [];
 
     public function handle($request, Closure $next)
     {
@@ -24,12 +22,13 @@ class Csrf extends BaseVerifier
             ! in_array($origin, $this->allows) &&
             ! (empty($origin) && $request->ip() === '127.0.0.1')
         ) {
-            return response('token mismatch exception', 500);
+            return redirect('https://riuir.com');
         }
 
         if (
-            $this->runningUnitTests() ||
             $this->inExceptArray($request) ||
+            $this->isReading($request) ||
+            $this->runningUnitTests() ||
             $this->tokensMatch($request)
         ) {
             return $this->addCookieToResponse($request, $next($request));
@@ -41,6 +40,7 @@ class Csrf extends BaseVerifier
     protected function getTokenFromRequest($request)
     {
         $token = $request->cookie('XSRF-TOKEN');
+
         if (! $token && $header = $request->header('X-XSRF-TOKEN')) {
             $token = $this->encrypter->decrypt($header);
         }

@@ -96,20 +96,6 @@ class DoorController extends Controller
         return $this->getAuthUser();
     }
 
-    public function csrf(Request $request)
-    {
-        if ($request->get('token') !== config('app.token')) {
-            return response('token mismatch exception', 500);
-        }
-
-        $session = app('session');
-        if (!isset($session)) {
-            return response('session store not set.', 500);
-        }
-
-        return $session->token();
-    }
-
     protected function createUserZone($name)
     {
         $pinyin = Overtrue::permalink($name);

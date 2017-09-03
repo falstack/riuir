@@ -139,7 +139,6 @@
 </template>
 
 <script>
-  import axios from '~/apis/_base'
   import vBanner from '~/components/Banner.vue'
 
   export default {
@@ -165,24 +164,21 @@
         this.bangumis = []
       }
     },
-    asyncData ({ params }) {
-      return axios.get(`bangumi/tags`, {
+    async asyncData ({ params, app }) {
+      const data = await app.$axios.$get(`bangumi/tags`, {
         params: {
           id: params.id
         }
-      }).then((res) => {
-        const tags = res.data.tags
-        const ids = params.id ? params.id.split('-') : undefined
-        for (let i = 0; i < tags.length; ++i) {
-          tags[i].selected = ids ? ids.indexOf(`${tags[i].id}`) !== -1 : false
-        }
-        return {
-          tags: tags,
-          bangumis: res.data.bangumis
-        }
-      }).catch((err) => {
-        console.log(err)
       })
+      const tags = data.tags
+      const ids = params.id ? params.id.split('-') : undefined
+      for (let i = 0; i < tags.length; ++i) {
+        tags[i].selected = ids ? ids.indexOf(`${tags[i].id}`) !== -1 : false
+      }
+      return {
+        tags: tags,
+        bangumis: data.bangumis
+      }
     },
     data () {
       return {

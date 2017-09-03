@@ -51,9 +51,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: [
-      'axios'
-    ],
+    vendor: [],
+    extractCSS: true,
     /*
     ** Run ESLINT on save
     */

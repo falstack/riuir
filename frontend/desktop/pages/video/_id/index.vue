@@ -80,15 +80,21 @@
       </nav>
       <div id="metas">
         <ul>
-          <li v-for="meta in sortVideos">
-            <nuxt-link class="meta" :style="{ width: `${maxWidth}px` }" :to="`/video/${meta.id}`" :key="meta">
+          <li v-for="meta in sortVideos" :key="meta.id">
+            <nuxt-link class="meta" :style="{ width: `${maxWidth}px` }" :to="`/video/${meta.id}`">
               <span>{{ meta.part }}</span>{{ meta.name }}
             </nuxt-link>
           </li>
         </ul>
         <div class="more" v-if="take < videos.length" @click="showAll = !showAll">{{ showAll ? '收起' : '展开' }}</div>
       </div>
-      <v-video :source="info.url ? info.url : info.resource" :sourceissrc="!!info.url" :info="`${bangumi.name} 第 ${info.part} 话 ${info.name}`" :poster="$resize(info.poster)" v-if="info" @playing="handlePlaying"></v-video>
+      <v-video :source="info.url ? info.url : info.resource"
+               :sourceissrc="!!info.url"
+               :info="`${bangumi.name} 第 ${info.part} 话 ${info.name}`"
+               :poster="$resize(info.poster)"
+               v-if="info"
+               @playing="handlePlaying">
+      </v-video>
       <div class="social">
         <v-share></v-share>
       </div>
@@ -97,7 +103,6 @@
 </template>
 
 <script>
-  import axios from '~/apis/_base'
   import vBanner from '~/components/Banner.vue'
   import vVideo from '~/components/video/video.vue'
 
@@ -120,17 +125,13 @@
     validate ({ params }) {
       return /^\d+$/.test(params.id)
     },
-    asyncData ({ params }) {
-      return axios.get(`video/${params.id}/info`)
-        .then((res) => {
-          return {
-            bangumi: res.data.bangumi,
-            videos: res.data.videos,
-            info: res.data.info
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+    async asyncData ({ params, app }) {
+      const data = await app.$axios.$get(`video/${params.id}/info`)
+      return {
+        bangumi: data.bangumi,
+        videos: data.videos,
+        info: data.info
+      }
     },
     computed: {
       sortVideos () {
@@ -184,7 +185,7 @@
       handlePlaying () {
         if (this.firstPlay) {
           this.firstPlay = false
-          axios.post(`/video/${this.id}/playing`)
+          this.$axios.$post(`/video/${this.id}/playing`)
         }
       }
     },

@@ -102,7 +102,6 @@
 </template>
 
 <script>
-  import axios from '~/apis/_base'
   import vSearch from '~/components/Search.vue'
 
   export default {
@@ -113,16 +112,12 @@
     components: {
       vSearch
     },
-    asyncData () {
-      return axios.get('cartoon/banner')
-        .then((res) => {
-          return {
-            banner1: res.data,
-            another: res.data.url
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+    async asyncData ({ app }) {
+      const data = await app.$axios.$get('cartoon/banner')
+      return {
+        banner1: data,
+        another: data.url
+      }
     },
     data () {
       return {
@@ -146,7 +141,7 @@
     methods: {
       loopBanner () {
         this.timer = setInterval(() => {
-          axios.get('cartoon/banner').then((res) => {
+          this.$axios.$get('cartoon/banner').then((res) => {
             this.another = res.data.url
             if (this.toggle) {
               this.banner2 = res.data

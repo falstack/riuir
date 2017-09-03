@@ -305,7 +305,6 @@
 </template>
 
 <script>
-  import axios from '~/apis/_base'
   import vBanner from '~/components/Banner.vue'
   import tabCard from '~/components/TabCard.vue'
   import { groupBy, orderBy } from '~/plugins/util/lodash'
@@ -320,40 +319,36 @@
     components: {
       vBanner, tabCard
     },
-    asyncData () {
-      return axios.get('bangumi/news')
-        .then((res) => {
-          const timeline = []
-          const released = {}
-          const releaseNews = []
-          for (const bangumi of res.data) {
-            const time = bangumi.season
-            if (timeline.indexOf(time) === -1) {
-              timeline.push(time)
-            }
-            if (bangumi.released_at) {
-              if (released[bangumi.released_at] === undefined) {
-                released[bangumi.released_at] = []
-              }
-              released[bangumi.released_at].push(bangumi)
-              releaseNews.push(bangumi)
-            }
+    async asyncData ({ app }) {
+      const data = await app.$axios.$get('bangumi/news')
+      const timeline = []
+      const released = {}
+      const releaseNews = []
+      for (const bangumi of data) {
+        const time = bangumi.season
+        if (timeline.indexOf(time) === -1) {
+          timeline.push(time)
+        }
+        if (bangumi.released_at) {
+          if (released[bangumi.released_at] === undefined) {
+            released[bangumi.released_at] = []
           }
-          released[0] = releaseNews.sort((a, b) => {
-            return b - a
-          })
-          return {
-            released: released,
-            timeline: timeline.sort((a, b) => {
-              return b - a
-            }),
-            list: orderBy(groupBy(res.data, 'season'), (time) => {
-              return time[0].season
-            }).reverse()
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+          released[bangumi.released_at].push(bangumi)
+          releaseNews.push(bangumi)
+        }
+      }
+      released[0] = releaseNews.sort((a, b) => {
+        return b - a
+      })
+      return {
+        released: released,
+        timeline: timeline.sort((a, b) => {
+          return b - a
+        }),
+        list: orderBy(groupBy(data, 'season'), (time) => {
+          return time[0].season
+        }).reverse()
+      }
     },
     data () {
       return {

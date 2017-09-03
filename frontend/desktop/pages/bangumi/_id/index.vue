@@ -183,8 +183,6 @@
 </template>
 
 <script>
-  import axios from '~/apis/_base'
-
   export default {
     name: 'bangumi-home',
     head () {
@@ -199,17 +197,13 @@
     validate ({ params }) {
       return /^\d+$/.test(params.id)
     },
-    asyncData ({ params }) {
-      return axios.get(`bangumi/${params.id}/info`)
-        .then((res) => {
-          return {
-            videos: res.data.videos,
-            tags: res.data.tags,
-            info: res.data.info
-          }
-        }).catch((err) => {
-          console.log(err)
-        })
+    async asyncData ({ params, app }) {
+      const data = await app.$axios.$get(`bangumi/${params.id}/info`)
+      return {
+        videos: data.videos,
+        tags: data.tags,
+        info: data.info
+      }
     },
     data () {
       return {
