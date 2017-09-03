@@ -1,3 +1,4 @@
+require("babel-register");
 import { isVueRule, isSASSRule, sassResourcesLoader } from './config/loader'
 import { stat } from './.env'
 import axiosCfg from './config/http'
