@@ -1,6 +1,5 @@
-require("babel-register");
 import { isVueRule, isSASSRule, sassResourcesLoader } from './config/loader'
-import { stat } from './.env'
+import { env } from './.env'
 import axiosCfg from './config/http'
 
 module.exports = {
@@ -23,7 +22,7 @@ module.exports = {
   head: {
     titleTemplate: '%s | riuir 天下漫友是一家',
     htmlAttrs: {
-      lang: 'zh-cmn-Hans'
+      lang: 'zh-CN'
     },
     meta: [
       { charset: 'utf-8' },
@@ -36,7 +35,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { innerHTML: stat.baidu, type: 'text/javascript' },
+      { innerHTML: env.stat.baidu, type: 'text/javascript' },
       { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }
     ],
     __dangerouslyDisableSanitizers: 'script'
