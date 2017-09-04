@@ -141,19 +141,13 @@
     methods: {
       loopBanner () {
         this.timer = setInterval(() => {
-          this.$axios.$get('cartoon/banner').then((res) => {
-            this.another = res.data.url
-            if (this.toggle) {
-              this.banner2 = res.data
-            } else {
-              this.banner1 = res.data
-            }
+          this.$axios.$get('cartoon/banner').then((data) => {
+            this.another = data.url
+            this.toggle ? this.banner2 = data : this.banner1 = data
             setTimeout(() => {
               this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 65)
               this.toggle = !this.toggle
             }, 7500)
-          }).catch((res) => {
-            console.log(res)
           })
         }, 15000)
       }
