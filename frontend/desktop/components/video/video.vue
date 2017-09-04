@@ -191,11 +191,11 @@
   }
 
   .vue-pwa-video-btn-playing:before {
-    content: "\e635";
+    content: "\e640";
   }
 
   .vue-pwa-video-btn-paused:before {
-    content: "\e640";
+    content: "\e635";
   }
 
   .vue-pwa-video-btn-volume:before {
