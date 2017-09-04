@@ -115,7 +115,7 @@
             margin-left: 30px;
 
             &:hover {
-              background: linear-gradient($color-white, #f7f7f7);
+              background: $color-white;
               text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
               color: #000;
               border: 1px solid #ccc;
@@ -125,10 +125,10 @@
           .sign-up {
             margin-left: 7px;
             border: 0;
-            background-color: rgba($color-blue-normal, .6);
+            background-color: rgba($color-blue-normal, .8);
 
             &:hover {
-              background-color: rgba($color-blue-normal, .9);
+              background-color: $color-blue-normal;
             }
           }
         }
