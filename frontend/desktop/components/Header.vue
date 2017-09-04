@@ -124,16 +124,11 @@
 
           .sign-up {
             margin-left: 7px;
-            border: 1px solid $color-blue-normal;
-            background-color: $color-blue-normal;
-            opacity: .8;
+            border: 0;
+            background-color: rgba($color-blue-normal, .6);
 
             &:hover {
-              background: linear-gradient(#00bfef, #00a7de);
-              text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-              color: $color-white;
-              border: 1px solid #00a7de;
-              opacity: 1;
+              background-color: rgba($color-blue-normal, .9);
             }
           }
         }
@@ -177,6 +172,7 @@
         }
 
         .header-right {
+
           .search-ctx:focus {
             border: 1px solid #D9D9D9;
             border-right: 0;
@@ -186,6 +182,7 @@
               border-left: 0;
             }
           }
+
           .sign-in {
             color: $color-link;
             border: 1px solid #D9D9D9;
@@ -193,6 +190,18 @@
 
             &:hover {
               box-shadow: inset 0 1px 0 white, 0 1px 0 rgba(255,255,255,.05);
+            }
+          }
+
+          .sign-up {
+            background: linear-gradient($color-blue-light, $color-blue-normal);
+            border: 1px solid $color-blue-deep;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.3);
+
+            &:hover {
+              background: linear-gradient(#00bfef, #00a7de);
+              box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.1);
             }
           }
         }
