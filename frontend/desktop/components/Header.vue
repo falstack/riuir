@@ -186,10 +186,13 @@
           .sign-in {
             color: $color-link;
             border: 1px solid #D9D9D9;
-            background: linear-gradient( #FAFAFA, #F2F2F2);
+            background: linear-gradient(#FAFAFA, #F2F2F2);
+            text-shadow: 0 1px 0 rgba(255,255,255,.5);
 
             &:hover {
+              background: linear-gradient(#FFF, #F7F7F7);
               box-shadow: inset 0 1px 0 white, 0 1px 0 rgba(255,255,255,.05);
+              border: 1px solid #CCC;
             }
           }
 
