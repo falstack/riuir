@@ -348,7 +348,7 @@
         this.$channel.$emit('sign-up')
       }
     },
-    created () {
+    beforeMount () {
       this.$channel.$on('change-page-background', ({ img, hgt, theme }) => {
         this.img = img
         this.theme = theme

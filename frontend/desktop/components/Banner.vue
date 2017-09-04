@@ -26,7 +26,7 @@
         imageGrayLevel: 0
       }
     },
-    created () {
+    beforeMount () {
       this.$channel.$emit('change-page-background', {
         theme: 'blur',
         img: this.bg,

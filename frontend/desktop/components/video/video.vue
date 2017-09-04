@@ -425,7 +425,7 @@
         logs: []
       }
     },
-    created () {
+    beforeMount () {
       if (this.auto) {
         this.state.playing = true
         this.state.firstPlay = false

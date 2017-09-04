@@ -256,7 +256,7 @@
         }) : this.$backdrop.hide()
       }
     },
-    created () {
+    beforeMount () {
       this.$channel.$on('sign-in', () => {
         this.showLogin()
       })

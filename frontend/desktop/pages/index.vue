@@ -129,13 +129,13 @@
         imageGrayLevel: 0
       }
     },
-    beforeCreate () {
+    beforeMount () {
       this.$channel.$emit('change-page-background', {
         img: '',
         theme: 'mask'
       })
     },
-    created () {
+    mounted () {
       this.loopBanner()
     },
     methods: {
