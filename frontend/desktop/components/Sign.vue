@@ -225,8 +225,6 @@
 </template>
 
 <script>
-  import axios from '~/apis/_base'
-
   export default {
     name: 'v-sign',
     data () {
@@ -282,8 +280,7 @@
       },
       getCaptcha () {
         return new Promise((resolve, reject) => {
-          axios.get('door/captcha').then((res) => {
-            const data = res.data
+          this.$axios.$get('door/captcha').then((data) => {
             window.initGeetest({
               gt: data.gt,
               challenge: data.challenge,
@@ -349,7 +346,7 @@
       },
       login () {
         this.$toast.show('暂不开放登录')
-        return axios.post('door/login', {
+        return this.$axios.$post('door/login', {
           access: this.signIn.email,
           secret: this.signIn.password,
           remember: this.signIn.remember,
@@ -358,7 +355,7 @@
       },
       register () {
         this.$toast.show('暂不开放注册')
-        return axios.post('door/register', {
+        return this.$axios.$post('door/register', {
           email: this.signUp.email,
           nickname: this.signUp.nickname,
           password: this.signUp.password
