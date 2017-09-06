@@ -34,3 +34,7 @@
 ## 2017年08月31日
 
 1. 【招聘】招一个网站运营
+
+## 2017年09月06日
+
+1. 搭建 gitlab、sentry、jenkins、phabricator
