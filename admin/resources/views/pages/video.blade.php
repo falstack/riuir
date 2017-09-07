@@ -121,7 +121,7 @@
                 <el-form-item label="海报" :label-width="'85px'">
                     <el-input v-model="editForm.poster" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item v-if="editForm.url" label="普通资源" :label-width="'85px'">
+                <el-form-item v-if="editForm.url" label="外链资源" :label-width="'85px'">
                     <el-input v-model="editForm.url" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="字幕" :label-width="'85px'">
@@ -206,7 +206,7 @@
                         </el-col>
                     </el-form-item>
                 </el-row>
-                <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="普通资源" :label-width="'85px'">
+                <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="外链资源" :label-width="'85px'">
                     <el-input v-model="createForm.url" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="字幕" :label-width="'85px'">
@@ -529,7 +529,7 @@
                   'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', resName)
                 }
               }
-              arr.push({
+              arr.unshift({
                 'resource': resource,
                 'bangumi_id': bangumi_id,
                 'part': i,
