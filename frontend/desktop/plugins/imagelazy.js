@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const Image = {
   name: 'v-img',
   props: {
@@ -32,8 +34,9 @@ const Image = {
   },
   data () {
     return {
-      listeners: Object.create(null),
-      resource: this.src
+      listeners: {},
+      resource: this.src,
+      id: 0
     }
   },
   mounted () {
@@ -41,14 +44,12 @@ const Image = {
     if (this.checkInView(image)) {
       this.loadResource(image)
     }
-    for (const event of this.events) {
-      const id = this.addListener(document, event, this.throttle(() => {
-        if (this.checkInView(image)) {
-          this.loadResource(image)
-          this.removeListener(id)
-        }
-      }, 500, 1000))
-    }
+    const id = this.addListener(document, this.throttle(() => {
+      if (this.checkInView(image)) {
+        this.loadResource(image)
+        this.removeListener(id)
+      }
+    }, 500, 1000))
   },
   methods: {
     loadResource (image) {
@@ -58,24 +59,29 @@ const Image = {
       const rect = image.getBoundingClientRect()
       return (rect.top < window.innerHeight * this.scale && rect.bottom > 0) && (rect.left < window.innerWidth * this.scale && rect.right > 0)
     },
-    addListener (ele, evt, handler, capture = false) {
-      const id = this.id++
-      ele.addEventListener(evt, handler, capture)
-      this.listeners[id] = {
-        element: ele,
-        event: evt,
-        handler,
-        capture
-      }
-
-      return id
+    addListener (ele, handler, capture = false) {
+      const arr = []
+      this.events.forEach(evt => {
+        const id = this.id++
+        ele.addEventListener(evt, handler, capture)
+        this.listeners[id] = {
+          element: ele,
+          event: evt,
+          handler,
+          capture
+        }
+        arr.push(id)
+      })
+      return arr
     },
     removeListener (id) {
-      if (this.listeners[id]) {
-        const h = this.listeners[id]
-        h.element.removeEventListener(h.event, h.handler, h.capture)
-        this.listeners[id] = null
-      }
+      id.forEach(item => {
+        if (this.listeners[item]) {
+          const h = this.listeners[item]
+          h.element.removeEventListener(h.event, h.handler, h.capture)
+          Reflect.deleteProperty(this.listeners, item)
+        }
+      })
     },
     throttle (func, delay, time) {
       let timeout
@@ -94,5 +100,4 @@ const Image = {
   }
 }
 
-import Vue from 'vue'
 Vue.component(Image.name, Image)

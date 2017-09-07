@@ -128,6 +128,7 @@
       }
 
       .bangumi {
+        width: 100%;
 
         figure {
           padding: 20px 10px;
