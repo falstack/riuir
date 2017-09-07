@@ -173,9 +173,9 @@
       })
       const tags = data.tags
       const ids = params.id ? params.id.split('-') : undefined
-      for (let i = 0; i < tags.length; ++i) {
-        tags[i].selected = ids ? ids.indexOf(`${tags[i].id}`) !== -1 : false
-      }
+      tags.forEach((tag, index) => {
+        tags[index].selected = ids ? ids.indexOf(tag.id.toString()) !== -1 : false
+      })
       return {
         tags: tags,
         bangumis: data.bangumis
@@ -190,11 +190,11 @@
     methods: {
       getList () {
         const selected = []
-        for (const tag of this.tags) {
+        this.tags.forEach((tag) => {
           if (tag.selected) {
             selected.push(tag.id)
           }
-        }
+        })
         if (selected.length) {
           this.$router.push({
             name: 'bangumi-tags-id',

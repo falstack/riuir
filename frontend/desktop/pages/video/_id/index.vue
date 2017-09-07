@@ -165,21 +165,21 @@
     methods: {
       computeMaxWidth () {
         let maxlength = 0
-        for (const meta of this.videos) {
+        this.videos.forEach((meta) => {
           const templength = meta.name.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length
           if (maxlength < templength) {
             maxlength = templength
           }
-        }
+        })
         this.maxWidth = 46 + maxlength * 8
       },
       computePage () {
         this.take = Math.floor(document.getElementById('metas').offsetWidth / (this.maxWidth + metaMarginRgt)) * 2
-        for (const meta of this.videos) {
+        this.videos.forEach((meta) => {
           if (meta.id === this.id) {
             this.part = meta.part
           }
-        }
+        })
         this.page = Math.ceil(this.part / this.take)
       },
       handlePlaying () {

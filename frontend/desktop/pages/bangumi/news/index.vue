@@ -325,7 +325,7 @@
       const timeline = []
       const released = {}
       const releaseNews = []
-      for (const bangumi of data) {
+      data.forEach((bangumi) => {
         const time = bangumi.season
         if (timeline.indexOf(time) === -1) {
           timeline.push(time)
@@ -337,7 +337,7 @@
           released[bangumi.released_at].push(bangumi)
           releaseNews.push(bangumi)
         }
-      }
+      })
       released[0] = releaseNews.sort((a, b) => {
         return b - a
       })
