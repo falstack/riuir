@@ -22,17 +22,16 @@ export default {
     const curTime = new Date()
     const ctxTimestamp = ctxTime.getTime()
     const curTimestamp = curTime.getTime()
-    const today = new Date(new Date().toLocaleDateString()).getTime()
+    const today = new Date().setHours(0, 0, 0, 0)
     const delta = (curTimestamp - ctxTimestamp) / 1000
     const deltaDay = (today - ctxTimestamp) / 86400000
-    const TW = false
     if (deltaDay < 0) {
       if (delta < 60) {
-        return TW ? '幾秒前' : '几秒前'
+        return '几秒前'
       } else if (delta < 3600) {
-        return parseInt(delta / 60, 10) + (TW ? '分鐘前' : '分钟前')
+        return `${parseInt(delta / 60, 10)}分钟前`
       }
-      return parseInt(delta / 3600, 10) + (TW ? '小時前' : '小时前')
+      return `${parseInt(delta / 3600, 10)}小时前`
     }
     const compute = this.timeLong(ctxTimestamp).replace(/-/g, '.')
     if (ctxTime.getFullYear() !== curTime.getFullYear()) {
