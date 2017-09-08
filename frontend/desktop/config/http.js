@@ -9,5 +9,30 @@ exports.config = {
   timeout: 10000,
   errorHandler (err) {
     console.log(err); // eslint-disable-line
+  },
+  responseInterceptor (res) {
+    const cookie = res.headers['set-cookie']
+    if (cookie) {
+      const parseCookie = (prototype = document.cookie, key) => {
+        const cookies = {
+          HttpOnly: false
+        };
+        prototype.split('; ').forEach(item => {
+          const temp = item.split('=')
+          if (temp[0] === key) {
+            cookies['key'] = temp[0]
+            cookies['value'] = temp[1]
+          } else if (temp[0] === 'HttpOnly') {
+            cookies['HttpOnly'] = true
+          } else {
+            cookies[temp[0]] = temp[1]
+          }
+        })
+        return cookies;
+      }
+      global.$csrf = parseCookie(cookie[0], 'XSRF-TOKEN')
+      global.$session = parseCookie(cookie[1], 'riuir')
+    }
+    return res
   }
 }

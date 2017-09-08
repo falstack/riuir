@@ -44,6 +44,7 @@ class Csrf extends BaseVerifier
         if (! $token && $header = $request->header('X-XSRF-TOKEN')) {
             $token = $this->encrypter->decrypt($header);
         }
+
         return $token;
     }
 }
