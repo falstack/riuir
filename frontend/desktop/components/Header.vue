@@ -23,7 +23,6 @@
 
         .header-left {
           height: 100%;
-          font-weight: bold;
         }
 
         .header-right {
@@ -238,7 +237,6 @@
         }
 
         a {
-          color: $color-white;
           padding: 0 20px;
           font-size: 15px;
           height: 100%;
@@ -254,13 +252,21 @@
         box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
         .text {
           background-color: rgba(0, 0, 0, 0.2);
+
+          .header-left a {
+            color: $color-white;
+          }
         }
       }
 
       &.white {
         box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
         .text {
-          background-color: rgba(255, 255, 255, 0.2);
+          background-color: rgba(255, 255, 255, 0.4);
+
+          .header-left a {
+            color: $color-link;
+          }
         }
       }
 
