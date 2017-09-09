@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\RegisterRequest;
+use App\Mail\Welcome;
 use App\Models\Banner;
+use App\Models\Confirm;
 use App\Models\User;
 use App\Models\UserZone;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Services\GeeCaptcha;
+use Illuminate\Support\Facades\Mail;
 use Overtrue\LaravelPinyin\Facades\Pinyin as Overtrue;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -45,6 +49,34 @@ class DoorController extends Controller
         });
 
         return $banners[array_rand($banners)];
+    }
+
+    public function checkAccessUnique(Request $request)
+    {
+        $method = $request->get('method');
+
+        return in_array($method, ['phone', 'email'])
+            ? User::where($method, $request->get('value'))->count()
+            : null;
+    }
+
+    public function sendEmailOrMessage(Request $request)
+    {
+        $method = $request->get('method');
+        $access = $request->get('access');
+        $nickname = $request->get('nickname');
+
+        if ( ! in_array($method, ['phone', 'email'])) {
+            return null;
+        }
+
+        $token = $this->makeConfirm($access);
+
+        if ($method === 'email') {
+            Mail::to($access)->send(new Welcome($nickname, $token));
+        } else {
+
+        }
     }
 
     public function register(RegisterRequest $request)
@@ -94,6 +126,25 @@ class DoorController extends Controller
     public function refresh()
     {
         return $this->getAuthUser();
+    }
+
+    protected function findConfirm($token, $email)
+    {
+        $confirm = Confirm::whereRaw('code = ? and access = ? and created_at > ?', [$token, $email, Carbon::now()->addDay(-1)])->first();
+        if ($confirm) {
+            $confirm->delete();
+            return $confirm;
+        } else {
+            return null;
+        }
+    }
+
+    protected function makeConfirm($access)
+    {
+        $token = str_random(6);
+        Confirm::create(['code' => $token, 'access' => $access]);
+
+        return $token;
     }
 
     protected function createUserZone($name)

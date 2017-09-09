@@ -8,6 +8,10 @@ Route::group(['prefix' => '/door'], function ()
 {
     Route::get('/captcha', 'DoorController@captcha');
 
+    Route::get('/check', 'DoorController@checkAccessUnique');
+
+    Route::post('/send', 'DoorController@sendEmailOrMessage');
+
     Route::post('/register', 'DoorController@register');
 
     Route::post('/login', 'DoorController@login');
