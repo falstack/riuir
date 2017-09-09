@@ -13,9 +13,9 @@ exports.config = {
   responseInterceptor (res) {
     const cookie = res.headers['set-cookie']
     if (cookie) {
-      const parseCookie = (prototype = document.cookie, key) => {
+      const parseCookie = (prototype, key) => {
         const cookies = {
-          HttpOnly: false
+          httpOnly: false
         };
         prototype.split('; ').forEach(item => {
           const temp = item.split('=')
@@ -23,7 +23,9 @@ exports.config = {
             cookies['key'] = temp[0]
             cookies['value'] = temp[1]
           } else if (temp[0] === 'HttpOnly') {
-            cookies['HttpOnly'] = true
+            cookies['httpOnly'] = true
+          } else if (temp[0] === 'Max-Age') {
+            cookies['maxAge'] = parseInt(temp[1], 10)
           } else {
             cookies[temp[0]] = temp[1]
           }
