@@ -30,3 +30,8 @@ VeeValidate.Validator.extend('nickname', (value, [range]) => {
   const length = range.split('-')
   return result >= length[0] && result <= length[1]
 })
+
+VeeValidate.Validator.extend('len', (value, len) => {
+  const result = value.trim().length
+  return result === parseInt(len[0], 10)
+})
