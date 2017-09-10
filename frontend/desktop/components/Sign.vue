@@ -469,10 +469,10 @@
               this.getCaptcha().then((captcha) => {
                 captcha.appendTo(this.$refs.signInCaptcha)
                 captcha.onSuccess(() => {
-                  this.login().then((res) => {
-                    console.log(res); // eslint-disable-line
-                  }).catch((res) => {
-                    console.log(res); // eslint-disable-line
+                  this.login().then(() => {
+                    window.location.reload()
+                  }).catch((err) => {
+                    this.$toast.show(err)
                     setTimeout(() => {
                       captcha.reset()
                     }, 500)
@@ -493,10 +493,10 @@
               this.getCaptcha().then((captcha) => {
                 captcha.appendTo(this.$refs.signUpCaptcha)
                 captcha.onSuccess(() => {
-                  this.register().then((res) => {
-                    console.log(res); // eslint-disable-line
+                  this.register().then(() => {
+                    window.location.reload()
                   }).catch((err) => {
-                    console.log(err); // eslint-disable-line
+                    this.$toast.show(err)
                     setTimeout(() => {
                       captcha.reset()
                     }, 500)
@@ -510,7 +510,6 @@
         }
       },
       login () {
-        this.$toast.show('暂不开放登录')
         return this.$axios.$post('door/login', {
           access: this.signIn.access,
           secret: this.signIn.secret,

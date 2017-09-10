@@ -95,7 +95,7 @@ class DoorController extends Controller
         $zone = $this->createUserZone($nickname);
         $arr = [
             'nickname' => $nickname,
-            'password' => $request->get('scret'),
+            'password' => $request->get('secret'),
             'zone' => $zone,
         ];
 
@@ -105,9 +105,8 @@ class DoorController extends Controller
 
         $user = User::create($data);
         Auth::login($user);
-        $user->token = JWTAuth::fromUser($user);
 
-        return $user;
+        return response()->cookie('JWT-TOKEN', JWTAuth::fromUser($user), 18900);
     }
 
     public function captcha()
@@ -119,20 +118,24 @@ class DoorController extends Controller
 
     public function login(Request $request)
     {
-        $data = $this->getLoginForm($request->all());
+        $data = $request->get('method') === 'phone'
+            ? [
+                'password' => $request->get('secret'),
+                'phone' => $request->get('access')
+            ]
+            : [
+                'password' => $request->get('secret'),
+                'email' => $request->get('access')
+            ];
 
         if (Auth::attempt($data, $request->get('remember')))
         {
             $user = Auth::user();
 
-            $user->token = JWTAuth::fromUser($user);
+            return response()->cookie('JWT-TOKEN', JWTAuth::fromUser($user), 18900);
+        }
 
-            return $user;
-        }
-        else
-        {
-            return response()->json(['message' => '用户名或密码错误'], 422);
-        }
+        return response('用户名或密码错误', 422);
     }
 
     public function logout()
@@ -185,26 +188,6 @@ class DoorController extends Controller
 
             return $pinyin;
         }
-    }
-
-    protected function getLoginForm($request)
-    {
-        if ($request->get('method') === 'phone')
-        {
-            $data = [
-                'phone' => $request['access'],
-                'password' => $request['secret']
-            ];
-        }
-        else
-        {
-            $data = [
-                'email' => $request['access'],
-                'password' => $request['secret']
-            ];
-        }
-
-        return $data;
     }
 
     private function isFromGithub($payload, $signature)
