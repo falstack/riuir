@@ -76,7 +76,7 @@
           font-family: 'iconfont' !important;
 
           &:before {
-            content: '\e607';
+            content: '\e761';
           }
         }
       }

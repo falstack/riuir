@@ -94,7 +94,7 @@
               line-height: 30px;
 
               &:before {
-                content: '\e660';
+                content: '\e761';
               }
             }
           }

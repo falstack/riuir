@@ -122,6 +122,7 @@
           top: 0;
           width: $input-height;
           height: $input-height;
+          color: $color-gray-deep;
         }
       }
 
@@ -173,6 +174,7 @@
           height: $input-height;
           padding: 0 10px;
           font-size: 12px;
+          color: $color-text-normal;
         }
       }
     }
@@ -287,10 +289,10 @@
                    @input="showSignUpCaptcha"
                    placeholder="密码（6-16个字符组成，区分大小写）"
                    v-else>
-            <button class="watch"
+            <button class="watch iconfont icon-eye"
                     :class="[ signUp.watch ? 'watch-on' : 'watch-off' ]"
                     @click="signUp.watch = !signUp.watch"
-            >看</button>
+            ></button>
           </div>
           <div>
             <input class="last-input"

@@ -191,11 +191,11 @@
   }
 
   .vue-pwa-video-btn-playing:before {
-    content: "\e640";
+    content: "\e614";
   }
 
   .vue-pwa-video-btn-paused:before {
-    content: "\e635";
+    content: "\e653";
   }
 
   .vue-pwa-video-btn-volume:before {
@@ -203,11 +203,11 @@
   }
 
   .vue-pwa-video-btn-silent:before {
-    content: "\e689";
+    content: "\e602";
   }
 
   .vue-pwa-video-btn-screen:before {
-    content: "\e60e";
+    content: "\e803";
   }
 
   .vue-pwa-video-btn-full:before {

@@ -38,7 +38,7 @@
       }
 
       &:before {
-        content: "\f0056";
+        content: "\e600";
       }
     }
 
@@ -51,7 +51,7 @@
       }
 
       &:before {
-        content: "\e503"
+        content: "\e68b"
       }
     }
 
@@ -64,7 +64,7 @@
       }
 
       &:before {
-        content: "\e63d"
+        content: "\e60e"
       }
     }
 
@@ -77,7 +77,7 @@
       }
 
       &:before {
-        content: "\e673"
+        content: "\e601"
       }
     }
 
@@ -90,7 +90,7 @@
       }
 
       &:before {
-        content: "\e507"
+        content: "\e6f8"
       }
     }
 
@@ -107,7 +107,7 @@
       }
 
       &:before {
-        content: "\e659"
+        content: "\e673"
       }
 
       .wechat-qrcode {
