@@ -106,7 +106,8 @@ class DoorController extends Controller
         $user = User::create($data);
         Auth::login($user);
 
-        return setcookie('JWT-TOKEN', JWTAuth::fromUser($user), 18900);
+        setcookie('JWT-TOKEN', JWTAuth::fromUser($user), time() + 1296000);
+        return null;
     }
 
     public function captcha()
@@ -132,7 +133,8 @@ class DoorController extends Controller
         {
             $user = Auth::user();
 
-            return setcookie('JWT-TOKEN', JWTAuth::fromUser($user), 18900);
+            setcookie('JWT-TOKEN', JWTAuth::fromUser($user), time() + 1296000);
+            return null;
         }
 
         return response('用户名或密码错误', 422);

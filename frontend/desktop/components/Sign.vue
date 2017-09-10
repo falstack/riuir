@@ -470,7 +470,7 @@
                 captcha.appendTo(this.$refs.signInCaptcha)
                 captcha.onSuccess(() => {
                   this.login().then(() => {
-                    window.location.reload()
+//                    window.location.reload()
                   }).catch((err) => {
                     this.$toast.show(err)
                     setTimeout(() => {
