@@ -144,7 +144,7 @@ class DoorController extends Controller
     {
         $token = Confirm::whereRaw('access = ? and created_at > ?', [$access, Carbon::now()->addDay(-1)])->first();
         if (!is_null($token)) {
-            return $token;
+            return $token->code;
         }
 
         $token = str_random(6);
