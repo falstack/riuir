@@ -9,9 +9,7 @@ export const mutations = {
 }
 
 export const actions = {
-  // async nuxtServerInit ({ commit }, { app }) {
-  //   const data = await app.$axios.$get('door/csrf', {
-  //     params: { token }
-  //   })
-  // }
+  async nuxtServerInit ({ commit }, { req }) {
+    console.log(req.headers); // eslint-disable-line
+  }
 }
