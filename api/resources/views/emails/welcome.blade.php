@@ -7,11 +7,7 @@
     <title>riuir - 天下漫友是一家</title>
 </head>
 <body style="font-family: NotoSansHans-Regular,'Microsoft YaHei',Arial,sans-serif;">
-<div style="width: 750px;
-        max-width: 85%;
-        margin: 0 auto;
-        background-color: #fff;
-        box-shadow: 0 2px 16px 0 rgba(118,133,140,0.22);text-align: center">
+<div style="text-align: center">
     <div style="padding: 50px 10%;
         text-align: left;
         font-size: 16px;
@@ -47,9 +43,9 @@
                                     min-width: 128px;
                                     color: #fff;
                                     background-color: #00bfef;
-                                    user-select: none;
                                     outline: none;
-                                    text-decoration: none;"
+                                    text-decoration: none;
+                                    letter-spacing:3px;"
         >{{ $token }}</span>
     </div>
     <div style="margin-top: 50px;color: #a6aeb3;padding-bottom: 100px">

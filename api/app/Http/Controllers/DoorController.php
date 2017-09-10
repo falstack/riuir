@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\RegisterRequest;
+use App\Mail\Test;
 use App\Mail\Welcome;
 use App\Models\Banner;
 use App\Models\Confirm;
@@ -73,7 +74,7 @@ class DoorController extends Controller
         $token = $this->makeConfirm($access);
 
         if ($method === 'email') {
-            Mail::to($access)->send(new Welcome($nickname, $token));
+            Mail::send(new Welcome($access, $nickname, $token));
         } else {
 
         }
@@ -141,6 +142,11 @@ class DoorController extends Controller
 
     protected function makeConfirm($access)
     {
+        $token = Confirm::whereRaw('access = ? and created_at > ?', [$access, Carbon::now()->addDay(-1)])->first();
+        if (!is_null($token)) {
+            return $token;
+        }
+
         $token = str_random(6);
         Confirm::create(['code' => $token, 'access' => $access]);
 

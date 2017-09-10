@@ -11,6 +11,7 @@ class Welcome extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $email;
     public $name;
     public $token;
     /**
@@ -18,8 +19,9 @@ class Welcome extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($name, $token)
+    public function __construct($email, $name, $token)
     {
+        $this->email = $email;
         $this->name = $name;
         $this->token = $token;
     }
@@ -31,7 +33,8 @@ class Welcome extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('emails.welcome')
+        return $this->to($this->email)
+            ->view('emails.welcome')
             ->subject('欢迎加入riuir')
             ->with([
                 'name' => $this->name,
