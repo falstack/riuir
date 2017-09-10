@@ -264,7 +264,7 @@
             <button class="checkAndSend"
                     @click="checkAndSend"
                     ref="checkAndSend"
-            >点击获取验证码</button>
+            >{{ getAuthCodeBtnText }}</button>
           </div>
           <div>
             <input v-if="signUp.watch"
@@ -340,8 +340,18 @@
           authCode: '',
           inviteCode: '',
           tempAccess: '',
-          verifyStep: 0
-        }
+          timeout: 0
+        },
+        /**
+         * signUpStep
+         * 0：未获取 captcha
+         * 1：已获取 captcha
+         * 2：captcha 已认证通过
+         * 3：access 是未被注册的
+         * 4：邮件或短信已发送，倒数中，不可重复发
+         * 5：可再次发送邮件或短信
+         */
+        signUpStep: 0
       }
     },
     watch: {
@@ -349,6 +359,27 @@
         val ? this.$backdrop.show({
           ele: this.$refs.wrap
         }) : this.$backdrop.hide()
+      },
+      signUpStep (val) {
+        if (val === 4) {
+          this.signUp.timeout = 60
+          const timer = setInterval(() => {
+            if (!--this.signUp.timeout) {
+              this.signUpStep = 5
+              clearInterval(timer)
+            }
+          }, 1000)
+        }
+      }
+    },
+    computed: {
+      getAuthCodeBtnText () {
+        if (this.signUpStep === 4) {
+          return `${this.signUp.timeout}秒后可重新获取`
+        } else if (this.signUpStep === 5) {
+          return '点击重新获取'
+        }
+        return '点击获取验证码'
       }
     },
     beforeMount () {
@@ -369,8 +400,8 @@
         this.showModal = true
         this.showSignUp = true
         this.showSignIn = false
-        if (this.signUp.verifyStep === 0) {
-          this.signUp.verifyStep = 1
+        if (this.signUpStep === 0) {
+          this.signUpStep = 1
           this.getCaptcha('bind').then((captcha) => {
             const eventId = this.$eventManager.add(this.$refs.checkAndSend, 'click', () => {
               this.$validator.validate('sign-up.nickname').then((result) => {
@@ -392,9 +423,10 @@
               })
             })
             captcha.onSuccess(() => {
-              this.signUp.verifyStep = 2
+              this.signUpStep = 2
               this.checkAccessCanUse().then((canUse) => {
                 if (canUse) {
+                  this.signUpStep = 3
                   this.getAuthCode()
                   this.$eventManager.del(eventId)
                 } else {
@@ -499,7 +531,9 @@
         this.$toast.show('暂未开放')
       },
       checkAndSend () {
-
+        if (this.signUpStep === 5) {
+          this.getAuthCode()
+        }
       },
       checkAccessCanUse () {
         return new Promise((resolve, reject) => {
@@ -518,8 +552,8 @@
           method: this.signUp.method,
           access: this.signUp.access,
           nickname: this.signUp.nickname
-        }).then((res) => {
-
+        }).then(() => {
+          this.signUpStep = 4
         })
       }
     }
