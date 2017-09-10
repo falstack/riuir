@@ -52,12 +52,10 @@ class DoorController extends Controller
         return $banners[array_rand($banners)];
     }
 
-    public function checkAccessUnique(Request $request)
+    public function checkAccessUnique($method, $access)
     {
-        $method = $request->get('method');
-
         return in_array($method, ['phone', 'email'])
-            ? User::where($method, $request->get('value'))->count()
+            ? User::where($method, $access)->count()
             : null;
     }
 
@@ -76,22 +74,40 @@ class DoorController extends Controller
         if ($method === 'email') {
             Mail::send(new Welcome($access, $nickname, $token));
         } else {
-
+            // TODO: send phone message
         }
     }
 
     public function register(RegisterRequest $request)
     {
-        $data = [
-            'email' => $request->get('email'),
-            'nickname' => $request->get('nickname'),
-            'password' => $request->get('password'),
-            'zone' => $this->createUserZone($request->get('nickname')),
-            'avatar' => 'avatar',
-            'banner' => 'B-banner'
+        $method = $request->get('method');
+        $access = $request->get('access');
+
+        if ($this->checkAccessUnique($method, $access)) {
+            return response('该手机或邮箱已绑定另外一个账号', 403);
+        }
+
+        if ($this->checkAuthCode($request->get('authCode'), $access)) {
+            return response('验证码无效或已失效', 403);
+        }
+
+        $nickname = $request->get('nickname');
+        $zone = $this->createUserZone($nickname);
+        $arr = [
+            'nickname' => $nickname,
+            'password' => $request->get('scret'),
+            'zone' => $zone,
         ];
 
-        User::create($data);
+        $data = $request->get('method') === 'phone'
+            ? array_merge($arr, ['phone' => $request->get('access')])
+            : array_merge($arr, ['email' => $request->get('access')]);
+
+        $user = User::create($data);
+        Auth::login($user);
+        $user->token = JWTAuth::fromUser($user);
+
+        return $user;
     }
 
     public function captcha()
@@ -129,21 +145,21 @@ class DoorController extends Controller
         return $this->getAuthUser();
     }
 
-    protected function findConfirm($token, $email)
+    protected function checkAuthCode($code, $access)
     {
-        $confirm = Confirm::whereRaw('code = ? and access = ? and created_at > ?', [$token, $email, Carbon::now()->addDay(-1)])->first();
-        if ($confirm) {
-            $confirm->delete();
-            return $confirm;
-        } else {
-            return null;
+        $confirm = Confirm::whereRaw('code = ? and access = ? and created_at > ?', [$code, $access, Carbon::now()->addDay(-1)])->first();
+        if (is_null($confirm)) {
+            return true;
         }
+
+        $confirm->delete();
+        return false;
     }
 
     protected function makeConfirm($access)
     {
         $token = Confirm::whereRaw('access = ? and created_at > ?', [$access, Carbon::now()->addDay(-1)])->first();
-        if (!is_null($token)) {
+        if ( ! is_null($token)) {
             return $token->code;
         }
 
@@ -173,7 +189,7 @@ class DoorController extends Controller
 
     protected function getLoginForm($request)
     {
-        if ($request['method'] == 'phone')
+        if ($request->get('method') === 'phone')
         {
             $data = [
                 'phone' => $request['access'],

@@ -236,12 +236,12 @@
             <input type="text"
                    name="nickname"
                    v-validate="{
-                     rules: 'required|nickname:2-12',
+                     rules: 'required|nickname:1-7',
                      scope: 'sign-up'
                    }"
                    v-model="signUp.nickname"
                    @input="showSignUpCaptcha"
-                   placeholder="昵称（2-12个字符组成，1个汉字占2个字符）">
+                   placeholder="昵称（2-14个字符组成，1个汉字占2个字符）">
           </div>
           <div>
             <input type="email"
@@ -495,8 +495,8 @@
                 captcha.onSuccess(() => {
                   this.register().then((res) => {
                     console.log(res); // eslint-disable-line
-                  }).catch((res) => {
-                    console.log(res); // eslint-disable-line
+                  }).catch((err) => {
+                    console.log(err); // eslint-disable-line
                     setTimeout(() => {
                       captcha.reset()
                     }, 500)
@@ -519,11 +519,13 @@
         })
       },
       register () {
-        this.$toast.show('暂不开放注册')
         return this.$axios.$post('door/register', {
           method: this.signUp.method,
           access: this.signUp.access,
-          secret: this.signUp.secret
+          secret: this.signUp.secret,
+          nickname: this.signUp.nickname,
+          authCode: this.signUp.authCode,
+          inviteCode: this.signUp.inviteCode
         })
       },
       showOAuth () {
@@ -539,12 +541,7 @@
       },
       checkAccessCanUse () {
         return new Promise((resolve, reject) => {
-          this.$axios.get('door/check', {
-            params: {
-              method: this.signUp.method,
-              value: this.signUp.access
-            }
-          }).then((res) => {
+          this.$axios.post(`door/check/${this.signUp.method}/${this.signUp.access}`).then((res) => {
             resolve(!res.data)
           }).catch(reject)
         })
@@ -556,6 +553,7 @@
           nickname: this.signUp.nickname
         }).then(() => {
           this.signUpStep = 4
+          this.$toast.show(`${this.signUp.method === 'email' ? '邮件' : '短信'}已发送，请查收`)
         })
       }
     }

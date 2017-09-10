@@ -8,7 +8,7 @@ exports.config = {
   withCredentials: true,
   timeout: 10000,
   errorHandler (err) {
-    console.log(err); // eslint-disable-line
+    return Promise.reject(err.response.data)
   },
   responseInterceptor (res) {
     const cookie = res.headers['set-cookie']

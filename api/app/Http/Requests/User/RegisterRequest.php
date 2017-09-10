@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterRequest extends FormRequest
 {
@@ -24,9 +25,14 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users,email',
-            'nickname' => 'required|min:1|max:12',
-            'password' => 'required|min:6|max:16'
+            'method' => [
+                'required',
+                Rule::in(['email', 'phone']),
+            ],
+            'access' => 'required',
+            'secret' => 'required|min:6|max:16',
+            'nickname' => 'required|min:1|max:14',
+            'authCode' => 'required|min:6|max:6'
         ];
     }
 }
