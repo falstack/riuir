@@ -1,5 +1,6 @@
 <style lang="scss">
   $header-height: 46px;
+  $search-height: 32px;
 
   #header {
     position: absolute;
@@ -26,10 +27,14 @@
         }
 
         .header-right {
+
           .search-box {
-            height: 32px;
-            border-radius: 16px;
+            height: $search-height;
+            border-radius: $search-height / 2;
             background-color: rgba(0, 0, 0, 0.2);
+            margin-top: ($header-height - $search-height) / 2;
+            margin-right: 30px;
+            float: left;
 
             &:hover {
               background-color: rgba(0, 0, 0, 0.4);
@@ -99,7 +104,7 @@
             }
           }
 
-          button {
+          .sign-btn {
             border-radius: 2px;
             width: 52px;
             height: 34px;
@@ -111,7 +116,6 @@
 
           .sign-in {
             border: 1px solid rgba(255,255,255,.8);
-            margin-left: 30px;
 
             &:hover {
               background: $color-white;
@@ -130,6 +134,52 @@
               background-color: $color-blue-normal;
             }
           }
+
+          .user-section {
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+            float: right;
+            margin-left: 6px;
+
+            .avatar {
+              margin-top: 3px;
+            }
+
+            &:hover {
+              .user-panel {
+                visibility: visible;
+                opacity: 1;
+              }
+            }
+
+            .user-panel {
+              cursor: default;
+              position: absolute;
+              left: -30px;
+              width: 100px;
+              height: 120px;
+              top: 100%;
+              background-color: #fff;
+              border-radius: 0 0 4px 4px;
+              visibility: hidden;
+              opacity: 0;
+              overflow: hidden;
+              box-shadow: rgba(0, 0, 0, 0.16) 0 2px 4px;
+              padding-bottom: 35px;
+
+              .logout {
+                height: 35px;
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background-color: $color-gray-normal;
+                font-size: 13px;
+              }
+            }
+          }
         }
       }
     }
@@ -143,19 +193,17 @@
 
       &.scroll-show,
       &.scroll-hide {
-        .header-left {
-          a {
-            padding: 5px 20px;
-            border-radius: 10px;
-            margin: 0 5px;
-            font-size: 15px;
-            transition: .4s background-color, .4s color;
+        .nav-link {
+          padding: 5px 20px;
+          border-radius: 10px;
+          margin: 0 5px;
+          font-size: 15px;
+          transition: .4s background-color, .4s color;
 
-            &:hover {
-              background-color: $color-white;
-              color: $color-blue-normal;
-              transition-duration: 0s;
-            }
+          &:hover {
+            background-color: $color-white;
+            color: $color-blue-normal;
+            transition-duration: 0s;
           }
         }
       }
@@ -164,10 +212,8 @@
         background-color: $color-white;
         box-shadow: rgba(0,0,0,0.1) 0 1px 2px;
 
-        .header-left {
-          a {
-            color: $color-link;
-          }
+        .nav-link {
+          color: $color-link;
         }
 
         .header-right {
@@ -210,10 +256,8 @@
       }
 
       &.scroll-hide {
-        .header-left {
-          a {
-            color: $color-white;
-          }
+        .nav-link {
+          color: $color-white;
         }
 
         .shim {
@@ -231,20 +275,15 @@
     &.blur {
       background-color: $color-white;
 
-      .header-left {
-        li {
-          margin: 0 5px;
-        }
+      .nav-link {
+        padding: 0 20px;
+        font-size: 15px;
+        height: 100%;
+        display: block;
+        float: left;
 
-        a {
-          padding: 0 20px;
-          font-size: 15px;
-          height: 100%;
-          display: block;
-
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.24);
-          }
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.24);
         }
       }
 
@@ -253,7 +292,7 @@
         .text {
           background-color: rgba(0, 0, 0, 0.2);
 
-          .header-left a {
+          .nav-link {
             color: $color-white;
           }
         }
@@ -264,7 +303,7 @@
         .text {
           background-color: rgba(255, 255, 255, 0.4);
 
-          .header-left a {
+          .nav-link {
             color: $color-link;
           }
         }
@@ -298,22 +337,26 @@
     <div class="text">
       <div class="container">
         <nav class="header-left">
-          <ul class="flexbox">
-            <li>
-              <nuxt-link to="/">主站</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link to="/bangumi/news">番剧</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link to="/bangumi/tags">分类</nuxt-link>
-            </li>
-          </ul>
+          <nuxt-link class="nav-link" to="/">主站</nuxt-link>
+          <nuxt-link class="nav-link" to="/bangumi/news">番剧</nuxt-link>
+          <nuxt-link class="nav-link" to="/bangumi/tags">分类</nuxt-link>
         </nav>
-        <nav class="header-right flexbox flex-row">
+        <nav class="header-right">
           <v-search :placeholder="'搜索'" :history="true"></v-search>
-          <button class="sign-in" @click="signIn">登录</button>
-          <button class="sign-up" @click="signUp">注册</button>
+          <template v-if="isLogin">
+            <a class="nav-link" href="javascript:;">消息</a>
+            <a class="nav-link" href="javascript:;">动态</a>
+            <div class="user-section">
+              <img class="avatar" :src="$resize(user.avatar, { width: 40, height: 40 })" :alt="user.nickname">
+              <div class="user-panel">
+                <button @click="signOut" class="logout href-fade-blue">退出</button>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <button class="sign-btn sign-in" @click="signIn">登录</button>
+            <button class="sign-btn sign-up" @click="signUp">注册</button>
+          </template>
         </nav>
       </div>
     </div>
@@ -356,6 +399,12 @@
           backgroundImage: `url(${this.img})`,
           height: `${this.height}px`
         } : {}
+      },
+      isLogin () {
+        return this.$store.state.login
+      },
+      user () {
+        return this.$store.state.user
       }
     },
     methods: {
@@ -364,6 +413,9 @@
       },
       signUp () {
         this.$channel.$emit('sign-up')
+      },
+      signOut () {
+        this.$store.dispatch('SIGN_OUT', this)
       }
     },
     beforeMount () {

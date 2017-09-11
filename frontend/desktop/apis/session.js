@@ -1,8 +1,7 @@
 import Http from '~/config/http'
-import { csrf } from '~/.env'
 
-export const csrfToken = () => {
-  return Http.get('door/csrf', {
+export const getUser = (token) => {
+  return Http.get('door/user', {
     params: { token: csrf }
   })
 }

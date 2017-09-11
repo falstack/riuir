@@ -16,6 +16,8 @@ Route::group(['prefix' => '/door'], function ()
 
     Route::post('/login', 'DoorController@login');
 
+    Route::get('/user', 'DoorController@refresh');
+
     Route::get('/logout', 'DoorController@logout');
 });
 

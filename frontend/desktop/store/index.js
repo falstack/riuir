@@ -1,15 +1,23 @@
 export const state = () => ({
-  user: null
+  user: null,
+  token: '',
+  login: false
 })
 
 export const mutations = {
-  user (state, data) {
+  SET_USER (state, data) {
     state.user = data
+  },
+  SET_TOKEN (state, data) {
+    state.token = data
+  },
+  TOGGLE_LOGIN (state, data) {
+    state.login = data
   }
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }, { req }) {
+  async nuxtServerInit ({ commit }, { req, app }) {
     const cookie = req.headers.cookie
     if (cookie) {
       let token = ''
@@ -19,7 +27,19 @@ export const actions = {
           token = temp[1]
         }
       })
-      console.log(token); // eslint-disable-line
+      app.$axios.setToken(token, 'Bearer')
+      const user = await app.$axios.$get('door/user')
+      if (user) {
+        commit('SET_USER', user)
+        commit('SET_TOKEN', token)
+        commit('TOGGLE_LOGIN', true)
+      }
     }
+  },
+  SIGN_OUT ({ commit }, vue) {
+    vue.$cookie.remove('JWT-TOKEN')
+    commit('TOGGLE_LOGIN', false)
+    commit('SET_TOKEN', '')
+    commit('SET_USER', null)
   }
 }
