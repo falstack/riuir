@@ -10,6 +10,16 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit ({ commit }, { req }) {
-    console.log(req.headers); // eslint-disable-line
+    const cookie = req.headers.cookie
+    if (cookie) {
+      let token = ''
+      cookie.split('; ').forEach(item => {
+        const temp = item.split('=')
+        if (temp[0] === 'JWT-TOKEN') {
+          token = temp[1]
+        }
+      })
+      console.log(token); // eslint-disable-line
+    }
   }
 }

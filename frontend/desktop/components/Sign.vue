@@ -469,8 +469,9 @@
               this.getCaptcha().then((captcha) => {
                 captcha.appendTo(this.$refs.signInCaptcha)
                 captcha.onSuccess(() => {
-                  this.login().then(() => {
-//                    window.location.reload()
+                  this.login().then((res) => {
+                    this.$cookie.set('JWT-TOKEN', res, { expires: this.signIn.remember ? 365 : null })
+                    window.location.reload()
                   }).catch((err) => {
                     this.$toast.show(err)
                     setTimeout(() => {
@@ -493,7 +494,8 @@
               this.getCaptcha().then((captcha) => {
                 captcha.appendTo(this.$refs.signUpCaptcha)
                 captcha.onSuccess(() => {
-                  this.register().then(() => {
+                  this.register().then((res) => {
+                    this.$cookie.set('JWT-TOKEN', res)
                     window.location.reload()
                   }).catch((err) => {
                     this.$toast.show(err)

@@ -4,6 +4,7 @@ import Backdrop from '~/plugins/backdrop'
 import Toast from '~/plugins/toast'
 import { host } from '~/.env'
 import format from '~/plugins/util/format'
+import Cookies from 'js-cookie'
 
 const Helpers = {}
 
@@ -32,6 +33,8 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$toast = new Toast()
 
   Vue.prototype.$format = format
+
+  Vue.prototype.$cookie = Cookies
 
   Vue.prototype.$resize = (url, options = {}) => {
     if (url === '') {

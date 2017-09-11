@@ -1,6 +1,7 @@
 const env = require('./.env')
 const http = require('./config/http')
 const loader = require('./config/loader')
+const webpack = require('webpack')
 
 module.exports = {
   cache: true,
@@ -51,7 +52,9 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: [],
+    vendor: [
+      'js-cookie'
+    ],
     extractCSS: true,
     /*
     ** Run ESLINT on save
