@@ -11,6 +11,12 @@
   }
 }
 
+@mixin avatar($size) {
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+}
+
 @mixin input-placeholder($color: #fff) {
   &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    $color;

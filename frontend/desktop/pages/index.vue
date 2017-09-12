@@ -93,6 +93,7 @@
          :src="`${another}?imageMogr2/auto-orient/strip/gravity/Center/crop/435x140`"
          :flag="imageGrayLevel"
          ref="another"
+         @load="computedGray"
          alt="another">
     <div class="index-panel abs flexbox flex-col">
       <div class="slogan bg" :class="{ 'invert' : imageGrayLevel > 165 }"></div>
@@ -145,11 +146,13 @@
             this.another = data.url
             this.toggle ? this.banner2 = data : this.banner1 = data
             setTimeout(() => {
-              this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 65)
               this.toggle = !this.toggle
             }, 7500)
           })
         }, 15000)
+      },
+      computedGray () {
+        this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 65)
       }
     },
     beforeDestroy () {

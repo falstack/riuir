@@ -3,11 +3,24 @@
     width: 100%;
     height: 170px;
     margin-bottom: 40px;
+
+    .another {
+      display: none;
+    }
   }
 </style>
 
 <template>
-  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${bg})` }"></div>
+  <div id="banner" class="bg" :style="{ 'backgroundImage': `url(${bg})` }">
+    <img class="another"
+         v-if="bg"
+         :src="bg"
+         :flag="imageGrayLevel"
+         crossOrigin="anonymous"
+         @load="computedGray"
+         ref="another"
+         alt="another">
+  </div>
 </template>
 
 <script>
@@ -26,12 +39,15 @@
         imageGrayLevel: 0
       }
     },
-    beforeMount () {
-      this.$channel.$emit('change-page-background', {
-        theme: 'blur',
-        img: this.bg,
-        hgt: 170
-      })
+    methods: {
+      computedGray () {
+        this.$channel.$emit('change-page-background', {
+          theme: 'blur',
+          img: this.bg,
+          hgt: 170,
+          gray: this.$imageGrayLevel(this.$refs.another)
+        })
+      }
     }
   }
 </script>

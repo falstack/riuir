@@ -3,8 +3,7 @@
 }
 
 .bg,
-.face,
-.avatar {
+.face {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -12,10 +11,6 @@
 
 .face {
   border-radius: 5px;
-}
-
-.avatar {
-  border-radius: 50%;
 }
 
 .oneline {

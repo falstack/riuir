@@ -1,6 +1,7 @@
 <style lang="scss">
   $header-height: 46px;
   $search-height: 32px;
+  $avatar-height: 36px;
 
   #header {
     position: absolute;
@@ -143,7 +144,8 @@
             margin-left: 6px;
 
             .avatar {
-              margin-top: 3px;
+              margin-top: ($header-height - $avatar-height) / 2;
+              @include avatar($avatar-height);
             }
 
             &:hover {
@@ -276,7 +278,7 @@
       background-color: $color-white;
 
       .nav-link {
-        padding: 0 20px;
+        padding: 0 25px;
         font-size: 15px;
         height: 100%;
         display: block;
@@ -325,10 +327,6 @@
         }
       }
     }
-
-    .another {
-      display: none;
-    }
   }
 </style>
 
@@ -347,7 +345,7 @@
             <a class="nav-link" href="javascript:;">消息</a>
             <a class="nav-link" href="javascript:;">动态</a>
             <div class="user-section">
-              <img class="avatar" :src="$resize(user.avatar, { width: 40, height: 40 })" :alt="user.nickname">
+              <img class="avatar" :src="$resize(user.avatar, { width: 72, height: 72 })" :alt="user.nickname">
               <div class="user-panel">
                 <button @click="signOut" class="logout href-fade-blue">退出</button>
               </div>
@@ -363,13 +361,6 @@
     <div class="wrap abs">
       <div class="shim" :style="computedBg"></div>
     </div>
-    <img class="another"
-         v-if="img"
-         crossOrigin="anonymous"
-         ref="another"
-         :src="img"
-         :flag="imageGrayLevel"
-         alt="another">
     <v-sign></v-sign>
   </header>
 </template>
@@ -419,15 +410,12 @@
       }
     },
     beforeMount () {
-      this.$channel.$on('change-page-background', ({ img, hgt, theme }) => {
+      this.$channel.$on('change-page-background', ({ img, hgt, theme, gray }) => {
         this.img = img
         this.theme = theme
         this.height = hgt
-
-        if (img) {
-          setTimeout(() => {
-            this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another)
-          }, 0)
+        if (!this.imageGrayLevel) {
+          this.imageGrayLevel = gray
         }
       })
     },
