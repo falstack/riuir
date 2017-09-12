@@ -116,18 +116,21 @@
     async asyncData ({ app }) {
       const data = await app.$axios.$get('cartoon/banner')
       return {
-        banner1: data,
-        another: data.url
+        banners: data,
+        banner1: data[0],
+        another: data[0].url
       }
     },
     data () {
       return {
+        banners: [],
         banner1: null,
         banner2: null,
         timer: null,
         toggle: true,
         another: '',
-        imageGrayLevel: 0
+        imageGrayLevel: 0,
+        index: 0
       }
     },
     beforeMount () {
@@ -142,13 +145,13 @@
     methods: {
       loopBanner () {
         this.timer = setInterval(() => {
-          this.$axios.$get('cartoon/banner').then((data) => {
-            this.another = data.url
-            this.toggle ? this.banner2 = data : this.banner1 = data
-            setTimeout(() => {
-              this.toggle = !this.toggle
-            }, 7500)
-          })
+          this.index = 1 + this.index === this.banners.length ? 0 : this.index + 1
+          const data = this.banners[this.index]
+          this.another = data.url
+          this.toggle ? this.banner2 = data : this.banner1 = data
+          setTimeout(() => {
+            this.toggle = !this.toggle
+          }, 7500)
         }, 15000)
       },
       computedGray () {

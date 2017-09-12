@@ -45,11 +45,9 @@ class DoorController extends Controller
 
     public function banner()
     {
-        $banners = Cache::remember('index_banner', config('cache.ttl'), function () {
+        return Cache::remember('index_banner', config('cache.ttl'), function () {
             return Banner::select('id', 'url', 'user_id', 'bangumi_id')->get()->toArray();
         });
-
-        return $banners[array_rand($banners)];
     }
 
     public function checkAccessUnique($method, $access)
