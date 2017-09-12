@@ -118,7 +118,15 @@
       vSearch
     },
     async asyncData ({ app }) {
-      const data = await app.$axios.$get('cartoon/banner')
+      const shuffle = (array) => {
+        for (let i = array.length; i; i--) {
+          let j = Math.floor(Math.random() * i);
+          [array[i - 1], array[j]] = [array[j], array[i - 1]]
+        }
+        return array
+      }
+      let data = await app.$axios.$get('cartoon/banner')
+      data = shuffle(data)
       return {
         banners: data,
         banner1: data[0],
