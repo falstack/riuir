@@ -56,6 +56,14 @@ module.exports = {
       'js-cookie'
     ],
     extractCSS: true,
+    postcss: [
+      require('autoprefixer')({
+        browsers: [
+          'last 3 versions',
+          'ie >= 9'
+        ]
+      })
+    ],
     /*
     ** Run ESLINT on save
     */

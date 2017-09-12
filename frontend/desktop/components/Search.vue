@@ -1,10 +1,12 @@
 <style lang="scss">
   .search-box {
     position: relative;
+    line-height: 1;
 
     .search-ctx {
       border: 0;
       height: 100%;
+      vertical-align: middle;
 
       &:focus {
         &~.search-history {
@@ -12,6 +14,10 @@
           visibility: visible;
         }
       }
+    }
+
+    .search-btn {
+      vertical-align: middle;
     }
 
     .search-history {
@@ -77,7 +83,7 @@
 </style>
 
 <template>
-  <div class="search-box flexbox flex-row">
+  <div class="search-box">
     <input class="search-ctx"
            type="search"
            autocomplete="off"
