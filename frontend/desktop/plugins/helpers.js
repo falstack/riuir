@@ -163,24 +163,30 @@ Helpers.install = function (Vue, options) {
       }
 
       add (ele, evt, handler, capture = false) {
-        const id = this.id++
-        ele.addEventListener(evt, handler, capture)
-        this.listeners[id] = {
-          element: ele,
-          event: evt,
-          handler,
-          capture
-        }
-
-        return id
+        const events = typeof evt === 'string' ? [evt] : evt
+        const result = []
+        events.forEach(e => {
+          const id = this.id++
+          ele.addEventListener(e, handler, capture)
+          this.listeners[id] = {
+            element: ele,
+            event: e,
+            handler,
+            capture
+          }
+          result.push(id)
+        })
+        return result
       }
 
       del (id) {
-        if (this.listeners[id]) {
-          const h = this.listeners[id]
-          h.element.removeEventListener(h.event, h.handler, h.capture)
-          Reflect.deleteProperty(this.listeners, id)
-        }
+        id.forEach(item => {
+          if (this.listeners[item]) {
+            const h = this.listeners[item]
+            h.element.removeEventListener(h.event, h.handler, h.capture)
+            Reflect.deleteProperty(this.listeners, item)
+          }
+        })
       }
     }
     return new Manager()
