@@ -13,21 +13,19 @@
 
     .text {
       width: 100%;
-      height: 100%;
+      height: $header-height;
 
       .container {
-        height: 100%;
+        height: $header-height;
         line-height: $header-height;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-content: center;
 
         .header-left {
-          height: 100%;
+          height: $header-height;
+          float: left;
         }
 
         .header-right {
+          float: right;
 
           .search-box {
             height: $search-height;
@@ -137,11 +135,12 @@
           }
 
           .user-section {
-            height: 100%;
+            height: $header-height;
             cursor: pointer;
             position: relative;
             float: right;
             margin-left: 6px;
+            margin-right: 25px;
 
             .avatar {
               margin-top: ($header-height - $avatar-height) / 2;
@@ -280,7 +279,7 @@
       .nav-link {
         padding: 0 25px;
         font-size: 15px;
-        height: 100%;
+        height: $header-height;
         display: block;
         float: left;
 
