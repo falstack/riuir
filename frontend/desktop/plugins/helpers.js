@@ -121,15 +121,6 @@ Helpers.install = function (Vue, options) {
   }
 
   Vue.prototype.$scrollY = (targetY, timer, ease) => {
-    window.requestAnimFrame = (function () {
-      return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        function (callback) {
-          window.setTimeout(callback, 1000 / 60)
-        }
-    }())
-
     let currentTime = 0
     const scrollY = window.scrollY
     const scrollTargetY = targetY || 0
