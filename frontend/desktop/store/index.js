@@ -38,6 +38,7 @@ export const actions = {
   },
   SIGN_OUT ({ commit }, vue) {
     vue.$cookie.remove('JWT-TOKEN')
+    vue.$axios.$get('door/logout')
     commit('TOGGLE_LOGIN', false)
     commit('SET_TOKEN', '')
     commit('SET_USER', null)
