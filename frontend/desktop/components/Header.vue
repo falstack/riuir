@@ -405,7 +405,9 @@
         this.$channel.$emit('sign-up')
       },
       signOut () {
-        this.$store.dispatch('SIGN_OUT', this)
+        this.$cookie.remove('JWT-TOKEN')
+        this.$axios.$get('door/logout')
+        window.location.reload()
       }
     },
     beforeMount () {

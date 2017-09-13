@@ -5,14 +5,12 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_USER (state, data) {
-    state.user = data
+  SET_USER (state, user) {
+    state.user = user
+    state.login = true
   },
   SET_TOKEN (state, data) {
     state.token = data
-  },
-  TOGGLE_LOGIN (state, data) {
-    state.login = data
   }
 }
 
@@ -32,15 +30,7 @@ export const actions = {
       if (user) {
         commit('SET_USER', user)
         commit('SET_TOKEN', token)
-        commit('TOGGLE_LOGIN', true)
       }
     }
-  },
-  SIGN_OUT ({ commit }, vue) {
-    vue.$cookie.remove('JWT-TOKEN')
-    vue.$axios.$get('door/logout')
-    commit('TOGGLE_LOGIN', false)
-    commit('SET_TOKEN', '')
-    commit('SET_USER', null)
   }
 }

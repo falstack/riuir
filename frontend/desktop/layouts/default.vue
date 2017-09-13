@@ -29,6 +29,9 @@
   export default {
     components: {
       vHeader, vMusic, vFooter, vSideBar
+    },
+    beforeMount () {
+      this.$axios.setToken(this.$store.state.token, 'Bearer')
     }
   }
 </script>
