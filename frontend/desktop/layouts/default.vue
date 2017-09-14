@@ -32,6 +32,11 @@
     },
     beforeMount () {
       this.$axios.setToken(this.$store.state.token, 'Bearer')
+      this.$axios.$get('door/user').then(user => {
+        if (user) {
+          this.$store.commit('SET_USER', user)
+        }
+      })
     }
   }
 </script>

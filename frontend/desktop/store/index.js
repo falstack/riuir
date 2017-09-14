@@ -15,7 +15,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit ({ commit }, { req, app }) {
+  async nuxtServerInit ({ commit }, { req }) {
     const cookie = req.headers.cookie
     if (cookie) {
       let token = ''
@@ -25,12 +25,7 @@ export const actions = {
           token = temp[1]
         }
       })
-      app.$axios.setToken(token, 'Bearer')
-      const user = await app.$axios.$get('door/user')
-      if (user) {
-        commit('SET_USER', user)
-        commit('SET_TOKEN', token)
-      }
+      commit('SET_TOKEN', token)
     }
   }
 }
