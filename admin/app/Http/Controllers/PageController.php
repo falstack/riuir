@@ -7,6 +7,7 @@ use App\Models\Bangumi;
 use App\Models\Tag;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -61,6 +62,20 @@ class PageController extends Controller
     public function banner()
     {
         return view('pages.banner');
+    }
+
+    public function tools()
+    {
+        return view('pages.tools');
+    }
+
+    public function register(Request $request)
+    {
+        \DB::table('admins')->insert([
+            'name' => $request->get('name'),
+            'email' => $request->get('access'),
+            'password' => bcrypt($request->get('secret'))
+        ]);
     }
 
     public function tag()

@@ -12,10 +12,12 @@
             </li>
         @endforeach
     </ul>
+    @if(Auth::user()->id === 1)
     <ul id="tool">
         <li>
             <i></i>
-            <a href="">工具</a>
+            <a href="/tools">工具</a>
         </li>
     </ul>
+    @endif
 </div>

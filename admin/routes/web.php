@@ -48,4 +48,8 @@ Route::group(['middleware' => ['auth']], function ()
 
         Route::post('/edit', 'TagController@edit');
     });
+
+    Route::get('/tools', 'PageController@tools');
+
+    Route::post('/new/register', 'PageController@register');
 });
