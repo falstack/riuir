@@ -2,6 +2,8 @@
 
 Route::get('/', 'PageController@index');
 
+Route::get('/new', 'PageController@new');
+
 Route::get('login', 'LoginController@showLoginForm')->name('login');
 Route::post('login', 'LoginController@login');
 

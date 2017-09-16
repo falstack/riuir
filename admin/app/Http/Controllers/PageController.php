@@ -84,4 +84,9 @@ class PageController extends Controller
             'list' => Tag::all()
         ]);
     }
+
+    public function new()
+    {
+        return view('welcome');
+    }
 }

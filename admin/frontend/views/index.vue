@@ -1,5 +1,7 @@
-<style lang="scss" scoped="">
-
+<style lang="scss">
+  body {
+    background-image: url('~assets/img/girl.jpg');
+  }
 </style>
 
 <template>

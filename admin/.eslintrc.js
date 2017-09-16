@@ -11,6 +11,8 @@ module.exports = {
   ],
   globals: {
     moment: true,
-    Vue: true
+    Vue: true,
+    Vuex: true,
+    VueRouter: true
   }
 }

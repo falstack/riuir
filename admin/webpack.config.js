@@ -2,15 +2,21 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const resolve = file => path.resolve(__dirname, file)
+const fs = require('fs')
+
+const laravelMixFilePath = './public/mix-manifest.json'
+if (fs.existsSync(laravelMixFilePath)) {
+  fs.unlinkSync(laravelMixFilePath)
+}
 
 module.exports = {
   entry: {
     app: './frontend/entry.js'
   },
   output: {
-    path: resolve('./frontend/dist'),
-    publicPath: '/dist/',
-    filename: '[name].js'
+    path: resolve('./public/assets/img'),
+    publicPath: '/assets/img/',
+    filename: '../js/[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.scss'],
@@ -31,20 +37,22 @@ module.exports = {
             options: {
               extractCSS: true,
               loaders: {
-                scss: [
-                  'vue-style-loader',
-                  'css-loader',
-                  'sass-loader',
-                  {
-                    loader: 'sass-resources-loader',
-                    options: {
-                      resources: [
-                        resolve('./frontend/assets/css/variables.scss'),
-                        resolve('./frontend/assets/css/mixins.scss')
-                      ]
+                scss: ExtractTextPlugin.extract({
+                  fallback: 'vue-style-loader',
+                  use: [
+                    'css-loader?minimize',
+                    'sass-loader',
+                    {
+                      loader: 'sass-resources-loader',
+                      options: {
+                        resources: [
+                          resolve('./frontend/assets/css/variables.scss'),
+                          resolve('./frontend/assets/css/mixins.scss')
+                        ]
+                      }
                     }
-                  }
-                ]
+                  ]
+                })
               }
             }
           }
@@ -63,6 +71,22 @@ module.exports = {
         })
       },
       {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[ext]?[hash:8]'
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: '[name].[ext]?[hash:8]'
+        }
+      },
+      {
         test: /\.(js|vue)$/,
         exclude: /node_modules/,
         use: {
@@ -76,6 +100,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin('../css/style.css'),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module) {
@@ -85,8 +114,11 @@ module.exports = {
         )
       }
     }),
-    new ExtractTextPlugin({
-      filename: 'common.css'
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
     })
-  ]
+  ],
+  stats: {
+    children: false
+  }
 }
