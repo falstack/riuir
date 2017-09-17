@@ -87,6 +87,6 @@ class PageController extends Controller
 
     public function new()
     {
-        return view('welcome');
+        return Auth::check() ? view('welcome') : view('login');
     }
 }

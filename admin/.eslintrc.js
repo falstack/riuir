@@ -9,10 +9,5 @@ module.exports = {
   plugins: [
     'html'
   ],
-  globals: {
-    moment: true,
-    Vue: true,
-    Vuex: true,
-    VueRouter: true
-  }
+  globals: {}
 }
