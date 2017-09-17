@@ -18,7 +18,7 @@ class PageController extends Controller
 
     public function index()
     {
-        return Auth::check() ? view('index') : redirect('login');
+        return Auth::check() ? view('welcome') : view('login');
     }
 
     public function bangumi()
@@ -83,10 +83,5 @@ class PageController extends Controller
         return view('pages.tag', [
             'list' => Tag::all()
         ]);
-    }
-
-    public function new()
-    {
-        return Auth::check() ? view('welcome') : view('login');
     }
 }

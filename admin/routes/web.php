@@ -52,6 +52,4 @@ Route::group(['middleware' => ['auth']], function ()
     });
 
     Route::get('/tools', 'PageController@tools');
-
-    Route::post('/new/register', 'PageController@register');
 });

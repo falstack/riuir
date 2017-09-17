@@ -75,7 +75,7 @@ module.exports = {
         loader: 'url-loader',
         query: {
           limit: 10000,
-          name: '[name].[ext]?[hash:8]'
+          name: '../fonts/[name].[ext]?[hash:8]'
         }
       }
     ]
@@ -102,9 +102,5 @@ module.exports = {
   ],
   stats: {
     children: false
-  },
-  watchOptions: {
-    aggregateTimeout: 1000,
-    poll: 3000
   }
 }
