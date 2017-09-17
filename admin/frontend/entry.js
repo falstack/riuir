@@ -1,7 +1,6 @@
-import 'es6-promise/auto'
 import 'moment/locale/zh-cn'
 import Vue from 'vue'
-import App from './views/index.vue'
+import App from './app.vue'
 import router from './router/index'
 import store from './store/index'
 import Helpers from './utils/helpers'
