@@ -1,17 +1,17 @@
 webpackJsonp([1],{
 
-/***/ 27:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/es6-promise/auto.js
-var auto = __webpack_require__(28);
+var auto = __webpack_require__(35);
 var auto_default = /*#__PURE__*/__webpack_require__.n(auto);
 
 // EXTERNAL MODULE: ./node_modules/moment/locale/zh-cn.js
-var zh_cn = __webpack_require__(17);
+var zh_cn = __webpack_require__(19);
 var zh_cn_default = /*#__PURE__*/__webpack_require__.n(zh_cn);
 
 // EXTERNAL MODULE: ./node_modules/vue/dist/vue.runtime.esm.js
@@ -61,9 +61,9 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(35)
+  __webpack_require__(42)
 }
-var normalizeComponent = __webpack_require__(9)
+var normalizeComponent = __webpack_require__(10)
 /* script */
 
 /* template */
@@ -147,9 +147,9 @@ if (false) {
 var Header_disposed = false
 function Header_injectStyle (ssrContext) {
   if (Header_disposed) return
-  __webpack_require__(36)
+  __webpack_require__(43)
 }
-var Header_normalizeComponent = __webpack_require__(9)
+var Header_normalizeComponent = __webpack_require__(10)
 /* script */
 
 /* template */
@@ -239,9 +239,9 @@ if (false) {
 var views_disposed = false
 function views_injectStyle (ssrContext) {
   if (views_disposed) return
-  __webpack_require__(33)
+  __webpack_require__(40)
 }
-var views_normalizeComponent = __webpack_require__(9)
+var views_normalizeComponent = __webpack_require__(10)
 /* script */
 
 /* template */
@@ -282,7 +282,7 @@ if (false) {(function () {
 /* harmony default export */ var frontend_views = (views_Component.exports);
 
 // EXTERNAL MODULE: ./node_modules/vue-router/dist/vue-router.esm.js
-var vue_router_esm = __webpack_require__(37);
+var vue_router_esm = __webpack_require__(44);
 
 // CONCATENATED MODULE: ./frontend/router/index.js
 
@@ -295,7 +295,7 @@ vue_runtime_esm["default"].use(vue_router_esm["a" /* default */]);
   routes: []
 }));
 // EXTERNAL MODULE: ./node_modules/vuex/dist/vuex.esm.js
-var vuex_esm = __webpack_require__(38);
+var vuex_esm = __webpack_require__(45);
 
 // CONCATENATED MODULE: ./frontend/store/index.js
 
@@ -331,12 +331,50 @@ vue_runtime_esm["default"].use(vuex_esm["a" /* default */]);
     }
   }
 }));
+// EXTERNAL MODULE: ./node_modules/axios/index.js
+var axios = __webpack_require__(46);
+var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
+
+// CONCATENATED MODULE: ./frontend/utils/api.js
+
+
+var http = axios_default.a.create({
+  headers: {
+    'Accept': 'application/json',
+    'X-CSRF-TOKEN': document.getElementById('_csrf').getAttribute('content')
+  },
+  timeout: 10000
+});
+
+http.interceptors.request.use(function (config) {
+  return config;
+});
+
+http.interceptors.response.use(function (res) {
+  // Do something with response data
+  return res;
+}, function (err) {
+  // Do something with response error
+  return Promise.reject(err.response.data);
+});
+
+/* harmony default export */ var api = (http);
+// CONCATENATED MODULE: ./frontend/utils/helpers.js
+
+
+var Helpers = {};
+
+Helpers.install = function (Vue, options) {
+  Vue.prototype.$http = api;
+};
+
+/* harmony default export */ var helpers = (Helpers);
 // EXTERNAL MODULE: ./node_modules/element-ui/lib/element-ui.common.js
-var element_ui_common = __webpack_require__(39);
+var element_ui_common = __webpack_require__(65);
 var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_common);
 
 // EXTERNAL MODULE: ./node_modules/moment/moment.js
-var moment = __webpack_require__(8);
+var moment = __webpack_require__(9);
 var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
 // CONCATENATED MODULE: ./frontend/entry.js
@@ -352,10 +390,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-vue_runtime_esm["default"].use(__webpack_require__(80), {
+
+vue_runtime_esm["default"].use(__webpack_require__(106), {
   moment: moment_default.a
 });
 vue_runtime_esm["default"].use(element_ui_common_default.a);
+vue_runtime_esm["default"].use(helpers);
 
 var app = new vue_runtime_esm["default"](_extends({
   router: router,
@@ -364,25 +404,25 @@ var app = new vue_runtime_esm["default"](_extends({
 
 /***/ }),
 
-/***/ 33:
+/***/ 40:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 35:
+/***/ 42:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 36:
+/***/ 43:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[27]);
+},[114]);

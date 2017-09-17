@@ -1,7 +1,10 @@
 import axios from 'axios'
 
 const http = axios.create({
-  headers: { Accept: 'application/json' },
+  headers: {
+    'Accept': 'application/json',
+    'X-CSRF-TOKEN': document.getElementById('_csrf').getAttribute('content')
+  },
   timeout: 10000
 })
 
