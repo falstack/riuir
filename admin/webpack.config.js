@@ -63,24 +63,9 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader?minimize',
-          fallback: 'vue-style-loader'
-        })
-      },
-      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url-loader',
         options: {
-          limit: 10000,
-          name: '[name].[ext]?[hash:8]'
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader',
-        query: {
           limit: 10000,
           name: '[name].[ext]?[hash:8]'
         }
