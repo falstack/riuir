@@ -24,11 +24,47 @@ var vue_runtime_esm = __webpack_require__(2);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var Sidebar = ({
   name: 'v-sideBar',
   components: {},
-  props: {},
+  props: ['collapse'],
   watch: {},
   computed: {},
   data: function data() {
@@ -41,7 +77,85 @@ var vue_runtime_esm = __webpack_require__(2);
 });
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2ed21d08","hasScoped":true}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./frontend/components/layouts/Sidebar.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', [_vm._v("\n  sidebar\n")])
+  return _c('el-menu', {
+    staticClass: "sidebar",
+    attrs: {
+      "theme": "dark",
+      "collapse": _vm.collapse
+    }
+  }, [_c('el-submenu', {
+    attrs: {
+      "index": "1"
+    }
+  }, [_c('template', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v(" "), _c('span', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_vm._v("导航一")])]), _vm._v(" "), _c('el-menu-item-group', [_c('span', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_vm._v("分组一")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "1-1"
+    }
+  }, [_vm._v("选项1")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "1-2"
+    }
+  }, [_vm._v("选项2")])], 1), _vm._v(" "), _c('el-menu-item-group', {
+    attrs: {
+      "title": "分组2"
+    }
+  }, [_c('el-menu-item', {
+    attrs: {
+      "index": "1-3"
+    }
+  }, [_vm._v("选项3")])], 1), _vm._v(" "), _c('el-submenu', {
+    attrs: {
+      "index": "1-4"
+    }
+  }, [_c('span', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_vm._v("选项4")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "1-4-1"
+    }
+  }, [_vm._v("选项1")])], 1)], 2), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-menu"
+  }), _vm._v(" "), _c('span', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_vm._v("导航二")])]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "3"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-setting"
+  }), _vm._v(" "), _c('span', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_vm._v("导航三")])])], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -110,11 +224,33 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var Header = ({
   name: 'v-header',
   components: {},
-  props: {},
+  props: ['collapse'],
   watch: {},
   computed: {},
   data: function data() {
@@ -122,12 +258,68 @@ if (false) {(function () {
   },
   created: function created() {},
 
-  methods: {},
+  methods: {
+    toggleCollapse: function toggleCollapse() {
+      this.$emit('update:collapse', !this.collapse);
+    }
+  },
   mounted: function mounted() {}
 });
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0c1017c6","hasScoped":true}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./frontend/components/layouts/Header.vue
 var Header_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('header', [_vm._v("\n  header\n")])
+  return _c('el-menu', {
+    staticClass: "header",
+    class: {
+      'header-collapse': _vm.collapse
+    },
+    attrs: {
+      "mode": "horizontal"
+    }
+  }, [_c('el-menu-item', {
+    attrs: {
+      "index": "0"
+    }
+  }, [_c('button', {
+    staticClass: "collapse-btn",
+    class: [_vm.collapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'],
+    on: {
+      "click": _vm.toggleCollapse
+    }
+  })]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "1"
+    }
+  }, [_vm._v("处理中心")]), _vm._v(" "), _c('el-submenu', {
+    attrs: {
+      "index": "2"
+    }
+  }, [_c('template', {
+    attrs: {
+      "slot": "title"
+    },
+    slot: "title"
+  }, [_vm._v("我的工作台")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2-1"
+    }
+  }, [_vm._v("选项1")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2-2"
+    }
+  }, [_vm._v("选项2")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2-3"
+    }
+  }, [_vm._v("选项3")])], 2), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "3"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "https://www.ele.me",
+      "target": "_blank"
+    }
+  }, [_vm._v("订单管理")])])], 1)
 }
 var Header_staticRenderFns = []
 Header_render._withStripped = true
@@ -198,6 +390,22 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -211,7 +419,9 @@ if (false) {(function () {
   watch: {},
   computed: {},
   data: function data() {
-    return {};
+    return {
+      isCollapse: false
+    };
   },
 
   methods: {},
@@ -219,7 +429,29 @@ if (false) {(function () {
 });
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-ed47791c","hasScoped":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./frontend/app.vue
 var app_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('v-header'), _vm._v(" "), _c('v-side-bar'), _vm._v(" "), _c('h1', [_vm._v("this is index page")])], 1)
+  return _c('div', {
+    attrs: {
+      "id": "__orz"
+    }
+  }, [_c('v-header', {
+    attrs: {
+      "collapse": _vm.isCollapse
+    },
+    on: {
+      "update:collapse": function($event) {
+        _vm.isCollapse = $event
+      }
+    }
+  }), _vm._v(" "), _c('v-side-bar', {
+    attrs: {
+      "collapse": _vm.isCollapse
+    }
+  }), _vm._v(" "), _c('router-view', {
+    staticClass: "view",
+    class: {
+      'view-collapse': _vm.isCollapse
+    }
+  })], 1)
 }
 var app_staticRenderFns = []
 app_render._withStripped = true
@@ -287,7 +519,7 @@ var vue_router_esm = __webpack_require__(42);
 vue_runtime_esm["default"].use(vue_router_esm["a" /* default */]);
 
 /* harmony default export */ var router = (new vue_router_esm["a" /* default */]({
-  mode: 'history',
+  mode: 'hash',
   routes: []
 }));
 // EXTERNAL MODULE: ./node_modules/vuex/dist/vuex.esm.js

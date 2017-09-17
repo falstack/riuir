@@ -69,6 +69,14 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash:8]'
         }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: '[name].[ext]?[hash:8]'
+        }
       }
     ]
   },
@@ -94,5 +102,9 @@ module.exports = {
   ],
   stats: {
     children: false
+  },
+  watchOptions: {
+    aggregateTimeout: 1000,
+    poll: 3000
   }
 }

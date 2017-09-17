@@ -1,12 +1,28 @@
 <style lang="scss">
   @import "~assets/css/global.scss";
+
+  #__orz {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .view {
+      padding-left: $sidebar-width;
+      transition: $sidebar-transition;
+
+      &.view-collapse {
+        padding-left: $sidebar-collapse;
+      }
+    }
+  }
 </style>
 
 <template>
-  <div>
-    <v-header></v-header>
-    <v-side-bar></v-side-bar>
-    <h1>this is index page</h1>
+  <div id="__orz">
+    <v-header :collapse.sync="isCollapse"></v-header>
+    <v-side-bar :collapse="isCollapse"></v-side-bar>
+    <router-view class="view" :class="{ 'view-collapse' : isCollapse }"></router-view>
   </div>
 </template>
 
@@ -30,7 +46,7 @@
     },
     data () {
       return {
-
+        isCollapse: false
       }
     },
     methods: {

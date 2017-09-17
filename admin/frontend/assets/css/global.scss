@@ -1,3 +1,10 @@
+@import '~element-ui/lib/theme-default/index.css';
+@import "reboot";
+
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Source Han Sans CN Normal", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;

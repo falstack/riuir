@@ -17,4 +17,4 @@ export const app = new Vue({
   router,
   store,
   ...App
-}).$mount('#app');
+}).$mount('#app')
