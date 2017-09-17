@@ -40,7 +40,7 @@ module.exports = {
                 scss: ExtractTextPlugin.extract({
                   fallback: 'vue-style-loader',
                   use: [
-                    'css-loader?minimize',
+                    'css-loader',
                     'sass-loader',
                     {
                       loader: 'sass-resources-loader',
@@ -85,25 +85,12 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash:8]'
         }
-      },
-      {
-        test: /\.(js|vue)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader',
-          options: {
-            enforce: 'pre',
-            cacheDirectory: true
-          }
-        }
       }
     ]
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(zh-cn)$/),
     new ExtractTextPlugin('../css/style.css'),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -116,6 +103,9 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest'
+    }),
+    new webpack.ProvidePlugin({
+      moment: 'moment'
     })
   ],
   stats: {
