@@ -11,6 +11,10 @@
       width: 20px;
       height: 60px;
     }
+
+    .user-panel {
+      float: right;
+    }
   }
 </style>
 
@@ -19,14 +23,10 @@
     <el-menu-item index="0">
       <button class="collapse-btn" :class="[ collapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left' ]" @click="toggleCollapse"></button>
     </el-menu-item>
-    <el-menu-item index="1">处理中心</el-menu-item>
-    <el-submenu index="2">
-      <template slot="title">我的工作台</template>
-      <el-menu-item index="2-1">选项1</el-menu-item>
-      <el-menu-item index="2-2">选项2</el-menu-item>
-      <el-menu-item index="2-3">选项3</el-menu-item>
+    <el-submenu class="user-panel" index="9">
+      <template slot="title">我</template>
+      <el-menu-item @click="logout" index="9-1">退出</el-menu-item>
     </el-submenu>
-    <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
   </el-menu>
 </template>
 
@@ -54,6 +54,9 @@
     methods: {
       toggleCollapse () {
         this.$emit('update:collapse', !this.collapse)
+      },
+      logout () {
+        this.$http.post('/auth/logout').then(() => window.location.reload())
       }
     },
     mounted () {

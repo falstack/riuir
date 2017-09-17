@@ -3,7 +3,7 @@ import axios from 'axios'
 const http = axios.create({
   headers: {
     'Accept': 'application/json',
-    'X-CSRF-TOKEN': document.getElementById('_csrf').getAttribute('content')
+    'X-CSRF-TOKEN': document.getElementById('_csrf') && document.getElementById('_csrf').getAttribute('content')
   },
   timeout: 10000
 })

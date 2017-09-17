@@ -262,6 +262,11 @@ if (false) {(function () {
   methods: {
     toggleCollapse: function toggleCollapse() {
       this.$emit('update:collapse', !this.collapse);
+    },
+    logout: function logout() {
+      this.$http.post('/auth/logout').then(function () {
+        return window.location.reload();
+      });
     }
   },
   mounted: function mounted() {}
@@ -286,41 +291,24 @@ var Header_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_
     on: {
       "click": _vm.toggleCollapse
     }
-  })]), _vm._v(" "), _c('el-menu-item', {
+  })]), _vm._v(" "), _c('el-submenu', {
+    staticClass: "user-panel",
     attrs: {
-      "index": "1"
-    }
-  }, [_vm._v("处理中心")]), _vm._v(" "), _c('el-submenu', {
-    attrs: {
-      "index": "2"
+      "index": "9"
     }
   }, [_c('template', {
     attrs: {
       "slot": "title"
     },
     slot: "title"
-  }, [_vm._v("我的工作台")]), _vm._v(" "), _c('el-menu-item', {
+  }, [_vm._v("我")]), _vm._v(" "), _c('el-menu-item', {
     attrs: {
-      "index": "2-1"
+      "index": "9-1"
+    },
+    on: {
+      "click": _vm.logout
     }
-  }, [_vm._v("选项1")]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "2-2"
-    }
-  }, [_vm._v("选项2")]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "2-3"
-    }
-  }, [_vm._v("选项3")])], 2), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "3"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "https://www.ele.me",
-      "target": "_blank"
-    }
-  }, [_vm._v("订单管理")])])], 1)
+  }, [_vm._v("退出")])], 2)], 1)
 }
 var Header_staticRenderFns = []
 Header_render._withStripped = true
@@ -570,7 +558,7 @@ var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 var http = axios_default.a.create({
   headers: {
     'Accept': 'application/json',
-    'X-CSRF-TOKEN': document.getElementById('_csrf').getAttribute('content')
+    'X-CSRF-TOKEN': document.getElementById('_csrf') && document.getElementById('_csrf').getAttribute('content')
   },
   timeout: 10000
 });

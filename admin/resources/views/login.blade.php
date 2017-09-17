@@ -37,8 +37,8 @@ function version($path)
 
         @if ($errors->has('email'))
             <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
         @endif
     </div>
 
@@ -47,8 +47,8 @@ function version($path)
 
         @if ($errors->has('password'))
             <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
         @endif
     </div>
 
