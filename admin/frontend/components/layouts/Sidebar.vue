@@ -6,6 +6,7 @@
     height: 100%;
     background-color: $sidebar-color;
     width: $sidebar-collapse;
+    overflow: hidden;
   }
 
   .sidebar:not(.el-menu--collapse) {
