@@ -16,31 +16,52 @@
 
 <template>
   <el-menu class="sidebar" theme="dark" :collapse="collapse">
-    <el-submenu index="1">
-      <template slot="title">
-        <i class="el-icon-message"></i>
-        <span slot="title">导航一</span>
-      </template>
-      <el-menu-item-group>
-        <span slot="title">分组一</span>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="分组2">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-      <el-submenu index="1-4">
-        <span slot="title">选项4</span>
-        <el-menu-item index="1-4-1">选项1</el-menu-item>
-      </el-submenu>
-    </el-submenu>
-    <el-menu-item index="2">
+
+    <el-menu-item index="0">
       <i class="el-icon-menu"></i>
-      <span slot="title">导航二</span>
+      <span slot="title">首页</span>
     </el-menu-item>
+
+    <el-menu-item index="1">
+      <i class="el-icon-picture"></i>
+      <span slot="title">头图</span>
+    </el-menu-item>
+
+    <el-submenu index="2">
+      <template slot="title">
+        <i class="el-icon-star-on"></i>
+        <span slot="title">番剧</span>
+      </template>
+      <el-menu-item-group title="番剧">
+        <router-link to="/bangumi/list">
+          <el-menu-item index="1-1">番剧列表</el-menu-item>
+        </router-link>
+      </el-menu-item-group>
+      <el-menu-item-group title="标签">
+        <router-link to="/bangumi/tag">
+          <el-menu-item index="1-2">标签列表</el-menu-item>
+        </router-link>
+      </el-menu-item-group>
+      <el-menu-item-group title="视频">
+        <router-link to="/bangumi/video">
+          <el-menu-item index="1-3">视频列表</el-menu-item>
+        </router-link>
+      </el-menu-item-group>
+    </el-submenu>
+
     <el-menu-item index="3">
+      <i class="el-icon-share"></i>
+      <span slot="title">用户</span>
+    </el-menu-item>
+
+    <el-menu-item index="4">
+      <i class="el-icon-date"></i>
+      <span slot="title">统计</span>
+    </el-menu-item>
+
+    <el-menu-item index="5">
       <i class="el-icon-setting"></i>
-      <span slot="title">导航三</span>
+      <span slot="title">设置</span>
     </el-menu-item>
   </el-menu>
 </template>

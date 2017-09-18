@@ -11,7 +11,12 @@ if (fs.existsSync(laravelMixFilePath)) {
 
 module.exports = {
   entry: {
-    app: './frontend/entry.js'
+    app: './frontend/entry.js',
+    vendor: [
+      'vue',
+      'vuex',
+      'vue-router',
+    ]
   },
   output: {
     path: resolve('./public/assets/img'),
@@ -21,7 +26,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.scss'],
     alias: {
-      'api': resolve('./frontend/api'),
+      'vue$': 'vue/dist/vue.common.js',
+      'view': resolve('./frontend/views'),
       'assets': resolve('./frontend/assets'),
       'component': resolve('./frontend/components')
     }

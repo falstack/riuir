@@ -16,5 +16,5 @@ Vue.use(Helpers)
 export const app = new Vue({
   router,
   store,
-  ...App
+  render: h => h(App)
 }).$mount('#app')

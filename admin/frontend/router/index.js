@@ -1,9 +1,27 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-export default new VueRouter({
+export default new Router({
   mode: 'hash',
-  routes: []
+  scrollBehavior: () => ({ y: 0 }),
+  routes: [
+    {
+      path: '/',
+      compoonent: () => import('view/index')
+    },
+    {
+      path: '/bangumi/list',
+      component: () => import('view/bangumi/list')
+    },
+    {
+      path: '/bangumi/tag',
+      component: () => import('view/bangumi/tag')
+    },
+    {
+      path: '/bangumi/video',
+      component: () => import('view/bangumi/video')
+    }
+  ]
 })
