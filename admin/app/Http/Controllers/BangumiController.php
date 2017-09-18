@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bangumi;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,5 +84,25 @@ class BangumiController extends Controller
         $bangumi = Bangumi::withTrashed()->find($request->get('id'));
 
         $request->get('isDeleted') ? $bangumi->restore() : $bangumi->delete();
+    }
+
+    public function list()
+    {
+        $auth = new \App\Http\Services\Qiniu\Auth();
+
+        $bangumis = Bangumi::withTrashed()->get();
+
+        foreach ($bangumis as $row)
+        {
+            $row['alias'] = $row['alias'] === 'null' ? '' : json_decode($row['alias'])->search;
+            $row['tags'] = $row->tags()->get();
+            $row['season'] = $row['season'] === 'null' ? '' : json_decode($row['season']);
+        }
+
+        return [
+            'bangumis' => $bangumis,
+            'tags' => Tag::where('model', 0)->select('id', 'name')->get(),
+            'uptoken' => $auth->uploadToken()
+        ];
     }
 }

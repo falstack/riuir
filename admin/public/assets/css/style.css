@@ -48,9 +48,6 @@ body *,
   width: 64px;
   overflow: hidden;
 }
-.sidebar .router-link-active *[data-v-2ed21d08] {
-    color: #20a0ff;
-}
 .sidebar[data-v-2ed21d08]:not(.el-menu--collapse) {
   width: 180px;
 }

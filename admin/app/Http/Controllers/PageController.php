@@ -18,7 +18,7 @@ class PageController extends Controller
 
     public function index()
     {
-        return Auth::check() ? view('welcome') : view('login');
+        return Auth::check() ? view('index') : view('login');
     }
 
     public function bangumi()

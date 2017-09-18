@@ -7,10 +7,6 @@
     background-color: $sidebar-color;
     width: $sidebar-collapse;
     overflow: hidden;
-
-    .router-link-active * {
-      color: #20a0ff;
-    }
   }
 
   .sidebar:not(.el-menu--collapse) {
@@ -19,14 +15,16 @@
 </style>
 
 <template>
-  <el-menu class="sidebar" theme="dark" :collapse="collapse">
+  <el-menu class="sidebar"
+           theme="dark"
+           :collapse="collapse"
+           :default-active="defaultActive"
+           :router="true">
 
-    <router-link to="/dashboard">
-      <el-menu-item index="1">
-        <i class="el-icon-menu"></i>
-        <span slot="title">首页</span>
-      </el-menu-item>
-    </router-link>
+    <el-menu-item index="/dashboard">
+      <i class="el-icon-menu"></i>
+      <span slot="title">首页</span>
+    </el-menu-item>
 
     <!--<el-menu-item index="2">-->
       <!--<i class="el-icon-picture"></i>-->
@@ -39,19 +37,13 @@
         <span slot="title">番剧</span>
       </template>
       <el-menu-item-group title="番剧">
-        <router-link to="/bangumi/list">
-          <el-menu-item index="1-1">番剧列表</el-menu-item>
-        </router-link>
+        <el-menu-item index="/bangumi/list">番剧列表</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group title="标签">
-        <router-link to="/bangumi/tag">
-          <el-menu-item index="1-2">标签列表</el-menu-item>
-        </router-link>
+        <el-menu-item index="/bangumi/tag">标签列表</el-menu-item>
       </el-menu-item-group>
       <el-menu-item-group title="视频">
-        <router-link to="/bangumi/video">
-          <el-menu-item index="1-3">视频列表</el-menu-item>
-        </router-link>
+        <el-menu-item index="/bangumi/video">视频列表</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
 
@@ -80,14 +72,18 @@
     },
     props: ['collapse'],
     watch: {
-
+      '$route' (val) {
+        if (!this.defaultActive) {
+          this.defaultActive = val.path
+        }
+      }
     },
     computed: {
 
     },
     data () {
       return {
-
+        defaultActive: ''
       }
     },
     created () {

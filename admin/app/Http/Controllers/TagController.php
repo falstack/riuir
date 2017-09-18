@@ -23,4 +23,9 @@ class TagController extends Controller
                 'model' => $request->get('model')
             ]);
     }
+
+    public function list()
+    {
+        return Tag::all();
+    }
 }

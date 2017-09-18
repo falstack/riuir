@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use App\Models\Bangumi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -45,5 +46,23 @@ class VideoController extends Controller
         $video = Video::withTrashed()->find($request->get('id'));
 
         $request->get('isDeleted') ? $video->restore() : $video->delete();
+    }
+
+    public function list()
+    {
+        $videos = Video::withTrashed()
+            ->join('bangumis', 'videos.bangumi_id', '=', 'bangumis.id')
+            ->select('videos.*', 'bangumis.name AS bname')
+            ->get();
+
+        foreach ($videos as $row)
+        {
+            $row['resource'] = $row['resource'] === 'null' ? '' : json_decode($row['resource']);
+        }
+
+        return [
+            'videos' => $videos,
+            'bangumis' => Bangumi::withTrashed()->select('id', 'name', 'deleted_at')->get()
+        ];
     }
 }
