@@ -7,6 +7,10 @@
     background-color: $sidebar-color;
     width: $sidebar-collapse;
     overflow: hidden;
+
+    .router-link-active * {
+      color: #20a0ff;
+    }
   }
 
   .sidebar:not(.el-menu--collapse) {
@@ -17,17 +21,19 @@
 <template>
   <el-menu class="sidebar" theme="dark" :collapse="collapse">
 
-    <el-menu-item index="0">
-      <i class="el-icon-menu"></i>
-      <span slot="title">首页</span>
-    </el-menu-item>
+    <router-link to="/dashboard">
+      <el-menu-item index="1">
+        <i class="el-icon-menu"></i>
+        <span slot="title">首页</span>
+      </el-menu-item>
+    </router-link>
 
-    <el-menu-item index="1">
-      <i class="el-icon-picture"></i>
-      <span slot="title">头图</span>
-    </el-menu-item>
+    <!--<el-menu-item index="2">-->
+      <!--<i class="el-icon-picture"></i>-->
+      <!--<span slot="title">头图</span>-->
+    <!--</el-menu-item>-->
 
-    <el-submenu index="2">
+    <el-submenu index="3">
       <template slot="title">
         <i class="el-icon-star-on"></i>
         <span slot="title">番剧</span>
@@ -49,20 +55,20 @@
       </el-menu-item-group>
     </el-submenu>
 
-    <el-menu-item index="3">
-      <i class="el-icon-share"></i>
-      <span slot="title">用户</span>
-    </el-menu-item>
+    <!--<el-menu-item index="4">-->
+      <!--<i class="el-icon-share"></i>-->
+      <!--<span slot="title">用户</span>-->
+    <!--</el-menu-item>-->
 
-    <el-menu-item index="4">
-      <i class="el-icon-date"></i>
-      <span slot="title">统计</span>
-    </el-menu-item>
+    <!--<el-menu-item index="5">-->
+      <!--<i class="el-icon-date"></i>-->
+      <!--<span slot="title">统计</span>-->
+    <!--</el-menu-item>-->
 
-    <el-menu-item index="5">
-      <i class="el-icon-setting"></i>
-      <span slot="title">设置</span>
-    </el-menu-item>
+    <!--<el-menu-item index="6">-->
+      <!--<i class="el-icon-setting"></i>-->
+      <!--<span slot="title">设置</span>-->
+    <!--</el-menu-item>-->
   </el-menu>
 </template>
 

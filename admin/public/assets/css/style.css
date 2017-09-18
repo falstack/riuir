@@ -48,6 +48,9 @@ body *,
   width: 64px;
   overflow: hidden;
 }
+.sidebar .router-link-active *[data-v-2ed21d08] {
+    color: #20a0ff;
+}
 .sidebar[data-v-2ed21d08]:not(.el-menu--collapse) {
   width: 180px;
 }
@@ -63,6 +66,15 @@ body *,
     width: 20px;
     height: 60px;
 }
+.header .breadcrumb[data-v-0c1017c6] {
+    color: #97a8be;
+    line-height: 60px;
+}
 .header .user-panel[data-v-0c1017c6] {
     float: right;
+}
+.header .user-panel .avatar[data-v-0c1017c6] {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
 }

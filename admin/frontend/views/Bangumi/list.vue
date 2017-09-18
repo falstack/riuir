@@ -29,7 +29,7 @@
       }
     },
     created () {
-      console.log('123');
+
     },
     methods: {
 

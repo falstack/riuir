@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h1>view index</h1>
+    <h1>dashboard page</h1>
   </div>
 </template>
 
