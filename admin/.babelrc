@@ -3,7 +3,6 @@
     ["env", { "modules": false }]
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    "transform-object-rest-spread"
+    "syntax-dynamic-import"
   ]
 }

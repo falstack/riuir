@@ -8,12 +8,12 @@
     overflow-y: auto;
 
     .view {
-      padding: 30px;
-      padding-left: $sidebar-width + 30;
+      padding: 20px;
+      padding-left: $sidebar-width + 20;
       transition: $sidebar-transition;
 
       &.view-collapse {
-        padding-left: $sidebar-collapse + 30;
+        padding-left: $sidebar-collapse + 20;
       }
     }
   }

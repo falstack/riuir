@@ -315,13 +315,13 @@ var content = __webpack_require__(114);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(108)("229cb088", content, false);
+var update = __webpack_require__(108)("027fbae3", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d7951d8\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./list.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d7951d8\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./list.vue");
+   module.hot.accept("!!../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d7951d8\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js!../../../node_modules/_sass-resources-loader@1.3.0@sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=styles&index=0!./list.vue", function() {
+     var newContent = require("!!../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d7951d8\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js!../../../node_modules/_sass-resources-loader@1.3.0@sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=styles&index=0!./list.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -1028,629 +1028,889 @@ exports.push([module.i, "", ""]);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/list.vue
+// EXTERNAL MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/list.vue
 var list = __webpack_require__(115);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6d7951d8","hasScoped":true}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/list.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "list"
-    }
-  }, [_c('el-table', {
-    directives: [{
-      name: "loading",
-      rawName: "v-loading",
-      value: (_vm.loading),
-      expression: "loading"
-    }],
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "data": _vm.bangumis,
-      "height": "660",
-      "highlight-current-row": "",
-      "stripe": ""
-    }
-  }, [_c('el-table-column', {
-    attrs: {
-      "type": "expand"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(props) {
-        return [_c('el-form', {
-          attrs: {
-            "label-position": "left",
-            "inline": ""
-          }
-        }, [_c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "别名"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.alias)
-          }
-        })])], 1), _vm._v(" "), _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "横幅"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.banner)
-          }
-        })]), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "头像"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.avatar)
-          }
-        })])], 1), _vm._v(" "), (props.row.tags.length) ? _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "标签"
-          }
-        }, _vm._l((props.row.tags), function(tag) {
-          return _c('el-tag', {
-            key: tag.id,
-            staticStyle: {
-              "margin-right": "10px"
-            },
-            attrs: {
-              "type": "gray"
-            },
-            domProps: {
-              "textContent": _vm._s(tag.name)
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-6d7951d8","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/list.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "list" } },
+    [
+      _c(
+        "el-table",
+        {
+          directives: [
+            {
+              name: "loading",
+              rawName: "v-loading",
+              value: _vm.loading,
+              expression: "loading"
             }
+          ],
+          staticStyle: { width: "100%" },
+          attrs: {
+            data: _vm.bangumis,
+            height: "660",
+            "highlight-current-row": "",
+            stripe: ""
+          }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { type: "expand" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "el-form",
+                      { attrs: { "label-position": "left", inline: "" } },
+                      [
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "别名" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.alias)
+                                }
+                              })
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "横幅" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.banner)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("el-form-item", { attrs: { label: "头像" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.avatar)
+                                }
+                              })
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        props.row.tags.length
+                          ? _c(
+                              "div",
+                              [
+                                _c(
+                                  "el-form-item",
+                                  { attrs: { label: "标签" } },
+                                  _vm._l(props.row.tags, function(tag) {
+                                    return _c("el-tag", {
+                                      key: tag.id,
+                                      staticStyle: { "margin-right": "10px" },
+                                      attrs: { type: "gray" },
+                                      domProps: {
+                                        textContent: _vm._s(tag.name)
+                                      }
+                                    })
+                                  })
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("el-form-item", { attrs: { label: "简介" } }, [
+                          _c("span", {
+                            domProps: { innerHTML: _vm._s(props.row.summary) }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "关注人数" } }, [
+                              _c("span", [
+                                _vm._v(
+                                  _vm._s(props.row.like ? props.row.like : 0)
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("el-form-item", { attrs: { label: "总评分数" } }, [
+                              _c("span", [
+                                _vm._v(
+                                  _vm._s(props.row.score ? props.row.score : 0)
+                                )
+                              ])
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "创建时间" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.created_at)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("el-form-item", { attrs: { label: "更新时间" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.updated_at)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            props.row.deleted_at
+                              ? _c(
+                                  "el-form-item",
+                                  { attrs: { label: "删除时间" } },
+                                  [
+                                    _c("span", {
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          props.row.deleted_at
+                                        )
+                                      }
+                                    })
+                                  ]
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "id", sortable: "", width: "100", label: "索引" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", { attrs: { prop: "name", label: "番名" } }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { width: "200", label: "操作" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.handleEditOpen(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v("编辑")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: {
+                          size: "small",
+                          type: scope.row.deleted_at ? "warning" : "danger"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.handleDelete(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(scope.row.deleted_at ? "恢复" : "删除"))]
+                    )
+                  ]
+                }
+              }
+            ])
           })
-        }))], 1) : _vm._e(), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "简介"
-          }
-        }, [_c('span', {
-          domProps: {
-            "innerHTML": _vm._s(props.row.summary)
-          }
-        })]), _vm._v(" "), _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "关注人数"
-          }
-        }, [_c('span', [_vm._v(_vm._s(props.row.like ? props.row.like : 0))])]), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "总评分数"
-          }
-        }, [_c('span', [_vm._v(_vm._s(props.row.score ? props.row.score : 0))])])], 1), _vm._v(" "), _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "创建时间"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.created_at)
-          }
-        })]), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "更新时间"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.updated_at)
-          }
-        })]), _vm._v(" "), (props.row.deleted_at) ? _c('el-form-item', {
-          attrs: {
-            "label": "删除时间"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.deleted_at)
-          }
-        })]) : _vm._e()], 1)], 1)]
-      }
-    }])
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "id",
-      "sortable": "",
-      "width": "100",
-      "label": "索引"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "name",
-      "label": "番名"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "width": "200",
-      "label": "操作"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(scope) {
-        return [_c('el-button', {
-          attrs: {
-            "size": "small"
-          },
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { visible: _vm.editDialogFormVisible },
           on: {
-            "click": function($event) {
-              _vm.handleEditOpen(scope.$index, scope.row)
+            "update:visible": function($event) {
+              _vm.editDialogFormVisible = $event
             }
           }
-        }, [_vm._v("编辑")]), _vm._v(" "), _c('el-button', {
-          attrs: {
-            "size": "small",
-            "type": scope.row.deleted_at ? 'warning' : 'danger'
-          },
+        },
+        [
+          _c("h3", { attrs: { slot: "title" }, slot: "title" }, [
+            _vm._v(_vm._s("番剧编辑：《" + _vm.dialogTitle + "》"))
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-form",
+            { attrs: { model: _vm.editForm } },
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "番名", "label-width": "60px" } },
+                        [
+                          _c("el-input", {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.editForm.name,
+                              callback: function($$v) {
+                                _vm.editForm.name = $$v
+                              },
+                              expression: "editForm.name"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 16 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "别名", "label-width": "60px" } },
+                        [
+                          _c("el-input", {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.editForm.alias,
+                              callback: function($$v) {
+                                _vm.editForm.alias = $$v
+                              },
+                              expression: "editForm.alias"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "连载", "label-width": "60px" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              staticStyle: { width: "100%" },
+                              attrs: { placeholder: "请选择" },
+                              model: {
+                                value: _vm.editForm.released_at,
+                                callback: function($$v) {
+                                  _vm.editForm.released_at = $$v
+                                },
+                                expression: "editForm.released_at"
+                              }
+                            },
+                            _vm._l(_vm.release_weekly, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: { label: item.name, value: item.id }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "视频", "label-width": "60px" } },
+                        [
+                          _c("el-input", {
+                            attrs: {
+                              placeholder: "最新视频id",
+                              "auto-complete": "off"
+                            },
+                            model: {
+                              value: _vm.editForm.released_video_id,
+                              callback: function($$v) {
+                                _vm.editForm.released_video_id = $$v
+                              },
+                              expression: "editForm.released_video_id"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "标签", "label-width": "60px" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      staticStyle: { width: "100%" },
+                      attrs: { multiple: "", placeholder: "请选择" },
+                      model: {
+                        value: _vm.editForm.tags,
+                        callback: function($$v) {
+                          _vm.editForm.tags = $$v
+                        },
+                        expression: "editForm.tags"
+                      }
+                    },
+                    _vm._l(_vm.tags, function(item) {
+                      return _c("el-option", {
+                        key: item.id,
+                        attrs: { label: item.name, value: item }
+                      })
+                    })
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { span: 21 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            { attrs: { label: "头像", "label-width": "60px" } },
+                            [
+                              _c("el-input", {
+                                attrs: { "auto-complete": "off" },
+                                model: {
+                                  value: _vm.editForm.avatar,
+                                  callback: function($$v) {
+                                    _vm.editForm.avatar = $$v
+                                  },
+                                  expression: "editForm.avatar"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { span: 2, offset: 1 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            [
+                              _c(
+                                "el-upload",
+                                {
+                                  attrs: {
+                                    action: "http://up.qiniu.com",
+                                    data: _vm.uploadHeaders,
+                                    "show-file-list": false,
+                                    "on-success": _vm.handleEditAvatarSuccess,
+                                    "before-upload": _vm.beforeUpload
+                                  }
+                                },
+                                [_c("i", { staticClass: "el-icon-plus" })]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { span: 21 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            { attrs: { label: "横幅", "label-width": "60px" } },
+                            [
+                              _c("el-input", {
+                                attrs: { "auto-complete": "off" },
+                                model: {
+                                  value: _vm.editForm.banner,
+                                  callback: function($$v) {
+                                    _vm.editForm.banner = $$v
+                                  },
+                                  expression: "editForm.banner"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { span: 2, offset: 1 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            [
+                              _c(
+                                "el-upload",
+                                {
+                                  attrs: {
+                                    action: "http://up.qiniu.com",
+                                    data: _vm.uploadHeaders,
+                                    "show-file-list": false,
+                                    "on-success": _vm.handleEditBannerSuccess,
+                                    "before-upload": _vm.beforeUpload
+                                  }
+                                },
+                                [_c("i", { staticClass: "el-icon-plus" })]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "季度", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: {
+                      type: "textarea",
+                      rows: 2,
+                      placeholder: "请输入番剧季度信息，JSON格式，包含 part，time，name 字段"
+                    },
+                    model: {
+                      value: _vm.editForm.season,
+                      callback: function($$v) {
+                        _vm.editForm.season = $$v
+                      },
+                      expression: "editForm.season"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "简介", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: {
+                      type: "textarea",
+                      rows: 4,
+                      placeholder: "请输入番剧简介"
+                    },
+                    model: {
+                      value: _vm.editForm.summary,
+                      callback: function($$v) {
+                        _vm.editForm.summary = $$v
+                      },
+                      expression: "editForm.summary"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editDialogFormVisible = false
+                    }
+                  }
+                },
+                [_vm._v("取 消")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: { click: _vm.handleEditDone }
+                },
+                [_vm._v("确 定")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { visible: _vm.createDialogFormVisible },
           on: {
-            "click": function($event) {
-              _vm.handleDelete(scope.$index, scope.row)
+            "update:visible": function($event) {
+              _vm.createDialogFormVisible = $event
             }
           }
-        }, [_vm._v(_vm._s(scope.row.deleted_at ? '恢复' : '删除'))])]
-      }
-    }])
-  })], 1), _vm._v(" "), _c('el-dialog', {
-    attrs: {
-      "visible": _vm.editDialogFormVisible
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.editDialogFormVisible = $event
-      }
-    }
-  }, [_c('h3', {
-    attrs: {
-      "slot": "title"
-    },
-    slot: "title"
-  }, [_vm._v(_vm._s(("番剧编辑：《" + _vm.dialogTitle + "》")))]), _vm._v(" "), _c('el-form', {
-    attrs: {
-      "model": _vm.editForm
-    }
-  }, [_c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "番名",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.name),
-      callback: function($$v) {
-        _vm.editForm.name = $$v
-      },
-      expression: "editForm.name"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 16
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "别名",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.alias),
-      callback: function($$v) {
-        _vm.editForm.alias = $$v
-      },
-      expression: "editForm.alias"
-    }
-  })], 1)], 1)], 1), _vm._v(" "), _c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "连载",
-      "label-width": '60px'
-    }
-  }, [_c('el-select', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "placeholder": "请选择"
-    },
-    model: {
-      value: (_vm.editForm.released_at),
-      callback: function($$v) {
-        _vm.editForm.released_at = $$v
-      },
-      expression: "editForm.released_at"
-    }
-  }, _vm._l((_vm.release_weekly), function(item) {
-    return _c('el-option', {
-      key: item.id,
-      attrs: {
-        "label": item.name,
-        "value": item.id
-      }
-    })
-  }))], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "视频",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "placeholder": "最新视频id",
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.released_video_id),
-      callback: function($$v) {
-        _vm.editForm.released_video_id = $$v
-      },
-      expression: "editForm.released_video_id"
-    }
-  })], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "标签",
-      "label-width": '60px'
-    }
-  }, [_c('el-select', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "multiple": "",
-      "placeholder": "请选择"
-    },
-    model: {
-      value: (_vm.editForm.tags),
-      callback: function($$v) {
-        _vm.editForm.tags = $$v
-      },
-      expression: "editForm.tags"
-    }
-  }, _vm._l((_vm.tags), function(item) {
-    return _c('el-option', {
-      key: item.id,
-      attrs: {
-        "label": item.name,
-        "value": item
-      }
-    })
-  }))], 1), _vm._v(" "), _c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 12
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 21
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "头像",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.avatar),
-      callback: function($$v) {
-        _vm.editForm.avatar = $$v
-      },
-      expression: "editForm.avatar"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 2,
-      "offset": 1
-    }
-  }, [_c('el-form-item', [_c('el-upload', {
-    attrs: {
-      "action": "http://up.qiniu.com",
-      "data": _vm.uploadHeaders,
-      "show-file-list": false,
-      "on-success": _vm.handleEditAvatarSuccess,
-      "before-upload": _vm.beforeUpload
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-plus"
-  })])], 1)], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 12
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 21
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "横幅",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.banner),
-      callback: function($$v) {
-        _vm.editForm.banner = $$v
-      },
-      expression: "editForm.banner"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 2,
-      "offset": 1
-    }
-  }, [_c('el-form-item', [_c('el-upload', {
-    attrs: {
-      "action": "http://up.qiniu.com",
-      "data": _vm.uploadHeaders,
-      "show-file-list": false,
-      "on-success": _vm.handleEditBannerSuccess,
-      "before-upload": _vm.beforeUpload
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-plus"
-  })])], 1)], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "季度",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "type": "textarea",
-      "rows": 2,
-      "placeholder": "请输入番剧季度信息，JSON格式，包含 part，time，name 字段"
-    },
-    model: {
-      value: (_vm.editForm.season),
-      callback: function($$v) {
-        _vm.editForm.season = $$v
-      },
-      expression: "editForm.season"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "简介",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "type": "textarea",
-      "rows": 4,
-      "placeholder": "请输入番剧简介"
-    },
-    model: {
-      value: (_vm.editForm.summary),
-      callback: function($$v) {
-        _vm.editForm.summary = $$v
-      },
-      expression: "editForm.summary"
-    }
-  })], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    attrs: {
-      "slot": "footer"
-    },
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.editDialogFormVisible = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.handleEditDone
-    }
-  }, [_vm._v("确 定")])], 1)], 1), _vm._v(" "), _c('el-dialog', {
-    attrs: {
-      "visible": _vm.createDialogFormVisible
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.createDialogFormVisible = $event
-      }
-    }
-  }, [_c('h3', {
-    attrs: {
-      "slot": "title"
-    },
-    slot: "title"
-  }, [_vm._v("创建番剧")]), _vm._v(" "), _c('el-form', {
-    attrs: {
-      "model": _vm.createForm
-    }
-  }, [_c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "番名",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.name),
-      callback: function($$v) {
-        _vm.createForm.name = $$v
-      },
-      expression: "createForm.name"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 16
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "别名",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.alias),
-      callback: function($$v) {
-        _vm.createForm.alias = $$v
-      },
-      expression: "createForm.alias"
-    }
-  })], 1)], 1)], 1), _vm._v(" "), _c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 12
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 21
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "头像",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.avatar),
-      callback: function($$v) {
-        _vm.createForm.avatar = $$v
-      },
-      expression: "createForm.avatar"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 2,
-      "offset": 1
-    }
-  }, [_c('el-form-item', [_c('el-upload', {
-    attrs: {
-      "action": "http://up.qiniu.com",
-      "data": _vm.uploadHeaders,
-      "show-file-list": false,
-      "on-success": _vm.handleCreateAvatarSuccess,
-      "before-upload": _vm.beforeUpload
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-plus"
-  })])], 1)], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 12
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 21
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "横幅",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.banner),
-      callback: function($$v) {
-        _vm.createForm.banner = $$v
-      },
-      expression: "createForm.banner"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 2,
-      "offset": 1
-    }
-  }, [_c('el-form-item', [_c('el-upload', {
-    attrs: {
-      "action": "http://up.qiniu.com",
-      "data": _vm.uploadHeaders,
-      "show-file-list": false,
-      "on-success": _vm.handleCreateBannerSuccess,
-      "before-upload": _vm.beforeUpload
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-plus"
-  })])], 1)], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "简介",
-      "label-width": '60px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "type": "textarea",
-      "rows": 5,
-      "placeholder": "请输入番剧简介"
-    },
-    model: {
-      value: (_vm.createForm.summary),
-      callback: function($$v) {
-        _vm.createForm.summary = $$v
-      },
-      expression: "createForm.summary"
-    }
-  })], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    attrs: {
-      "slot": "footer"
-    },
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.createDialogFormVisible = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.handleCreateDone
-    }
-  }, [_vm._v("确 定")])], 1)], 1), _vm._v(" "), _c('el-button', {
-    staticStyle: {
-      "margin-top": "20px",
-      "margin-right": "80px",
-      "float": "right"
-    },
-    attrs: {
-      "type": "primary",
-      "size": "large"
-    },
-    on: {
-      "click": function($event) {
-        _vm.createDialogFormVisible = true
-      }
-    }
-  }, [_vm._v("创建番剧")])], 1)
+        },
+        [
+          _c("h3", { attrs: { slot: "title" }, slot: "title" }, [
+            _vm._v("创建番剧")
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-form",
+            { attrs: { model: _vm.createForm } },
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "番名", "label-width": "60px" } },
+                        [
+                          _c("el-input", {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.createForm.name,
+                              callback: function($$v) {
+                                _vm.createForm.name = $$v
+                              },
+                              expression: "createForm.name"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 16 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "别名", "label-width": "60px" } },
+                        [
+                          _c("el-input", {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.createForm.alias,
+                              callback: function($$v) {
+                                _vm.createForm.alias = $$v
+                              },
+                              expression: "createForm.alias"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { span: 21 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            { attrs: { label: "头像", "label-width": "60px" } },
+                            [
+                              _c("el-input", {
+                                attrs: { "auto-complete": "off" },
+                                model: {
+                                  value: _vm.createForm.avatar,
+                                  callback: function($$v) {
+                                    _vm.createForm.avatar = $$v
+                                  },
+                                  expression: "createForm.avatar"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { span: 2, offset: 1 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            [
+                              _c(
+                                "el-upload",
+                                {
+                                  attrs: {
+                                    action: "http://up.qiniu.com",
+                                    data: _vm.uploadHeaders,
+                                    "show-file-list": false,
+                                    "on-success": _vm.handleCreateAvatarSuccess,
+                                    "before-upload": _vm.beforeUpload
+                                  }
+                                },
+                                [_c("i", { staticClass: "el-icon-plus" })]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { span: 21 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            { attrs: { label: "横幅", "label-width": "60px" } },
+                            [
+                              _c("el-input", {
+                                attrs: { "auto-complete": "off" },
+                                model: {
+                                  value: _vm.createForm.banner,
+                                  callback: function($$v) {
+                                    _vm.createForm.banner = $$v
+                                  },
+                                  expression: "createForm.banner"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { span: 2, offset: 1 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            [
+                              _c(
+                                "el-upload",
+                                {
+                                  attrs: {
+                                    action: "http://up.qiniu.com",
+                                    data: _vm.uploadHeaders,
+                                    "show-file-list": false,
+                                    "on-success": _vm.handleCreateBannerSuccess,
+                                    "before-upload": _vm.beforeUpload
+                                  }
+                                },
+                                [_c("i", { staticClass: "el-icon-plus" })]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "简介", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: {
+                      type: "textarea",
+                      rows: 5,
+                      placeholder: "请输入番剧简介"
+                    },
+                    model: {
+                      value: _vm.createForm.summary,
+                      callback: function($$v) {
+                        _vm.createForm.summary = $$v
+                      },
+                      expression: "createForm.summary"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.createDialogFormVisible = false
+                    }
+                  }
+                },
+                [_vm._v("取 消")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: { click: _vm.handleCreateDone }
+                },
+                [_vm._v("确 定")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-button",
+        {
+          staticStyle: {
+            "margin-top": "20px",
+            "margin-right": "80px",
+            float: "right"
+          },
+          attrs: { type: "primary", size: "large" },
+          on: {
+            click: function($event) {
+              _vm.createDialogFormVisible = true
+            }
+          }
+        },
+        [_vm._v("创建番剧")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1659,7 +1919,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6d7951d8", esExports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-6d7951d8", esExports)
   }
 }
 // CONCATENATED MODULE: ./frontend/views/bangumi/list.vue
@@ -1692,7 +1952,7 @@ if (Component.options.functional) {console.error("[vue-loader] list.vue: functio
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()

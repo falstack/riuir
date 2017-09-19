@@ -26,11 +26,6 @@
       <span slot="title">首页</span>
     </el-menu-item>
 
-    <!--<el-menu-item index="2">-->
-      <!--<i class="el-icon-picture"></i>-->
-      <!--<span slot="title">头图</span>-->
-    <!--</el-menu-item>-->
-
     <el-submenu index="3">
       <template slot="title">
         <i class="el-icon-star-on"></i>
@@ -47,20 +42,6 @@
       </el-menu-item-group>
     </el-submenu>
 
-    <!--<el-menu-item index="4">-->
-      <!--<i class="el-icon-share"></i>-->
-      <!--<span slot="title">用户</span>-->
-    <!--</el-menu-item>-->
-
-    <!--<el-menu-item index="5">-->
-      <!--<i class="el-icon-date"></i>-->
-      <!--<span slot="title">统计</span>-->
-    <!--</el-menu-item>-->
-
-    <!--<el-menu-item index="6">-->
-      <!--<i class="el-icon-setting"></i>-->
-      <!--<span slot="title">设置</span>-->
-    <!--</el-menu-item>-->
   </el-menu>
 </template>
 

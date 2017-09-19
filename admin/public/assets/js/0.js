@@ -315,13 +315,13 @@ var content = __webpack_require__(119);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(108)("2274cf68", content, false);
+var update = __webpack_require__(108)("172feaba", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b9e0b16\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./video.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b9e0b16\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./video.vue");
+   module.hot.accept("!!../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b9e0b16\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js!../../../node_modules/_sass-resources-loader@1.3.0@sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=styles&index=0!./video.vue", function() {
+     var newContent = require("!!../../../node_modules/_css-loader@0.28.7@css-loader/index.js!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0b9e0b16\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js!../../../node_modules/_sass-resources-loader@1.3.0@sass-resources-loader/lib/loader.js?{\"resources\":[\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/variables.scss\",\"/Users/yuistack/Documents/Sites/riuir/admin/frontend/assets/css/mixins.scss\"]}!../../../node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=styles&index=0!./video.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -941,710 +941,934 @@ var defaultResource = {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/video.vue
+// EXTERNAL MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/video.vue
 var video = __webpack_require__(120);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0b9e0b16","hasScoped":true}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/video.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "list"
-    }
-  }, [_c('el-table', {
-    directives: [{
-      name: "loading",
-      rawName: "v-loading",
-      value: (_vm.loading),
-      expression: "loading"
-    }],
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "data": _vm.videos,
-      "height": "660",
-      "highlight-current-row": "",
-      "stripe": ""
-    }
-  }, [_c('el-table-column', {
-    attrs: {
-      "type": "expand"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(props) {
-        return [_c('el-form', {
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-0b9e0b16","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/video.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "list" } },
+    [
+      _c(
+        "el-table",
+        {
+          directives: [
+            {
+              name: "loading",
+              rawName: "v-loading",
+              value: _vm.loading,
+              expression: "loading"
+            }
+          ],
+          staticStyle: { width: "100%" },
           attrs: {
-            "label-position": "left",
-            "inline": ""
+            data: _vm.videos,
+            height: "660",
+            "highlight-current-row": "",
+            stripe: ""
           }
-        }, [_c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "视频 ID"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.id)
-          }
-        })]), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "番剧 ID"
-          }
-        }, [_c('span', {
-          domProps: {
-            "innerHTML": _vm._s(props.row.bangumi_id)
-          }
-        })])], 1), _vm._v(" "), _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "海报"
-          }
-        }, [_c('span', {
-          staticStyle: {
-            "cursor": "pointer"
-          },
-          domProps: {
-            "textContent": _vm._s(props.row.poster)
-          },
+        },
+        [
+          _c("el-table-column", {
+            attrs: { type: "expand" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "el-form",
+                      { attrs: { "label-position": "left", inline: "" } },
+                      [
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "视频 ID" } }, [
+                              _c("span", {
+                                domProps: { textContent: _vm._s(props.row.id) }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("el-form-item", { attrs: { label: "番剧 ID" } }, [
+                              _c("span", {
+                                domProps: {
+                                  innerHTML: _vm._s(props.row.bangumi_id)
+                                }
+                              })
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "海报" } }, [
+                              _c("span", {
+                                staticStyle: { cursor: "pointer" },
+                                domProps: {
+                                  textContent: _vm._s(props.row.poster)
+                                },
+                                on: {
+                                  click: function($event) {
+                                    _vm.preview(props.row.poster)
+                                  }
+                                }
+                              })
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "播放量" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.count_played)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("el-form-item", { attrs: { label: "评论数" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.count_comment)
+                                }
+                              })
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("el-form-item", { attrs: { label: "创建时间" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.created_at)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("el-form-item", { attrs: { label: "更新时间" } }, [
+                              _c("span", {
+                                domProps: {
+                                  textContent: _vm._s(props.row.updated_at)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            props.row.deleted_at
+                              ? _c(
+                                  "el-form-item",
+                                  { attrs: { label: "删除时间" } },
+                                  [
+                                    _c("span", {
+                                      domProps: {
+                                        textContent: _vm._s(
+                                          props.row.deleted_at
+                                        )
+                                      }
+                                    })
+                                  ]
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]
+                }
+              }
+            ])
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "id", sortable: "", width: "100", label: "索引" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", { attrs: { prop: "bname", label: "番名" } }),
+          _vm._v(" "),
+          _c("el-table-column", { attrs: { prop: "name", label: "名称" } }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "part", width: "100", label: "集数" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              sortable: "",
+              width: "110",
+              prop: "count_played",
+              label: "播放量"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              sortable: "",
+              width: "110",
+              prop: "count_comment",
+              label: "评论数"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { width: "200", label: "操作" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.handleEditOpen(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v("编辑")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: {
+                          size: "small",
+                          type: scope.row.deleted_at ? "warning" : "danger"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.handleDelete(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(scope.row.deleted_at ? "恢复" : "删除"))]
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { visible: _vm.editDialogFormVisible },
           on: {
-            "click": function($event) {
-              _vm.preview(props.row.poster)
+            "update:visible": function($event) {
+              _vm.editDialogFormVisible = $event
             }
           }
-        })])], 1), _vm._v(" "), _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "播放量"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.count_played)
-          }
-        })]), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "评论数"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.count_comment)
-          }
-        })])], 1), _vm._v(" "), _c('div', [_c('el-form-item', {
-          attrs: {
-            "label": "创建时间"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.created_at)
-          }
-        })]), _vm._v(" "), _c('el-form-item', {
-          attrs: {
-            "label": "更新时间"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.updated_at)
-          }
-        })]), _vm._v(" "), (props.row.deleted_at) ? _c('el-form-item', {
-          attrs: {
-            "label": "删除时间"
-          }
-        }, [_c('span', {
-          domProps: {
-            "textContent": _vm._s(props.row.deleted_at)
-          }
-        })]) : _vm._e()], 1)])]
-      }
-    }])
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "id",
-      "sortable": "",
-      "width": "100",
-      "label": "索引"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "bname",
-      "label": "番名"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "name",
-      "label": "名称"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "part",
-      "width": "100",
-      "label": "集数"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "sortable": "",
-      "width": "110",
-      "prop": "count_played",
-      "label": "播放量"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "sortable": "",
-      "width": "110",
-      "prop": "count_comment",
-      "label": "评论数"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "width": "200",
-      "label": "操作"
-    },
-    scopedSlots: _vm._u([{
-      key: "default",
-      fn: function(scope) {
-        return [_c('el-button', {
-          attrs: {
-            "size": "small"
-          },
+        },
+        [
+          _c("h3", { attrs: { slot: "title" }, slot: "title" }, [
+            _vm._v(_vm._s("视频编辑：《" + _vm.dialogTitle + "》"))
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-form",
+            { attrs: { model: _vm.editForm } },
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "番剧", "label-width": "85px" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { placeholder: "请选择" },
+                              model: {
+                                value: _vm.editForm.bname,
+                                callback: function($$v) {
+                                  _vm.editForm.bname = $$v
+                                },
+                                expression: "editForm.bname"
+                              }
+                            },
+                            _vm._l(_vm.bangumis, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: {
+                                  value: item.name,
+                                  disabled: item.deleted_at
+                                }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 6 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "集数", "label-width": "85px" } },
+                        [
+                          _c("el-input", {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.editForm.part,
+                              callback: function($$v) {
+                                _vm.editForm.part = $$v
+                              },
+                              expression: "editForm.part"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 10 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "名称", "label-width": "85px" } },
+                        [
+                          _c("el-input", {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.editForm.name,
+                              callback: function($$v) {
+                                _vm.editForm.name = $$v
+                              },
+                              expression: "editForm.name"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "海报", "label-width": "85px" } },
+                [
+                  _c("el-input", {
+                    attrs: { "auto-complete": "off" },
+                    model: {
+                      value: _vm.editForm.poster,
+                      callback: function($$v) {
+                        _vm.editForm.poster = $$v
+                      },
+                      expression: "editForm.poster"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.editForm.url
+                ? _c(
+                    "el-form-item",
+                    { attrs: { label: "外链资源", "label-width": "85px" } },
+                    [
+                      _c("el-input", {
+                        attrs: { "auto-complete": "off" },
+                        model: {
+                          value: _vm.editForm.url,
+                          callback: function($$v) {
+                            _vm.editForm.url = $$v
+                          },
+                          expression: "editForm.url"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "字幕", "label-width": "85px" } },
+                [
+                  _c("el-input", {
+                    attrs: { "auto-complete": "off" },
+                    model: {
+                      value: _vm.editForm.resource.lyric.zh,
+                      callback: function($$v) {
+                        _vm.editForm.resource.lyric.zh = $$v
+                      },
+                      expression: "editForm.resource.lyric.zh"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              [
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "720P 资源", "label-width": "85px" } },
+                  [
+                    _c(
+                      "el-col",
+                      { attrs: { span: 18 } },
+                      [
+                        _c("el-input", {
+                          attrs: { "auto-complete": "off" },
+                          model: {
+                            value: _vm.editForm.resource.video[720].src,
+                            callback: function($$v) {
+                              _vm.editForm.resource.video[720].src = $$v
+                            },
+                            expression: "editForm.resource.video[720].src"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-col",
+                      { attrs: { span: 4, offset: 1 } },
+                      [
+                        _vm._v("\n            字幕："),
+                        _c("el-switch", {
+                          staticStyle: { float: "right", "margin-top": "7px" },
+                          attrs: { "on-text": "", "off-text": "" },
+                          model: {
+                            value: _vm.editForm.resource.video[720].useLyc,
+                            callback: function($$v) {
+                              _vm.editForm.resource.video[720].useLyc = $$v
+                            },
+                            expression: "editForm.resource.video[720].useLyc"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              _vm._v(" "),
+              [
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "1080P 资源", "label-width": "85px" } },
+                  [
+                    _c(
+                      "el-col",
+                      { attrs: { span: 18 } },
+                      [
+                        _c("el-input", {
+                          attrs: { "auto-complete": "off" },
+                          model: {
+                            value: _vm.editForm.resource.video[1080].src,
+                            callback: function($$v) {
+                              _vm.editForm.resource.video[1080].src = $$v
+                            },
+                            expression: "editForm.resource.video[1080].src"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-col",
+                      { attrs: { span: 4, offset: 1 } },
+                      [
+                        _vm._v("\n            字幕："),
+                        _c("el-switch", {
+                          staticStyle: { float: "right", "margin-top": "7px" },
+                          attrs: { "on-text": "", "off-text": "" },
+                          model: {
+                            value: _vm.editForm.resource.video[1080].useLyc,
+                            callback: function($$v) {
+                              _vm.editForm.resource.video[1080].useLyc = $$v
+                            },
+                            expression: "editForm.resource.video[1080].useLyc"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.editDialogFormVisible = false
+                    }
+                  }
+                },
+                [_vm._v("取 消")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: { click: _vm.handleEditDone }
+                },
+                [_vm._v("确 定")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { visible: _vm.createDialogFormVisible },
           on: {
-            "click": function($event) {
-              _vm.handleEditOpen(scope.$index, scope.row)
+            "update:visible": function($event) {
+              _vm.createDialogFormVisible = $event
             }
           }
-        }, [_vm._v("编辑")]), _vm._v(" "), _c('el-button', {
-          attrs: {
-            "size": "small",
-            "type": scope.row.deleted_at ? 'warning' : 'danger'
-          },
-          on: {
-            "click": function($event) {
-              _vm.handleDelete(scope.$index, scope.row)
-            }
-          }
-        }, [_vm._v(_vm._s(scope.row.deleted_at ? '恢复' : '删除'))])]
-      }
-    }])
-  })], 1), _vm._v(" "), _c('el-dialog', {
-    attrs: {
-      "visible": _vm.editDialogFormVisible
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.editDialogFormVisible = $event
-      }
-    }
-  }, [_c('h3', {
-    attrs: {
-      "slot": "title"
-    },
-    slot: "title"
-  }, [_vm._v(_vm._s(("视频编辑：《" + _vm.dialogTitle + "》")))]), _vm._v(" "), _c('el-form', {
-    attrs: {
-      "model": _vm.editForm
-    }
-  }, [_c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "番剧",
-      "label-width": '85px'
-    }
-  }, [_c('el-select', {
-    attrs: {
-      "placeholder": "请选择"
-    },
-    model: {
-      value: (_vm.editForm.bname),
-      callback: function($$v) {
-        _vm.editForm.bname = $$v
-      },
-      expression: "editForm.bname"
-    }
-  }, _vm._l((_vm.bangumis), function(item) {
-    return _c('el-option', {
-      key: item.id,
-      attrs: {
-        "value": item.name,
-        "disabled": item.deleted_at
-      }
-    })
-  }))], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 6
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "集数",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.part),
-      callback: function($$v) {
-        _vm.editForm.part = $$v
-      },
-      expression: "editForm.part"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 10
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "名称",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.name),
-      callback: function($$v) {
-        _vm.editForm.name = $$v
-      },
-      expression: "editForm.name"
-    }
-  })], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "海报",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.poster),
-      callback: function($$v) {
-        _vm.editForm.poster = $$v
-      },
-      expression: "editForm.poster"
-    }
-  })], 1), _vm._v(" "), (_vm.editForm.url) ? _c('el-form-item', {
-    attrs: {
-      "label": "外链资源",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.url),
-      callback: function($$v) {
-        _vm.editForm.url = $$v
-      },
-      expression: "editForm.url"
-    }
-  })], 1) : _vm._e(), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "字幕",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.resource.lyric.zh),
-      callback: function($$v) {
-        _vm.editForm.resource.lyric.zh = $$v
-      },
-      expression: "editForm.resource.lyric.zh"
-    }
-  })], 1), _vm._v(" "), [_c('el-form-item', {
-    attrs: {
-      "label": "720P 资源",
-      "label-width": '85px'
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 18
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.resource.video[720].src),
-      callback: function($$v) {
-        _vm.editForm.resource.video[720].src = $$v
-      },
-      expression: "editForm.resource.video[720].src"
-    }
-  })], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 4,
-      "offset": 1
-    }
-  }, [_vm._v("\n            字幕："), _c('el-switch', {
-    staticStyle: {
-      "float": "right",
-      "margin-top": "7px"
-    },
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    model: {
-      value: (_vm.editForm.resource.video[720].useLyc),
-      callback: function($$v) {
-        _vm.editForm.resource.video[720].useLyc = $$v
-      },
-      expression: "editForm.resource.video[720].useLyc"
-    }
-  })], 1)], 1)], _vm._v(" "), [_c('el-form-item', {
-    attrs: {
-      "label": "1080P 资源",
-      "label-width": '85px'
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 18
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.editForm.resource.video[1080].src),
-      callback: function($$v) {
-        _vm.editForm.resource.video[1080].src = $$v
-      },
-      expression: "editForm.resource.video[1080].src"
-    }
-  })], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 4,
-      "offset": 1
-    }
-  }, [_vm._v("\n            字幕："), _c('el-switch', {
-    staticStyle: {
-      "float": "right",
-      "margin-top": "7px"
-    },
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    model: {
-      value: (_vm.editForm.resource.video[1080].useLyc),
-      callback: function($$v) {
-        _vm.editForm.resource.video[1080].useLyc = $$v
-      },
-      expression: "editForm.resource.video[1080].useLyc"
-    }
-  })], 1)], 1)]], 2), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    attrs: {
-      "slot": "footer"
-    },
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": function($event) {
-        _vm.editDialogFormVisible = false
-      }
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.handleEditDone
-    }
-  }, [_vm._v("确 定")])], 1)], 1), _vm._v(" "), _c('el-dialog', {
-    attrs: {
-      "visible": _vm.createDialogFormVisible
-    },
-    on: {
-      "update:visible": function($event) {
-        _vm.createDialogFormVisible = $event
-      }
-    }
-  }, [_c('h3', {
-    attrs: {
-      "slot": "title"
-    },
-    slot: "title"
-  }, [_vm._v("新建视频")]), _vm._v(" "), _c('el-form', {
-    attrs: {
-      "model": _vm.createForm
-    }
-  }, [_c('el-row', [_c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "番剧",
-      "label-width": '85px'
-    }
-  }, [_c('el-select', {
-    attrs: {
-      "placeholder": "请选择"
-    },
-    model: {
-      value: (_vm.createForm.bname),
-      callback: function($$v) {
-        _vm.createForm.bname = $$v
-      },
-      expression: "createForm.bname"
-    }
-  }, _vm._l((_vm.bangumis), function(item) {
-    return _c('el-option', {
-      key: item.id,
-      attrs: {
-        "value": item.name,
-        "disabled": item.deleted_at
-      }
-    })
-  }))], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "集数",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "placeholder": "1-n",
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.part),
-      callback: function($$v) {
-        _vm.createForm.part = $$v
-      },
-      expression: "createForm.part"
-    }
-  })], 1)], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('el-form-item', {
-    attrs: {
-      "label": "名称",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "placeholder": "${name}",
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.resourceName),
-      callback: function($$v) {
-        _vm.createForm.resourceName = $$v
-      },
-      expression: "createForm.resourceName"
-    }
-  })], 1)], 1)], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "画质",
-      "label-width": '85px'
-    }
-  }, [_c('div', [_c('el-checkbox', {
-    model: {
-      value: (_vm.createForm.P720.show),
-      callback: function($$v) {
-        _vm.createForm.P720.show = $$v
-      },
-      expression: "createForm.P720.show"
-    }
-  }, [_vm._v("720P")]), _vm._v(" "), _c('el-checkbox', {
-    model: {
-      value: (_vm.createForm.P1080.show),
-      callback: function($$v) {
-        _vm.createForm.P1080.show = $$v
-      },
-      expression: "createForm.P1080.show"
-    }
-  }, [_vm._v("1080P")])], 1)]), _vm._v(" "), (_vm.createForm.P720.show) ? _c('el-row', [_c('el-form-item', {
-    attrs: {
-      "label": "720P 资源",
-      "label-width": '85px'
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 18
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.P720.src),
-      callback: function($$v) {
-        _vm.createForm.P720.src = $$v
-      },
-      expression: "createForm.P720.src"
-    }
-  })], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 4,
-      "offset": 1
-    }
-  }, [_vm._v("\n            字幕："), _c('el-switch', {
-    staticStyle: {
-      "float": "right",
-      "margin-top": "7px"
-    },
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    model: {
-      value: (_vm.createForm.P720.useLyc),
-      callback: function($$v) {
-        _vm.createForm.P720.useLyc = $$v
-      },
-      expression: "createForm.P720.useLyc"
-    }
-  })], 1)], 1)], 1) : _vm._e(), _vm._v(" "), (_vm.createForm.P1080.show) ? _c('el-row', [_c('el-form-item', {
-    attrs: {
-      "label": "1080P 资源",
-      "label-width": '85px'
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 18
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.P1080.src),
-      callback: function($$v) {
-        _vm.createForm.P1080.src = $$v
-      },
-      expression: "createForm.P1080.src"
-    }
-  })], 1), _vm._v(" "), _c('el-col', {
-    attrs: {
-      "span": 4,
-      "offset": 1
-    }
-  }, [_vm._v("\n            字幕："), _c('el-switch', {
-    staticStyle: {
-      "float": "right",
-      "margin-top": "7px"
-    },
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    model: {
-      value: (_vm.createForm.P1080.useLyc),
-      callback: function($$v) {
-        _vm.createForm.P1080.useLyc = $$v
-      },
-      expression: "createForm.P1080.useLyc"
-    }
-  })], 1)], 1)], 1) : _vm._e(), _vm._v(" "), (!_vm.createForm.P720.show && !_vm.createForm.P1080.show) ? _c('el-form-item', {
-    attrs: {
-      "label": "外链资源",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.url),
-      callback: function($$v) {
-        _vm.createForm.url = $$v
-      },
-      expression: "createForm.url"
-    }
-  })], 1) : _vm._e(), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "字幕",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.lyric.zh),
-      callback: function($$v) {
-        _vm.createForm.lyric.zh = $$v
-      },
-      expression: "createForm.lyric.zh"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "海报",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.poster),
-      callback: function($$v) {
-        _vm.createForm.poster = $$v
-      },
-      expression: "createForm.poster"
-    }
-  })], 1), _vm._v(" "), _c('el-form-item', {
-    attrs: {
-      "label": "名称",
-      "label-width": '85px'
-    }
-  }, [_c('el-input', {
-    attrs: {
-      "type": "textarea",
-      "placeholder": "一行一个",
-      "auto-complete": "off"
-    },
-    model: {
-      value: (_vm.createForm.name),
-      callback: function($$v) {
-        _vm.createForm.name = $$v
-      },
-      expression: "createForm.name"
-    }
-  })], 1)], 1), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    attrs: {
-      "slot": "footer"
-    },
-    slot: "footer"
-  }, [_c('el-button', {
-    on: {
-      "click": _vm.handleCreateCancel
-    }
-  }, [_vm._v("取 消")]), _vm._v(" "), _c('el-button', {
-    attrs: {
-      "type": "primary"
-    },
-    on: {
-      "click": _vm.handleCreateDone
-    }
-  }, [_vm._v("确 定")])], 1)], 1), _vm._v(" "), _c('el-row', [_c('el-button', {
-    staticStyle: {
-      "margin-top": "20px",
-      "margin-right": "80px",
-      "float": "right"
-    },
-    attrs: {
-      "type": "primary",
-      "size": "large"
-    },
-    on: {
-      "click": function($event) {
-        _vm.createDialogFormVisible = true
-      }
-    }
-  }, [_vm._v("新建视频")])], 1)], 1)
+        },
+        [
+          _c("h3", { attrs: { slot: "title" }, slot: "title" }, [
+            _vm._v("新建视频")
+          ]),
+          _vm._v(" "),
+          _c(
+            "el-form",
+            { attrs: { model: _vm.createForm } },
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "番剧", "label-width": "85px" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { placeholder: "请选择" },
+                              model: {
+                                value: _vm.createForm.bname,
+                                callback: function($$v) {
+                                  _vm.createForm.bname = $$v
+                                },
+                                expression: "createForm.bname"
+                              }
+                            },
+                            _vm._l(_vm.bangumis, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: {
+                                  value: item.name,
+                                  disabled: item.deleted_at
+                                }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "集数", "label-width": "85px" } },
+                        [
+                          _c("el-input", {
+                            attrs: {
+                              placeholder: "1-n",
+                              "auto-complete": "off"
+                            },
+                            model: {
+                              value: _vm.createForm.part,
+                              callback: function($$v) {
+                                _vm.createForm.part = $$v
+                              },
+                              expression: "createForm.part"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "名称", "label-width": "85px" } },
+                        [
+                          _c("el-input", {
+                            attrs: {
+                              placeholder: "${name}",
+                              "auto-complete": "off"
+                            },
+                            model: {
+                              value: _vm.createForm.resourceName,
+                              callback: function($$v) {
+                                _vm.createForm.resourceName = $$v
+                              },
+                              expression: "createForm.resourceName"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "画质", "label-width": "85px" } },
+                [
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "el-checkbox",
+                        {
+                          model: {
+                            value: _vm.createForm.P720.show,
+                            callback: function($$v) {
+                              _vm.createForm.P720.show = $$v
+                            },
+                            expression: "createForm.P720.show"
+                          }
+                        },
+                        [_vm._v("720P")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-checkbox",
+                        {
+                          model: {
+                            value: _vm.createForm.P1080.show,
+                            callback: function($$v) {
+                              _vm.createForm.P1080.show = $$v
+                            },
+                            expression: "createForm.P1080.show"
+                          }
+                        },
+                        [_vm._v("1080P")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.createForm.P720.show
+                ? _c(
+                    "el-row",
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "720P 资源", "label-width": "85px" } },
+                        [
+                          _c(
+                            "el-col",
+                            { attrs: { span: 18 } },
+                            [
+                              _c("el-input", {
+                                attrs: { "auto-complete": "off" },
+                                model: {
+                                  value: _vm.createForm.P720.src,
+                                  callback: function($$v) {
+                                    _vm.createForm.P720.src = $$v
+                                  },
+                                  expression: "createForm.P720.src"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { span: 4, offset: 1 } },
+                            [
+                              _vm._v("\n            字幕："),
+                              _c("el-switch", {
+                                staticStyle: {
+                                  float: "right",
+                                  "margin-top": "7px"
+                                },
+                                attrs: { "on-text": "", "off-text": "" },
+                                model: {
+                                  value: _vm.createForm.P720.useLyc,
+                                  callback: function($$v) {
+                                    _vm.createForm.P720.useLyc = $$v
+                                  },
+                                  expression: "createForm.P720.useLyc"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.createForm.P1080.show
+                ? _c(
+                    "el-row",
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "1080P 资源", "label-width": "85px" } },
+                        [
+                          _c(
+                            "el-col",
+                            { attrs: { span: 18 } },
+                            [
+                              _c("el-input", {
+                                attrs: { "auto-complete": "off" },
+                                model: {
+                                  value: _vm.createForm.P1080.src,
+                                  callback: function($$v) {
+                                    _vm.createForm.P1080.src = $$v
+                                  },
+                                  expression: "createForm.P1080.src"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { span: 4, offset: 1 } },
+                            [
+                              _vm._v("\n            字幕："),
+                              _c("el-switch", {
+                                staticStyle: {
+                                  float: "right",
+                                  "margin-top": "7px"
+                                },
+                                attrs: { "on-text": "", "off-text": "" },
+                                model: {
+                                  value: _vm.createForm.P1080.useLyc,
+                                  callback: function($$v) {
+                                    _vm.createForm.P1080.useLyc = $$v
+                                  },
+                                  expression: "createForm.P1080.useLyc"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.createForm.P720.show && !_vm.createForm.P1080.show
+                ? _c(
+                    "el-form-item",
+                    { attrs: { label: "外链资源", "label-width": "85px" } },
+                    [
+                      _c("el-input", {
+                        attrs: { "auto-complete": "off" },
+                        model: {
+                          value: _vm.createForm.url,
+                          callback: function($$v) {
+                            _vm.createForm.url = $$v
+                          },
+                          expression: "createForm.url"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "字幕", "label-width": "85px" } },
+                [
+                  _c("el-input", {
+                    attrs: { "auto-complete": "off" },
+                    model: {
+                      value: _vm.createForm.lyric.zh,
+                      callback: function($$v) {
+                        _vm.createForm.lyric.zh = $$v
+                      },
+                      expression: "createForm.lyric.zh"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "海报", "label-width": "85px" } },
+                [
+                  _c("el-input", {
+                    attrs: { "auto-complete": "off" },
+                    model: {
+                      value: _vm.createForm.poster,
+                      callback: function($$v) {
+                        _vm.createForm.poster = $$v
+                      },
+                      expression: "createForm.poster"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "名称", "label-width": "85px" } },
+                [
+                  _c("el-input", {
+                    attrs: {
+                      type: "textarea",
+                      placeholder: "一行一个",
+                      "auto-complete": "off"
+                    },
+                    model: {
+                      value: _vm.createForm.name,
+                      callback: function($$v) {
+                        _vm.createForm.name = $$v
+                      },
+                      expression: "createForm.name"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c("el-button", { on: { click: _vm.handleCreateCancel } }, [
+                _vm._v("取 消")
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: { click: _vm.handleCreateDone }
+                },
+                [_vm._v("确 定")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        [
+          _c(
+            "el-button",
+            {
+              staticStyle: {
+                "margin-top": "20px",
+                "margin-right": "80px",
+                float: "right"
+              },
+              attrs: { type: "primary", size: "large" },
+              on: {
+                click: function($event) {
+                  _vm.createDialogFormVisible = true
+                }
+              }
+            },
+            [_vm._v("新建视频")]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1653,7 +1877,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0b9e0b16", esExports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-0b9e0b16", esExports)
   }
 }
 // CONCATENATED MODULE: ./frontend/views/bangumi/video.vue
@@ -1686,7 +1910,7 @@ if (Component.options.functional) {console.error("[vue-loader] video.vue: functi
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()

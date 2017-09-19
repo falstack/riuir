@@ -31,12 +31,12 @@ body *,
   overflow-y: auto;
 }
 #__orz .view {
-    padding: 30px;
-    padding-left: 210px;
+    padding: 20px;
+    padding-left: 200px;
     transition: padding-left 0.3s ease-in-out;
 }
 #__orz .view.view-collapse {
-      padding-left: 94px;
+      padding-left: 84px;
 }
 
 .sidebar[data-v-2ed21d08] {
