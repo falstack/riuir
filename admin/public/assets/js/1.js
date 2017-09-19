@@ -1015,8 +1015,7 @@ exports.push([module.i, "", ""]);
         console.log(err);
       });
     }
-  },
-  mounted: function mounted() {}
+  }
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(10)))
 

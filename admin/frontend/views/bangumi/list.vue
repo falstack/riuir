@@ -552,9 +552,6 @@
           console.log(err);
         });
       }
-    },
-    mounted () {
-
     }
   }
 </script>
