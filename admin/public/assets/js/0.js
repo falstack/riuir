@@ -586,6 +586,16 @@ exports.push([module.i, "", ""]);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var defaultResource = {
   "video": {
@@ -605,15 +615,22 @@ var defaultResource = {
 };
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'v-page-bangumi-video',
-  components: {},
-  props: {},
-  watch: {},
-  computed: {},
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
   data: function data() {
     return {
       loading: true,
-      videos: [],
+      list: [],
       bangumis: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 24,
+        curPage: 1
+      },
       editDialogFormVisible: false,
       createDialogFormVisible: false,
       dialogTitle: '',
@@ -659,10 +676,17 @@ var defaultResource = {
 
       this.$http.get('/bangumi/videos').then(function (res) {
         var data = res.data;
-        _this.videos = data.videos;
+        _this.list = data.videos;
         _this.bangumis = data.bangumis;
+        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
         _this.loading = false;
       });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
     },
     handleEditOpen: function handleEditOpen(index, row) {
       this.dialogTitle = row.name;
@@ -777,13 +801,13 @@ var defaultResource = {
             "src": ""
           };
         }
-        _this2.videos[_this2.editForm.index].name = _this2.editForm.name;
-        _this2.videos[_this2.editForm.index].bname = _this2.editForm.bname;
-        _this2.videos[_this2.editForm.index].bangumi_id = bangumi_id;
-        _this2.videos[_this2.editForm.index].url = _this2.editForm.url;
-        _this2.videos[_this2.editForm.index].part = _this2.editForm.part;
-        _this2.videos[_this2.editForm.index].poster = _this2.editForm.poster;
-        _this2.videos[_this2.editForm.index].resource = resource;
+        _this2.list[_this2.editForm.index].name = _this2.editForm.name;
+        _this2.list[_this2.editForm.index].bname = _this2.editForm.bname;
+        _this2.list[_this2.editForm.index].bangumi_id = bangumi_id;
+        _this2.list[_this2.editForm.index].url = _this2.editForm.url;
+        _this2.list[_this2.editForm.index].part = _this2.editForm.part;
+        _this2.list[_this2.editForm.index].poster = _this2.editForm.poster;
+        _this2.list[_this2.editForm.index].resource = resource;
         _this2.editDialogFormVisible = false;
         _this2.$message.success('操作成功');
       }, function (err) {
@@ -804,7 +828,7 @@ var defaultResource = {
           id: row.id,
           isDeleted: isDeleted
         }).then(function () {
-          _this3.videos[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+          _this3.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
           _this3.$message.success('操作成功');
         }, function (err) {
           _this3.$message.error('操作失败');
@@ -950,9 +974,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { attrs: { id: "list" } },
+    "section",
     [
+      _c(
+        "header",
+        [
+          _c(
+            "el-button",
+            {
+              attrs: { type: "primary", size: "large" },
+              on: {
+                click: function($event) {
+                  _vm.createDialogFormVisible = true
+                }
+              }
+            },
+            [_vm._v("新建视频")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "el-table",
         {
@@ -964,13 +1006,8 @@ var render = function() {
               expression: "loading"
             }
           ],
-          staticStyle: { width: "100%" },
-          attrs: {
-            data: _vm.videos,
-            height: "660",
-            "highlight-current-row": "",
-            stripe: ""
-          }
+          staticClass: "main-view",
+          attrs: { data: _vm.filter, "highlight-current-row": "" }
         },
         [
           _c("el-table-column", {
@@ -1844,25 +1881,22 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "el-row",
+        "footer",
         [
-          _c(
-            "el-button",
-            {
-              staticStyle: {
-                "margin-top": "20px",
-                "margin-right": "80px",
-                float: "right"
-              },
-              attrs: { type: "primary", size: "large" },
-              on: {
-                click: function($event) {
-                  _vm.createDialogFormVisible = true
-                }
-              }
+          _c("el-pagination", {
+            attrs: {
+              layout: "total, sizes, prev, pager, next, jumper",
+              "current-page": _vm.pagination.curPage,
+              "page-sizes": [24, 50, 100],
+              "page-size": _vm.pagination.pageSize,
+              pageCount: _vm.pagination.totalPage,
+              total: _vm.list.length
             },
-            [_vm._v("新建视频")]
-          )
+            on: {
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
+            }
+          })
         ],
         1
       )

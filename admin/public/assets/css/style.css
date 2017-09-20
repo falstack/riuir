@@ -31,12 +31,32 @@ body *,
   overflow-y: auto;
 }
 #__orz .view {
+    margin-top: -60px;
     padding: 20px;
+    padding-top: 80px;
     padding-left: 200px;
     transition: padding-left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 #__orz .view.view-collapse {
       padding-left: 84px;
+}
+#__orz .view header {
+      margin-bottom: 20px;
+}
+#__orz .view .main-view {
+      flex-grow: 1;
+}
+#__orz .view .el-table {
+      border: 0;
+}
+#__orz .view .el-table:before, #__orz .view .el-table:after {
+        background-color: transparent;
+}
+#__orz .view footer {
+      margin-top: 30px;
 }
 
 .sidebar[data-v-2ed21d08] {

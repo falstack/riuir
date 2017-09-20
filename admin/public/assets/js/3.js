@@ -428,16 +428,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var tag = ({
   name: 'v-page-bangumi-tag',
-  components: {},
-  props: {},
-  watch: {},
-  computed: {},
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
   data: function data() {
     return {
-      tags: [],
+      list: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 20,
+        curPage: 1
+      },
       models: [{
         id: 0,
         name: '番剧'
@@ -464,9 +483,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$http.get('/bangumi/tags').then(function (res) {
-        _this.tags = res.data;
+        _this.list = res.data;
+        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
         _this.loading = false;
       });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
     },
     modelFormat: function modelFormat(key) {
       var _iteratorNormalCompletion = true;
@@ -515,7 +541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         id: this.editForm.id,
         name: this.editForm.name
       }).then(function () {
-        _this2.tags[_this2.editForm.index].name = _this2.editForm.name;
+        _this2.list[_this2.editForm.index].name = _this2.editForm.name;
         _this2.editDialogFormVisible = false;
         _this2.$message.success('操作成功');
       }, function (err) {
@@ -531,7 +557,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _iteratorError2 = undefined;
 
       try {
-        for (var _iterator2 = this.tags[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        for (var _iterator2 = this.list[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
           var tag = _step2.value;
 
           if (tag.name === this.createForm.name) {
@@ -561,7 +587,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         name: this.createForm.name,
         model: this.modelFormat(this.createForm.model)
       }).then(function (res) {
-        _this3.tags.push({
+        _this3.list.push({
           id: res.data,
           name: _this3.createForm.name,
           model: _this3.modelFormat(_this3.createForm.model)
@@ -577,8 +603,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(err);
       });
     }
-  },
-  mounted: function mounted() {}
+  }
 });
 // CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-6572ce94","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/tag.vue
 var render = function() {
@@ -586,9 +611,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { attrs: { id: "list" } },
+    "section",
     [
+      _c(
+        "header",
+        [
+          _c(
+            "el-button",
+            {
+              attrs: { type: "primary", size: "large" },
+              on: {
+                click: function($event) {
+                  _vm.createDialogFormVisible = true
+                }
+              }
+            },
+            [_vm._v("创建标签")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "el-table",
         {
@@ -600,13 +643,8 @@ var render = function() {
               expression: "loading"
             }
           ],
-          staticStyle: { width: "100%" },
-          attrs: {
-            data: _vm.tags,
-            height: "660",
-            "highlight-current-row": "",
-            stripe: ""
-          }
+          staticClass: "main-view",
+          attrs: { data: _vm.filter, "highlight-current-row": "" }
         },
         [
           _c("el-table-column", {
@@ -823,21 +861,24 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "el-button",
-        {
-          staticStyle: {
-            "margin-top": "20px",
-            "margin-right": "80px",
-            float: "right"
-          },
-          attrs: { type: "primary", size: "large" },
-          on: {
-            click: function($event) {
-              _vm.createDialogFormVisible = true
+        "footer",
+        [
+          _c("el-pagination", {
+            attrs: {
+              layout: "total, sizes, prev, pager, next, jumper",
+              "current-page": _vm.pagination.curPage,
+              "page-sizes": [20, 50, 100],
+              "page-size": _vm.pagination.pageSize,
+              pageCount: _vm.pagination.totalPage,
+              total: _vm.list.length
+            },
+            on: {
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
             }
-          }
-        },
-        [_vm._v("创建标签")]
+          })
+        ],
+        1
       )
     ],
     1

@@ -1,5 +1,4 @@
 <style lang="scss" scoped="">
-  $header-height: 60px;
   .header {
     padding-left: $sidebar-width;
     transition: $sidebar-transition;

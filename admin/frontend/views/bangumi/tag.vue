@@ -3,14 +3,15 @@
 </style>
 
 <template>
-  <div id="list" v-cloak>
+  <section>
+    <header>
+      <el-button type="primary" size="large" @click="createDialogFormVisible = true">创建标签</el-button>
+    </header>
     <el-table
+      :data="filter"
+      class="main-view"
       v-loading="loading"
-      :data="tags"
-      style="width: 100%"
-      height="660"
-      highlight-current-row
-      stripe>
+      highlight-current-row>
       <el-table-column
         prop="id"
         sortable
@@ -68,28 +69,38 @@
         <el-button type="primary" @click="handleCreateDone">确 定</el-button>
       </div>
     </el-dialog>
-    <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="createDialogFormVisible = true">创建标签</el-button>
-  </div>
+    <footer>
+      <el-pagination
+        layout="total, sizes, prev, pager, next, jumper"
+        :current-page="pagination.curPage"
+        :page-sizes="[20, 50, 100]"
+        :page-size="pagination.pageSize"
+        :pageCount="pagination.totalPage"
+        :total="list.length"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      ></el-pagination>
+    </footer>
+  </section>
 </template>
 
 <script>
   export default {
     name: 'v-page-bangumi-tag',
-    components: {
-
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
     computed: {
-
+      filter () {
+        const begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+        return this.list.slice(begin, begin + this.pagination.pageSize)
+      }
     },
     data () {
       return {
-        tags: [],
+        list: [],
+        pagination: {
+          totalPage: 0,
+          pageSize: 20,
+          curPage: 1
+        },
         models: [
           {
             id: 0,
@@ -115,9 +126,16 @@
     methods: {
       getTags() {
         this.$http.get('/bangumi/tags').then((res) => {
-          this.tags = res.data
+          this.list = res.data
+          this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
+      },
+      handleSizeChange(val) {
+        this.pagination.pageSize = val
+      },
+      handleCurrentChange(val) {
+        this.pagination.curPage = val
       },
       modelFormat(key) {
         for (const model of this.models) {
@@ -143,7 +161,7 @@
           id: this.editForm.id,
           name: this.editForm.name
         }).then(() => {
-          this.tags[this.editForm.index].name = this.editForm.name;
+          this.list[this.editForm.index].name = this.editForm.name;
           this.editDialogFormVisible = false;
           this.$message.success('操作成功');
         }, (err) => {
@@ -152,7 +170,7 @@
         });
       },
       handleCreateDone() {
-        for (const tag of this.tags) {
+        for (const tag of this.list) {
           if (tag.name === this.createForm.name) {
             this.$message({
               message: '标签已存在',
@@ -165,7 +183,7 @@
           name: this.createForm.name,
           model: this.modelFormat(this.createForm.model)
         }).then((res) => {
-          this.tags.push({
+          this.list.push({
             id: res.data,
             name: this.createForm.name,
             model: this.modelFormat(this.createForm.model)
@@ -181,9 +199,6 @@
           console.log(err);
         });
       }
-    },
-    mounted () {
-
     }
   }
 </script>

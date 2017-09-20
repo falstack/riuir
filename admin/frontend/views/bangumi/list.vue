@@ -3,14 +3,15 @@
 </style>
 
 <template>
-  <div id="list" v-cloak>
+  <section>
+    <header>
+      <el-button type="primary" size="large" @click="createDialogFormVisible = true">创建番剧</el-button>
+    </header>
     <el-table
-      :data="bangumis"
+      :data="filter"
+      class="main-view"
       v-loading="loading"
-      style="width: 100%"
-      height="660"
-      highlight-current-row
-      stripe>
+      highlight-current-row>
       <el-table-column type="expand">
         <template scope="props">
           <el-form label-position="left" inline>
@@ -260,30 +261,40 @@
         <el-button type="primary" @click="handleCreateDone">确 定</el-button>
       </div>
     </el-dialog>
-    <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="createDialogFormVisible = true">创建番剧</el-button>
-  </div>
+    <footer>
+      <el-pagination
+        layout="total, sizes, prev, pager, next, jumper"
+        :current-page="pagination.curPage"
+        :page-sizes="[20, 50, 100]"
+        :page-size="pagination.pageSize"
+        :pageCount="pagination.totalPage"
+        :total="list.length"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      ></el-pagination>
+    </footer>
+  </section>
 </template>
 
 <script>
   export default {
     name: 'v-page-bangumi-list',
-    components: {
-
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
     computed: {
-
+      filter () {
+        const begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+        return this.list.slice(begin, begin + this.pagination.pageSize)
+      }
     },
     data () {
       return {
-        bangumis: [],
+        list: [],
         tags: [],
         uptoken: '',
+        pagination: {
+          totalPage: 0,
+          pageSize: 20,
+          curPage: 1
+        },
         editDialogFormVisible: false,
         createDialogFormVisible: false,
         dialogTitle: '',
@@ -356,11 +367,18 @@
       getBangumis () {
         this.$http.get('/bangumi/list').then((res) => {
           const data = res.data
-          this.bangumis = data.bangumis
+          this.list = data.bangumis
           this.tags = data.tags
           this.uptoken = data.uptoken
+          this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
+      },
+      handleSizeChange(val) {
+        this.pagination.pageSize = val
+      },
+      handleCurrentChange(val) {
+        this.pagination.curPage = val
       },
       handleEditOpen(index, row) {
         this.dialogTitle = row.name;
@@ -487,15 +505,15 @@
               }
             }
           }
-          this.bangumis[this.editForm.index].released_at = this.editForm.released_at;
-          this.bangumis[this.editForm.index].released_video_id = this.editForm.released_video_id;
-          this.bangumis[this.editForm.index].name = this.editForm.name;
-          this.bangumis[this.editForm.index].avatar = this.editForm.avatar;
-          this.bangumis[this.editForm.index].banner = this.editForm.banner;
-          this.bangumis[this.editForm.index].summary = this.editForm.summary;
-          this.bangumis[this.editForm.index].season = season;
-          this.bangumis[this.editForm.index].tags = newTags;
-          this.bangumis[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
+          this.list[this.editForm.index].released_at = this.editForm.released_at;
+          this.list[this.editForm.index].released_video_id = this.editForm.released_video_id;
+          this.list[this.editForm.index].name = this.editForm.name;
+          this.list[this.editForm.index].avatar = this.editForm.avatar;
+          this.list[this.editForm.index].banner = this.editForm.banner;
+          this.list[this.editForm.index].summary = this.editForm.summary;
+          this.list[this.editForm.index].season = season;
+          this.list[this.editForm.index].tags = newTags;
+          this.list[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
           this.editDialogFormVisible = false;
           this.$message.success('操作成功');
         }, (err) => {
@@ -514,7 +532,7 @@
             id: row.id,
             isDeleted: isDeleted
           }).then(() => {
-            this.bangumis[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+            this.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
             this.$message.success('操作成功');
           }, (err) => {
             this.$message.error('操作失败');
@@ -536,7 +554,7 @@
           alias: this.createForm.alias.split(/,|，/).join(','),
           summary: this.createForm.summary
         }).then((res) => {
-          this.bangumis.unshift({
+          this.list.unshift({
             id: res.data,
             name: this.createForm.name,
             avatar: this.createForm.avatar,

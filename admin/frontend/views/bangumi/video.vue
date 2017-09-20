@@ -3,14 +3,15 @@
 </style>
 
 <template>
-  <div id="list" v-cloak>
+  <section>
+    <header>
+      <el-button type="primary" size="large" @click="createDialogFormVisible = true">新建视频</el-button>
+    </header>
     <el-table
-      :data="videos"
+      :data="filter"
+      class="main-view"
       v-loading="loading"
-      style="width: 100%"
-      height="660"
-      highlight-current-row
-      stripe>
+      highlight-current-row>
       <el-table-column type="expand">
         <template scope="props">
           <el-form label-position="left" inline>
@@ -227,10 +228,19 @@
         <el-button type="primary" @click="handleCreateDone">确 定</el-button>
       </div>
     </el-dialog>
-    <el-row>
-      <el-button type="primary" style="margin-top: 20px;margin-right: 80px;float: right" size="large" @click="createDialogFormVisible = true">新建视频</el-button>
-    </el-row>
-  </div>
+    <footer>
+      <el-pagination
+        layout="total, sizes, prev, pager, next, jumper"
+        :current-page="pagination.curPage"
+        :page-sizes="[24, 50, 100]"
+        :page-size="pagination.pageSize"
+        :pageCount="pagination.totalPage"
+        :total="list.length"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      ></el-pagination>
+    </footer>
+  </section>
 </template>
 
 <script>
@@ -252,23 +262,22 @@
   };
   export default {
     name: 'v-page-bangumi-video',
-    components: {
-
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
     computed: {
-
+      filter () {
+        const begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+        return this.list.slice(begin, begin + this.pagination.pageSize)
+      }
     },
     data () {
       return {
         loading: true,
-        videos: [],
+        list: [],
         bangumis: [],
+        pagination: {
+          totalPage: 0,
+          pageSize: 24,
+          curPage: 1
+        },
         editDialogFormVisible: false,
         createDialogFormVisible: false,
         dialogTitle: '',
@@ -311,10 +320,17 @@
       getVideos() {
         this.$http.get('/bangumi/videos').then((res) => {
           const data = res.data
-          this.videos = data.videos
+          this.list = data.videos
           this.bangumis = data.bangumis
+          this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
+      },
+      handleSizeChange(val) {
+        this.pagination.pageSize = val
+      },
+      handleCurrentChange(val) {
+        this.pagination.curPage = val
       },
       handleEditOpen(index, row) {
         this.dialogTitle = row.name;
@@ -405,13 +421,13 @@
               "src": ""
             }
           }
-          this.videos[this.editForm.index].name = this.editForm.name;
-          this.videos[this.editForm.index].bname = this.editForm.bname;
-          this.videos[this.editForm.index].bangumi_id = bangumi_id;
-          this.videos[this.editForm.index].url = this.editForm.url;
-          this.videos[this.editForm.index].part = this.editForm.part;
-          this.videos[this.editForm.index].poster = this.editForm.poster;
-          this.videos[this.editForm.index].resource = resource;
+          this.list[this.editForm.index].name = this.editForm.name;
+          this.list[this.editForm.index].bname = this.editForm.bname;
+          this.list[this.editForm.index].bangumi_id = bangumi_id;
+          this.list[this.editForm.index].url = this.editForm.url;
+          this.list[this.editForm.index].part = this.editForm.part;
+          this.list[this.editForm.index].poster = this.editForm.poster;
+          this.list[this.editForm.index].resource = resource;
           this.editDialogFormVisible = false;
           this.$message.success('操作成功');
         }, (err) => {
@@ -430,7 +446,7 @@
             id: row.id,
             isDeleted: isDeleted
           }).then(() => {
-            this.videos[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+            this.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
             this.$message.success('操作成功');
           }, (err) => {
             this.$message.error('操作失败');

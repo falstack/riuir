@@ -263,7 +263,6 @@ if (false) {(function () {
 //
 //
 //
-//
 
 /* harmony default export */ var Header = ({
   name: 'v-header',
@@ -402,6 +401,31 @@ if (false) {(function () {
 /* harmony default export */ var components_layouts_Header = (Header_Component.exports);
 
 // CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/app.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //

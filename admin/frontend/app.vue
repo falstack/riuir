@@ -8,12 +8,37 @@
     overflow-y: auto;
 
     .view {
-      padding: 20px;
-      padding-left: $sidebar-width + 20;
+      margin-top: -$header-height;
+      padding: $main-view-padding;
+      padding-top: $main-view-padding + $header-height;
+      padding-left: $sidebar-width + $main-view-padding;
       transition: $sidebar-transition;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
 
       &.view-collapse {
         padding-left: $sidebar-collapse + 20;
+      }
+
+      header {
+        margin-bottom: 20px;
+      }
+
+      .main-view {
+        flex-grow: 1;
+      }
+
+      .el-table {
+        border: 0;
+
+        &:before, &:after {
+          background-color: transparent;
+        }
+      }
+
+      footer {
+        margin-top: 30px;
       }
     }
   }

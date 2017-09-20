@@ -617,18 +617,37 @@ exports.push([module.i, "", ""]);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'v-page-bangumi-list',
-  components: {},
-  props: {},
-  watch: {},
-  computed: {},
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
   data: function data() {
     return {
-      bangumis: [],
+      list: [],
       tags: [],
       uptoken: '',
+      pagination: {
+        totalPage: 0,
+        pageSize: 20,
+        curPage: 1
+      },
       editDialogFormVisible: false,
       createDialogFormVisible: false,
       dialogTitle: '',
@@ -695,11 +714,18 @@ exports.push([module.i, "", ""]);
 
       this.$http.get('/bangumi/list').then(function (res) {
         var data = res.data;
-        _this.bangumis = data.bangumis;
+        _this.list = data.bangumis;
         _this.tags = data.tags;
         _this.uptoken = data.uptoken;
+        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
         _this.loading = false;
       });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
     },
     handleEditOpen: function handleEditOpen(index, row) {
       this.dialogTitle = row.name;
@@ -946,15 +972,15 @@ exports.push([module.i, "", ""]);
           }
         }
 
-        _this2.bangumis[_this2.editForm.index].released_at = _this2.editForm.released_at;
-        _this2.bangumis[_this2.editForm.index].released_video_id = _this2.editForm.released_video_id;
-        _this2.bangumis[_this2.editForm.index].name = _this2.editForm.name;
-        _this2.bangumis[_this2.editForm.index].avatar = _this2.editForm.avatar;
-        _this2.bangumis[_this2.editForm.index].banner = _this2.editForm.banner;
-        _this2.bangumis[_this2.editForm.index].summary = _this2.editForm.summary;
-        _this2.bangumis[_this2.editForm.index].season = season;
-        _this2.bangumis[_this2.editForm.index].tags = newTags;
-        _this2.bangumis[_this2.editForm.index].alias = _this2.editForm.alias.split(/,|，/).join(',');
+        _this2.list[_this2.editForm.index].released_at = _this2.editForm.released_at;
+        _this2.list[_this2.editForm.index].released_video_id = _this2.editForm.released_video_id;
+        _this2.list[_this2.editForm.index].name = _this2.editForm.name;
+        _this2.list[_this2.editForm.index].avatar = _this2.editForm.avatar;
+        _this2.list[_this2.editForm.index].banner = _this2.editForm.banner;
+        _this2.list[_this2.editForm.index].summary = _this2.editForm.summary;
+        _this2.list[_this2.editForm.index].season = season;
+        _this2.list[_this2.editForm.index].tags = newTags;
+        _this2.list[_this2.editForm.index].alias = _this2.editForm.alias.split(/,|，/).join(',');
         _this2.editDialogFormVisible = false;
         _this2.$message.success('操作成功');
       }, function (err) {
@@ -975,7 +1001,7 @@ exports.push([module.i, "", ""]);
           id: row.id,
           isDeleted: isDeleted
         }).then(function () {
-          _this3.bangumis[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+          _this3.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
           _this3.$message.success('操作成功');
         }, function (err) {
           _this3.$message.error('操作失败');
@@ -999,7 +1025,7 @@ exports.push([module.i, "", ""]);
         alias: this.createForm.alias.split(/,|，/).join(','),
         summary: this.createForm.summary
       }).then(function (res) {
-        _this4.bangumis.unshift({
+        _this4.list.unshift({
           id: res.data,
           name: _this4.createForm.name,
           avatar: _this4.createForm.avatar,
@@ -1036,9 +1062,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { attrs: { id: "list" } },
+    "section",
     [
+      _c(
+        "header",
+        [
+          _c(
+            "el-button",
+            {
+              attrs: { type: "primary", size: "large" },
+              on: {
+                click: function($event) {
+                  _vm.createDialogFormVisible = true
+                }
+              }
+            },
+            [_vm._v("创建番剧")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "el-table",
         {
@@ -1050,13 +1094,8 @@ var render = function() {
               expression: "loading"
             }
           ],
-          staticStyle: { width: "100%" },
-          attrs: {
-            data: _vm.bangumis,
-            height: "660",
-            "highlight-current-row": "",
-            stripe: ""
-          }
+          staticClass: "main-view",
+          attrs: { data: _vm.filter, "highlight-current-row": "" }
         },
         [
           _c("el-table-column", {
@@ -1891,21 +1930,24 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "el-button",
-        {
-          staticStyle: {
-            "margin-top": "20px",
-            "margin-right": "80px",
-            float: "right"
-          },
-          attrs: { type: "primary", size: "large" },
-          on: {
-            click: function($event) {
-              _vm.createDialogFormVisible = true
+        "footer",
+        [
+          _c("el-pagination", {
+            attrs: {
+              layout: "total, sizes, prev, pager, next, jumper",
+              "current-page": _vm.pagination.curPage,
+              "page-sizes": [20, 50, 100],
+              "page-size": _vm.pagination.pageSize,
+              pageCount: _vm.pagination.totalPage,
+              total: _vm.list.length
+            },
+            on: {
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
             }
-          }
-        },
-        [_vm._v("创建番剧")]
+          })
+        ],
+        1
       )
     ],
     1
