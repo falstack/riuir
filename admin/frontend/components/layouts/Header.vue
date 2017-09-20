@@ -73,7 +73,7 @@
         this.$emit('update:collapse', !this.collapse)
       },
       logout () {
-        this.$http.post('/auth/logout').then(() => window.location.reload())
+        this.$http.post('/auth/logout').then(() => window.location = '/')
       }
     },
     mounted () {

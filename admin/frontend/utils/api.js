@@ -16,11 +16,7 @@ http.interceptors.response.use((res) => {
   // Do something with response data
   return res && res.data
 }, (err) => {
-  http.post('/auth/logout')
-    .then(() => window.location.reload())
-    .catch(() => {
-      return Promise.reject(err.response.data)
-    })
+  return Promise.reject(err.response.data)
 })
 
 export default http

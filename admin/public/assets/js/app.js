@@ -287,7 +287,7 @@ if (false) {(function () {
     },
     logout: function logout() {
       this.$http.post('/auth/logout').then(function () {
-        return window.location.reload();
+        return window.location = '/';
       });
     }
   },
@@ -668,11 +668,7 @@ http.interceptors.response.use(function (res) {
   // Do something with response data
   return res && res.data;
 }, function (err) {
-  http.post('/auth/logout').then(function () {
-    return window.location.reload();
-  }).catch(function () {
-    return Promise.reject(err.response.data);
-  });
+  return Promise.reject(err.response.data);
 });
 
 /* harmony default export */ var api = (http);
