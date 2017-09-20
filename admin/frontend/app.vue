@@ -21,7 +21,7 @@
         padding-left: $sidebar-collapse + 20;
       }
 
-      header {
+      >header {
         margin-bottom: 20px;
       }
 
@@ -37,7 +37,7 @@
         }
       }
 
-      footer {
+      >footer {
         margin-top: 30px;
       }
     }

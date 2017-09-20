@@ -14,10 +14,13 @@ http.interceptors.request.use((config) => {
 
 http.interceptors.response.use((res) => {
   // Do something with response data
-  return res;
+  return res && res.data
 }, (err) => {
-  // Do something with response error
-  return Promise.reject(err.response.data);
+  http.post('/auth/logout')
+    .then(() => window.location.reload())
+    .catch(() => {
+      return Promise.reject(err.response.data)
+    })
 })
 
 export default http

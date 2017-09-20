@@ -5,7 +5,7 @@
 <template>
   <section>
     <header>
-      <el-button type="primary" size="large" @click="createDialogFormVisible = true">创建番剧</el-button>
+      <el-button type="primary" size="large" @click="showCreateModal = true">创建番剧</el-button>
     </header>
     <el-table
       :data="filter"
@@ -86,8 +86,12 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog :visible.sync="editDialogFormVisible">
-      <h3 slot="title">{{ `番剧编辑：《${dialogTitle}》`  }}</h3>
+    <v-modal class="bangumi-editor-modal"
+             v-model="showEditorModal"
+             :footer="true"
+             :header="true"
+             :header-text="'编辑番剧'"
+             @submit="handleEditDone">
       <el-form :model="editForm">
         <el-row>
           <el-col :span="8">
@@ -187,13 +191,13 @@
           </el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="editDialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleEditDone">确 定</el-button>
-      </div>
-    </el-dialog>
-    <el-dialog :visible.sync="createDialogFormVisible">
-      <h3 slot="title">创建番剧</h3>
+    </v-modal>
+    <v-modal class="bangumi-create-modal"
+             v-model="showCreateModal"
+             :footer="true"
+             :header="true"
+             :header-text="'创建番剧'"
+             @submit="handleCreateDone">
       <el-form :model="createForm">
         <el-row>
           <el-col :span="8">
@@ -256,11 +260,7 @@
           </el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="createDialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleCreateDone">确 定</el-button>
-      </div>
-    </el-dialog>
+    </v-modal>
     <footer>
       <el-pagination
         layout="total, sizes, prev, pager, next, jumper"
@@ -295,8 +295,8 @@
           pageSize: 20,
           curPage: 1
         },
-        editDialogFormVisible: false,
-        createDialogFormVisible: false,
+        showEditorModal: false,
+        showCreateModal: false,
         dialogTitle: '',
         defaultSeason: '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}',
         release_weekly: [
@@ -365,8 +365,7 @@
     },
     methods: {
       getBangumis () {
-        this.$http.get('/bangumi/list').then((res) => {
-          const data = res.data
+        this.$http.get('/bangumi/list').then((data) => {
           this.list = data.bangumis
           this.tags = data.tags
           this.uptoken = data.uptoken
@@ -399,7 +398,7 @@
           alias: row.alias,
           tags: tags
         };
-        this.editDialogFormVisible = true;
+        this.showEditorModal = true;
       },
       beforeUpload(file) {
         const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -514,7 +513,7 @@
           this.list[this.editForm.index].season = season;
           this.list[this.editForm.index].tags = newTags;
           this.list[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
-          this.editDialogFormVisible = false;
+          this.showEditorModal = false;
           this.$message.success('操作成功');
         }, (err) => {
           this.$message.error('操作失败');
@@ -553,9 +552,9 @@
           banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
           alias: this.createForm.alias.split(/,|，/).join(','),
           summary: this.createForm.summary
-        }).then((res) => {
+        }).then((data) => {
           this.list.unshift({
-            id: res.data,
+            id: data,
             name: this.createForm.name,
             avatar: this.createForm.avatar,
             banner: this.createForm.banner,
@@ -563,7 +562,7 @@
             alias: this.createForm.alias.split(/,|，/).join(','),
             deleted_at: moment().format('YYYY-MM-DD H:m:s')
           });
-          this.createDialogFormVisible = false;
+          this.showCreateModal = false;
           this.$message.success('操作成功');
         }, (err) => {
           this.$message.error('操作失败');

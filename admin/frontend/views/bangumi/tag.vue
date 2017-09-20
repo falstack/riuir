@@ -125,8 +125,8 @@
     },
     methods: {
       getTags() {
-        this.$http.get('/bangumi/tags').then((res) => {
-          this.list = res.data
+        this.$http.get('/bangumi/tags').then((data) => {
+          this.list = data
           this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
@@ -182,9 +182,9 @@
         this.$http.post('/tag/create', {
           name: this.createForm.name,
           model: this.modelFormat(this.createForm.model)
-        }).then((res) => {
+        }).then((data) => {
           this.list.push({
-            id: res.data,
+            id: data,
             name: this.createForm.name,
             model: this.modelFormat(this.createForm.model)
           });

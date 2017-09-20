@@ -1,6 +1,6 @@
 webpackJsonp([5],{
 
-/***/ 36:
+/***/ 132:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -661,10 +661,13 @@ http.interceptors.request.use(function (config) {
 
 http.interceptors.response.use(function (res) {
   // Do something with response data
-  return res;
+  return res && res.data;
 }, function (err) {
-  // Do something with response error
-  return Promise.reject(err.response.data);
+  http.post('/auth/logout').then(function () {
+    return window.location.reload();
+  }).catch(function () {
+    return Promise.reject(err.response.data);
+  });
 });
 
 /* harmony default export */ var api = (http);
@@ -686,8 +689,340 @@ var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_co
 var moment = __webpack_require__(10);
 var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/modal.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var modal = ({
+  name: 'v-modal',
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    close: {
+      type: Boolean,
+      default: true
+    },
+    header: {
+      type: Boolean,
+      default: false
+    },
+    footer: {
+      type: Boolean,
+      default: false
+    },
+    submitText: {
+      type: String,
+      default: '确认'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
+    headerText: {
+      type: String,
+      default: '标题'
+    }
+  },
+  watch: {
+    toggle: function toggle(val) {
+      this.$emit('input', val);
+    },
+    value: function value(val) {
+      this.toggle = val;
+    }
+  },
+  data: function data() {
+    return {
+      toggle: this.value
+    };
+  },
+
+  methods: {
+    handleClose: function handleClose() {
+      this.toggle = false;
+    },
+    handleSubmit: function handleSubmit() {
+      this.$emit('submit');
+    },
+    handleCancel: function handleCancel() {
+      this.$emit('cancel');
+      this.handleClose();
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-42a5a873","hasScoped":false}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/components/modal.vue
+var modal_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "modal" } }, [
+    _vm.toggle
+      ? _c("section", { staticClass: "v-modal-wrap" }, [
+          _c("div", {
+            staticClass: "v-modal-mask",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                $event.preventDefault()
+                _vm.handleClose($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "v-modal",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  $event.preventDefault()
+                }
+              }
+            },
+            [
+              _vm.header
+                ? _c(
+                    "header",
+                    [
+                      _vm._t("header", [
+                        _c("h4", {
+                          domProps: { textContent: _vm._s(_vm.headerText) }
+                        }),
+                        _vm._v(" "),
+                        _vm.close
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "close",
+                                on: { click: _vm.handleClose }
+                              },
+                              [_vm._v("×")]
+                            )
+                          : _vm._e()
+                      ])
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("main", [_vm._t("default")], 2),
+              _vm._v(" "),
+              _vm.footer
+                ? _c(
+                    "footer",
+                    [
+                      _vm._t("footer", [
+                        _c("button", {
+                          staticClass: "submit",
+                          domProps: { textContent: _vm._s(_vm.submitText) },
+                          on: { click: _vm.handleSubmit }
+                        }),
+                        _vm._v(" "),
+                        _c("button", {
+                          staticClass: "cancel",
+                          domProps: { textContent: _vm._s(_vm.cancelText) },
+                          on: { click: _vm.handleCancel }
+                        })
+                      ])
+                    ],
+                    2
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var modal_staticRenderFns = []
+modal_render._withStripped = true
+var modal_esExports = { render: modal_render, staticRenderFns: modal_staticRenderFns }
+/* harmony default export */ var components_modal = (modal_esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-42a5a873", modal_esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/components/modal.vue
+var modal_disposed = false
+function modal_injectStyle (ssrContext) {
+  if (modal_disposed) return
+  __webpack_require__(133)
+}
+var modal_normalizeComponent = __webpack_require__(9)
+/* script */
+
+/* template */
+
+/* styles */
+var modal___vue_styles__ = modal_injectStyle
+/* scopeId */
+var modal___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var modal___vue_module_identifier__ = null
+var modal_Component = modal_normalizeComponent(
+  modal,
+  components_modal,
+  modal___vue_styles__,
+  modal___vue_scopeId__,
+  modal___vue_module_identifier__
+)
+modal_Component.options.__file = "frontend/components/modal.vue"
+if (modal_Component.esModule && Object.keys(modal_Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (modal_Component.options.functional) {console.error("[vue-loader] modal.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-42a5a873", modal_Component.options)
+  } else {
+    hotAPI.reload("data-v-42a5a873", modal_Component.options)
+  }
+  module.hot.dispose(function (data) {
+    modal_disposed = true
+  })
+})()}
+
+/* harmony default export */ var frontend_components_modal = (modal_Component.exports);
+
 // CONCATENATED MODULE: ./frontend/entry.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "app", function() { return entry_app; });
+
 
 
 
@@ -702,6 +1037,7 @@ vue_common_default.a.use(__webpack_require__(105), {
 });
 vue_common_default.a.use(element_ui_common_default.a);
 vue_common_default.a.use(helpers);
+vue_common_default.a.component(frontend_components_modal.name, frontend_components_modal);
 
 var entry_app = new vue_common_default.a({
   router: router,
@@ -710,6 +1046,13 @@ var entry_app = new vue_common_default.a({
     return h(frontend_app);
   }
 }).$mount('#app');
+
+/***/ }),
+
+/***/ 133:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -741,4 +1084,4 @@ module.exports = "data:image/gif;base64,R0lGODlhUABQAPYAAGTZ1v+Yy/7+/gAAAFS3tc/S
 
 /***/ })
 
-},[36]);
+},[132]);

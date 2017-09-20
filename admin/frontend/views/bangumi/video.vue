@@ -318,8 +318,7 @@
     },
     methods: {
       getVideos() {
-        this.$http.get('/bangumi/videos').then((res) => {
-          const data = res.data
+        this.$http.get('/bangumi/videos').then((data) => {
           this.list = data.videos
           this.bangumis = data.bangumis
           this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)

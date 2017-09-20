@@ -24,6 +24,43 @@ body *,
     padding: 0;
     box-sizing: border-box;
 }
+.v-modal > header .close {
+  width: 60px;
+  height: 60px;
+  padding: 20px;
+  font-size: 30px;
+  line-height: 20px;
+  text-align: center;
+}
+.v-modal > footer button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+.v-modal > footer .submit {
+  margin-left: 10px;
+  color: #fff;
+  background-color: #20a0ff;
+  border-color: #20a0ff;
+}
+.v-modal > footer .submit:hover {
+    background: #4db3ff;
+    border-color: #4db3ff;
+}
+.v-modal > footer .cancel {
+  border: none;
+  color: #20a0ff;
+  background: transparent;
+}
+.v-modal > footer .cancel:hover {
+    color: #4db3ff;
+}
+a, button {
+  cursor: pointer;
+}
 #__orz {
   height: 100%;
   width: 100%;
@@ -43,7 +80,7 @@ body *,
 #__orz .view.view-collapse {
       padding-left: 84px;
 }
-#__orz .view header {
+#__orz .view > header {
       margin-bottom: 20px;
 }
 #__orz .view .main-view {
@@ -55,7 +92,7 @@ body *,
 #__orz .view .el-table:before, #__orz .view .el-table:after {
         background-color: transparent;
 }
-#__orz .view footer {
+#__orz .view > footer {
       margin-top: 30px;
 }
 
@@ -94,4 +131,88 @@ body *,
       width: 40px;
       height: 40px;
       border-radius: 10px;
+}
+
+.v-modal-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: transparent;
+}
+.v-modal-wrap.modal-leave-active {
+    transition: opacity 0.3s;
+}
+.v-modal-wrap.modal-enter-active .v-modal-mask, .v-modal-wrap.modal-leave-active .v-modal-mask {
+    opacity: 0;
+}
+.v-modal-wrap.modal-enter-active .v-modal, .v-modal-wrap.modal-leave-active .v-modal {
+    transform: translate(-50%, -70%);
+    opacity: 0;
+}
+.v-modal-wrap .v-modal-mask {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: opacity 0.3s;
+    opacity: 1;
+}
+.v-modal-wrap .v-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: auto;
+    max-height: 80%;
+    width: 50%;
+}
+.v-modal-wrap .v-modal > header:before, .v-modal-wrap .v-modal > header:after, .v-modal-wrap .v-modal > main:before, .v-modal-wrap .v-modal > main:after, .v-modal-wrap .v-modal > footer:before, .v-modal-wrap .v-modal > footer:after {
+      content: '';
+      clear: both;
+      display: table;
+}
+.v-modal-wrap .v-modal > header {
+      padding: 20px;
+}
+.v-modal-wrap .v-modal > header h4 {
+        margin: 0;
+        color: #333;
+}
+.v-modal-wrap .v-modal > header .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+}
+.v-modal-wrap .v-modal > main {
+      padding: 20px 20px 74px 20px;
+      font-size: 15px;
+      color: #333;
+      flex-grow: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+}
+.v-modal-wrap .v-modal > footer {
+      padding: 20px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: #fff;
+}
+.v-modal-wrap .v-modal > footer button {
+        float: right;
 }
