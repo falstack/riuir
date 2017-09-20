@@ -833,11 +833,11 @@ var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
     },
     header: {
       type: Boolean,
-      default: false
+      default: true
     },
     footer: {
       type: Boolean,
-      default: false
+      default: true
     },
     submitText: {
       type: String,

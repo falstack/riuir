@@ -5,7 +5,7 @@
 <template>
   <section>
     <header>
-      <el-button type="primary" size="large" @click="createDialogFormVisible = true">新建视频</el-button>
+      <el-button type="primary" size="large" @click="showCreateModal = true">新建视频</el-button>
     </header>
     <el-table
       :data="filter"
@@ -95,8 +95,10 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog :visible.sync="editDialogFormVisible">
-      <h3 slot="title">{{ `视频编辑：《${dialogTitle}》`  }}</h3>
+    <v-modal class="video-editor-modal"
+             v-model="showEditorModal"
+             :header-text="'视频编辑'"
+             @submit="handleEditDone">
       <el-form :model="editForm">
         <el-row>
           <el-col :span="8">
@@ -152,13 +154,11 @@
           </el-form-item>
         </template>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="editDialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleEditDone">确 定</el-button>
-      </div>
-    </el-dialog>
-    <el-dialog :visible.sync="createDialogFormVisible">
-      <h3 slot="title">新建视频</h3>
+    </v-modal>
+    <v-modal class="video-creator-modal"
+             v-model="showCreateModal"
+             :header-text="'新建视频'"
+             @submit="handleCreateDone">
       <el-form :model="createForm">
         <el-row>
           <el-col :span="8">
@@ -223,11 +223,7 @@
           <el-input v-model="createForm.name" type="textarea" placeholder="一行一个" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="handleCreateCancel">取 消</el-button>
-        <el-button type="primary" @click="handleCreateDone">确 定</el-button>
-      </div>
-    </el-dialog>
+    </v-modal>
     <footer>
       <el-pagination
         layout="total, sizes, prev, pager, next, jumper"
@@ -278,8 +274,8 @@
           pageSize: 24,
           curPage: 1
         },
-        editDialogFormVisible: false,
-        createDialogFormVisible: false,
+        showEditorModal: false,
+        showCreateModal: false,
         dialogTitle: '',
         editForm: {
           bname: '',
@@ -365,7 +361,7 @@
           part: row.part,
           resource: resource
         };
-        this.editDialogFormVisible = true;
+        this.showEditorModal = true;
       },
       preview(url) {
         if (url) {
@@ -427,7 +423,7 @@
           this.list[this.editForm.index].part = this.editForm.part;
           this.list[this.editForm.index].poster = this.editForm.poster;
           this.list[this.editForm.index].resource = resource;
-          this.editDialogFormVisible = false;
+          this.showEditorModal = false;
           this.$message.success('操作成功');
         }, (err) => {
           this.$message.error('操作失败');
@@ -475,7 +471,7 @@
           url: 'bangumi/${name}/video/${n}.mp4',
           poster: 'bangumi/${name}/poster/${n}.jpg',
         };
-        this.createDialogFormVisible = false
+        this.showCreateModal = false
       },
       handleCreateDone() {
         const part = this.createForm.part.split('-');

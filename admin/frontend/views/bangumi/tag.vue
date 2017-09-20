@@ -5,7 +5,7 @@
 <template>
   <section>
     <header>
-      <el-button type="primary" size="large" @click="createDialogFormVisible = true">创建标签</el-button>
+      <el-button type="primary" size="large" @click="showCreateModal = true">创建标签</el-button>
     </header>
     <el-table
       :data="filter"
@@ -36,20 +36,20 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog :visible.sync="editDialogFormVisible">
-      <h3 slot="title">{{ `标签编辑：《${dialogTitle}》`  }}</h3>
+    <v-modal class="tag-editor-modal"
+             v-model="showEditorModal"
+             :header-text="'标签编辑'"
+             @submit="handleEditDone">
       <el-form :model="editForm">
         <el-form-item label="名称" :label-width="'60px'">
           <el-input v-model="editForm.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="editDialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleEditDone">确 定</el-button>
-      </div>
-    </el-dialog>
-    <el-dialog :visible.sync="createDialogFormVisible">
-      <h3 slot="title">创建标签</h3>
+    </v-modal>
+    <v-modal class="tag-creator-modal"
+             v-model="showCreateModal"
+             :header-text="'创建标签'"
+             @submit="handleCreateDone">
       <el-form :model="createForm">
         <el-form-item label="类型" :label-width="'60px'">
           <el-select v-model="createForm.model" placeholder="请选择">
@@ -64,11 +64,7 @@
           <el-input v-model="createForm.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="createDialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleCreateDone">确 定</el-button>
-      </div>
-    </el-dialog>
+    </v-modal>
     <footer>
       <el-pagination
         layout="total, sizes, prev, pager, next, jumper"
@@ -107,9 +103,8 @@
             name: '番剧'
           }
         ],
-        editDialogFormVisible: false,
-        createDialogFormVisible: false,
-        dialogTitle: '',
+        showEditorModal: false,
+        showCreateModal: false,
         editForm: {
           name: ''
         },
@@ -148,13 +143,12 @@
         }
       },
       handleEditOpen(index, row) {
-        this.dialogTitle = row.name;
         this.editForm = {
           index: index,
           id: row.id,
           name: row.name
         };
-        this.editDialogFormVisible = true;
+        this.showEditorModal = true;
       },
       handleEditDone() {
         this.$http.post('/tag/edit', {
@@ -162,7 +156,7 @@
           name: this.editForm.name
         }).then(() => {
           this.list[this.editForm.index].name = this.editForm.name;
-          this.editDialogFormVisible = false;
+          this.showEditorModal = false;
           this.$message.success('操作成功');
         }, (err) => {
           this.$message.error('操作失败');
@@ -188,7 +182,7 @@
             name: this.createForm.name,
             model: this.modelFormat(this.createForm.model)
           });
-          this.createDialogFormVisible = false;
+          this.showCreateModal = false;
           this.$message.success('操作成功');
           this.createForm = {
             name: '',

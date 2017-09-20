@@ -141,11 +141,11 @@
       },
       header: {
         type: Boolean,
-        default: false
+        default: true
       },
       footer: {
         type: Boolean,
-        default: false
+        default: true
       },
       submitText: {
         type: String,

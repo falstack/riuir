@@ -65,7 +65,6 @@
       <el-table-column
         prop="id"
         sortable
-        width="100"
         label="索引">
       </el-table-column>
       <el-table-column
@@ -88,8 +87,6 @@
     </el-table>
     <v-modal class="bangumi-editor-modal"
              v-model="showEditorModal"
-             :footer="true"
-             :header="true"
              :header-text="'编辑番剧'"
              @submit="handleEditDone">
       <el-form :model="editForm">
@@ -194,8 +191,6 @@
     </v-modal>
     <v-modal class="bangumi-create-modal"
              v-model="showCreateModal"
-             :footer="true"
-             :header="true"
              :header-text="'创建番剧'"
              @submit="handleCreateDone">
       <el-form :model="createForm">
@@ -289,7 +284,6 @@
       return {
         list: [],
         tags: [],
-        uptoken: '',
         pagination: {
           totalPage: 0,
           pageSize: 20,
@@ -354,7 +348,7 @@
             tags: []
         },
         uploadHeaders: {
-          token: '<?php echo $uptoken ?>'
+          token: ''
         },
         CDNPrefixp: 'https://cdn.riuir.com/',
         loading: true
@@ -368,7 +362,7 @@
         this.$http.get('/bangumi/list').then((data) => {
           this.list = data.bangumis
           this.tags = data.tags
-          this.uptoken = data.uptoken
+          this.uploadHeaders.token = data.uptoken
           this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
