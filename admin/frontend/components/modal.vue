@@ -52,7 +52,7 @@
       overflow: hidden;
       height: auto;
       max-height: 80%;
-      width: 50%;
+      max-width: 50%;
 
       >header, >main, >footer {
         &:before, &:after {

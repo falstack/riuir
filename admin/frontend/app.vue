@@ -39,6 +39,11 @@
 
       >footer {
         margin-top: 30px;
+
+        .el-pagination {
+          float: right;
+          margin-right: 50px;
+        }
       }
     }
   }

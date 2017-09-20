@@ -95,6 +95,10 @@ a, button {
 #__orz .view > footer {
       margin-top: 30px;
 }
+#__orz .view > footer .el-pagination {
+        float: right;
+        margin-right: 50px;
+}
 
 .sidebar[data-v-2ed21d08] {
   position: absolute;
@@ -178,7 +182,7 @@ a, button {
     overflow: hidden;
     height: auto;
     max-height: 80%;
-    width: 50%;
+    max-width: 50%;
 }
 .v-modal-wrap .v-modal > header:before, .v-modal-wrap .v-modal > header:after, .v-modal-wrap .v-modal > main:before, .v-modal-wrap .v-modal > main:after, .v-modal-wrap .v-modal > footer:before, .v-modal-wrap .v-modal > footer:after {
       content: '';
