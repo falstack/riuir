@@ -205,7 +205,7 @@ a, button {
         top: 0;
 }
 .v-modal-wrap .v-modal > main {
-      padding: 20px 20px 74px 20px;
+      padding: 20px;
       font-size: 15px;
       color: #333;
       flex-grow: 1;
@@ -214,12 +214,50 @@ a, button {
 }
 .v-modal-wrap .v-modal > footer {
       padding: 20px;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      right: 0;
       background-color: #fff;
 }
 .v-modal-wrap .v-modal > footer button {
         float: right;
+}
+
+.vue-pwa-toggle[data-v-3800bffe] {
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.vue-pwa-toggle .toggle-btn[data-v-3800bffe] {
+    box-sizing: border-box;
+    width: 52px;
+    height: 32px;
+    border: 1px solid #d9d9d9;
+    border-radius: 16px;
+    background: #d9d9d9;
+    cursor: pointer;
+}
+.vue-pwa-toggle .toggle-btn[data-v-3800bffe]::after, .vue-pwa-toggle .toggle-btn[data-v-3800bffe]::before {
+      content: '';
+      position: absolute;
+      transition: transform .3s;
+      border-radius: 15px;
+}
+.vue-pwa-toggle .toggle-btn[data-v-3800bffe]::after {
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+.vue-pwa-toggle .toggle-btn[data-v-3800bffe]::before {
+      width: 50px;
+      height: 30px;
+      background-color: #fdfdfd;
+}
+.vue-pwa-toggle .toggle-btn.active[data-v-3800bffe] {
+      border-color: #26a2ff;
+      background-color: #26a2ff;
+}
+.vue-pwa-toggle .toggle-btn.active[data-v-3800bffe]::before {
+        transform: scale(0);
+}
+.vue-pwa-toggle .toggle-btn.active[data-v-3800bffe]::after {
+        transform: translateX(20px);
 }

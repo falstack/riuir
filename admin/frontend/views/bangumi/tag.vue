@@ -164,7 +164,7 @@
           name: this.editForm.name,
           model: this.editForm.model
         }).then(() => {
-          const index = this.editForm.index + ((this.pagination.curPage - 1) * this.pagination.pagesize);
+          const index = this.editForm.index + ((this.pagination.curPage - 1) * this.pagination.pageSize);
           this.list[index] = this.editForm;
           this.showEditorModal = false;
           this.$message.success('操作成功');

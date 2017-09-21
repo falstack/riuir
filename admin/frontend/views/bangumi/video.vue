@@ -112,7 +112,7 @@
                   v-for="item in bangumis"
                   :key="item.id"
                   :value="item.name"
-                  :disabled="item.deleted_at">
+                  :disabled="!!item.deleted_at">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -131,7 +131,7 @@
         <el-form-item label="海报" :label-width="'85px'">
           <el-input v-model="editForm.poster" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item v-if="editForm.url" label="外链资源" :label-width="'85px'">
+        <el-form-item label="外链资源" :label-width="'85px'">
           <el-input v-model="editForm.url" auto-complete="off"></el-input>
         </el-form-item>
         <el-form-item label="字幕" :label-width="'85px'">
@@ -139,21 +139,21 @@
         </el-form-item>
         <template>
           <el-form-item label="720P 资源" :label-width="'85px'">
-            <el-col :span="18">
+            <el-col :span="17">
               <el-input v-model="editForm.resource.video[720].src" auto-complete="off"></el-input>
             </el-col>
-            <el-col :span="4" :offset="1">
-              字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="editForm.resource.video[720].useLyc"></el-switch>
+            <el-col :span="5" :offset="1" v-if="editForm.resource.video[720].src">
+              字幕：<v-toggle v-model="editForm.resource.video[720].useLyc"></v-toggle>
             </el-col>
           </el-form-item>
         </template>
         <template>
           <el-form-item label="1080P 资源" :label-width="'85px'">
-            <el-col :span="18">
+            <el-col :span="17">
               <el-input v-model="editForm.resource.video[1080].src" auto-complete="off"></el-input>
             </el-col>
-            <el-col :span="4" :offset="1">
-              字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="editForm.resource.video[1080].useLyc"></el-switch>
+            <el-col :span="5" :offset="1" v-if="editForm.resource.video[1080].src">
+              字幕：<v-toggle v-model="editForm.resource.video[1080].useLyc"></v-toggle>
             </el-col>
           </el-form-item>
         </template>
@@ -172,7 +172,7 @@
                   v-for="item in bangumis"
                   :key="item.id"
                   :value="item.name"
-                  :disabled="item.deleted_at">
+                  :disabled="!!item.deleted_at">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -247,7 +247,7 @@
   const defaultResource = {
     "video": {
       "720": {
-        "useLyc": true,
+        "useLyc": false,
         "src": ""
       },
       "1080": {
@@ -282,6 +282,8 @@
         showCreateModal: false,
         dialogTitle: '',
         editForm: {
+          id: '',
+          bangumi_id: '',
           bname: '',
           name: '',
           part: '',
@@ -340,25 +342,43 @@
         let resource = {};
         if (row.resource) {
           resource = row.resource;
-          if (!resource.video[720]) {
-            resource.video[720] = def;
-          }
-          if (!resource.video[1080]) {
-            resource.video[1080] = def;
-          }
-          if (!row.resource.lyric) {
-            resource.lyric = {
-              "zh": "",
-              "en": ""
+          if (!resource.video) {
+            resource.video = {
+              "720": {
+                "useLyc": false,
+                "src": ""
+              },
+              "1080": {
+                "useLyc": false,
+                "src": ""
+              }
+            }
+          } else {
+            if (!resource.video[720]) {
+              resource.video[720] = def;
+            } else {
+              resource.video[720].src = this.CDNPrefixp + resource.video[720].src
+            }
+            if (!resource.video[1080]) {
+              resource.video[1080] = def;
+            } else {
+              resource.video[1080].src = this.CDNPrefixp + resource.video[1080].src
+            }
+            if (!resource.lyric) {
+              resource.lyric = {
+                "zh": "",
+                "en": ""
+              }
             }
           }
         } else {
           resource = defaultResource;
         }
         this.editForm = {
-          index: index,
+          index: index + ((this.pagination.curPage - 1) * this.pagination.pageSize),
           bname: row.bname,
           id: row.id,
+          bangumi_id: row.bangumi_id,
           name: row.name,
           poster: row.poster,
           url: row.url,
@@ -381,7 +401,6 @@
         return 0;
       },
       handleEditDone() {
-        const bangumi_id = this.computedBangumiId(this.editForm.bname);
         let resource = this.editForm.resource;
         let url = this.editForm.url.replace(this.CDNPrefixp, '');
         if (!resource.video[720].src && !resource.video[1080].src) {
@@ -389,49 +408,66 @@
           url = this.editForm.poster.replace(this.CDNPrefixp, '').split('poster')[0] + this.editForm.part + '.mp4'
         } else {
           if (!resource.video[720].src) {
-            resource.video = {
-              '1080': resource.video[1080]
-            }
+            delete resource.video[720]
+          } else {
+            resource.video[720].src = resource.video[720].src.replace(this.CDNPrefixp, '')
           }
           if (!resource.video[1080].src) {
-            resource.video = {
-              '720': resource.video[720]
-            }
+            delete resource.video[1080]
+          } else {
+            resource.video[1080].src = resource.video[1080].src.replace(this.CDNPrefixp, '')
           }
         }
         this.$http.post('/video/edit', {
           id: this.editForm.id,
           name: this.editForm.name,
-          bangumi_id: bangumi_id,
+          bangumi_id: this.editForm.bangumi_id,
           poster: this.editForm.poster.replace(this.CDNPrefixp, ''),
           url: this.editForm.url.replace(this.CDNPrefixp, ''),
           part: this.editForm.part,
           resource: resource
         }).then(() => {
-          if (!resource.video[720]) {
-            resource.video[720] = {
-              "useLyc": false,
-              "src": ""
+          if (resource) {
+            if (resource.video) {
+              resource.video = {
+                "720": {
+                  "useLyc": false,
+                  "src": ""
+                },
+                "1080": {
+                  "useLyc": false,
+                  "src": ""
+                }
+              }
+            } else {
+              if (!resource.video[720]) {
+                resource.video[720] = {
+                  "useLyc": false,
+                  "src": ""
+                }
+              }
+              if (!resource.video[1080]) {
+                resource.video[1080] = {
+                  "useLyc": false,
+                  "src": ""
+                }
+              }
             }
+          } else {
+            resource = defaultResource
           }
-          if (!resource.video[1080]) {
-            resource.video[1080] = {
-              "useLyc": false,
-              "src": ""
-            }
-          }
-          this.list[this.editForm.index].name = this.editForm.name;
-          this.list[this.editForm.index].bname = this.editForm.bname;
-          this.list[this.editForm.index].bangumi_id = bangumi_id;
-          this.list[this.editForm.index].url = this.editForm.url;
-          this.list[this.editForm.index].part = this.editForm.part;
-          this.list[this.editForm.index].poster = this.editForm.poster;
-          this.list[this.editForm.index].resource = resource;
+          const index = this.editForm.index;
+          this.list[index].name = this.editForm.name;
+          this.list[index].bname = this.editForm.bname;
+          this.list[index].bangumi_id = this.editForm.bangumi_id;
+          this.list[index].url = this.editForm.url;
+          this.list[index].part = this.editForm.part;
+          this.list[index].poster = this.editForm.poster;
+          this.list[index].resource = resource;
           this.showEditorModal = false;
           this.$message.success('操作成功');
-        }, (err) => {
+        }, () => {
           this.$message.error('操作失败');
-          console.log(err);
         });
       },
       handleDelete(index, row) {

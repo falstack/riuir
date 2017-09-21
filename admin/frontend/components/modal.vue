@@ -78,7 +78,7 @@
       }
 
       >main {
-        padding: 20px 20px 74px 20px;
+        padding: 20px;
         font-size: 15px;
         color: #333;
         flex-grow: 1;
@@ -88,10 +88,6 @@
 
       >footer {
         padding: 20px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        right: 0;
         background-color: #fff;
 
         button {

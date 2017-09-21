@@ -7,6 +7,7 @@ import Helpers from './utils/helpers'
 import Element from 'element-ui'
 import moment from 'moment'
 import Modal from 'component/modal'
+import Toggle from 'component/toggle'
 
 Vue.use(require('vue-moment'), {
   moment
@@ -14,6 +15,7 @@ Vue.use(require('vue-moment'), {
 Vue.use(Element)
 Vue.use(Helpers)
 Vue.component(Modal.name, Modal)
+Vue.component(Toggle.name, Toggle)
 
 export const app = new Vue({
   router,

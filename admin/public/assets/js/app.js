@@ -7,7 +7,7 @@ webpackJsonp([1],{
 
 /***/ }),
 
-/***/ 36:
+/***/ 131:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -814,10 +814,6 @@ var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ var modal = ({
   name: 'v-modal',
@@ -1019,8 +1015,159 @@ if (false) {(function () {
 
 /* harmony default export */ var frontend_components_modal = (modal_Component.exports);
 
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/toggle.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var toggle = ({
+  name: 'v-toggle',
+  props: ['value'],
+  methods: {
+    handleToggle: function handleToggle() {
+      this.$emit('input', !this.value);
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-3800bffe","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/components/toggle.vue
+var toggle_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "vue-pwa-toggle" },
+    [
+      _vm._t("default"),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "toggle-btn",
+        class: { active: _vm.value },
+        on: { click: _vm.handleToggle }
+      })
+    ],
+    2
+  )
+}
+var toggle_staticRenderFns = []
+toggle_render._withStripped = true
+var toggle_esExports = { render: toggle_render, staticRenderFns: toggle_staticRenderFns }
+/* harmony default export */ var components_toggle = (toggle_esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3800bffe", toggle_esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/components/toggle.vue
+var toggle_disposed = false
+function toggle_injectStyle (ssrContext) {
+  if (toggle_disposed) return
+  __webpack_require__(132)
+}
+var toggle_normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* styles */
+var toggle___vue_styles__ = toggle_injectStyle
+/* scopeId */
+var toggle___vue_scopeId__ = "data-v-3800bffe"
+/* moduleIdentifier (server only) */
+var toggle___vue_module_identifier__ = null
+var toggle_Component = toggle_normalizeComponent(
+  toggle,
+  components_toggle,
+  toggle___vue_styles__,
+  toggle___vue_scopeId__,
+  toggle___vue_module_identifier__
+)
+toggle_Component.options.__file = "frontend/components/toggle.vue"
+if (toggle_Component.esModule && Object.keys(toggle_Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (toggle_Component.options.functional) {console.error("[vue-loader] toggle.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3800bffe", toggle_Component.options)
+  } else {
+    hotAPI.reload("data-v-3800bffe", toggle_Component.options)
+  }
+  module.hot.dispose(function (data) {
+    toggle_disposed = true
+  })
+})()}
+
+/* harmony default export */ var frontend_components_toggle = (toggle_Component.exports);
+
 // CONCATENATED MODULE: ./frontend/entry.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "app", function() { return entry_app; });
+
 
 
 
@@ -1037,6 +1184,7 @@ vue_common_default.a.use(__webpack_require__(116), {
 vue_common_default.a.use(element_ui_common_default.a);
 vue_common_default.a.use(helpers);
 vue_common_default.a.component(frontend_components_modal.name, frontend_components_modal);
+vue_common_default.a.component(frontend_components_toggle.name, frontend_components_toggle);
 
 var entry_app = new vue_common_default.a({
   router: router,
@@ -1045,6 +1193,13 @@ var entry_app = new vue_common_default.a({
     return h(frontend_app);
   }
 }).$mount('#app');
+
+/***/ }),
+
+/***/ 132:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -2991,7 +3146,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         name: this.editForm.name,
         model: this.editForm.model
       }).then(function () {
-        var index = _this2.editForm.index + (_this2.pagination.curPage - 1) * _this2.pagination.pagesize;
+        var index = _this2.editForm.index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize;
         _this2.list[index] = _this2.editForm;
         _this2.showEditorModal = false;
         _this2.$message.success('操作成功');
@@ -3644,7 +3799,7 @@ var render = function() {
                                 key: item.id,
                                 attrs: {
                                   value: item.name,
-                                  disabled: item.deleted_at
+                                  disabled: !!item.deleted_at
                                 }
                               })
                             })
@@ -3727,25 +3882,23 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.editForm.url
-                ? _c(
-                    "el-form-item",
-                    { attrs: { label: "外链资源", "label-width": "85px" } },
-                    [
-                      _c("el-input", {
-                        attrs: { "auto-complete": "off" },
-                        model: {
-                          value: _vm.editForm.url,
-                          callback: function($$v) {
-                            _vm.editForm.url = $$v
-                          },
-                          expression: "editForm.url"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
+              _c(
+                "el-form-item",
+                { attrs: { label: "外链资源", "label-width": "85px" } },
+                [
+                  _c("el-input", {
+                    attrs: { "auto-complete": "off" },
+                    model: {
+                      value: _vm.editForm.url,
+                      callback: function($$v) {
+                        _vm.editForm.url = $$v
+                      },
+                      expression: "editForm.url"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "el-form-item",
@@ -3772,7 +3925,7 @@ var render = function() {
                   [
                     _c(
                       "el-col",
-                      { attrs: { span: 18 } },
+                      { attrs: { span: 17 } },
                       [
                         _c("el-input", {
                           attrs: { "auto-complete": "off" },
@@ -3788,25 +3941,26 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "el-col",
-                      { attrs: { span: 4, offset: 1 } },
-                      [
-                        _vm._v("\n            字幕："),
-                        _c("el-switch", {
-                          staticStyle: { float: "right", "margin-top": "7px" },
-                          attrs: { "on-text": "", "off-text": "" },
-                          model: {
-                            value: _vm.editForm.resource.video[720].useLyc,
-                            callback: function($$v) {
-                              _vm.editForm.resource.video[720].useLyc = $$v
-                            },
-                            expression: "editForm.resource.video[720].useLyc"
-                          }
-                        })
-                      ],
-                      1
-                    )
+                    _vm.editForm.resource.video[720].src
+                      ? _c(
+                          "el-col",
+                          { attrs: { span: 5, offset: 1 } },
+                          [
+                            _vm._v("\n            字幕："),
+                            _c("v-toggle", {
+                              model: {
+                                value: _vm.editForm.resource.video[720].useLyc,
+                                callback: function($$v) {
+                                  _vm.editForm.resource.video[720].useLyc = $$v
+                                },
+                                expression:
+                                  "editForm.resource.video[720].useLyc"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
                   ],
                   1
                 )
@@ -3819,7 +3973,7 @@ var render = function() {
                   [
                     _c(
                       "el-col",
-                      { attrs: { span: 18 } },
+                      { attrs: { span: 17 } },
                       [
                         _c("el-input", {
                           attrs: { "auto-complete": "off" },
@@ -3835,25 +3989,26 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "el-col",
-                      { attrs: { span: 4, offset: 1 } },
-                      [
-                        _vm._v("\n            字幕："),
-                        _c("el-switch", {
-                          staticStyle: { float: "right", "margin-top": "7px" },
-                          attrs: { "on-text": "", "off-text": "" },
-                          model: {
-                            value: _vm.editForm.resource.video[1080].useLyc,
-                            callback: function($$v) {
-                              _vm.editForm.resource.video[1080].useLyc = $$v
-                            },
-                            expression: "editForm.resource.video[1080].useLyc"
-                          }
-                        })
-                      ],
-                      1
-                    )
+                    _vm.editForm.resource.video[1080].src
+                      ? _c(
+                          "el-col",
+                          { attrs: { span: 5, offset: 1 } },
+                          [
+                            _vm._v("\n            字幕："),
+                            _c("v-toggle", {
+                              model: {
+                                value: _vm.editForm.resource.video[1080].useLyc,
+                                callback: function($$v) {
+                                  _vm.editForm.resource.video[1080].useLyc = $$v
+                                },
+                                expression:
+                                  "editForm.resource.video[1080].useLyc"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
                   ],
                   1
                 )
@@ -3912,7 +4067,7 @@ var render = function() {
                                 key: item.id,
                                 attrs: {
                                   value: item.name,
-                                  disabled: item.deleted_at
+                                  disabled: !!item.deleted_at
                                 }
                               })
                             })
@@ -4562,7 +4717,7 @@ if (false) {(function () {
 var defaultResource = {
   "video": {
     "720": {
-      "useLyc": true,
+      "useLyc": false,
       "src": ""
     },
     "1080": {
@@ -4597,6 +4752,8 @@ var defaultResource = {
       showCreateModal: false,
       dialogTitle: '',
       editForm: {
+        id: '',
+        bangumi_id: '',
         bname: '',
         name: '',
         part: '',
@@ -4658,25 +4815,43 @@ var defaultResource = {
       var resource = {};
       if (row.resource) {
         resource = row.resource;
-        if (!resource.video[720]) {
-          resource.video[720] = def;
-        }
-        if (!resource.video[1080]) {
-          resource.video[1080] = def;
-        }
-        if (!row.resource.lyric) {
-          resource.lyric = {
-            "zh": "",
-            "en": ""
+        if (!resource.video) {
+          resource.video = {
+            "720": {
+              "useLyc": false,
+              "src": ""
+            },
+            "1080": {
+              "useLyc": false,
+              "src": ""
+            }
           };
+        } else {
+          if (!resource.video[720]) {
+            resource.video[720] = def;
+          } else {
+            resource.video[720].src = this.CDNPrefixp + resource.video[720].src;
+          }
+          if (!resource.video[1080]) {
+            resource.video[1080] = def;
+          } else {
+            resource.video[1080].src = this.CDNPrefixp + resource.video[1080].src;
+          }
+          if (!resource.lyric) {
+            resource.lyric = {
+              "zh": "",
+              "en": ""
+            };
+          }
         }
       } else {
         resource = defaultResource;
       }
       this.editForm = {
-        index: index,
+        index: index + (this.pagination.curPage - 1) * this.pagination.pageSize,
         bname: row.bname,
         id: row.id,
+        bangumi_id: row.bangumi_id,
         name: row.name,
         poster: row.poster,
         url: row.url,
@@ -4723,7 +4898,6 @@ var defaultResource = {
     handleEditDone: function handleEditDone() {
       var _this2 = this;
 
-      var bangumi_id = this.computedBangumiId(this.editForm.bname);
       var resource = this.editForm.resource;
       var url = this.editForm.url.replace(this.CDNPrefixp, '');
       if (!resource.video[720].src && !resource.video[1080].src) {
@@ -4731,49 +4905,66 @@ var defaultResource = {
         url = this.editForm.poster.replace(this.CDNPrefixp, '').split('poster')[0] + this.editForm.part + '.mp4';
       } else {
         if (!resource.video[720].src) {
-          resource.video = {
-            '1080': resource.video[1080]
-          };
+          delete resource.video[720];
+        } else {
+          resource.video[720].src = resource.video[720].src.replace(this.CDNPrefixp, '');
         }
         if (!resource.video[1080].src) {
-          resource.video = {
-            '720': resource.video[720]
-          };
+          delete resource.video[1080];
+        } else {
+          resource.video[1080].src = resource.video[1080].src.replace(this.CDNPrefixp, '');
         }
       }
       this.$http.post('/video/edit', {
         id: this.editForm.id,
         name: this.editForm.name,
-        bangumi_id: bangumi_id,
+        bangumi_id: this.editForm.bangumi_id,
         poster: this.editForm.poster.replace(this.CDNPrefixp, ''),
         url: this.editForm.url.replace(this.CDNPrefixp, ''),
         part: this.editForm.part,
         resource: resource
       }).then(function () {
-        if (!resource.video[720]) {
-          resource.video[720] = {
-            "useLyc": false,
-            "src": ""
-          };
+        if (resource) {
+          if (resource.video) {
+            resource.video = {
+              "720": {
+                "useLyc": false,
+                "src": ""
+              },
+              "1080": {
+                "useLyc": false,
+                "src": ""
+              }
+            };
+          } else {
+            if (!resource.video[720]) {
+              resource.video[720] = {
+                "useLyc": false,
+                "src": ""
+              };
+            }
+            if (!resource.video[1080]) {
+              resource.video[1080] = {
+                "useLyc": false,
+                "src": ""
+              };
+            }
+          }
+        } else {
+          resource = defaultResource;
         }
-        if (!resource.video[1080]) {
-          resource.video[1080] = {
-            "useLyc": false,
-            "src": ""
-          };
-        }
-        _this2.list[_this2.editForm.index].name = _this2.editForm.name;
-        _this2.list[_this2.editForm.index].bname = _this2.editForm.bname;
-        _this2.list[_this2.editForm.index].bangumi_id = bangumi_id;
-        _this2.list[_this2.editForm.index].url = _this2.editForm.url;
-        _this2.list[_this2.editForm.index].part = _this2.editForm.part;
-        _this2.list[_this2.editForm.index].poster = _this2.editForm.poster;
-        _this2.list[_this2.editForm.index].resource = resource;
+        var index = _this2.editForm.index;
+        _this2.list[index].name = _this2.editForm.name;
+        _this2.list[index].bname = _this2.editForm.bname;
+        _this2.list[index].bangumi_id = _this2.editForm.bangumi_id;
+        _this2.list[index].url = _this2.editForm.url;
+        _this2.list[index].part = _this2.editForm.part;
+        _this2.list[index].poster = _this2.editForm.poster;
+        _this2.list[index].resource = resource;
         _this2.showEditorModal = false;
         _this2.$message.success('操作成功');
-      }, function (err) {
+      }, function () {
         _this2.$message.error('操作失败');
-        console.log(err);
       });
     },
     handleDelete: function handleDelete(index, row) {
@@ -4920,4 +5111,4 @@ var defaultResource = {
 
 /***/ })
 
-},[36]);
+},[131]);
