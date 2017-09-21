@@ -462,6 +462,10 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1232,7 +1236,7 @@ var render = function() {
             }
           ],
           staticClass: "main-view",
-          attrs: { data: _vm.filter, "highlight-current-row": "" }
+          attrs: { data: _vm.filter, border: "", "highlight-current-row": "" }
         },
         [
           _c("el-table-column", {
@@ -2373,6 +2377,7 @@ if (false) {(function () {
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'v-page-bangumi-list',
@@ -2881,6 +2886,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ var tag = ({
   name: 'v-page-bangumi-tag',
@@ -3089,7 +3095,7 @@ var render = function() {
             }
           ],
           staticClass: "main-view",
-          attrs: { data: _vm.filter, "highlight-current-row": "" }
+          attrs: { data: _vm.filter, border: "", "highlight-current-row": "" }
         },
         [
           _c("el-table-column", {
@@ -3395,7 +3401,7 @@ var render = function() {
             }
           ],
           staticClass: "main-view",
-          attrs: { data: _vm.filter, "highlight-current-row": "" }
+          attrs: { data: _vm.filter, border: "", "highlight-current-row": "" }
         },
         [
           _c("el-table-column", {
@@ -4308,6 +4314,7 @@ if (false) {(function () {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(moment) {//
+//
 //
 //
 //

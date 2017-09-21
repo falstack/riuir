@@ -92,6 +92,9 @@ a, button {
 #__orz .view .el-table:before, #__orz .view .el-table:after {
         background-color: transparent;
 }
+#__orz .view .el-table .el-table_1_column_1 {
+        border-left: 1px solid #dfe6ec;
+}
 #__orz .view > footer {
       margin-top: 30px;
 }

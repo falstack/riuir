@@ -11,6 +11,7 @@
       :data="filter"
       class="main-view"
       v-loading="loading"
+      border
       highlight-current-row>
       <el-table-column type="expand">
         <template scope="props">

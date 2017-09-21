@@ -35,6 +35,10 @@
         &:before, &:after {
           background-color: transparent;
         }
+
+        .el-table_1_column_1 {
+          border-left: 1px solid #dfe6ec;
+        }
       }
 
       >footer {
