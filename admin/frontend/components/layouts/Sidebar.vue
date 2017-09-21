@@ -52,13 +52,6 @@
 
     },
     props: ['collapse'],
-    watch: {
-      '$route' (val) {
-        if (!this.defaultActive) {
-          this.defaultActive = val.path
-        }
-      }
-    },
     computed: {
 
     },
@@ -74,7 +67,7 @@
 
     },
     mounted () {
-
+      this.defaultActive = this.$route.path
     }
   }
 </script>

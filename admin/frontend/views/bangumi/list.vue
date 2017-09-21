@@ -5,7 +5,7 @@
 <template>
   <section>
     <header>
-      <el-button type="primary" size="large" @click="showCreateModal = true">创建番剧</el-button>
+      <el-button type="primary" icon="plus" size="large" @click="showCreateModal = true">创建番剧</el-button>
     </header>
     <el-table
       :data="filter"
@@ -77,9 +77,12 @@
         <template scope="scope">
           <el-button
             size="small"
+            type="primary"
+            icon="edit"
             @click="handleEditOpen(scope.$index, scope.row)">编辑</el-button>
           <el-button
             size="small"
+            icon="delete"
             :type="scope.row.deleted_at ? 'warning' : 'danger'"
             @click="handleDelete(scope.$index, scope.row)">{{ scope.row.deleted_at ? '恢复' : '删除' }}</el-button>
         </template>

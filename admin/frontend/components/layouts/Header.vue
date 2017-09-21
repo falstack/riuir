@@ -62,7 +62,7 @@
     },
     data () {
       return {
-        breadcrumb: ''
+        breadcrumb: this.$route.name
       }
     },
     created () {

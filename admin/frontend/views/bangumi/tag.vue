@@ -5,7 +5,7 @@
 <template>
   <section>
     <header>
-      <el-button type="primary" size="large" @click="showCreateModal = true">创建标签</el-button>
+      <el-button type="primary" icon="plus" size="large" @click="showCreateModal = true">创建标签</el-button>
     </header>
     <el-table
       :data="filter"
@@ -15,7 +15,6 @@
       <el-table-column
         prop="id"
         sortable
-        width="100"
         label="索引">
       </el-table-column>
       <el-table-column
@@ -23,16 +22,20 @@
         label="名称">
       </el-table-column>
       <el-table-column
-        prop="model"
         label="类型">
+        <template scope="scope">
+          {{ modelFormat(scope.row.model) }}
+        </template>
       </el-table-column>
       <el-table-column
-        width="200"
         label="操作">
         <template scope="scope">
           <el-button
+            type="primary"
             size="small"
-            @click="handleEditOpen(scope.$index, scope.row)">编辑</el-button>
+            icon="edit"
+            @click="handleEditOpen(scope.$index, scope.row)"
+          >编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -99,14 +102,17 @@
         },
         models: [
           {
-            id: 0,
+            id: '0',
             name: '番剧'
           }
         ],
         showEditorModal: false,
         showCreateModal: false,
         editForm: {
-          name: ''
+          index: '',
+          name: '',
+          id: '',
+          model: ''
         },
         createForm: {
           name: '',
@@ -146,16 +152,19 @@
         this.editForm = {
           index: index,
           id: row.id,
-          name: row.name
+          name: row.name,
+          model: row.model
         };
         this.showEditorModal = true;
       },
       handleEditDone() {
         this.$http.post('/tag/edit', {
           id: this.editForm.id,
-          name: this.editForm.name
+          name: this.editForm.name,
+          model: this.editForm.model
         }).then(() => {
-          this.list[this.editForm.index].name = this.editForm.name;
+          const index = this.editForm.index + ((this.pagination.curPage - 1) * this.pagination.pagesize);
+          this.list[index] = this.editForm;
           this.showEditorModal = false;
           this.$message.success('操作成功');
         }, (err) => {

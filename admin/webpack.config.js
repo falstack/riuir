@@ -10,6 +10,7 @@ if (fs.existsSync(laravelMixFilePath)) {
 }
 
 module.exports = {
+  // devtool: 'cheap-module-source-map',
   entry: {
     app: './frontend/entry.js',
     vendor: [

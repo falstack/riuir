@@ -14,22 +14,22 @@ export default new Router({
     {
       path: '/dashboard',
       name: '首页',
-      component: () => import('view/dashboard')
+      component: require('view/dashboard').default
     },
     {
       path: '/bangumi/list',
       name: '番剧列表',
-      component: () => import('view/bangumi/list')
+      component: require('view/bangumi/list').default
     },
     {
       path: '/bangumi/tag',
       name: '番剧标签',
-      component: () => import('view/bangumi/tag')
+      component: require('view/bangumi/tag').default
     },
     {
       path: '/bangumi/video',
       name: '番剧视频',
-      component: () => import('view/bangumi/video')
+      component: require('view/bangumi/video').default
     }
   ]
 })
