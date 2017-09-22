@@ -27,14 +27,4 @@ class Bangumi extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-
-    public function getAvatarAttribute($avatar)
-    {
-        return $avatar ? 'https://cdn.riuir.com/' . $avatar : 'https://cdn.riuir.com/avatar';
-    }
-
-    public function getBannerAttribute($banner)
-    {
-        return $banner ? 'https://cdn.riuir.com/' . $banner : 'https://cdn.riuir.com/B-banner';
-    }
 }

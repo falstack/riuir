@@ -105,7 +105,7 @@
              @submit="handleEditDone">
       <el-form :model="editForm">
         <el-row>
-          <el-col :span="8">
+          <el-col :span="9">
             <el-form-item label="番剧" :label-width="'85px'">
               <el-select v-model="editForm.bname" placeholder="请选择">
                 <el-option
@@ -117,7 +117,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="5">
             <el-form-item label="集数" :label-width="'85px'">
               <el-input v-model="editForm.part" auto-complete="off"></el-input>
             </el-form-item>
@@ -128,19 +128,12 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item label="海报" :label-width="'85px'">
-          <el-input v-model="editForm.poster" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="外链资源" :label-width="'85px'">
-          <el-input v-model="editForm.url" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="字幕" :label-width="'85px'">
-          <el-input v-model="editForm.resource.lyric.zh" auto-complete="off"></el-input>
-        </el-form-item>
         <template>
           <el-form-item label="720P 资源" :label-width="'85px'">
             <el-col :span="17">
-              <el-input v-model="editForm.resource.video[720].src" auto-complete="off"></el-input>
+              <el-input v-model="editForm.resource.video[720].src" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
             </el-col>
             <el-col :span="5" :offset="1" v-if="editForm.resource.video[720].src">
               字幕：<v-toggle v-model="editForm.resource.video[720].useLyc"></v-toggle>
@@ -150,13 +143,30 @@
         <template>
           <el-form-item label="1080P 资源" :label-width="'85px'">
             <el-col :span="17">
-              <el-input v-model="editForm.resource.video[1080].src" auto-complete="off"></el-input>
+              <el-input v-model="editForm.resource.video[1080].src" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
             </el-col>
             <el-col :span="5" :offset="1" v-if="editForm.resource.video[1080].src">
               字幕：<v-toggle v-model="editForm.resource.video[1080].useLyc"></v-toggle>
             </el-col>
           </el-form-item>
         </template>
+        <el-form-item label="外链资源" :label-width="'85px'">
+          <el-input v-model="editForm.url" auto-complete="off">
+            <template slot="prepend">https://cdn.riuir.com/</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="海报" :label-width="'85px'">
+          <el-input v-model="editForm.poster" auto-complete="off">
+            <template slot="prepend">https://cdn.riuir.com/</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="字幕" :label-width="'85px'">
+          <el-input v-model="editForm.resource.lyric.zh" auto-complete="off">
+            <template slot="prepend">https://cdn.riuir.com/</template>
+          </el-input>
+        </el-form-item>
       </el-form>
     </v-modal>
     <v-modal class="video-creator-modal"
@@ -197,7 +207,9 @@
         <el-row v-if="createForm.P720.show">
           <el-form-item label="720P 资源" :label-width="'85px'">
             <el-col :span="18">
-              <el-input v-model="createForm.P720.src" auto-complete="off"></el-input>
+              <el-input v-model="createForm.P720.src" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
             </el-col>
             <el-col :span="4" :offset="1">
               字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P720.useLyc"></el-switch>
@@ -207,7 +219,9 @@
         <el-row v-if="createForm.P1080.show">
           <el-form-item label="1080P 资源" :label-width="'85px'">
             <el-col :span="18">
-              <el-input v-model="createForm.P1080.src" auto-complete="off"></el-input>
+              <el-input v-model="createForm.P1080.src" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
             </el-col>
             <el-col :span="4" :offset="1">
               字幕：<el-switch style="float: right;margin-top: 7px" on-text="" off-text="" v-model="createForm.P1080.useLyc"></el-switch>
@@ -215,13 +229,19 @@
           </el-form-item>
         </el-row>
         <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="外链资源" :label-width="'85px'">
-          <el-input v-model="createForm.url" auto-complete="off"></el-input>
+          <el-input v-model="createForm.url" auto-complete="off">
+            <template slot="prepend">https://cdn.riuir.com/</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="字幕" :label-width="'85px'">
-          <el-input v-model="createForm.lyric.zh" auto-complete="off"></el-input>
+          <el-input v-model="createForm.lyric.zh" auto-complete="off">
+            <template slot="prepend">https://cdn.riuir.com/</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="海报" :label-width="'85px'">
-          <el-input v-model="createForm.poster" auto-complete="off"></el-input>
+          <el-input v-model="createForm.poster" auto-complete="off">
+            <template slot="prepend">https://cdn.riuir.com/</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="名称" :label-width="'85px'">
           <el-input v-model="createForm.name" type="textarea" placeholder="一行一个" auto-complete="off"></el-input>
@@ -281,6 +301,7 @@
         showEditorModal: false,
         showCreateModal: false,
         dialogTitle: '',
+        editIndex: 0,
         editForm: {
           id: '',
           bangumi_id: '',
@@ -303,7 +324,7 @@
             useLyc: true
           },
           lyric: {
-            zh: 'bangumi/${name}/lyric/zh/${n}.ass'
+            zh: 'bangumi/${name}/lyric/zh/${n}.vtt'
           },
           resourceName: '',
           bname: '',
@@ -335,56 +356,12 @@
       },
       handleEditOpen(index, row) {
         this.dialogTitle = row.name;
-        const def = {
-          useLyc: false,
-          src: ''
-        };
-        let resource = {};
-        if (row.resource) {
-          resource = row.resource;
-          if (!resource.video) {
-            resource.video = {
-              "720": {
-                "useLyc": false,
-                "src": ""
-              },
-              "1080": {
-                "useLyc": false,
-                "src": ""
-              }
-            }
-          } else {
-            if (!resource.video[720]) {
-              resource.video[720] = def;
-            } else {
-              resource.video[720].src = this.CDNPrefixp + resource.video[720].src
-            }
-            if (!resource.video[1080]) {
-              resource.video[1080] = def;
-            } else {
-              resource.video[1080].src = this.CDNPrefixp + resource.video[1080].src
-            }
-            if (!resource.lyric) {
-              resource.lyric = {
-                "zh": "",
-                "en": ""
-              }
-            }
-          }
-        } else {
-          resource = defaultResource;
-        }
-        this.editForm = {
-          index: index + ((this.pagination.curPage - 1) * this.pagination.pageSize),
-          bname: row.bname,
-          id: row.id,
-          bangumi_id: row.bangumi_id,
-          name: row.name,
-          poster: row.poster,
-          url: row.url,
-          part: row.part,
-          resource: resource
-        };
+        this.editIndex = index + ((this.pagination.curPage - 1) * this.pagination.pageSize)
+        const editForm = row;
+        editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource
+        Object.keys(this.editForm).forEach(key => {
+          this.editForm[key] = editForm[key]
+        })
         this.showEditorModal = true;
       },
       preview(url) {
@@ -401,69 +378,8 @@
         return 0;
       },
       handleEditDone() {
-        let resource = this.editForm.resource;
-        let url = this.editForm.url.replace(this.CDNPrefixp, '');
-        if (!resource.video[720].src && !resource.video[1080].src) {
-          resource = '';
-          url = this.editForm.poster.replace(this.CDNPrefixp, '').split('poster')[0] + this.editForm.part + '.mp4'
-        } else {
-          if (!resource.video[720].src) {
-            delete resource.video[720]
-          } else {
-            resource.video[720].src = resource.video[720].src.replace(this.CDNPrefixp, '')
-          }
-          if (!resource.video[1080].src) {
-            delete resource.video[1080]
-          } else {
-            resource.video[1080].src = resource.video[1080].src.replace(this.CDNPrefixp, '')
-          }
-        }
-        this.$http.post('/video/edit', {
-          id: this.editForm.id,
-          name: this.editForm.name,
-          bangumi_id: this.editForm.bangumi_id,
-          poster: this.editForm.poster.replace(this.CDNPrefixp, ''),
-          url: this.editForm.url.replace(this.CDNPrefixp, ''),
-          part: this.editForm.part,
-          resource: resource
-        }).then(() => {
-          if (resource) {
-            if (resource.video) {
-              resource.video = {
-                "720": {
-                  "useLyc": false,
-                  "src": ""
-                },
-                "1080": {
-                  "useLyc": false,
-                  "src": ""
-                }
-              }
-            } else {
-              if (!resource.video[720]) {
-                resource.video[720] = {
-                  "useLyc": false,
-                  "src": ""
-                }
-              }
-              if (!resource.video[1080]) {
-                resource.video[1080] = {
-                  "useLyc": false,
-                  "src": ""
-                }
-              }
-            }
-          } else {
-            resource = defaultResource
-          }
-          const index = this.editForm.index;
-          this.list[index].name = this.editForm.name;
-          this.list[index].bname = this.editForm.bname;
-          this.list[index].bangumi_id = this.editForm.bangumi_id;
-          this.list[index].url = this.editForm.url;
-          this.list[index].part = this.editForm.part;
-          this.list[index].poster = this.editForm.poster;
-          this.list[index].resource = resource;
+        this.$http.post('/video/edit', this.editForm).then(() => {
+          this.$deepAssign(this.list[this.editIndex], this.editForm)
           this.showEditorModal = false;
           this.$message.success('操作成功');
         }, () => {
@@ -502,7 +418,7 @@
             useLyc: true
           },
           lyric: {
-            zh: 'bangumi/${name}/lyric/zh/${n}.ass'
+            zh: 'bangumi/${name}/lyric/zh/${n}.vtt'
           },
           resourceName: '',
           bname: '',

@@ -1,13 +1,20 @@
 webpackJsonp([1],{
 
-/***/ 115:
+/***/ 117:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 131:
+/***/ 118:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -670,6 +677,10 @@ http.interceptors.response.use(function (res) {
 });
 
 /* harmony default export */ var api = (http);
+// EXTERNAL MODULE: ./node_modules/_deep-assign@2.0.0@deep-assign/index.js
+var _deep_assign_2_0_0_deep_assign = __webpack_require__(74);
+var _deep_assign_2_0_0_deep_assign_default = /*#__PURE__*/__webpack_require__.n(_deep_assign_2_0_0_deep_assign);
+
 // CONCATENATED MODULE: ./frontend/utils/helpers.js
 
 
@@ -677,11 +688,13 @@ var Helpers = {};
 
 Helpers.install = function (Vue, options) {
   Vue.prototype.$http = api;
+
+  Vue.prototype.$deepAssign = _deep_assign_2_0_0_deep_assign_default.a;
 };
 
 /* harmony default export */ var helpers = (Helpers);
 // EXTERNAL MODULE: ./node_modules/_element-ui@1.4.4@element-ui/lib/element-ui.common.js
-var element_ui_common = __webpack_require__(74);
+var element_ui_common = __webpack_require__(76);
 var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_common);
 
 // EXTERNAL MODULE: ./node_modules/_moment@2.18.1@moment/moment.js
@@ -973,7 +986,7 @@ if (false) {
 var modal_disposed = false
 function modal_injectStyle (ssrContext) {
   if (modal_disposed) return
-  __webpack_require__(115)
+  __webpack_require__(117)
 }
 var modal_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1123,7 +1136,7 @@ if (false) {
 var toggle_disposed = false
 function toggle_injectStyle (ssrContext) {
   if (toggle_disposed) return
-  __webpack_require__(132)
+  __webpack_require__(118)
 }
 var toggle_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1178,7 +1191,7 @@ if (false) {(function () {
 
 
 
-vue_common_default.a.use(__webpack_require__(116), {
+vue_common_default.a.use(__webpack_require__(119), {
   moment: moment_default.a
 });
 vue_common_default.a.use(element_ui_common_default.a);
@@ -1193,13 +1206,6 @@ var entry_app = new vue_common_default.a({
     return h(frontend_app);
   }
 }).$mount('#app');
-
-/***/ }),
-
-/***/ 132:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -3776,7 +3782,7 @@ var render = function() {
                 [
                   _c(
                     "el-col",
-                    { attrs: { span: 8 } },
+                    { attrs: { span: 9 } },
                     [
                       _c(
                         "el-form-item",
@@ -3813,7 +3819,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-col",
-                    { attrs: { span: 6 } },
+                    { attrs: { span: 5 } },
                     [
                       _c(
                         "el-form-item",
@@ -3864,60 +3870,6 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "海报", "label-width": "85px" } },
-                [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.editForm.poster,
-                      callback: function($$v) {
-                        _vm.editForm.poster = $$v
-                      },
-                      expression: "editForm.poster"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "外链资源", "label-width": "85px" } },
-                [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.editForm.url,
-                      callback: function($$v) {
-                        _vm.editForm.url = $$v
-                      },
-                      expression: "editForm.url"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "字幕", "label-width": "85px" } },
-                [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.editForm.resource.lyric.zh,
-                      callback: function($$v) {
-                        _vm.editForm.resource.lyric.zh = $$v
-                      },
-                      expression: "editForm.resource.lyric.zh"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
               [
                 _c(
                   "el-form-item",
@@ -3927,16 +3879,27 @@ var render = function() {
                       "el-col",
                       { attrs: { span: 17 } },
                       [
-                        _c("el-input", {
-                          attrs: { "auto-complete": "off" },
-                          model: {
-                            value: _vm.editForm.resource.video[720].src,
-                            callback: function($$v) {
-                              _vm.editForm.resource.video[720].src = $$v
-                            },
-                            expression: "editForm.resource.video[720].src"
-                          }
-                        })
+                        _c(
+                          "el-input",
+                          {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.editForm.resource.video[720].src,
+                              callback: function($$v) {
+                                _vm.editForm.resource.video[720].src = $$v
+                              },
+                              expression: "editForm.resource.video[720].src"
+                            }
+                          },
+                          [
+                            _c(
+                              "template",
+                              { attrs: { slot: "prepend" }, slot: "prepend" },
+                              [_vm._v("https://cdn.riuir.com/")]
+                            )
+                          ],
+                          2
+                        )
                       ],
                       1
                     ),
@@ -3975,16 +3938,27 @@ var render = function() {
                       "el-col",
                       { attrs: { span: 17 } },
                       [
-                        _c("el-input", {
-                          attrs: { "auto-complete": "off" },
-                          model: {
-                            value: _vm.editForm.resource.video[1080].src,
-                            callback: function($$v) {
-                              _vm.editForm.resource.video[1080].src = $$v
-                            },
-                            expression: "editForm.resource.video[1080].src"
-                          }
-                        })
+                        _c(
+                          "el-input",
+                          {
+                            attrs: { "auto-complete": "off" },
+                            model: {
+                              value: _vm.editForm.resource.video[1080].src,
+                              callback: function($$v) {
+                                _vm.editForm.resource.video[1080].src = $$v
+                              },
+                              expression: "editForm.resource.video[1080].src"
+                            }
+                          },
+                          [
+                            _c(
+                              "template",
+                              { attrs: { slot: "prepend" }, slot: "prepend" },
+                              [_vm._v("https://cdn.riuir.com/")]
+                            )
+                          ],
+                          2
+                        )
                       ],
                       1
                     ),
@@ -4012,7 +3986,94 @@ var render = function() {
                   ],
                   1
                 )
-              ]
+              ],
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "外链资源", "label-width": "85px" } },
+                [
+                  _c(
+                    "el-input",
+                    {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.editForm.url,
+                        callback: function($$v) {
+                          _vm.editForm.url = $$v
+                        },
+                        expression: "editForm.url"
+                      }
+                    },
+                    [
+                      _c(
+                        "template",
+                        { attrs: { slot: "prepend" }, slot: "prepend" },
+                        [_vm._v("https://cdn.riuir.com/")]
+                      )
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "海报", "label-width": "85px" } },
+                [
+                  _c(
+                    "el-input",
+                    {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.editForm.poster,
+                        callback: function($$v) {
+                          _vm.editForm.poster = $$v
+                        },
+                        expression: "editForm.poster"
+                      }
+                    },
+                    [
+                      _c(
+                        "template",
+                        { attrs: { slot: "prepend" }, slot: "prepend" },
+                        [_vm._v("https://cdn.riuir.com/")]
+                      )
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "字幕", "label-width": "85px" } },
+                [
+                  _c(
+                    "el-input",
+                    {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.editForm.resource.lyric.zh,
+                        callback: function($$v) {
+                          _vm.editForm.resource.lyric.zh = $$v
+                        },
+                        expression: "editForm.resource.lyric.zh"
+                      }
+                    },
+                    [
+                      _c(
+                        "template",
+                        { attrs: { slot: "prepend" }, slot: "prepend" },
+                        [_vm._v("https://cdn.riuir.com/")]
+                      )
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
             ],
             2
           )
@@ -4190,16 +4251,30 @@ var render = function() {
                             "el-col",
                             { attrs: { span: 18 } },
                             [
-                              _c("el-input", {
-                                attrs: { "auto-complete": "off" },
-                                model: {
-                                  value: _vm.createForm.P720.src,
-                                  callback: function($$v) {
-                                    _vm.createForm.P720.src = $$v
-                                  },
-                                  expression: "createForm.P720.src"
-                                }
-                              })
+                              _c(
+                                "el-input",
+                                {
+                                  attrs: { "auto-complete": "off" },
+                                  model: {
+                                    value: _vm.createForm.P720.src,
+                                    callback: function($$v) {
+                                      _vm.createForm.P720.src = $$v
+                                    },
+                                    expression: "createForm.P720.src"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "template",
+                                    {
+                                      attrs: { slot: "prepend" },
+                                      slot: "prepend"
+                                    },
+                                    [_vm._v("https://cdn.riuir.com/")]
+                                  )
+                                ],
+                                2
+                              )
                             ],
                             1
                           ),
@@ -4246,16 +4321,30 @@ var render = function() {
                             "el-col",
                             { attrs: { span: 18 } },
                             [
-                              _c("el-input", {
-                                attrs: { "auto-complete": "off" },
-                                model: {
-                                  value: _vm.createForm.P1080.src,
-                                  callback: function($$v) {
-                                    _vm.createForm.P1080.src = $$v
-                                  },
-                                  expression: "createForm.P1080.src"
-                                }
-                              })
+                              _c(
+                                "el-input",
+                                {
+                                  attrs: { "auto-complete": "off" },
+                                  model: {
+                                    value: _vm.createForm.P1080.src,
+                                    callback: function($$v) {
+                                      _vm.createForm.P1080.src = $$v
+                                    },
+                                    expression: "createForm.P1080.src"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "template",
+                                    {
+                                      attrs: { slot: "prepend" },
+                                      slot: "prepend"
+                                    },
+                                    [_vm._v("https://cdn.riuir.com/")]
+                                  )
+                                ],
+                                2
+                              )
                             ],
                             1
                           ),
@@ -4295,16 +4384,27 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "外链资源", "label-width": "85px" } },
                     [
-                      _c("el-input", {
-                        attrs: { "auto-complete": "off" },
-                        model: {
-                          value: _vm.createForm.url,
-                          callback: function($$v) {
-                            _vm.createForm.url = $$v
-                          },
-                          expression: "createForm.url"
-                        }
-                      })
+                      _c(
+                        "el-input",
+                        {
+                          attrs: { "auto-complete": "off" },
+                          model: {
+                            value: _vm.createForm.url,
+                            callback: function($$v) {
+                              _vm.createForm.url = $$v
+                            },
+                            expression: "createForm.url"
+                          }
+                        },
+                        [
+                          _c(
+                            "template",
+                            { attrs: { slot: "prepend" }, slot: "prepend" },
+                            [_vm._v("https://cdn.riuir.com/")]
+                          )
+                        ],
+                        2
+                      )
                     ],
                     1
                   )
@@ -4314,16 +4414,27 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "字幕", "label-width": "85px" } },
                 [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.createForm.lyric.zh,
-                      callback: function($$v) {
-                        _vm.createForm.lyric.zh = $$v
-                      },
-                      expression: "createForm.lyric.zh"
-                    }
-                  })
+                  _c(
+                    "el-input",
+                    {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.createForm.lyric.zh,
+                        callback: function($$v) {
+                          _vm.createForm.lyric.zh = $$v
+                        },
+                        expression: "createForm.lyric.zh"
+                      }
+                    },
+                    [
+                      _c(
+                        "template",
+                        { attrs: { slot: "prepend" }, slot: "prepend" },
+                        [_vm._v("https://cdn.riuir.com/")]
+                      )
+                    ],
+                    2
+                  )
                 ],
                 1
               ),
@@ -4332,16 +4443,27 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "海报", "label-width": "85px" } },
                 [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.createForm.poster,
-                      callback: function($$v) {
-                        _vm.createForm.poster = $$v
-                      },
-                      expression: "createForm.poster"
-                    }
-                  })
+                  _c(
+                    "el-input",
+                    {
+                      attrs: { "auto-complete": "off" },
+                      model: {
+                        value: _vm.createForm.poster,
+                        callback: function($$v) {
+                          _vm.createForm.poster = $$v
+                        },
+                        expression: "createForm.poster"
+                      }
+                    },
+                    [
+                      _c(
+                        "template",
+                        { attrs: { slot: "prepend" }, slot: "prepend" },
+                        [_vm._v("https://cdn.riuir.com/")]
+                      )
+                    ],
+                    2
+                  )
                 ],
                 1
               ),
@@ -4713,6 +4835,26 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var defaultResource = {
   "video": {
@@ -4751,6 +4893,7 @@ var defaultResource = {
       showEditorModal: false,
       showCreateModal: false,
       dialogTitle: '',
+      editIndex: 0,
       editForm: {
         id: '',
         bangumi_id: '',
@@ -4773,7 +4916,7 @@ var defaultResource = {
           useLyc: true
         },
         lyric: {
-          zh: 'bangumi/${name}/lyric/zh/${n}.ass'
+          zh: 'bangumi/${name}/lyric/zh/${n}.vtt'
         },
         resourceName: '',
         bname: '',
@@ -4807,57 +4950,15 @@ var defaultResource = {
       this.pagination.curPage = val;
     },
     handleEditOpen: function handleEditOpen(index, row) {
+      var _this2 = this;
+
       this.dialogTitle = row.name;
-      var def = {
-        useLyc: false,
-        src: ''
-      };
-      var resource = {};
-      if (row.resource) {
-        resource = row.resource;
-        if (!resource.video) {
-          resource.video = {
-            "720": {
-              "useLyc": false,
-              "src": ""
-            },
-            "1080": {
-              "useLyc": false,
-              "src": ""
-            }
-          };
-        } else {
-          if (!resource.video[720]) {
-            resource.video[720] = def;
-          } else {
-            resource.video[720].src = this.CDNPrefixp + resource.video[720].src;
-          }
-          if (!resource.video[1080]) {
-            resource.video[1080] = def;
-          } else {
-            resource.video[1080].src = this.CDNPrefixp + resource.video[1080].src;
-          }
-          if (!resource.lyric) {
-            resource.lyric = {
-              "zh": "",
-              "en": ""
-            };
-          }
-        }
-      } else {
-        resource = defaultResource;
-      }
-      this.editForm = {
-        index: index + (this.pagination.curPage - 1) * this.pagination.pageSize,
-        bname: row.bname,
-        id: row.id,
-        bangumi_id: row.bangumi_id,
-        name: row.name,
-        poster: row.poster,
-        url: row.url,
-        part: row.part,
-        resource: resource
-      };
+      this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
+      var editForm = row;
+      editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource;
+      Object.keys(this.editForm).forEach(function (key) {
+        _this2.editForm[key] = editForm[key];
+      });
       this.showEditorModal = true;
     },
     preview: function preview(url) {
@@ -4896,79 +4997,18 @@ var defaultResource = {
       return 0;
     },
     handleEditDone: function handleEditDone() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var resource = this.editForm.resource;
-      var url = this.editForm.url.replace(this.CDNPrefixp, '');
-      if (!resource.video[720].src && !resource.video[1080].src) {
-        resource = '';
-        url = this.editForm.poster.replace(this.CDNPrefixp, '').split('poster')[0] + this.editForm.part + '.mp4';
-      } else {
-        if (!resource.video[720].src) {
-          delete resource.video[720];
-        } else {
-          resource.video[720].src = resource.video[720].src.replace(this.CDNPrefixp, '');
-        }
-        if (!resource.video[1080].src) {
-          delete resource.video[1080];
-        } else {
-          resource.video[1080].src = resource.video[1080].src.replace(this.CDNPrefixp, '');
-        }
-      }
-      this.$http.post('/video/edit', {
-        id: this.editForm.id,
-        name: this.editForm.name,
-        bangumi_id: this.editForm.bangumi_id,
-        poster: this.editForm.poster.replace(this.CDNPrefixp, ''),
-        url: this.editForm.url.replace(this.CDNPrefixp, ''),
-        part: this.editForm.part,
-        resource: resource
-      }).then(function () {
-        if (resource) {
-          if (resource.video) {
-            resource.video = {
-              "720": {
-                "useLyc": false,
-                "src": ""
-              },
-              "1080": {
-                "useLyc": false,
-                "src": ""
-              }
-            };
-          } else {
-            if (!resource.video[720]) {
-              resource.video[720] = {
-                "useLyc": false,
-                "src": ""
-              };
-            }
-            if (!resource.video[1080]) {
-              resource.video[1080] = {
-                "useLyc": false,
-                "src": ""
-              };
-            }
-          }
-        } else {
-          resource = defaultResource;
-        }
-        var index = _this2.editForm.index;
-        _this2.list[index].name = _this2.editForm.name;
-        _this2.list[index].bname = _this2.editForm.bname;
-        _this2.list[index].bangumi_id = _this2.editForm.bangumi_id;
-        _this2.list[index].url = _this2.editForm.url;
-        _this2.list[index].part = _this2.editForm.part;
-        _this2.list[index].poster = _this2.editForm.poster;
-        _this2.list[index].resource = resource;
-        _this2.showEditorModal = false;
-        _this2.$message.success('操作成功');
+      this.$http.post('/video/edit', this.editForm).then(function () {
+        _this3.$deepAssign(_this3.list[_this3.editIndex], _this3.editForm);
+        _this3.showEditorModal = false;
+        _this3.$message.success('操作成功');
       }, function () {
-        _this2.$message.error('操作失败');
+        _this3.$message.error('操作失败');
       });
     },
     handleDelete: function handleDelete(index, row) {
-      var _this3 = this;
+      var _this4 = this;
 
       var isDeleted = row.deleted_at !== null;
       this.$confirm("\u786E\u5B9A\u8981" + (isDeleted ? '恢复' : '删除') + "\u300A" + row.name + "\u300B\u5417?", '提示', {
@@ -4976,14 +5016,14 @@ var defaultResource = {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(function () {
-        _this3.$http.post('/video/delete', {
+        _this4.$http.post('/video/delete', {
           id: row.id,
           isDeleted: isDeleted
         }).then(function () {
-          _this3.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
-          _this3.$message.success('操作成功');
+          _this4.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+          _this4.$message.success('操作成功');
         }, function (err) {
-          _this3.$message.error('操作失败');
+          _this4.$message.error('操作失败');
           console.log(err);
         });
       });
@@ -5001,7 +5041,7 @@ var defaultResource = {
           useLyc: true
         },
         lyric: {
-          zh: 'bangumi/${name}/lyric/zh/${n}.ass'
+          zh: 'bangumi/${name}/lyric/zh/${n}.vtt'
         },
         resourceName: '',
         bname: '',
@@ -5013,7 +5053,7 @@ var defaultResource = {
       this.showCreateModal = false;
     },
     handleCreateDone: function handleCreateDone() {
-      var _this4 = this;
+      var _this5 = this;
 
       var part = this.createForm.part.split('-');
       if (!this.createForm.bname) {
@@ -5098,10 +5138,10 @@ var defaultResource = {
       this.$http.post('/video/create', {
         arr: arr
       }).then(function () {
-        _this4.$message.success('操作成功');
-        _this4.handleCreateCancel();
+        _this5.$message.success('操作成功');
+        _this5.handleCreateCancel();
       }, function (err) {
-        _this4.$message.error('操作失败');
+        _this5.$message.error('操作失败');
         console.log(err);
       });
     }
@@ -5111,4 +5151,4 @@ var defaultResource = {
 
 /***/ })
 
-},[131]);
+},[36]);

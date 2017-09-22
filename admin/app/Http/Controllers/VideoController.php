@@ -30,7 +30,6 @@ class VideoController extends Controller
 
     public function edit(Request $request)
     {
-        dd($request->all());
         Video::where('id', $request->get('id'))
             ->update([
                 'name' => $request->get('name'),

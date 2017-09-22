@@ -24,14 +24,4 @@ class Video extends Model
     {
         return $this->belongsTo(Bangumi::class, 'id', 'bangumi_id');
     }
-
-    public function getUrlAttribute($url)
-    {
-        return $url ? 'https://cdn.riuir.com/' . $url : '';
-    }
-
-    public function getPosterAttribute($poster)
-    {
-        return 'https://cdn.riuir.com/' . $poster;
-    }
 }
