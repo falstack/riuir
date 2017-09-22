@@ -7,14 +7,7 @@ webpackJsonp([1],{
 
 /***/ }),
 
-/***/ 118:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 36:
+/***/ 135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -897,26 +890,12 @@ var modal_render = function() {
       ? _c("section", { staticClass: "v-modal-wrap" }, [
           _c("div", {
             staticClass: "v-modal-mask",
-            on: {
-              click: function($event) {
-                $event.stopPropagation()
-                $event.preventDefault()
-                _vm.handleClose($event)
-              }
-            }
+            on: { click: _vm.handleClose }
           }),
           _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass: "v-modal",
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                  $event.preventDefault()
-                }
-              }
-            },
+            { staticClass: "v-modal", on: { click: function($event) {} } },
             [
               _vm.header
                 ? _c(
@@ -1028,159 +1007,8 @@ if (false) {(function () {
 
 /* harmony default export */ var frontend_components_modal = (modal_Component.exports);
 
-// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/toggle.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var toggle = ({
-  name: 'v-toggle',
-  props: ['value'],
-  methods: {
-    handleToggle: function handleToggle() {
-      this.$emit('input', !this.value);
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-3800bffe","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/components/toggle.vue
-var toggle_render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "vue-pwa-toggle" },
-    [
-      _vm._t("default"),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "toggle-btn",
-        class: { active: _vm.value },
-        on: { click: _vm.handleToggle }
-      })
-    ],
-    2
-  )
-}
-var toggle_staticRenderFns = []
-toggle_render._withStripped = true
-var toggle_esExports = { render: toggle_render, staticRenderFns: toggle_staticRenderFns }
-/* harmony default export */ var components_toggle = (toggle_esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3800bffe", toggle_esExports)
-  }
-}
-// CONCATENATED MODULE: ./frontend/components/toggle.vue
-var toggle_disposed = false
-function toggle_injectStyle (ssrContext) {
-  if (toggle_disposed) return
-  __webpack_require__(118)
-}
-var toggle_normalizeComponent = __webpack_require__(4)
-/* script */
-
-/* template */
-
-/* styles */
-var toggle___vue_styles__ = toggle_injectStyle
-/* scopeId */
-var toggle___vue_scopeId__ = "data-v-3800bffe"
-/* moduleIdentifier (server only) */
-var toggle___vue_module_identifier__ = null
-var toggle_Component = toggle_normalizeComponent(
-  toggle,
-  components_toggle,
-  toggle___vue_styles__,
-  toggle___vue_scopeId__,
-  toggle___vue_module_identifier__
-)
-toggle_Component.options.__file = "frontend/components/toggle.vue"
-if (toggle_Component.esModule && Object.keys(toggle_Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (toggle_Component.options.functional) {console.error("[vue-loader] toggle.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3800bffe", toggle_Component.options)
-  } else {
-    hotAPI.reload("data-v-3800bffe", toggle_Component.options)
-  }
-  module.hot.dispose(function (data) {
-    toggle_disposed = true
-  })
-})()}
-
-/* harmony default export */ var frontend_components_toggle = (toggle_Component.exports);
-
 // CONCATENATED MODULE: ./frontend/entry.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "app", function() { return entry_app; });
-
 
 
 
@@ -1197,7 +1025,6 @@ vue_common_default.a.use(__webpack_require__(119), {
 vue_common_default.a.use(element_ui_common_default.a);
 vue_common_default.a.use(helpers);
 vue_common_default.a.component(frontend_components_modal.name, frontend_components_modal);
-vue_common_default.a.component(frontend_components_toggle.name, frontend_components_toggle);
 
 var entry_app = new vue_common_default.a({
   router: router,
@@ -3603,7 +3430,9 @@ var render = function() {
                               _c("span", {
                                 staticStyle: { cursor: "pointer" },
                                 domProps: {
-                                  textContent: _vm._s(props.row.poster)
+                                  textContent: _vm._s(
+                                    "https://cdn.riuir.com/" + props.row.poster
+                                  )
                                 },
                                 on: {
                                   click: function($event) {
@@ -3877,7 +3706,7 @@ var render = function() {
                   [
                     _c(
                       "el-col",
-                      { attrs: { span: 17 } },
+                      { attrs: { span: 18 } },
                       [
                         _c(
                           "el-input",
@@ -3907,10 +3736,11 @@ var render = function() {
                     _vm.editForm.resource.video[720].src
                       ? _c(
                           "el-col",
-                          { attrs: { span: 5, offset: 1 } },
+                          { attrs: { span: 4, offset: 1 } },
                           [
                             _vm._v("\n            字幕："),
-                            _c("v-toggle", {
+                            _c("el-switch", {
+                              attrs: { "on-text": "", "off-text": "" },
                               model: {
                                 value: _vm.editForm.resource.video[720].useLyc,
                                 callback: function($$v) {
@@ -3936,7 +3766,7 @@ var render = function() {
                   [
                     _c(
                       "el-col",
-                      { attrs: { span: 17 } },
+                      { attrs: { span: 18 } },
                       [
                         _c(
                           "el-input",
@@ -3966,10 +3796,11 @@ var render = function() {
                     _vm.editForm.resource.video[1080].src
                       ? _c(
                           "el-col",
-                          { attrs: { span: 5, offset: 1 } },
+                          { attrs: { span: 4, offset: 1 } },
                           [
                             _vm._v("\n            字幕："),
-                            _c("v-toggle", {
+                            _c("el-switch", {
+                              attrs: { "on-text": "", "off-text": "" },
                               model: {
                                 value: _vm.editForm.resource.video[1080].useLyc,
                                 callback: function($$v) {
@@ -4084,7 +3915,7 @@ var render = function() {
       _c(
         "v-modal",
         {
-          staticClass: "video-creator-modal",
+          staticClass: "video-create-modal",
           attrs: { "header-text": "新建视频" },
           on: { submit: _vm.handleCreateDone },
           model: {
@@ -4150,7 +3981,7 @@ var render = function() {
                         [
                           _c("el-input", {
                             attrs: {
-                              placeholder: "1-n",
+                              placeholder: "m-n",
                               "auto-complete": "off"
                             },
                             model: {
@@ -4182,11 +4013,11 @@ var render = function() {
                               "auto-complete": "off"
                             },
                             model: {
-                              value: _vm.createForm.resourceName,
+                              value: _vm.createForm.bangumiEnglishName,
                               callback: function($$v) {
-                                _vm.createForm.resourceName = $$v
+                                _vm.createForm.bangumiEnglishName = $$v
                               },
-                              expression: "createForm.resourceName"
+                              expression: "createForm.bangumiEnglishName"
                             }
                           })
                         ],
@@ -4285,10 +4116,6 @@ var render = function() {
                             [
                               _vm._v("\n            字幕："),
                               _c("el-switch", {
-                                staticStyle: {
-                                  float: "right",
-                                  "margin-top": "7px"
-                                },
                                 attrs: { "on-text": "", "off-text": "" },
                                 model: {
                                   value: _vm.createForm.P720.useLyc,
@@ -4355,10 +4182,6 @@ var render = function() {
                             [
                               _vm._v("\n            字幕："),
                               _c("el-switch", {
-                                staticStyle: {
-                                  float: "right",
-                                  "margin-top": "7px"
-                                },
                                 attrs: { "on-text": "", "off-text": "" },
                                 model: {
                                   value: _vm.createForm.P1080.useLyc,
@@ -4412,35 +4235,6 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "字幕", "label-width": "85px" } },
-                [
-                  _c(
-                    "el-input",
-                    {
-                      attrs: { "auto-complete": "off" },
-                      model: {
-                        value: _vm.createForm.lyric.zh,
-                        callback: function($$v) {
-                          _vm.createForm.lyric.zh = $$v
-                        },
-                        expression: "createForm.lyric.zh"
-                      }
-                    },
-                    [
-                      _c(
-                        "template",
-                        { attrs: { slot: "prepend" }, slot: "prepend" },
-                        [_vm._v("https://cdn.riuir.com/")]
-                      )
-                    ],
-                    2
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
                 { attrs: { label: "海报", "label-width": "85px" } },
                 [
                   _c(
@@ -4467,6 +4261,37 @@ var render = function() {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _vm.createForm.P720.useLyc || _vm.createForm.P1080.useLyc
+                ? _c(
+                    "el-form-item",
+                    { attrs: { label: "字幕", "label-width": "85px" } },
+                    [
+                      _c(
+                        "el-input",
+                        {
+                          attrs: { "auto-complete": "off" },
+                          model: {
+                            value: _vm.createForm.lyric.zh,
+                            callback: function($$v) {
+                              _vm.createForm.lyric.zh = $$v
+                            },
+                            expression: "createForm.lyric.zh"
+                          }
+                        },
+                        [
+                          _c(
+                            "template",
+                            { attrs: { slot: "prepend" }, slot: "prepend" },
+                            [_vm._v("https://cdn.riuir.com/")]
+                          )
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "el-form-item",
@@ -4872,6 +4697,28 @@ var defaultResource = {
     "en": ""
   }
 };
+var defaultCreateForm = {
+  P720: {
+    show: false,
+    useLyc: false,
+    src: 'bangumi/${name}/video/720/${n}.mp4'
+  },
+  P1080: {
+    show: false,
+    useLyc: false,
+    src: 'bangumi/${name}/video/1080/${n}.mp4'
+  },
+  lyric: {
+    zh: 'bangumi/${name}/lyric/zh/${n}.vtt',
+    en: 'bangumi/${name}/lyric/en/${n}.vtt'
+  },
+  bangumiEnglishName: '',
+  bname: '',
+  name: '',
+  part: '',
+  url: 'bangumi/${name}/video/${n}.mp4',
+  poster: 'bangumi/${name}/poster/${n}.jpg'
+};
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'v-page-bangumi-video',
   computed: {
@@ -4904,27 +4751,7 @@ var defaultResource = {
         url: '',
         resource: defaultResource
       },
-      createForm: {
-        P720: {
-          show: false,
-          src: 'bangumi/${name}/video/720/${n}.mp4',
-          useLyc: true
-        },
-        P1080: {
-          show: false,
-          src: 'bangumi/${name}/video/1080/${n}.mp4',
-          useLyc: true
-        },
-        lyric: {
-          zh: 'bangumi/${name}/lyric/zh/${n}.vtt'
-        },
-        resourceName: '',
-        bname: '',
-        name: '',
-        part: '',
-        url: 'bangumi/${name}/video/${n}.mp4',
-        poster: 'bangumi/${name}/poster/${n}.jpg'
-      },
+      createForm: defaultCreateForm,
       CDNPrefixp: 'https://cdn.riuir.com/'
     };
   },
@@ -4963,7 +4790,7 @@ var defaultResource = {
     },
     preview: function preview(url) {
       if (url) {
-        window.open(url);
+        window.open("" + this.CDNPrefixp + url);
       }
     },
     computedBangumiId: function computedBangumiId(bname) {
@@ -5029,27 +4856,7 @@ var defaultResource = {
       });
     },
     handleCreateCancel: function handleCreateCancel() {
-      this.createForm = {
-        P720: {
-          show: false,
-          src: 'bangumi/${name}/video/720/${n}.mp4',
-          useLyc: true
-        },
-        P1080: {
-          show: false,
-          src: 'bangumi/${name}/video/1080/${n}.mp4',
-          useLyc: true
-        },
-        lyric: {
-          zh: 'bangumi/${name}/lyric/zh/${n}.vtt'
-        },
-        resourceName: '',
-        bname: '',
-        name: '',
-        part: '',
-        url: 'bangumi/${name}/video/${n}.mp4',
-        poster: 'bangumi/${name}/poster/${n}.jpg'
-      };
+      this.createForm = defaultCreateForm;
       this.showCreateModal = false;
     },
     handleCreateDone: function handleCreateDone() {
@@ -5057,71 +4864,60 @@ var defaultResource = {
 
       var part = this.createForm.part.split('-');
       if (!this.createForm.bname) {
-        this.$message.error('先选择番剧');
+        this.$message.warning('先选择番剧');
         return;
       }
       if (part.length !== 2) {
-        this.$message.error('集数不符合规范');
+        this.$message.warning('集数不符合规范');
         return;
       }
       var begin = part[0] - 0,
           end = part[1] - 0;
 
       var length = end - begin + 1;
-      if (length <= 0 || begin === 0) {
-        this.$message.error('集数不符合规范');
+      if (length <= 0 || begin <= 0) {
+        this.$message.warning('集数不符合规范');
         return;
       }
-      var resName = this.createForm.resourceName;
-      if (resName === '') {
-        this.$message.error('未修改链接中的番剧名');
+      var bangumiEnglishName = this.createForm.bangumiEnglishName;
+      if (bangumiEnglishName === '') {
+        this.$message.warning('未填写番剧英文名');
         return;
       }
       var names = this.createForm.name.split('\n');
       if (names.length !== length) {
-        this.$message.error('名称个数不对');
+        this.$message.warning('名称个数不对');
         return;
       }
       var arr = [],
           j = 0;
       var bangumi_id = this.computedBangumiId(this.createForm.bname);
-      var _ref = [this.createForm.P720.show, this.createForm.P1080.show, this.createForm.P720.useLyc, this.createForm.P1080.useLyc],
-          use720P = _ref[0],
-          use1080P = _ref[1],
-          use720Lyc = _ref[2],
-          use1080Lyc = _ref[3];
-
-      var url = void 0,
-          resource = void 0;
+      var use720P = this.createForm.P720.show;
+      var use1080P = this.createForm.P1080.show;
+      var use720Lyc = this.createForm.P720.useLyc;
+      var use1080Lyc = this.createForm.P1080.useLyc;
+      var useOuterResource = !(use720P || use1080P);
+      var useLyric = use720Lyc || use1080Lyc;
+      var resource = useOuterResource ? '' : defaultResource;
       for (var i = begin; i <= end; i++) {
-        if (use720P || use1080P) {
-          url = '';
-        } else {
-          url = undefined;
+        if (!useOuterResource) {
+          if (use720P) {
+            resource.video['720'] = {
+              src: this.createForm.P720.src.replace('${n}', i).replace('${name}', bangumiEnglishName),
+              useLyc: use720Lyc
+            };
+          }
+          if (use1080P) {
+            resource.video['1080'] = {
+              src: this.createForm.P1080.src.replace('${n}', i).replace('${name}', bangumiEnglishName),
+              useLyc: use1080Lyc
+            };
+          }
         }
-        if (!use1080P && !use720P) {
-          resource = '';
-        } else {
-          resource = {
-            video: {},
-            lyric: ''
-          };
-        }
-        if (use720P) {
-          resource.video['720'] = {
-            src: this.createForm.P720.src.replace('${n}', i).replace('${name}', resName),
-            useLyc: use720Lyc
-          };
-        }
-        if (use1080P) {
-          resource.video['1080'] = {
-            src: this.createForm.P1080.src.replace('${n}', i).replace('${name}', resName),
-            useLyc: use1080Lyc
-          };
-        }
-        if (use720Lyc && use720P || use1080P && use1080Lyc) {
+        if (useLyric) {
+          // 这里默认只写入中文字体
           resource.lyric = {
-            'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', resName)
+            'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', bangumiEnglishName)
           };
         }
         arr.unshift({
@@ -5129,15 +4925,12 @@ var defaultResource = {
           'bangumi_id': bangumi_id,
           'part': i,
           'name': names[j++],
-          'poster': this.createForm.poster.replace('${n}', i).replace('${name}', resName),
-          'url': url === undefined ? this.createForm.url.replace('${n}', i).replace('${name}', resName) : url,
-          'deleted_at': moment().format('YYYY-MM-DD H:m:s')
+          'poster': this.createForm.poster.replace('${n}', i).replace('${name}', bangumiEnglishName),
+          'url': useOuterResource ? this.createForm.url.replace('${n}', i).replace('${name}', bangumiEnglishName) : ''
         });
       }
 
-      this.$http.post('/video/create', {
-        arr: arr
-      }).then(function () {
+      this.$http.post('/video/create', { arr: arr }).then(function () {
         _this5.$message.success('操作成功');
         _this5.handleCreateCancel();
       }, function (err) {
@@ -5151,4 +4944,4 @@ var defaultResource = {
 
 /***/ })
 
-},[36]);
+},[135]);
