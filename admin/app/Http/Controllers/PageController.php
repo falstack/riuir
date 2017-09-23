@@ -71,6 +71,9 @@ class PageController extends Controller
 
     public function register(Request $request)
     {
+        if (Auth::user()->id !== 1) {
+            return response('', 401);
+        }
         \DB::table('admins')->insert([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
