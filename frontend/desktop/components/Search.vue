@@ -144,8 +144,8 @@
           return
         }
         this.set(q)
+        // todo request
         window.open(`${window.location.protocol}//${window.location.host}/bangumi/news`)
-        // request
       },
       set (q) {
         setTimeout(() => {
