@@ -308,7 +308,7 @@
 <script>
   import vBanner from '~/components/Banner.vue'
   import tabCard from '~/components/TabCard.vue'
-  import { groupBy, orderBy } from '~/plugins/util/lodash'
+  import { groupBy, orderBy } from '~/plugins/utils/lodash'
 
   const nowTime = new Date().getTime()
 
