@@ -1,13 +1,13 @@
 webpackJsonp([1],{
 
-/***/ 117:
+/***/ 119:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 135:
+/***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22,6 +22,14 @@ var vue_common = __webpack_require__(2);
 var vue_common_default = /*#__PURE__*/__webpack_require__.n(vue_common);
 
 // CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/layouts/Sidebar.vue
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -104,7 +112,7 @@ var Sidebar_render = function() {
       }
     },
     [
-      _c("el-menu-item", { attrs: { index: "/dashboard" } }, [
+      _c("el-menu-item", { attrs: { index: "/" } }, [
         _c("i", { staticClass: "el-icon-menu" }),
         _vm._v(" "),
         _c("span", { attrs: { slot: "title" }, slot: "title" }, [_vm._v("首页")])
@@ -154,6 +162,25 @@ var Sidebar_render = function() {
             ],
             1
           )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "el-submenu",
+        { attrs: { index: "3" } },
+        [
+          _c("template", { attrs: { slot: "title" }, slot: "title" }, [
+            _c("i", { staticClass: "el-icon-setting" }),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "title" }, slot: "title" }, [
+              _vm._v("设置")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("el-menu-item", { attrs: { index: "/admin/user" } }, [
+            _vm._v("管理员")
+          ])
         ],
         2
       )
@@ -587,9 +614,6 @@ vue_common_default.a.use(vue_router_esm["default"]);
   },
   routes: [{
     path: '/',
-    redirect: '/dashboard'
-  }, {
-    path: '/dashboard',
     name: '首页',
     component: __webpack_require__(45).default
   }, {
@@ -604,6 +628,10 @@ vue_common_default.a.use(vue_router_esm["default"]);
     path: '/bangumi/video',
     name: '番剧视频',
     component: __webpack_require__(52).default
+  }, {
+    path: '/admin/user',
+    name: '管理员',
+    component: __webpack_require__(55).default
   }]
 }));
 // EXTERNAL MODULE: ./node_modules/_vuex@2.4.0@vuex/dist/vuex.esm.js
@@ -644,7 +672,7 @@ vue_common_default.a.use(vuex_esm["default"]);
   }
 }));
 // EXTERNAL MODULE: ./node_modules/_axios@0.16.2@axios/index.js
-var _axios_0_16_2_axios = __webpack_require__(55);
+var _axios_0_16_2_axios = __webpack_require__(57);
 var _axios_0_16_2_axios_default = /*#__PURE__*/__webpack_require__.n(_axios_0_16_2_axios);
 
 // CONCATENATED MODULE: ./frontend/utils/api.js
@@ -671,7 +699,7 @@ http.interceptors.response.use(function (res) {
 
 /* harmony default export */ var api = (http);
 // EXTERNAL MODULE: ./node_modules/_deep-assign@2.0.0@deep-assign/index.js
-var _deep_assign_2_0_0_deep_assign = __webpack_require__(74);
+var _deep_assign_2_0_0_deep_assign = __webpack_require__(76);
 var _deep_assign_2_0_0_deep_assign_default = /*#__PURE__*/__webpack_require__.n(_deep_assign_2_0_0_deep_assign);
 
 // CONCATENATED MODULE: ./frontend/utils/helpers.js
@@ -687,7 +715,7 @@ Helpers.install = function (Vue, options) {
 
 /* harmony default export */ var helpers = (Helpers);
 // EXTERNAL MODULE: ./node_modules/_element-ui@1.4.4@element-ui/lib/element-ui.common.js
-var element_ui_common = __webpack_require__(76);
+var element_ui_common = __webpack_require__(78);
 var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_common);
 
 // EXTERNAL MODULE: ./node_modules/_moment@2.18.1@moment/moment.js
@@ -965,7 +993,7 @@ if (false) {
 var modal_disposed = false
 function modal_injectStyle (ssrContext) {
   if (modal_disposed) return
-  __webpack_require__(117)
+  __webpack_require__(119)
 }
 var modal_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1019,7 +1047,7 @@ if (false) {(function () {
 
 
 
-vue_common_default.a.use(__webpack_require__(119), {
+vue_common_default.a.use(__webpack_require__(120), {
   moment: moment_default.a
 });
 vue_common_default.a.use(element_ui_common_default.a);
@@ -1070,7 +1098,7 @@ module.exports = "data:image/gif;base64,R0lGODlhUABQAPYAAGTZ1v+Yy/7+/gAAAFS3tc/S
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/dashboard.vue
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/index.vue
 //
 //
 //
@@ -1082,7 +1110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var dashboard = ({
+/* harmony default export */ var views = ({
   name: 'v-page-index',
   components: {},
   props: {},
@@ -1096,7 +1124,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {},
   mounted: function mounted() {}
 });
-// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-270a7b04","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/dashboard.vue
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-46e31642","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/index.vue
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -1108,19 +1136,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("dashboard page")])])
+    return _c("div", [_c("h1", [_vm._v("index page")])])
   }
 ]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var views_dashboard = (esExports);
+/* harmony default export */ var selectortype_template_index_0_frontend_views = (esExports);
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-270a7b04", esExports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-46e31642", esExports)
   }
 }
-// CONCATENATED MODULE: ./frontend/views/dashboard.vue
+// CONCATENATED MODULE: ./frontend/views/index.vue
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -1134,19 +1162,19 @@ var normalizeComponent = __webpack_require__(4)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-270a7b04"
+var __vue_scopeId__ = "data-v-46e31642"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  dashboard,
-  views_dashboard,
+  views,
+  selectortype_template_index_0_frontend_views,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "frontend/views/dashboard.vue"
+Component.options.__file = "frontend/views/index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] dashboard.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -1155,16 +1183,16 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-270a7b04", Component.options)
+    hotAPI.createRecord("data-v-46e31642", Component.options)
   } else {
-    hotAPI.reload("data-v-270a7b04", Component.options)
+    hotAPI.reload("data-v-46e31642", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
   })
 })()}
 
-/* harmony default export */ var frontend_views_dashboard = __webpack_exports__["default"] = (Component.exports);
+/* harmony default export */ var frontend_views = __webpack_exports__["default"] = (Component.exports);
 
 
 /***/ }),
@@ -4942,6 +4970,250 @@ var defaultCreateForm = {
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(9)))
 
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/admin/user.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var defaultSignUp = {
+  name: '',
+  email: '',
+  password: ''
+};
+/* harmony default export */ var user = ({
+  name: 'v-admin-user',
+  components: {},
+  props: {},
+  watch: {},
+  computed: {},
+  data: function data() {
+    return {
+      showCreateModal: false,
+      signUp: defaultSignUp
+    };
+  },
+
+  methods: {
+    register: function register() {
+      var _this = this;
+
+      this.$http.post('/auth/register', {
+        name: this.signUp.name,
+        email: this.signUp.email,
+        password: this.signUp.password
+      }).then(function () {
+        _this.resetSignUp();
+        _this.$message.success('操作成功');
+      }).catch(function () {
+        _this.$message.error('操作失败');
+      });
+    },
+    resetSignUp: function resetSignUp() {
+      this.showCreateModal = false;
+      this.signUp = defaultSignUp;
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-01151acb","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/admin/user.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c(
+      "header",
+      [
+        _c(
+          "el-button",
+          {
+            attrs: { type: "primary", icon: "plus", size: "large" },
+            on: {
+              click: function($event) {
+                _vm.showCreateModal = true
+              }
+            }
+          },
+          [_vm._v("注册")]
+        ),
+        _vm._v(" "),
+        _c(
+          "v-modal",
+          {
+            attrs: { "header-text": "新注册一个管理员" },
+            on: { cancel: _vm.resetSignUp, submit: _vm.register },
+            model: {
+              value: _vm.showCreateModal,
+              callback: function($$v) {
+                _vm.showCreateModal = $$v
+              },
+              expression: "showCreateModal"
+            }
+          },
+          [
+            _c(
+              "el-form",
+              { attrs: { "label-width": "80px" } },
+              [
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "昵称" } },
+                  [
+                    _c("el-input", {
+                      model: {
+                        value: _vm.signUp.name,
+                        callback: function($$v) {
+                          _vm.signUp.name = $$v
+                        },
+                        expression: "signUp.name"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "邮箱" } },
+                  [
+                    _c("el-input", {
+                      attrs: { type: "email" },
+                      model: {
+                        value: _vm.signUp.email,
+                        callback: function($$v) {
+                          _vm.signUp.email = $$v
+                        },
+                        expression: "signUp.email"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "密码" } },
+                  [
+                    _c("el-input", {
+                      attrs: { type: "password" },
+                      model: {
+                        value: _vm.signUp.password,
+                        callback: function($$v) {
+                          _vm.signUp.password = $$v
+                        },
+                        expression: "signUp.password"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var admin_user = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-01151acb", esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/views/admin/user.vue
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(56)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-01151acb"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  user,
+  admin_user,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "frontend/views/admin/user.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] user.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-01151acb", Component.options)
+  } else {
+    hotAPI.reload("data-v-01151acb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ var views_admin_user = __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
 /***/ })
 
-},[135]);
+},[36]);

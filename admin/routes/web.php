@@ -10,7 +10,7 @@ Route::group(['prefix' => 'auth'], function ()
 
     Route::post('logout', 'LoginController@logout');
 
-    Route::post('register', 'RegisterController@register');
+    Route::post('register', 'PageController@register');
 });
 
 Route::group(['middleware' => ['auth']], function ()
@@ -56,6 +56,4 @@ Route::group(['middleware' => ['auth']], function ()
 
         Route::post('/edit', 'TagController@edit');
     });
-
-    Route::get('/tools', 'PageController@tools');
 });

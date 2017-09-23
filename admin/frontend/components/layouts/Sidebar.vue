@@ -21,7 +21,7 @@
            :default-active="defaultActive"
            :router="true">
 
-    <el-menu-item index="/dashboard">
+    <el-menu-item index="/">
       <i class="el-icon-menu"></i>
       <span slot="title">首页</span>
     </el-menu-item>
@@ -40,6 +40,14 @@
       <el-menu-item-group title="视频">
         <el-menu-item index="/bangumi/video">视频列表</el-menu-item>
       </el-menu-item-group>
+    </el-submenu>
+
+    <el-submenu index="3">
+      <template slot="title">
+        <i class="el-icon-setting"></i>
+        <span slot="title">设置</span>
+      </template>
+      <el-menu-item index="/admin/user">管理员</el-menu-item>
     </el-submenu>
 
   </el-menu>

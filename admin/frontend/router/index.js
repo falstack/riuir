@@ -9,12 +9,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard'
-    },
-    {
-      path: '/dashboard',
       name: '首页',
-      component: require('view/dashboard').default
+      component: require('view/index').default
     },
     {
       path: '/bangumi/list',
@@ -30,6 +26,11 @@ export default new Router({
       path: '/bangumi/video',
       name: '番剧视频',
       component: require('view/bangumi/video').default
+    },
+    {
+      path: '/admin/user',
+      name: '管理员',
+      component: require('view/admin/user').default
     }
   ]
 })

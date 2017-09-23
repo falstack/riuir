@@ -73,8 +73,8 @@ class PageController extends Controller
     {
         \DB::table('admins')->insert([
             'name' => $request->get('name'),
-            'email' => $request->get('access'),
-            'password' => bcrypt($request->get('secret'))
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password'))
         ]);
     }
 

@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h1>dashboard page</h1>
+    <h1>index page</h1>
   </div>
 </template>
 
