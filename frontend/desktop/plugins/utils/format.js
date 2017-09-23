@@ -13,11 +13,11 @@ export default {
   },
 
   /**
-   * [ timeFromNow 格式化文章发布时间 ]
+   * [ timeAgo 格式化文章发布时间 ]
    * @param time
    * @returns {string}
    */
-  timeFromNow (time) {
+  timeAgo (time) {
     const ctxTime = new Date(time)
     const curTime = new Date()
     const ctxTimestamp = ctxTime.getTime()

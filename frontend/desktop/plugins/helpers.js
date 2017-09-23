@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import { groupBy, orderBy } from '~/plugins/util/lodash'
+import { host } from '~/.env'
+import Cookies from 'js-cookie'
+import { groupBy, orderBy, throttle } from '~/plugins/utils/lodash'
 import Backdrop from '~/plugins/backdrop'
 import Toast from '~/plugins/toast'
-import { host } from '~/.env'
-import format from '~/plugins/util/format'
-import Cookies from 'js-cookie'
+import format from '~/plugins/utils/format'
 
 const Helpers = {}
 
@@ -12,6 +12,8 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$orderBy = orderBy
 
   Vue.prototype.$groupBy = groupBy
+
+  Vue.prototype.$throttle = throttle
 
   Vue.prototype.$cdn = host.cdn
 
@@ -154,6 +156,48 @@ Helpers.install = function (Vue, options) {
       }
     }
     tick()
+  }
+
+  Vue.prototype.$eventManager = (function () {
+    class Manager {
+      constructor () {
+        this.id = 0
+        this.listeners = {}
+      }
+
+      add (ele, evt, handler, capture = false) {
+        const events = typeof evt === 'string' ? [evt] : evt
+        const result = []
+        events.forEach(e => {
+          const id = this.id++
+          ele.addEventListener(e, handler, capture)
+          this.listeners[id] = {
+            element: ele,
+            event: e,
+            handler,
+            capture
+          }
+          result.push(id)
+        })
+        return result
+      }
+
+      del (id) {
+        id.forEach(item => {
+          if (this.listeners[item]) {
+            const h = this.listeners[item]
+            h.element.removeEventListener(h.event, h.handler, h.capture)
+            Reflect.deleteProperty(this.listeners, item)
+          }
+        })
+      }
+    }
+    return new Manager()
+  }())
+
+  Vue.prototype.$checkInView = (dom, scale = 1) => {
+    const rect = dom.getBoundingClientRect()
+    return (rect.top < window.innerHeight * scale && rect.bottom > 0) && (rect.left < window.innerWidth * scale && rect.right > 0)
   }
 }
 
