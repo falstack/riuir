@@ -8,17 +8,6 @@ import Cookies from 'js-cookie'
 
 const Helpers = {}
 
-if (typeof window !== 'undefined') {
-  window.requestAnimFrame = (function () {
-    return window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      function (callback) {
-        window.setTimeout(callback, 1000 / 60)
-      }
-  }())
-}
-
 Helpers.install = function (Vue, options) {
   Vue.prototype.$orderBy = orderBy
 
@@ -120,68 +109,52 @@ Helpers.install = function (Vue, options) {
     return parseInt(getGray(getRGB(ele)), 10)
   }
 
-  Vue.prototype.$scrollY = (targetY, timer, ease) => {
+  Vue.prototype.$scrollY = (targetY, timer, dom, ease) => {
     let currentTime = 0
-    const scrollY = window.scrollY
+    const element = dom || window
+    const scrollY = dom ? dom.scrollTop : window.scrollY
     const scrollTargetY = targetY || 0
     const speed = timer || 2000
     const easing = ease || 'easeOutSine'
     const time = Math.max(0.1, Math.min(Math.abs(scrollY - scrollTargetY) / speed, 0.8))
     const easingEquations = {
-      easeOutSine: function (pos) {
+      easeOutSine (pos) {
         return Math.sin(pos * (Math.PI / 2))
+      },
+      easeInOutSine (pos) {
+        return (-0.5 * (Math.cos(Math.PI * pos) - 1))
+      },
+      easeInOutQuint (pos) {
+        // eslint-disable-next-line
+        if ((pos /= 0.5) < 1) {
+          return 0.5 * Math.pow(pos, 5)
+        }
+        return 0.5 * (Math.pow((pos - 2), 5) + 2)
       }
     }
-    const tick = () => {
+    if (!element.requestAnimFrame) {
+      element.requestAnimFrame = (function () {
+        return window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          function (callback) {
+            window.setTimeout(callback, 1000 / 60)
+          }
+      }()).bind(window)
+    }
+    function tick () {
       currentTime += 1 / 60
       const p = currentTime / time
       const t = easingEquations[easing](p)
       if (p < 1) {
-        window.requestAnimFrame(tick)
-        window.scrollTo(0, scrollY + ((scrollTargetY - scrollY) * t))
+        element.requestAnimFrame(tick)
+        element.scrollTo(0, scrollY + ((scrollTargetY - scrollY) * t))
       } else {
-        window.scrollTo(0, scrollTargetY)
+        element.scrollTo(0, scrollTargetY)
       }
     }
     tick()
   }
-
-  Vue.prototype.$eventManager = (function () {
-    class Manager {
-      constructor () {
-        this.id = 0
-        this.listeners = {}
-      }
-
-      add (ele, evt, handler, capture = false) {
-        const events = typeof evt === 'string' ? [evt] : evt
-        const result = []
-        events.forEach(e => {
-          const id = this.id++
-          ele.addEventListener(e, handler, capture)
-          this.listeners[id] = {
-            element: ele,
-            event: e,
-            handler,
-            capture
-          }
-          result.push(id)
-        })
-        return result
-      }
-
-      del (id) {
-        id.forEach(item => {
-          if (this.listeners[item]) {
-            const h = this.listeners[item]
-            h.element.removeEventListener(h.event, h.handler, h.capture)
-            Reflect.deleteProperty(this.listeners, item)
-          }
-        })
-      }
-    }
-    return new Manager()
-  }())
 }
 
 Vue.use(Helpers)
