@@ -1,12 +1,13 @@
 %clearfix {
   &:after {
-    clear: both;
     content: '';
+    clear: both;
     display: table;
   }
 
   &:before {
     content: '';
+    clear: both;
     display: table;
   }
 }
