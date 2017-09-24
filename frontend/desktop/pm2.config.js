@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name        : "desktop",
-    script      : "./server/index.js",
+    script      : "./server.js",
     watch       : true,
     ignore_watch: "node_modules",
     env: {
