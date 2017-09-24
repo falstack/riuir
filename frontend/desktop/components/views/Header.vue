@@ -365,8 +365,8 @@
 </template>
 
 <script>
-  import vSearch from '~/components/layouts/Search.vue'
-  import vSign from '~/components/layouts/Sign.vue'
+  import vSearch from '~/components/views/Search.vue'
+  import vSign from '~/components/views/Sign.vue'
 
   export default {
     name: 'v-header',

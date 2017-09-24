@@ -103,7 +103,7 @@
 </template>
 
 <script>
-  import vBanner from '~/components/layouts/Banner.vue'
+  import vBanner from '~/components/views/Banner.vue'
   import vVideo from '~/components/Video.vue'
 
   const metaMarginRgt = 8

@@ -88,7 +88,7 @@
 </template>
 
 <script>
-  import draggable from '~/components/services/draggable.js'
+  import draggable from '~/services/draggable.js'
 
   export default {
     name: 'v-range',

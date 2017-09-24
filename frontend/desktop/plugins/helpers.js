@@ -4,11 +4,10 @@ import { host } from '~/.env'
 import Vue from 'vue'
 import Cookies from 'js-cookie'
 // utils
-import { groupBy, orderBy, throttle } from '~/components/utils/lodash'
-import format from '~/components/utils/format'
+import { groupBy, orderBy, throttle } from '~/utils/lodash'
 // services
-import Backdrop from '~/components/services/backdrop'
-import Toast from '~/components/services/toast'
+import Backdrop from '~/services/backdrop'
+import Toast from '~/services/toast'
 // init
 const Helpers = {}
 
@@ -26,8 +25,6 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$backdrop = new Backdrop()
 
   Vue.prototype.$toast = new Toast()
-
-  Vue.prototype.$format = format
 
   Vue.prototype.$cookie = Cookies
 

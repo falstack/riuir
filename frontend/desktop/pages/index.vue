@@ -107,7 +107,7 @@
 </template>
 
 <script>
-  import vSearch from '~/components/layouts/Search.vue'
+  import vSearch from '~/components/views/Search.vue'
 
   export default {
     name: 'index',
