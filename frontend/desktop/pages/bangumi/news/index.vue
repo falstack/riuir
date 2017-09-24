@@ -306,7 +306,7 @@
 </template>
 
 <script>
-  import vBanner from '~/components/Banner.vue'
+  import vBanner from '~/components/layouts/Banner.vue'
   import tabCard from '~/components/TabCard.vue'
   import { groupBy, orderBy } from '~/plugins/utils/lodash'
 

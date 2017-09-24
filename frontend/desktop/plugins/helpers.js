@@ -1,11 +1,15 @@
-import Vue from 'vue'
+// env
 import { host } from '~/.env'
+// vendor
+import Vue from 'vue'
 import Cookies from 'js-cookie'
+// plugins
 import { groupBy, orderBy, throttle } from '~/plugins/utils/lodash'
-import Backdrop from '~/plugins/backdrop'
-import Toast from '~/plugins/toast'
 import format from '~/plugins/utils/format'
-
+// services
+import Backdrop from '~/components/services/backdrop'
+import Toast from '~/components/services/toast'
+// init
 const Helpers = {}
 
 Helpers.install = function (Vue, options) {
@@ -200,5 +204,5 @@ Helpers.install = function (Vue, options) {
     return (rect.top < window.innerHeight * scale && rect.bottom > 0) && (rect.left < window.innerWidth * scale && rect.right > 0)
   }
 }
-
+// bind
 Vue.use(Helpers)

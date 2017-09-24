@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Share from './share.vue'
+import Share from '~/components/layouts/share.vue'
 
 Vue.component(Share.name, Share)
 

@@ -21,10 +21,10 @@
 </template>
 
 <script>
-  import vHeader from '~/components/Header.vue'
-  import vMusic from '~/components/Music.vue'
-  import vFooter from '~/components/Footer.vue'
-  import vSideBar from '~/components/SideBar.vue'
+  import vHeader from '~/components/layouts/Header.vue'
+  import vMusic from '~/components/layouts/Music.vue'
+  import vFooter from '~/components/layouts/Footer.vue'
+  import vSideBar from '~/components/layouts/SideBar.vue'
 
   export default {
     components: {

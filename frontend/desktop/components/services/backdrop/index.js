@@ -18,7 +18,7 @@ export default class {
     return id
   }
 
-  hide ({ id } = {}) {
+  hide (id) {
     const list = document.querySelectorAll('.backdrop')
     if (list.length) {
       const backdrop = id ? document.getElementById(id) : list[0]

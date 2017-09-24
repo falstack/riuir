@@ -140,7 +140,7 @@
 </template>
 
 <script>
-  import vBanner from '~/components/Banner.vue'
+  import vBanner from '~/components/layouts/Banner.vue'
 
   export default {
     name: 'bangumi-tags',
