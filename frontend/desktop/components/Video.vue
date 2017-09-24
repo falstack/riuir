@@ -335,7 +335,7 @@
 </template>
 
 <script>
-  import vRange from '~/components/video/range.vue'
+  import vRange from '~/components/base/range.vue'
 
   export default {
     name: 'v-video',

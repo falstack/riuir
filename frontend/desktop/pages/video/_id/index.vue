@@ -104,7 +104,7 @@
 
 <script>
   import vBanner from '~/components/layouts/Banner.vue'
-  import vVideo from '~/components/video/video.vue'
+  import vVideo from '~/components/Video.vue'
 
   const metaMarginRgt = 8
 
