@@ -8,7 +8,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/analytics.js', ssr: false },
     { src: '~/plugins/helpers.js' },
-    { src: '~/plugins/share/index.js' },
+    { src: '~/plugins/share.js' },
     { src: '~/plugins/imagelazy.js' },
     { src: '~/plugins/geetest.js', ssr: false },
     { src: '~/plugins/validate.js', ssr: false }

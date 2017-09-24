@@ -3,9 +3,9 @@ import { host } from '~/.env'
 // vendor
 import Vue from 'vue'
 import Cookies from 'js-cookie'
-// plugins
-import { groupBy, orderBy, throttle } from '~/plugins/utils/lodash'
-import format from '~/plugins/utils/format'
+// utils
+import { groupBy, orderBy, throttle } from '~/components/utils/lodash'
+import format from '~/components/utils/format'
 // services
 import Backdrop from '~/components/services/backdrop'
 import Toast from '~/components/services/toast'
