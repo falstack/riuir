@@ -7,11 +7,7 @@ export default class {
     div.id = id
     div.classList.add('backdrop', 'show')
     if (click) {
-      div.addEventListener('click', (e) => {
-        e.stopPropagation()
-        e.preventDefault()
-        click()
-      })
+      div.addEventListener('click', click())
     }
     document.body.style.overflowY = 'hidden'
     ele ? ele.parentNode.insertBefore(div, ele) : document.body.appendChild(div)

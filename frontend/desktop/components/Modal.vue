@@ -144,7 +144,8 @@
     watch: {
       toggle(val) {
         val ? this.$backdrop.show({
-          ele: this.$el
+          ele: this.$el,
+          click: this.handleClose
         }) : this.$backdrop.hide()
         this.$emit('input', val);
       },
