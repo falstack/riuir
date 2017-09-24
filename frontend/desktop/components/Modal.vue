@@ -16,25 +16,10 @@
 
     &.modal-enter-active,
     &.modal-leave-active {
-      .v-modal-mask {
-        opacity: 0;
-      }
-
       .v-modal {
         transform: translate(-50%, -70%);
         opacity: 0;
       }
-    }
-
-    .v-modal-mask {
-      background-color: hsla(0,0%,100%,.7);
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      transition: opacity $time;
-      opacity: 1;
     }
 
     .v-modal {
@@ -102,7 +87,6 @@
 <template>
   <transition name="modal">
     <section class="v-modal-wrap" v-if="toggle">
-      <div class="v-modal-mask" @click="handleClose"></div>
       <div class="v-modal" @click>
         <header v-if="header">
           <slot name="header">
@@ -159,6 +143,9 @@
     },
     watch: {
       toggle(val) {
+        val ? this.$backdrop.show({
+          ele: this.$el
+        }) : this.$backdrop.hide()
         this.$emit('input', val);
       },
       value(val) {
