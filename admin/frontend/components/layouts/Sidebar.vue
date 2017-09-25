@@ -26,7 +26,16 @@
       <span slot="title">首页</span>
     </el-menu-item>
 
-    <el-submenu index="3">
+    <el-submenu index="1">
+      <template slot="title">
+        <i class="el-icon-picture"></i>
+        <span slot="title">图片</span>
+      </template>
+      <el-menu-item index="/image/loop">首页轮播</el-menu-item>
+      <el-menu-item index="/image/banner">banner图</el-menu-item>
+    </el-submenu>
+
+    <el-submenu index="2">
       <template slot="title">
         <i class="el-icon-star-on"></i>
         <span slot="title">番剧</span>

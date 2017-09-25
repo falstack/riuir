@@ -7,6 +7,216 @@ webpackJsonp([1],{
 
 /***/ }),
 
+/***/ 136:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/image/loop.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var loop = ({
+  name: 'v-',
+  components: {},
+  props: {},
+  watch: {},
+  computed: {},
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+
+  methods: {},
+  mounted: function mounted() {}
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-27456ed0","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/loop.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n  loop page\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var image_loop = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-27456ed0", esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/views/image/loop.vue
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(137)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-27456ed0"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  loop,
+  image_loop,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "frontend/views/image/loop.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] loop.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-27456ed0", Component.options)
+  } else {
+    hotAPI.reload("data-v-27456ed0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ var views_image_loop = __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 137:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 138:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/image/banner.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var banner = ({
+  name: 'v-',
+  components: {},
+  props: {},
+  watch: {},
+  computed: {},
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+
+  methods: {},
+  mounted: function mounted() {}
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-2f659620","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/banner.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n  banner page\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var image_banner = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2f659620", esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/views/image/banner.vue
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(139)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2f659620"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  banner,
+  image_banner,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "frontend/views/image/banner.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] banner.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2f659620", Component.options)
+  } else {
+    hotAPI.reload("data-v-2f659620", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ var views_image_banner = __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 139:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -22,6 +232,15 @@ var vue_common = __webpack_require__(2);
 var vue_common_default = /*#__PURE__*/__webpack_require__.n(vue_common);
 
 // CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/layouts/Sidebar.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -120,7 +339,30 @@ var Sidebar_render = function() {
       _vm._v(" "),
       _c(
         "el-submenu",
-        { attrs: { index: "3" } },
+        { attrs: { index: "1" } },
+        [
+          _c("template", { attrs: { slot: "title" }, slot: "title" }, [
+            _c("i", { staticClass: "el-icon-picture" }),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "title" }, slot: "title" }, [
+              _vm._v("图片")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("el-menu-item", { attrs: { index: "/image/loop" } }, [
+            _vm._v("首页轮播")
+          ]),
+          _vm._v(" "),
+          _c("el-menu-item", { attrs: { index: "/image/banner" } }, [
+            _vm._v("banner图")
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "el-submenu",
+        { attrs: { index: "2" } },
         [
           _c("template", { attrs: { slot: "title" }, slot: "title" }, [
             _c("i", { staticClass: "el-icon-star-on" }),
@@ -616,6 +858,14 @@ vue_common_default.a.use(vue_router_esm["default"]);
     path: '/',
     name: '首页',
     component: __webpack_require__(45).default
+  }, {
+    path: '/image/loop',
+    name: '首页轮播',
+    component: __webpack_require__(136).default
+  }, {
+    path: '/image/banner',
+    name: 'banner 图',
+    component: __webpack_require__(138).default
   }, {
     path: '/bangumi/list',
     name: '番剧列表',

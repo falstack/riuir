@@ -13,6 +13,16 @@ export default new Router({
       component: require('view/index').default
     },
     {
+      path: '/image/loop',
+      name: '首页轮播',
+      component: require('view/image/loop').default
+    },
+    {
+      path: '/image/banner',
+      name: 'banner 图',
+      component: require('view/image/banner').default
+    },
+    {
       path: '/bangumi/list',
       name: '番剧列表',
       component: require('view/bangumi/list').default
