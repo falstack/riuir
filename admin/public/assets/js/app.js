@@ -24,19 +24,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var loop = ({
-  name: 'v-',
+  name: 'v-page-image-loop',
   components: {},
   props: {},
   watch: {},
-  computed: {},
-  data: function data() {
-    return {};
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
   },
-  created: function created() {},
+  data: function data() {
+    return {
+      list: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 24,
+        curPage: 1
+      }
+    };
+  },
+  created: function created() {
+    this.getLoops();
+  },
 
-  methods: {},
+  methods: {
+    getLoops: function getLoops() {
+      var _this = this;
+
+      this.$http.get('/image/loop/list').then(function (data) {
+        _this.list = data;
+      });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
+    }
+  },
   mounted: function mounted() {}
 });
 // CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-27456ed0","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/loop.vue
@@ -44,7 +90,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  loop page\n")])
+  return _c("section", [
+    _c("header"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "main-view" },
+      _vm._l(_vm.filter, function(item) {
+        return _c("div", {
+          staticClass: "loop bg",
+          style: { backgroundImage: "url(" + item.url + ")" }
+        })
+      })
+    ),
+    _vm._v(" "),
+    _c(
+      "footer",
+      [
+        _c("el-pagination", {
+          attrs: {
+            layout: "total, sizes, prev, pager, next, jumper",
+            "current-page": _vm.pagination.curPage,
+            "page-sizes": [10, 20, 50],
+            "page-size": _vm.pagination.pageSize,
+            pageCount: _vm.pagination.totalPage,
+            total: _vm.list.length
+          },
+          on: {
+            "size-change": _vm.handleSizeChange,
+            "current-change": _vm.handleCurrentChange
+          }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

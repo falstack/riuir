@@ -10,6 +10,11 @@ button:focus {
 a {
   text-decoration: none;
 }
+.bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 html, body {
   height: 100%;
 }
@@ -138,6 +143,11 @@ a, button {
       width: 40px;
       height: 40px;
       border-radius: 10px;
+}
+
+.loop[data-v-27456ed0] {
+  width: 300px;
+  height: 200px;
 }
 
 .v-modal-wrap {

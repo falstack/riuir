@@ -56,4 +56,18 @@ Route::group(['middleware' => ['auth']], function ()
 
         Route::post('/edit', 'TagController@edit');
     });
+
+    Route::group(['prefix' => 'image'], function ()
+    {
+        Route::group(['prefix' => 'loop'], function ()
+        {
+            Route::get('/list', 'ImageController@loopShow');
+
+            Route::post('/create', 'ImageController@loopCreate');
+
+            Route::post('/edit', 'ImageController@loopEdit');
+
+            Route::post('/delete', 'ImageController@loopDelete');
+        });
+    });
 });
