@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth']], function ()
 
             Route::post('/edit', 'ImageController@loopEdit');
 
-            Route::post('/delete', 'ImageController@loopDelete');
+            Route::post('/toggle', 'ImageController@loopToggle');
         });
     });
 });

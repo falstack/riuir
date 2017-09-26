@@ -1,7 +1,39 @@
 <style lang="scss" scoped="">
   .loop {
-    width: 300px;
-    height: 200px;
+    width: 280px;
+    height: 173px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    transition-duration: .2s;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1), 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .control {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.4) 65%, rgba(0, 0, 0, 0.6));
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-content: center;
+      padding: 10px;
+    }
   }
 </style>
 
@@ -9,13 +41,18 @@
   <section>
     <header></header>
     <div class="main-view">
-      <div class="loop bg" v-for="item in filter" :style="{ backgroundImage: `url(${item.url})` }"></div>
+      <div class="loop" v-for="(item, index) in filter">
+        <img :src="$resize(item.url, { width: 280, height: 173 })" alt="loop">
+        <div class="control">
+          <el-switch on-text="" off-text="" v-model="item.use" @change="handleSwitch(item, index)"></el-switch>
+        </div>
+      </div>
     </div>
     <footer>
       <el-pagination
         layout="total, sizes, prev, pager, next, jumper"
         :current-page="pagination.curPage"
-        :page-sizes="[10, 20, 50]"
+        :page-sizes="[12, 24, 48]"
         :page-size="pagination.pageSize"
         :pageCount="pagination.totalPage"
         :total="list.length"
@@ -29,15 +66,6 @@
 <script>
   export default {
     name: 'v-page-image-loop',
-    components: {
-
-    },
-    props: {
-
-    },
-    watch: {
-
-    },
     computed: {
       filter () {
         const begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
@@ -49,7 +77,7 @@
         list: [],
         pagination: {
           totalPage: 0,
-          pageSize: 24,
+          pageSize: 12,
           curPage: 1
         }
       }
@@ -60,7 +88,11 @@
     methods: {
       getLoops() {
         this.$http.get('/image/loop/list').then((data) => {
-          this.list = data
+          this.pagination.totalPage = data.length
+          this.list = data.map(item => {
+            item.use = !item.deleted_at
+            return item
+          })
         })
       },
       handleSizeChange(val) {
@@ -69,9 +101,21 @@
       handleCurrentChange(val) {
         this.pagination.curPage = val
       },
-    },
-    mounted () {
-
+      handleSwitch(item, index) {
+        this.$confirm('确认要执行该操作吗?', '提示').then(() => {
+          this.$http.post('/image/loop/toggle', {
+            id: item.id,
+            isDelete: !item.deleted_at
+          }).then(() => {
+            this.$message.success('操作成功');
+          }).catch(() => {
+            this.$message.error('操作失败');
+            this.list[index + (this.pagination.curPage - 1) * this.pagination.pageSize].use = !item.deleted_at
+          })
+        }).catch(() => {
+          this.list[index + (this.pagination.curPage - 1) * this.pagination.pageSize].use = !item.deleted_at
+        })
+      }
     }
   }
 </script>

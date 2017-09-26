@@ -146,8 +146,37 @@ a, button {
 }
 
 .loop[data-v-27456ed0] {
-  width: 300px;
-  height: 200px;
+  width: 280px;
+  height: 173px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition-duration: .2s;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.loop[data-v-27456ed0]:hover {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.loop img[data-v-27456ed0] {
+    width: 100%;
+    height: 100%;
+}
+.loop .control[data-v-27456ed0] {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.4) 65%, rgba(0, 0, 0, 0.6));
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    padding: 10px;
 }
 
 .v-modal-wrap {

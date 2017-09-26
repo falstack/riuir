@@ -1,296 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 119:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 136:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/image/loop.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var loop = ({
-  name: 'v-page-image-loop',
-  components: {},
-  props: {},
-  watch: {},
-  computed: {
-    filter: function filter() {
-      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
-      return this.list.slice(begin, begin + this.pagination.pageSize);
-    }
-  },
-  data: function data() {
-    return {
-      list: [],
-      pagination: {
-        totalPage: 0,
-        pageSize: 24,
-        curPage: 1
-      }
-    };
-  },
-  created: function created() {
-    this.getLoops();
-  },
-
-  methods: {
-    getLoops: function getLoops() {
-      var _this = this;
-
-      this.$http.get('/image/loop/list').then(function (data) {
-        _this.list = data;
-      });
-    },
-    handleSizeChange: function handleSizeChange(val) {
-      this.pagination.pageSize = val;
-    },
-    handleCurrentChange: function handleCurrentChange(val) {
-      this.pagination.curPage = val;
-    }
-  },
-  mounted: function mounted() {}
-});
-// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-27456ed0","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/loop.vue
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("header"),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "main-view" },
-      _vm._l(_vm.filter, function(item) {
-        return _c("div", {
-          staticClass: "loop bg",
-          style: { backgroundImage: "url(" + item.url + ")" }
-        })
-      })
-    ),
-    _vm._v(" "),
-    _c(
-      "footer",
-      [
-        _c("el-pagination", {
-          attrs: {
-            layout: "total, sizes, prev, pager, next, jumper",
-            "current-page": _vm.pagination.curPage,
-            "page-sizes": [10, 20, 50],
-            "page-size": _vm.pagination.pageSize,
-            pageCount: _vm.pagination.totalPage,
-            total: _vm.list.length
-          },
-          on: {
-            "size-change": _vm.handleSizeChange,
-            "current-change": _vm.handleCurrentChange
-          }
-        })
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var image_loop = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-27456ed0", esExports)
-  }
-}
-// CONCATENATED MODULE: ./frontend/views/image/loop.vue
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(137)
-}
-var normalizeComponent = __webpack_require__(4)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-27456ed0"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  loop,
-  image_loop,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "frontend/views/image/loop.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] loop.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-27456ed0", Component.options)
-  } else {
-    hotAPI.reload("data-v-27456ed0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ var views_image_loop = __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 137:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 138:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/image/banner.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var banner = ({
-  name: 'v-',
-  components: {},
-  props: {},
-  watch: {},
-  computed: {},
-  data: function data() {
-    return {};
-  },
-  created: function created() {},
-
-  methods: {},
-  mounted: function mounted() {}
-});
-// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-2f659620","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/banner.vue
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  banner page\n")])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var image_banner = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2f659620", esExports)
-  }
-}
-// CONCATENATED MODULE: ./frontend/views/image/banner.vue
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(139)
-}
-var normalizeComponent = __webpack_require__(4)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-2f659620"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  banner,
-  image_banner,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "frontend/views/image/banner.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] banner.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2f659620", Component.options)
-  } else {
-    hotAPI.reload("data-v-2f659620", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ var views_image_banner = __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
-/***/ 139:
+/***/ 123:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -941,27 +651,27 @@ vue_common_default.a.use(vue_router_esm["default"]);
   }, {
     path: '/image/loop',
     name: '首页轮播',
-    component: __webpack_require__(136).default
+    component: __webpack_require__(47).default
   }, {
     path: '/image/banner',
     name: 'banner 图',
-    component: __webpack_require__(138).default
+    component: __webpack_require__(49).default
   }, {
     path: '/bangumi/list',
     name: '番剧列表',
-    component: __webpack_require__(47).default
+    component: __webpack_require__(51).default
   }, {
     path: '/bangumi/tag',
     name: '番剧标签',
-    component: __webpack_require__(50).default
+    component: __webpack_require__(54).default
   }, {
     path: '/bangumi/video',
     name: '番剧视频',
-    component: __webpack_require__(52).default
+    component: __webpack_require__(56).default
   }, {
     path: '/admin/user',
     name: '管理员',
-    component: __webpack_require__(55).default
+    component: __webpack_require__(59).default
   }]
 }));
 // EXTERNAL MODULE: ./node_modules/_vuex@2.4.0@vuex/dist/vuex.esm.js
@@ -1002,7 +712,7 @@ vue_common_default.a.use(vuex_esm["default"]);
   }
 }));
 // EXTERNAL MODULE: ./node_modules/_axios@0.16.2@axios/index.js
-var _axios_0_16_2_axios = __webpack_require__(57);
+var _axios_0_16_2_axios = __webpack_require__(61);
 var _axios_0_16_2_axios_default = /*#__PURE__*/__webpack_require__.n(_axios_0_16_2_axios);
 
 // CONCATENATED MODULE: ./frontend/utils/api.js
@@ -1029,7 +739,7 @@ http.interceptors.response.use(function (res) {
 
 /* harmony default export */ var api = (http);
 // EXTERNAL MODULE: ./node_modules/_deep-assign@2.0.0@deep-assign/index.js
-var _deep_assign_2_0_0_deep_assign = __webpack_require__(76);
+var _deep_assign_2_0_0_deep_assign = __webpack_require__(80);
 var _deep_assign_2_0_0_deep_assign_default = /*#__PURE__*/__webpack_require__.n(_deep_assign_2_0_0_deep_assign);
 
 // CONCATENATED MODULE: ./frontend/utils/helpers.js
@@ -1041,11 +751,48 @@ Helpers.install = function (Vue, options) {
   Vue.prototype.$http = api;
 
   Vue.prototype.$deepAssign = _deep_assign_2_0_0_deep_assign_default.a;
+
+  Vue.prototype.$resize = function (url) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    if (url === '') {
+      return '';
+    }
+    var canUseWebP = function canUseWebP() {
+      if (Vue.prototype.$isServer) {
+        return false;
+      }
+      if (window.supportWebP !== undefined) {
+        return window.supportWebP;
+      }
+
+      var elem = document.createElement('canvas');
+
+      if (elem.getContext && elem.getContext('2d')) {
+        var support = elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+        window.supportWebP = support;
+        return support;
+      }
+
+      return false;
+    };
+
+    var format = canUseWebP() ? '/format/webp' : '';
+
+    if (options.width && options.width > 0) {
+      var width = '/w/' + options.width;
+      var mode = options.mode === undefined ? 1 : options.mode;
+      var height = options.height ? '/h/' + options.height : mode === 1 ? '/h/' + options.width : '';
+
+      return url + '?imageMogr2/auto-orient/strip|imageView2/' + mode + width + height + format;
+    }
+    return url + '?imageMogr2/auto-orient/strip' + format;
+  };
 };
 
 /* harmony default export */ var helpers = (Helpers);
 // EXTERNAL MODULE: ./node_modules/_element-ui@1.4.4@element-ui/lib/element-ui.common.js
-var element_ui_common = __webpack_require__(78);
+var element_ui_common = __webpack_require__(82);
 var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_common);
 
 // EXTERNAL MODULE: ./node_modules/_moment@2.18.1@moment/moment.js
@@ -1323,7 +1070,7 @@ if (false) {
 var modal_disposed = false
 function modal_injectStyle (ssrContext) {
   if (modal_disposed) return
-  __webpack_require__(119)
+  __webpack_require__(123)
 }
 var modal_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1377,7 +1124,7 @@ if (false) {(function () {
 
 
 
-vue_common_default.a.use(__webpack_require__(120), {
+vue_common_default.a.use(__webpack_require__(124), {
   moment: moment_default.a
 });
 vue_common_default.a.use(element_ui_common_default.a);
@@ -1540,8 +1287,379 @@ if (false) {(function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/image/loop.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var loop = ({
+  name: 'v-page-image-loop',
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
+  data: function data() {
+    return {
+      list: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 12,
+        curPage: 1
+      }
+    };
+  },
+  created: function created() {
+    this.getLoops();
+  },
+
+  methods: {
+    getLoops: function getLoops() {
+      var _this = this;
+
+      this.$http.get('/image/loop/list').then(function (data) {
+        _this.pagination.totalPage = data.length;
+        _this.list = data.map(function (item) {
+          item.use = !item.deleted_at;
+          return item;
+        });
+      });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
+    },
+    handleSwitch: function handleSwitch(item, index) {
+      var _this2 = this;
+
+      this.$confirm('确认要执行该操作吗?', '提示').then(function () {
+        _this2.$http.post('/image/loop/toggle', {
+          id: item.id,
+          isDelete: !item.deleted_at
+        }).then(function () {
+          _this2.$message.success('操作成功');
+        }).catch(function () {
+          _this2.$message.error('操作失败');
+          _this2.list[index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize].use = !item.deleted_at;
+        });
+      }).catch(function () {
+        _this2.list[index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize].use = !item.deleted_at;
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-27456ed0","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/loop.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c("header"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "main-view" },
+      _vm._l(_vm.filter, function(item, index) {
+        return _c("div", { staticClass: "loop" }, [
+          _c("img", {
+            attrs: {
+              src: _vm.$resize(item.url, { width: 280, height: 173 }),
+              alt: "loop"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "control" },
+            [
+              _c("el-switch", {
+                attrs: { "on-text": "", "off-text": "" },
+                on: {
+                  change: function($event) {
+                    _vm.handleSwitch(item, index)
+                  }
+                },
+                model: {
+                  value: item.use,
+                  callback: function($$v) {
+                    item.use = $$v
+                  },
+                  expression: "item.use"
+                }
+              })
+            ],
+            1
+          )
+        ])
+      })
+    ),
+    _vm._v(" "),
+    _c(
+      "footer",
+      [
+        _c("el-pagination", {
+          attrs: {
+            layout: "total, sizes, prev, pager, next, jumper",
+            "current-page": _vm.pagination.curPage,
+            "page-sizes": [12, 24, 48],
+            "page-size": _vm.pagination.pageSize,
+            pageCount: _vm.pagination.totalPage,
+            total: _vm.list.length
+          },
+          on: {
+            "size-change": _vm.handleSizeChange,
+            "current-change": _vm.handleCurrentChange
+          }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var image_loop = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-27456ed0", esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/views/image/loop.vue
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(48)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-27456ed0"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  loop,
+  image_loop,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "frontend/views/image/loop.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] loop.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-27456ed0", Component.options)
+  } else {
+    hotAPI.reload("data-v-27456ed0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ var views_image_loop = __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 48:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 49:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/image/banner.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var banner = ({
+  name: 'v-',
+  components: {},
+  props: {},
+  watch: {},
+  computed: {},
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+
+  methods: {},
+  mounted: function mounted() {}
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-2f659620","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/image/banner.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n  banner page\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var image_banner = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2f659620", esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/views/image/banner.vue
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(50)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2f659620"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  banner,
+  image_banner,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "frontend/views/image/banner.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] banner.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2f659620", Component.options)
+  } else {
+    hotAPI.reload("data-v-2f659620", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ var views_image_banner = __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 51:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
 // EXTERNAL MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/list.vue
-var list = __webpack_require__(49);
+var list = __webpack_require__(53);
 
 // CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-6d7951d8","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/list.vue
 var render = function() {
@@ -2391,7 +2509,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(48)
+  __webpack_require__(52)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -2436,14 +2554,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 48:
+/***/ 52:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 49:
+/***/ 53:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3140,7 +3258,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 50:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3647,7 +3765,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(51)
+  __webpack_require__(55)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -3692,21 +3810,21 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 51:
+/***/ 55:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 52:
+/***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // EXTERNAL MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/video.vue
-var video = __webpack_require__(54);
+var video = __webpack_require__(58);
 
 // CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-0b9e0b16","hasScoped":true}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/video.vue
 var render = function() {
@@ -4717,7 +4835,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(53)
+  __webpack_require__(57)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -4762,14 +4880,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 53:
+/***/ 57:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 54:
+/***/ 58:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5302,7 +5420,7 @@ var defaultCreateForm = {
 
 /***/ }),
 
-/***/ 55:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5494,7 +5612,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(56)
+  __webpack_require__(60)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -5539,7 +5657,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 56:
+/***/ 60:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
