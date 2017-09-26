@@ -1353,6 +1353,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var loop = ({
   name: 'v-page-image-loop',
@@ -1369,6 +1385,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         totalPage: 0,
         pageSize: 12,
         curPage: 1
+      },
+      showCreateModal: false,
+      createForm: {
+        url: '',
+        userId: '',
+        bangumiId: ''
       }
     };
   },
@@ -1418,68 +1440,161 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("header"),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "main-view" },
-      _vm._l(_vm.filter, function(item, index) {
-        return _c("div", { staticClass: "loop" }, [
-          _c("img", {
-            attrs: {
-              src: _vm.$resize(item.url, { width: 280, height: 173 }),
-              alt: "loop"
-            }
-          }),
-          _vm._v(" "),
+  return _c(
+    "section",
+    [
+      _c(
+        "header",
+        [
           _c(
-            "div",
-            { staticClass: "control" },
-            [
-              _c("el-switch", {
-                attrs: { "on-text": "", "off-text": "" },
-                on: {
-                  change: function($event) {
-                    _vm.handleSwitch(item, index)
-                  }
-                },
-                model: {
-                  value: item.use,
-                  callback: function($$v) {
-                    item.use = $$v
-                  },
-                  expression: "item.use"
+            "el-button",
+            {
+              attrs: { type: "primary", icon: "plus", size: "large" },
+              on: {
+                click: function($event) {
+                  _vm.showCreateModal = true
                 }
-              })
+              }
+            },
+            [_vm._v("添加图片")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "main-view" },
+        _vm._l(_vm.filter, function(item, index) {
+          return _c("div", { staticClass: "loop" }, [
+            _c("img", {
+              attrs: {
+                src: _vm.$resize(item.url, { width: 280, height: 173 }),
+                alt: "loop"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c("el-switch", {
+                  attrs: { "on-text": "", "off-text": "" },
+                  on: {
+                    change: function($event) {
+                      _vm.handleSwitch(item, index)
+                    }
+                  },
+                  model: {
+                    value: item.use,
+                    callback: function($$v) {
+                      item.use = $$v
+                    },
+                    expression: "item.use"
+                  }
+                })
+              ],
+              1
+            )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
+        "v-modal",
+        {
+          model: {
+            value: _vm.showCreateModal,
+            callback: function($$v) {
+              _vm.showCreateModal = $$v
+            },
+            expression: "showCreateModal"
+          }
+        },
+        [
+          _c(
+            "el-form",
+            { attrs: { model: _vm.createForm } },
+            [
+              _c(
+                "el-col",
+                { attrs: { span: 11 } },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "番剧id", "label-width": "60px" } },
+                    [
+                      _c("el-input", {
+                        attrs: { "auto-complete": "off" },
+                        model: {
+                          value: _vm.createForm.bangumiId,
+                          callback: function($$v) {
+                            _vm.createForm.bangumiId = $$v
+                          },
+                          expression: "createForm.bangumiId"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 11, offset: 1 } },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "用户id", "label-width": "60px" } },
+                    [
+                      _c("el-input", {
+                        attrs: { "auto-complete": "off" },
+                        model: {
+                          value: _vm.createForm.userId,
+                          callback: function($$v) {
+                            _vm.createForm.userId = $$v
+                          },
+                          expression: "createForm.userId"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
             1
           )
-        ])
-      })
-    ),
-    _vm._v(" "),
-    _c(
-      "footer",
-      [
-        _c("el-pagination", {
-          attrs: {
-            layout: "total, sizes, prev, pager, next, jumper",
-            "current-page": _vm.pagination.curPage,
-            "page-sizes": [12, 24, 48],
-            "page-size": _vm.pagination.pageSize,
-            pageCount: _vm.pagination.totalPage,
-            total: _vm.list.length
-          },
-          on: {
-            "size-change": _vm.handleSizeChange,
-            "current-change": _vm.handleCurrentChange
-          }
-        })
-      ],
-      1
-    )
-  ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "footer",
+        [
+          _c("el-pagination", {
+            attrs: {
+              layout: "total, sizes, prev, pager, next, jumper",
+              "current-page": _vm.pagination.curPage,
+              "page-sizes": [12, 24, 48],
+              "page-size": _vm.pagination.pageSize,
+              pageCount: _vm.pagination.totalPage,
+              total: _vm.list.length
+            },
+            on: {
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

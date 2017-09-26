@@ -39,7 +39,9 @@
 
 <template>
   <section>
-    <header></header>
+    <header>
+      <el-button type="primary" icon="plus" size="large" @click="showCreateModal = true">添加图片</el-button>
+    </header>
     <div class="main-view">
       <div class="loop" v-for="(item, index) in filter">
         <img :src="$resize(item.url, { width: 280, height: 173 })" alt="loop">
@@ -48,6 +50,20 @@
         </div>
       </div>
     </div>
+    <v-modal v-model="showCreateModal">
+      <el-form :model="createForm">
+        <el-col :span="11">
+          <el-form-item label="番剧id" :label-width="'60px'">
+            <el-input v-model="createForm.bangumiId" auto-complete="off"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="11" :offset="1">
+          <el-form-item label="用户id" :label-width="'60px'">
+            <el-input v-model="createForm.userId" auto-complete="off"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-form>
+    </v-modal>
     <footer>
       <el-pagination
         layout="total, sizes, prev, pager, next, jumper"
@@ -79,6 +95,12 @@
           totalPage: 0,
           pageSize: 12,
           curPage: 1
+        },
+        showCreateModal: false,
+        createForm: {
+          url: '',
+          userId: '',
+          bangumiId: ''
         }
       }
     },
