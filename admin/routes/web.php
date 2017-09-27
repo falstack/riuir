@@ -59,6 +59,8 @@ Route::group(['middleware' => ['auth']], function ()
 
     Route::group(['prefix' => 'image'], function ()
     {
+        Route::get('/uptoken', 'ImageController@uptoken');
+
         Route::group(['prefix' => 'loop'], function ()
         {
             Route::get('/list', 'ImageController@loopShow');

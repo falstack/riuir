@@ -7,6 +7,7 @@ import Helpers from './utils/helpers'
 import Element from 'element-ui'
 import moment from 'moment'
 import Modal from 'component/modal'
+import './utils/validate'
 
 Vue.use(require('vue-moment'), {
   moment

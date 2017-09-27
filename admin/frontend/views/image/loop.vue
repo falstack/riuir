@@ -50,16 +50,49 @@
         </div>
       </div>
     </div>
-    <v-modal v-model="showCreateModal">
+    <v-modal v-model="showCreateModal"
+             :header-text="'首页轮播图上传'"
+             @submit="saveLoop">
       <el-form :model="createForm">
         <el-col :span="11">
           <el-form-item label="番剧id" :label-width="'60px'">
-            <el-input v-model="createForm.bangumiId" auto-complete="off"></el-input>
+            <el-input name="bangumi_id"
+                      v-model="createForm.bangumiId"
+                      auto-complete="off"
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="11" :offset="1">
           <el-form-item label="用户id" :label-width="'60px'">
-            <el-input v-model="createForm.userId" auto-complete="off"></el-input>
+            <el-input name="user_id"
+                      v-model="createForm.userId"
+                      auto-complete="off"
+            ></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="21">
+          <el-form-item label="资源" :label-width="'60px'">
+            <el-input name="url"
+                      v-model="createForm.url"
+                      v-validate="{
+                        rules: 'required',
+                        scope: 'create-loop'
+                      }"
+                      auto-complete="off"
+            ><template slot="prepend">https://cdn.riuir.com/</template>
+            </el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="2" :offset="1">
+          <el-form-item>
+            <el-upload
+              action="http://up.qiniu.com"
+              :data="uploadHeaders"
+              :show-file-list="false"
+              :on-success="handleCreateLoopSuccess"
+              :before-upload="beforeUpload">
+              <i class="el-icon-plus"></i>
+            </el-upload>
           </el-form-item>
         </el-col>
       </el-form>
@@ -80,6 +113,11 @@
 </template>
 
 <script>
+  const defaultCreateForm = {
+    url: '',
+    userId: '',
+    bangumiId: ''
+  }
   export default {
     name: 'v-page-image-loop',
     computed: {
@@ -97,15 +135,16 @@
           curPage: 1
         },
         showCreateModal: false,
-        createForm: {
-          url: '',
-          userId: '',
-          bangumiId: ''
+        createForm: defaultCreateForm,
+        uploadHeaders: {
+          token: '',
+          key: ''
         }
       }
     },
     created () {
       this.getLoops()
+      this.getUptoken()
     },
     methods: {
       getLoops() {
@@ -115,6 +154,11 @@
             item.use = !item.deleted_at
             return item
           })
+        })
+      },
+      getUptoken() {
+        this.$http.get('/image/uptoken').then((token) => {
+          this.uploadHeaders.token = token
         })
       },
       handleSizeChange(val) {
@@ -136,6 +180,47 @@
           })
         }).catch(() => {
           this.list[index + (this.pagination.curPage - 1) * this.pagination.pageSize].use = !item.deleted_at
+        })
+      },
+      beforeUpload(file) {
+        const isFormat = file.type === 'image/jpeg' || file.type === 'image/png';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isFormat) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        this.uploadHeaders.key = `loop/${new Date().getTime()}/${Math.random().toString(36).substring(3, 6)}`;
+        return isFormat && isLt2M;
+      },
+      handleCreateLoopSuccess(res, file) {
+        this.createForm.url = res.key
+      },
+      saveLoop() {
+        this.$validator.validateAll('create-loop').then((result) => {
+          if (result) {
+            this.$http.post('/image/loop/create', {
+              url: this.createForm.url,
+              bangumi_id: this.createForm.bangumi_id,
+              user_id: this.createForm.user_id
+            }).then((id) => {
+              this.list.unshift({
+                id: id,
+                url: this.createForm.url,
+                bangumi_id: this.createForm.bangumi_id,
+                user_id: this.createForm.user_id,
+                use: true
+              });
+              this.createForm = defaultCreateForm;
+              this.$message.success('操作成功');
+            }).catch(() => {
+              this.$message.error('操作失败');
+            });
+          } else {
+            this.$message.warning('请先上传图片');
+          }
         })
       }
     }

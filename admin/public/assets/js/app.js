@@ -7,7 +7,7 @@ webpackJsonp([1],{
 
 /***/ }),
 
-/***/ 36:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1112,8 +1112,55 @@ if (false) {(function () {
 
 /* harmony default export */ var frontend_components_modal = (modal_Component.exports);
 
+// EXTERNAL MODULE: ./node_modules/_vee-validate@2.0.0-rc.17@vee-validate/dist/vee-validate.esm.js
+var vee_validate_esm = __webpack_require__(148);
+
+// CONCATENATED MODULE: ./frontend/utils/validate.js
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+
+
+
+var config = {
+  errorBagName: 'errors', // change if property conflicts.
+  fieldsBagName: 'vee-fields',
+  delay: 0,
+  locale: 'en',
+  dictionary: null,
+  strict: true,
+  classes: true,
+  classNames: {
+    touched: 'focus', // the control has been blurred
+    untouched: 'blur', // the control hasn't been blurred
+    valid: 'valid', // model is valid
+    invalid: 'invalid', // model is invalid
+    pristine: 'pristine', // control has not been interacted with
+    dirty: 'dirty' // control has been interacted with
+  },
+  events: 'input|blur',
+  inject: true,
+  validity: true,
+  aria: false
+};
+
+vue_common_default.a.use(vee_validate_esm["a" /* default */], config);
+
+vee_validate_esm["a" /* default */].Validator.extend('nickname', function (value, _ref) {
+  var _ref2 = _slicedToArray(_ref, 1),
+      range = _ref2[0];
+
+  var result = value.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length;
+  var length = range.split('-');
+  return result >= length[0] && result <= length[1];
+});
+
+vee_validate_esm["a" /* default */].Validator.extend('len', function (value, len) {
+  var result = value.trim().length;
+  return result === parseInt(len[0], 10);
+});
 // CONCATENATED MODULE: ./frontend/entry.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "app", function() { return entry_app; });
+
 
 
 
@@ -1369,7 +1416,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+var defaultCreateForm = {
+  url: '',
+  userId: '',
+  bangumiId: ''
+};
 /* harmony default export */ var loop = ({
   name: 'v-page-image-loop',
   computed: {
@@ -1387,15 +1472,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         curPage: 1
       },
       showCreateModal: false,
-      createForm: {
-        url: '',
-        userId: '',
-        bangumiId: ''
+      createForm: defaultCreateForm,
+      uploadHeaders: {
+        token: '',
+        key: ''
       }
     };
   },
   created: function created() {
     this.getLoops();
+    this.getUptoken();
   },
 
   methods: {
@@ -1410,6 +1496,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       });
     },
+    getUptoken: function getUptoken() {
+      var _this2 = this;
+
+      this.$http.get('/image/uptoken').then(function (token) {
+        _this2.uploadHeaders.token = token;
+      });
+    },
     handleSizeChange: function handleSizeChange(val) {
       this.pagination.pageSize = val;
     },
@@ -1417,20 +1510,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.pagination.curPage = val;
     },
     handleSwitch: function handleSwitch(item, index) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$confirm('确认要执行该操作吗?', '提示').then(function () {
-        _this2.$http.post('/image/loop/toggle', {
+        _this3.$http.post('/image/loop/toggle', {
           id: item.id,
           isDelete: !item.deleted_at
         }).then(function () {
-          _this2.$message.success('操作成功');
+          _this3.$message.success('操作成功');
         }).catch(function () {
-          _this2.$message.error('操作失败');
-          _this2.list[index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize].use = !item.deleted_at;
+          _this3.$message.error('操作失败');
+          _this3.list[index + (_this3.pagination.curPage - 1) * _this3.pagination.pageSize].use = !item.deleted_at;
         });
       }).catch(function () {
-        _this2.list[index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize].use = !item.deleted_at;
+        _this3.list[index + (_this3.pagination.curPage - 1) * _this3.pagination.pageSize].use = !item.deleted_at;
+      });
+    },
+    beforeUpload: function beforeUpload(file) {
+      var isFormat = file.type === 'image/jpeg' || file.type === 'image/png';
+      var isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isFormat) {
+        this.$message.error('上传头像图片只能是 JPG 格式!');
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!');
+      }
+      this.uploadHeaders.key = 'loop/' + new Date().getTime() + '/' + Math.random().toString(36).substring(3, 6);
+      return isFormat && isLt2M;
+    },
+    handleCreateLoopSuccess: function handleCreateLoopSuccess(res, file) {
+      this.createForm.url = res.key;
+    },
+    saveLoop: function saveLoop() {
+      var _this4 = this;
+
+      this.$validator.validateAll('create-loop').then(function (result) {
+        if (result) {
+          _this4.$http.post('/image/loop/create', {
+            url: _this4.createForm.url,
+            bangumi_id: _this4.createForm.bangumi_id,
+            user_id: _this4.createForm.user_id
+          }).then(function (id) {
+            _this4.list.unshift({
+              id: id,
+              url: _this4.createForm.url,
+              bangumi_id: _this4.createForm.bangumi_id,
+              user_id: _this4.createForm.user_id,
+              use: true
+            });
+            _this4.createForm = defaultCreateForm;
+            _this4.$message.success('操作成功');
+          }).catch(function () {
+            _this4.$message.error('操作失败');
+          });
+        } else {
+          _this4.$message.warning('请先上传图片');
+        }
       });
     }
   }
@@ -1503,6 +1639,8 @@ var render = function() {
       _c(
         "v-modal",
         {
+          attrs: { "header-text": "首页轮播图上传" },
+          on: { submit: _vm.saveLoop },
           model: {
             value: _vm.showCreateModal,
             callback: function($$v) {
@@ -1525,7 +1663,7 @@ var render = function() {
                     { attrs: { label: "番剧id", "label-width": "60px" } },
                     [
                       _c("el-input", {
-                        attrs: { "auto-complete": "off" },
+                        attrs: { name: "bangumi_id", "auto-complete": "off" },
                         model: {
                           value: _vm.createForm.bangumiId,
                           callback: function($$v) {
@@ -1550,7 +1688,7 @@ var render = function() {
                     { attrs: { label: "用户id", "label-width": "60px" } },
                     [
                       _c("el-input", {
-                        attrs: { "auto-complete": "off" },
+                        attrs: { name: "user_id", "auto-complete": "off" },
                         model: {
                           value: _vm.createForm.userId,
                           callback: function($$v) {
@@ -1559,6 +1697,81 @@ var render = function() {
                           expression: "createForm.userId"
                         }
                       })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 21 } },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "资源", "label-width": "60px" } },
+                    [
+                      _c(
+                        "el-input",
+                        {
+                          directives: [
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: {
+                                rules: "required",
+                                scope: "create-loop"
+                              },
+                              expression:
+                                "{\n                      rules: 'required',\n                      scope: 'create-loop'\n                    }"
+                            }
+                          ],
+                          attrs: { name: "url", "auto-complete": "off" },
+                          model: {
+                            value: _vm.createForm.url,
+                            callback: function($$v) {
+                              _vm.createForm.url = $$v
+                            },
+                            expression: "createForm.url"
+                          }
+                        },
+                        [
+                          _c(
+                            "template",
+                            { attrs: { slot: "prepend" }, slot: "prepend" },
+                            [_vm._v("https://cdn.riuir.com/")]
+                          )
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 2, offset: 1 } },
+                [
+                  _c(
+                    "el-form-item",
+                    [
+                      _c(
+                        "el-upload",
+                        {
+                          attrs: {
+                            action: "http://up.qiniu.com",
+                            data: _vm.uploadHeaders,
+                            "show-file-list": false,
+                            "on-success": _vm.handleCreateLoopSuccess,
+                            "before-upload": _vm.beforeUpload
+                          }
+                        },
+                        [_c("i", { staticClass: "el-icon-plus" })]
+                      )
                     ],
                     1
                   )
@@ -5779,4 +5992,4 @@ if (false) {(function () {
 
 /***/ })
 
-},[36]);
+},[149]);
