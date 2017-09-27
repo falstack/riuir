@@ -1897,6 +1897,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ var banner = ({
   name: 'v-',
@@ -1917,7 +1928,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  banner page\n")])
+  return _c("section", [
+    _c(
+      "header",
+      [
+        _c(
+          "el-col",
+          { attrs: { span: 8 } },
+          [
+            _c("el-alert", {
+              attrs: {
+                title: "展示规则：",
+                type: "info",
+                description: "如果所在时刻没有图或有多张图，则显示最后一张图.",
+                closable: false
+              }
+            })
+          ],
+          1
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "main-view" }),
+    _vm._v(" "),
+    _c("footer")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
