@@ -8,6 +8,7 @@ import Element from 'element-ui'
 import moment from 'moment'
 import Modal from 'component/modal'
 import './utils/validate'
+import 'lodash'
 
 Vue.use(require('vue-moment'), {
   moment

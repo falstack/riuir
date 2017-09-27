@@ -123,7 +123,7 @@
     computed: {
       filter () {
         const begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
-        return this.list.slice(begin, begin + this.pagination.pageSize)
+        return _.orderBy(this.list, 'created_at', 'desc').slice(begin, begin + this.pagination.pageSize)
       }
     },
     data () {

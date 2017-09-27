@@ -1158,8 +1158,13 @@ vee_validate_esm["a" /* default */].Validator.extend('len', function (value, len
   var result = value.trim().length;
   return result === parseInt(len[0], 10);
 });
+// EXTERNAL MODULE: ./node_modules/_lodash@4.17.4@lodash/lodash.js
+var lodash = __webpack_require__(150);
+var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
+
 // CONCATENATED MODULE: ./frontend/entry.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "app", function() { return entry_app; });
+
 
 
 
@@ -1460,7 +1465,7 @@ var defaultCreateForm = {
   computed: {
     filter: function filter() {
       var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
-      return this.list.slice(begin, begin + this.pagination.pageSize);
+      return _.orderBy(this.list, 'created_at', 'desc').slice(begin, begin + this.pagination.pageSize);
     }
   },
   data: function data() {
