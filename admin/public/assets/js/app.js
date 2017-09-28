@@ -5104,7 +5104,8 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
         tags: []
       },
       uploadHeaders: {
-        token: ''
+        token: '',
+        key: ''
       },
       CDNPrefixp: 'https://cdn.riuir.com/',
       loading: true
@@ -5191,13 +5192,8 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       if (!isLt2M) {
         this.$message.error('上传头像图片大小不能超过 2MB!');
       }
+      this.uploadHeaders.key = 'bangumi/avatar-banner/' + new Date().getTime() + '/' + Math.random().toString(36).substring(3, 6);
       return isFormat && isLt2M;
-    },
-    handleEditAvatarSuccess: function handleEditAvatarSuccess(res, file) {
-      this.editForm.avatar = res.key;
-    },
-    handleEditBannerSuccess: function handleEditBannerSuccess(res, file) {
-      this.editForm.banner = res.key;
     },
     getTagIdByName: function getTagIdByName(name) {
       var _iteratorNormalCompletion2 = true;
@@ -5405,6 +5401,12 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
           console.log(err);
         });
       });
+    },
+    handleEditAvatarSuccess: function handleEditAvatarSuccess(res, file) {
+      this.editForm.avatar = res.key;
+    },
+    handleEditBannerSuccess: function handleEditBannerSuccess(res, file) {
+      this.editForm.banner = res.key;
     },
     handleCreateAvatarSuccess: function handleCreateAvatarSuccess(res, file) {
       this.createForm.avatar = res.key;

@@ -352,7 +352,8 @@
           tags: []
         },
         uploadHeaders: {
-          token: ''
+          token: '',
+          key: ''
         },
         CDNPrefixp: 'https://cdn.riuir.com/',
         loading: true
@@ -411,13 +412,8 @@
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
+        this.uploadHeaders.key = `bangumi/avatar-banner/${new Date().getTime()}/${Math.random().toString(36).substring(3, 6)}`;
         return isFormat && isLt2M;
-      },
-      handleEditAvatarSuccess(res, file) {
-        this.editForm.avatar = res.key
-      },
-      handleEditBannerSuccess(res, file) {
-        this.editForm.banner = res.key
       },
       getTagIdByName(name) {
         for (const tag of this.tags) {
@@ -525,6 +521,12 @@
             console.log(err);
           });
         })
+      },
+      handleEditAvatarSuccess(res, file) {
+        this.editForm.avatar = res.key
+      },
+      handleEditBannerSuccess(res, file) {
+        this.editForm.banner = res.key
       },
       handleCreateAvatarSuccess(res, file) {
         this.createForm.avatar = res.key
