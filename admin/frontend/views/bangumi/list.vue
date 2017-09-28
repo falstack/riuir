@@ -1,7 +1,3 @@
-<style lang="scss" scoped="">
-
-</style>
-
 <template>
   <section>
     <header>
@@ -23,10 +19,10 @@
             </div>
             <div>
               <el-form-item label="横幅">
-                <span v-text="props.row.banner"></span>
+                <span v-text="`https://cdn.riuir.com/${props.row.banner}`"></span>
               </el-form-item>
               <el-form-item label="头像">
-                <span v-text="props.row.avatar"></span>
+                <span v-text="`https://cdn.riuir.com/${props.row.avatar}`"></span>
               </el-form-item>
             </div>
             <div v-if="props.row.tags.length">
@@ -131,50 +127,52 @@
               v-for="item in tags"
               :key="item.id"
               :label="item.name"
-              :value="item">
+              :value="item.name">
             </el-option>
           </el-select>
         </el-form-item>
-        <el-row>
-          <el-col :span="12">
-            <el-col :span="21">
-              <el-form-item label="头像" :label-width="'60px'">
-                <el-input v-model="editForm.avatar" auto-complete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2" :offset="1">
-              <el-form-item>
-                <el-upload
-                  action="http://up.qiniu.com"
-                  :data="uploadHeaders"
-                  :show-file-list="false"
-                  :on-success="handleEditAvatarSuccess"
-                  :before-upload="beforeUpload">
-                  <i class="el-icon-plus"></i>
-                </el-upload>
-              </el-form-item>
-            </el-col>
+        <el-col>
+          <el-col :span="21">
+            <el-form-item label="头像" :label-width="'60px'">
+              <el-input v-model="editForm.avatar" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
+            </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-col :span="21">
-              <el-form-item label="横幅" :label-width="'60px'">
-                <el-input v-model="editForm.banner" auto-complete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2" :offset="1">
-              <el-form-item>
-                <el-upload
-                  action="http://up.qiniu.com"
-                  :data="uploadHeaders"
-                  :show-file-list="false"
-                  :on-success="handleEditBannerSuccess"
-                  :before-upload="beforeUpload">
-                  <i class="el-icon-plus"></i>
-                </el-upload>
-              </el-form-item>
-            </el-col>
+          <el-col :span="2" :offset="1">
+            <el-form-item>
+              <el-upload
+                action="http://up.qiniu.com"
+                :data="uploadHeaders"
+                :show-file-list="false"
+                :on-success="handleEditAvatarSuccess"
+                :before-upload="beforeUpload">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+            </el-form-item>
           </el-col>
-        </el-row>
+        </el-col>
+        <el-col>
+          <el-col :span="21">
+            <el-form-item label="横幅" :label-width="'60px'">
+              <el-input v-model="editForm.banner" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="2" :offset="1">
+            <el-form-item>
+              <el-upload
+                action="http://up.qiniu.com"
+                :data="uploadHeaders"
+                :show-file-list="false"
+                :on-success="handleEditBannerSuccess"
+                :before-upload="beforeUpload">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+            </el-form-item>
+          </el-col>
+        </el-col>
         <el-form-item label="季度" :label-width="'60px'">
           <el-input
             type="textarea"
@@ -276,6 +274,18 @@
 </template>
 
 <script>
+  const defaultEditForm = {
+    name: '',
+    alias: '',
+    released_at: '',
+    released_video_id: '',
+    tags: [],
+    avatar: '',
+    banner: '',
+    season: '',
+    summary: ''
+  }
+  const defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}'
   export default {
     name: 'v-page-bangumi-list',
     computed: {
@@ -296,7 +306,6 @@
         showEditorModal: false,
         showCreateModal: false,
         dialogTitle: '',
-        defaultSeason: '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}',
         release_weekly: [
           {
             id: '0',
@@ -331,25 +340,16 @@
             name: '周日'
           }
         ],
-        editForm: {
-          name: '',
-          avatar: '',
-          released_at: '',
-          released_video_id: '',
-          banner: '',
-          summary: '',
-          alias: '',
-          season: '',
-          tags: []
-        },
+        editIndex: 0,
+        editForm: defaultEditForm,
         createForm: {
           name: '',
-            avatar: '',
-            banner: '',
-            alias: '',
-            season: '',
-            summary: '',
-            tags: []
+          avatar: '',
+          banner: '',
+          alias: '',
+          season: '',
+          summary: '',
+          tags: []
         },
         uploadHeaders: {
           token: ''
@@ -360,6 +360,7 @@
     },
     created () {
       this.getBangumis()
+      this.getUptoken()
     },
     methods: {
       getBangumis () {
@@ -371,6 +372,11 @@
           this.loading = false
         })
       },
+      getUptoken() {
+        this.$http.get('/image/uptoken').then((token) => {
+          this.uploadHeaders.token = token
+        })
+      },
       handleSizeChange(val) {
         this.pagination.pageSize = val
       },
@@ -379,36 +385,34 @@
       },
       handleEditOpen(index, row) {
         this.dialogTitle = row.name;
+        this.editIndex = index + ((this.pagination.curPage - 1) * this.pagination.pageSize)
+        console.log(row.tags);
         let tags = [];
         for (const tag of row.tags) {
           tags.push(tag.name)
         }
-        this.editForm = {
-          index: index,
-          id: row.id,
-          name: row.name,
-          banner: row.banner,
-          avatar: row.avatar,
-          released_at: row.released_at,
-          released_video_id: row.released_video_id !== '0' ? row.released_video_id : '',
-          summary: row.summary,
-          season: row.season ? JSON.stringify(row.season) : this.defaultSeason,
-          alias: row.alias,
-          tags: tags
-        };
+
+        const editForm = row;
+        editForm.tags = tags
+        editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason
+        editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : ''
+
+        Object.keys(this.editForm).forEach(key => {
+          this.editForm[key] = editForm[key]
+        })
         this.showEditorModal = true;
       },
       beforeUpload(file) {
-        const isJPG = file.type === 'image/jpeg' || file.type === 'image/png';
+        const isFormat = file.type === 'image/jpeg' || file.type === 'image/png';
         const isLt2M = file.size / 1024 / 1024 < 2;
 
-        if (!isJPG) {
+        if (!isFormat) {
           this.$message.error('上传头像图片只能是 JPG 格式!');
         }
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
         }
-        return isJPG && isLt2M;
+        return isFormat && isLt2M;
       },
       handleEditAvatarSuccess(res, file) {
         this.editForm.avatar = `${this.CDNPrefixp}${res.key}`
@@ -428,7 +432,7 @@
         for (const tag of this.editForm.tags) {
           tags.push(tag.id ? tag.id : this.getTagIdByName(tag));
         }
-        let season = this.editForm.season === this.defaultSeason ? '' : this.editForm.season;
+        let season = this.editForm.season === defaultSeason ? '' : this.editForm.season;
         if (season) {
           try {
             let tempSeason = JSON.parse(season);
