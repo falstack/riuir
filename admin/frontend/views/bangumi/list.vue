@@ -308,35 +308,35 @@
         dialogTitle: '',
         release_weekly: [
           {
-            id: '0',
+            id: 0,
             name: '不连载'
           },
           {
-            id: '1',
+            id: 1,
             name: '周一'
           },
           {
-            id: '2',
+            id: 2,
             name: '周二'
           },
           {
-            id: '3',
+            id: 3,
             name: '周三'
           },
           {
-            id: '4',
+            id: 4,
             name: '周四'
           },
           {
-            id: '5',
+            id: 5,
             name: '周五'
           },
           {
-            id: '6',
+            id: 6,
             name: '周六'
           },
           {
-            id: '7',
+            id: 7,
             name: '周日'
           }
         ],
@@ -396,7 +396,7 @@
           this.editForm[key] = row[key]
         })
         this.editForm.tags = tags
-        this.editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason
+        this.editForm.season = row.season || defaultSeason
         this.editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : ''
 
         this.showEditorModal = true;
@@ -485,18 +485,8 @@
             return;
           }
         }
-        this.$http.post('/bangumi/edit', {
-          id: this.editForm.id,
-          name: this.editForm.name,
-          released_at: parseInt(this.editForm.released_at, 10),
-          released_video_id: this.editForm.released_video_id ? parseInt(this.editForm.released_video_id, 10) : 0,
-          avatar: this.editForm.avatar,
-          banner: this.editForm.banner,
-          alias: this.editForm.alias.split(/,|，/).join(','),
-          season: season,
-          summary: this.editForm.summary,
-          tags: tags
-        }).then(() => {
+        this.editForm.alias = this.editForm.alias.split(/,|，/).join(',')
+        this.$http.post('/bangumi/edit', Object.assign(this.editForm, { tags, season })).then(() => {
           let newTags = [];
           for (const tag of this.tags) {
             for (const item of tags) {
@@ -505,15 +495,11 @@
               }
             }
           }
-          this.list[this.editForm.index].released_at = this.editForm.released_at;
-          this.list[this.editForm.index].released_video_id = this.editForm.released_video_id;
-          this.list[this.editForm.index].name = this.editForm.name;
-          this.list[this.editForm.index].avatar = this.editForm.avatar;
-          this.list[this.editForm.index].banner = this.editForm.banner;
-          this.list[this.editForm.index].summary = this.editForm.summary;
-          this.list[this.editForm.index].season = season;
-          this.list[this.editForm.index].tags = newTags;
-          this.list[this.editForm.index].alias = this.editForm.alias.split(/,|，/).join(',');
+          Object.keys(this.editForm).forEach(key => {
+            this.list[this.editIndex][key] = this.editForm[key]
+          })
+          this.list[this.editIndex].tags = newTags
+          this.list[this.editIndex].season = season
           this.showEditorModal = false;
           this.$message.success('操作成功');
         }, (err) => {

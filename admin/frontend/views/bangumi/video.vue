@@ -378,7 +378,9 @@
       },
       handleEditDone() {
         this.$http.post('/video/edit', this.editForm).then(() => {
-          this.$deepAssign(this.list[this.editIndex], this.editForm)
+          Object.keys(this.editForm).forEach(key => {
+            this.list[this.editIndex][key] = this.editForm[key]
+          })
           this.showEditorModal = false;
           this.$message.success('操作成功');
         }, () => {

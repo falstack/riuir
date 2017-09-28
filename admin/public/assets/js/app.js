@@ -5068,28 +5068,28 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       showCreateModal: false,
       dialogTitle: '',
       release_weekly: [{
-        id: '0',
+        id: 0,
         name: '不连载'
       }, {
-        id: '1',
+        id: 1,
         name: '周一'
       }, {
-        id: '2',
+        id: 2,
         name: '周二'
       }, {
-        id: '3',
+        id: 3,
         name: '周三'
       }, {
-        id: '4',
+        id: 4,
         name: '周四'
       }, {
-        id: '5',
+        id: 5,
         name: '周五'
       }, {
-        id: '6',
+        id: 6,
         name: '周六'
       }, {
-        id: '7',
+        id: 7,
         name: '周日'
       }],
       editIndex: 0,
@@ -5176,7 +5176,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
         _this3.editForm[key] = row[key];
       });
       this.editForm.tags = tags;
-      this.editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason;
+      this.editForm.season = row.season || defaultSeason;
       this.editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : '';
 
       this.showEditorModal = true;
@@ -5321,18 +5321,8 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
           return;
         }
       }
-      this.$http.post('/bangumi/edit', {
-        id: this.editForm.id,
-        name: this.editForm.name,
-        released_at: parseInt(this.editForm.released_at, 10),
-        released_video_id: this.editForm.released_video_id ? parseInt(this.editForm.released_video_id, 10) : 0,
-        avatar: this.editForm.avatar,
-        banner: this.editForm.banner,
-        alias: this.editForm.alias.split(/,|，/).join(','),
-        season: season,
-        summary: this.editForm.summary,
-        tags: tags
-      }).then(function () {
+      this.editForm.alias = this.editForm.alias.split(/,|，/).join(',');
+      this.$http.post('/bangumi/edit', Object.assign(this.editForm, { tags: tags, season: season })).then(function () {
         var newTags = [];
         var _iteratorNormalCompletion4 = true;
         var _didIteratorError4 = false;
@@ -5383,15 +5373,11 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
           }
         }
 
-        _this4.list[_this4.editForm.index].released_at = _this4.editForm.released_at;
-        _this4.list[_this4.editForm.index].released_video_id = _this4.editForm.released_video_id;
-        _this4.list[_this4.editForm.index].name = _this4.editForm.name;
-        _this4.list[_this4.editForm.index].avatar = _this4.editForm.avatar;
-        _this4.list[_this4.editForm.index].banner = _this4.editForm.banner;
-        _this4.list[_this4.editForm.index].summary = _this4.editForm.summary;
-        _this4.list[_this4.editForm.index].season = season;
-        _this4.list[_this4.editForm.index].tags = newTags;
-        _this4.list[_this4.editForm.index].alias = _this4.editForm.alias.split(/,|，/).join(',');
+        Object.keys(_this4.editForm).forEach(function (key) {
+          _this4.list[_this4.editIndex][key] = _this4.editForm[key];
+        });
+        _this4.list[_this4.editIndex].tags = newTags;
+        _this4.list[_this4.editIndex].season = season;
         _this4.showEditorModal = false;
         _this4.$message.success('操作成功');
       }, function (err) {
@@ -5871,7 +5857,9 @@ var defaultCreateForm = {
       var _this3 = this;
 
       this.$http.post('/video/edit', this.editForm).then(function () {
-        _this3.$deepAssign(_this3.list[_this3.editIndex], _this3.editForm);
+        Object.keys(_this3.editForm).forEach(function (key) {
+          _this3.list[_this3.editIndex][key] = _this3.editForm[key];
+        });
         _this3.showEditorModal = false;
         _this3.$message.success('操作成功');
       }, function () {

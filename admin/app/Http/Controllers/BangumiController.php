@@ -88,21 +88,18 @@ class BangumiController extends Controller
 
     public function list()
     {
-        $auth = new \App\Http\Services\Qiniu\Auth();
-
         $bangumis = Bangumi::withTrashed()->get();
 
         foreach ($bangumis as $row)
         {
             $row['alias'] = $row['alias'] === 'null' ? '' : json_decode($row['alias'])->search;
             $row['tags'] = $row->tags()->get();
-            $row['season'] = $row['season'] === 'null' ? '' : json_decode($row['season']);
+            $row['season'] = $row['season'] === 'null' ? '' : $row['season'];
         }
 
         return [
             'bangumis' => $bangumis,
-            'tags' => Tag::where('model', 0)->select('id', 'name')->get(),
-            'uptoken' => $auth->uploadToken()
+            'tags' => Tag::where('model', 0)->select('id', 'name')->get()
         ];
     }
 }
