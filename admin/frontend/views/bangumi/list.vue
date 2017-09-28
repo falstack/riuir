@@ -386,20 +386,19 @@
       handleEditOpen(index, row) {
         this.dialogTitle = row.name;
         this.editIndex = index + ((this.pagination.curPage - 1) * this.pagination.pageSize)
-        console.log(row.tags);
+
         let tags = [];
         for (const tag of row.tags) {
           tags.push(tag.name)
         }
 
-        const editForm = row;
-        editForm.tags = tags
-        editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason
-        editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : ''
-
-        Object.keys(this.editForm).forEach(key => {
-          this.editForm[key] = editForm[key]
+        Object.keys(row).forEach(key => {
+          this.editForm[key] = row[key]
         })
+        this.editForm.tags = tags
+        this.editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason
+        this.editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : ''
+
         this.showEditorModal = true;
       },
       beforeUpload(file) {
@@ -415,10 +414,10 @@
         return isFormat && isLt2M;
       },
       handleEditAvatarSuccess(res, file) {
-        this.editForm.avatar = `${this.CDNPrefixp}${res.key}`
+        this.editForm.avatar = res.key
       },
       handleEditBannerSuccess(res, file) {
-        this.editForm.banner = `${this.CDNPrefixp}${res.key}`
+        this.editForm.banner = res.key
       },
       getTagIdByName(name) {
         for (const tag of this.tags) {
@@ -491,8 +490,8 @@
           name: this.editForm.name,
           released_at: parseInt(this.editForm.released_at, 10),
           released_video_id: this.editForm.released_video_id ? parseInt(this.editForm.released_video_id, 10) : 0,
-          avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
-          banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
+          avatar: this.editForm.avatar,
+          banner: this.editForm.banner,
           alias: this.editForm.alias.split(/,|，/).join(','),
           season: season,
           summary: this.editForm.summary,
@@ -542,10 +541,10 @@
         })
       },
       handleCreateAvatarSuccess(res, file) {
-        this.createForm.avatar = `${this.CDNPrefixp}${res.key}`
+        this.createForm.avatar = res.key
       },
       handleCreateBannerSuccess(res, file) {
-        this.createForm.banner = `${this.CDNPrefixp}${res.key}`
+        this.createForm.banner = res.key
       },
       handleCreateDone() {
         this.$http.post('/bangumi/create', {

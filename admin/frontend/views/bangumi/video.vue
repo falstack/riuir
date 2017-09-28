@@ -355,11 +355,12 @@
       handleEditOpen(index, row) {
         this.dialogTitle = row.name;
         this.editIndex = index + ((this.pagination.curPage - 1) * this.pagination.pageSize)
-        const editForm = row;
-        editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource
-        Object.keys(this.editForm).forEach(key => {
-          this.editForm[key] = editForm[key]
+
+        Object.keys(row).forEach(key => {
+          this.editForm[key] = row[key]
         })
+        this.editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource
+
         this.showEditorModal = true;
       },
       preview(url) {

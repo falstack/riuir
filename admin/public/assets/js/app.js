@@ -5145,7 +5145,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
 
       this.dialogTitle = row.name;
       this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
-      console.log(row.tags);
+
       var tags = [];
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -5172,14 +5172,13 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
         }
       }
 
-      var editForm = row;
-      editForm.tags = tags;
-      editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason;
-      editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : '';
-
-      Object.keys(this.editForm).forEach(function (key) {
-        _this3.editForm[key] = editForm[key];
+      Object.keys(row).forEach(function (key) {
+        _this3.editForm[key] = row[key];
       });
+      this.editForm.tags = tags;
+      this.editForm.season = row.season ? JSON.stringify(row.season) : defaultSeason;
+      this.editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : '';
+
       this.showEditorModal = true;
     },
     beforeUpload: function beforeUpload(file) {
@@ -5195,10 +5194,10 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       return isFormat && isLt2M;
     },
     handleEditAvatarSuccess: function handleEditAvatarSuccess(res, file) {
-      this.editForm.avatar = '' + this.CDNPrefixp + res.key;
+      this.editForm.avatar = res.key;
     },
     handleEditBannerSuccess: function handleEditBannerSuccess(res, file) {
-      this.editForm.banner = '' + this.CDNPrefixp + res.key;
+      this.editForm.banner = res.key;
     },
     getTagIdByName: function getTagIdByName(name) {
       var _iteratorNormalCompletion2 = true;
@@ -5327,8 +5326,8 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
         name: this.editForm.name,
         released_at: parseInt(this.editForm.released_at, 10),
         released_video_id: this.editForm.released_video_id ? parseInt(this.editForm.released_video_id, 10) : 0,
-        avatar: this.editForm.avatar.replace(this.CDNPrefixp, ''),
-        banner: this.editForm.banner.replace(this.CDNPrefixp, ''),
+        avatar: this.editForm.avatar,
+        banner: this.editForm.banner,
         alias: this.editForm.alias.split(/,|，/).join(','),
         season: season,
         summary: this.editForm.summary,
@@ -5422,10 +5421,10 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       });
     },
     handleCreateAvatarSuccess: function handleCreateAvatarSuccess(res, file) {
-      this.createForm.avatar = '' + this.CDNPrefixp + res.key;
+      this.createForm.avatar = res.key;
     },
     handleCreateBannerSuccess: function handleCreateBannerSuccess(res, file) {
-      this.createForm.banner = '' + this.CDNPrefixp + res.key;
+      this.createForm.banner = res.key;
     },
     handleCreateDone: function handleCreateDone() {
       var _this6 = this;
@@ -5825,11 +5824,12 @@ var defaultCreateForm = {
 
       this.dialogTitle = row.name;
       this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
-      var editForm = row;
-      editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource;
-      Object.keys(this.editForm).forEach(function (key) {
-        _this2.editForm[key] = editForm[key];
+
+      Object.keys(row).forEach(function (key) {
+        _this2.editForm[key] = row[key];
       });
+      this.editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource;
+
       this.showEditorModal = true;
     },
     preview: function preview(url) {
