@@ -199,19 +199,34 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="番名" :label-width="'60px'">
-              <el-input v-model="createForm.name" auto-complete="off"></el-input>
+              <el-input v-model="createForm.name"
+                        v-validate="{
+                          rules: 'required',
+                          scope: 'create-bangumi'
+                        }"
+                        auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="16">
             <el-form-item label="别名" :label-width="'60px'">
-              <el-input v-model="createForm.alias" auto-complete="off"></el-input>
+              <el-input v-model="createForm.alias"
+                        v-validate="{
+                          rules: 'required',
+                          scope: 'create-bangumi'
+                        }"
+                        auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="21">
             <el-form-item label="头像" :label-width="'60px'">
-              <el-input v-model="createForm.avatar" auto-complete="off">
+              <el-input v-model="createForm.avatar"
+                        v-validate="{
+                          rules: 'required',
+                          scope: 'create-bangumi'
+                        }"
+                        auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-form-item>
@@ -232,7 +247,12 @@
         <el-row>
           <el-col :span="21">
             <el-form-item label="横幅" :label-width="'60px'">
-              <el-input v-model="createForm.banner" auto-complete="off">
+              <el-input v-model="createForm.banner"
+                        v-validate="{
+                          rules: 'required',
+                          scope: 'create-bangumi'
+                        }"
+                        auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-form-item>
@@ -254,6 +274,10 @@
           <el-input
             type="textarea"
             :rows="5"
+            v-validate="{
+              rules: 'required',
+              scope: 'create-bangumi'
+            }"
             placeholder="请输入番剧简介"
             v-model="createForm.summary">
           </el-input>
@@ -285,6 +309,13 @@
     avatar: '',
     banner: '',
     season: '',
+    summary: ''
+  }
+  const defaultCreateForm = {
+    name: '',
+    avatar: '',
+    banner: '',
+    alias: '',
     summary: ''
   }
   const defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}'
@@ -344,15 +375,7 @@
         ],
         editIndex: 0,
         editForm: defaultEditForm,
-        createForm: {
-          name: '',
-          avatar: '',
-          banner: '',
-          alias: '',
-          season: '',
-          summary: '',
-          tags: []
-        },
+        createForm: defaultCreateForm,
         uploadHeaders: {
           token: '',
           key: ''
@@ -536,28 +559,35 @@
         this.createForm.banner = res.key
       },
       handleCreateDone() {
-        this.$http.post('/bangumi/create', {
-          name: this.createForm.name,
-          avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
-          banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
-          alias: this.createForm.alias.split(/,|，/).join(','),
-          summary: this.createForm.summary
-        }).then((data) => {
-          this.list.push({
-            id: data,
-            name: this.createForm.name,
-            avatar: this.createForm.avatar,
-            banner: this.createForm.banner,
-            summary: this.createForm.summary,
-            alias: this.createForm.alias.split(/,|，/).join(','),
-            deleted_at: moment().format('YYYY-MM-DD H:m:s')
-          });
-          this.showCreateModal = false;
-          this.$message.success('操作成功');
-        }, (err) => {
-          this.$message.error('操作失败');
-          console.log(err);
-        });
+        this.$validator.validateAll('create-bangumi').then((result) => {
+          if (result) {
+            this.$http.post('/bangumi/create', {
+              name: this.createForm.name,
+              avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
+              banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
+              alias: this.createForm.alias.split(/,|，/).join(','),
+              summary: this.createForm.summary
+            }).then((data) => {
+              this.list.push(Object.assign(defaultEditForm, {
+                id: data,
+                name: this.createForm.name,
+                avatar: this.createForm.avatar,
+                banner: this.createForm.banner,
+                summary: this.createForm.summary,
+                alias: this.createForm.alias.split(/,|，/).join(','),
+                deleted_at: moment().format('YYYY-MM-DD H:m:s')
+              }));
+              this.showCreateModal = false;
+              this.$message.success('操作成功');
+              this.createForm = defaultCreateForm
+            }, (err) => {
+              this.$message.error('操作失败');
+              console.log(err);
+            });
+          } else {
+            this.$message.warning('信息不完整');
+          }
+        })
       }
     }
   }

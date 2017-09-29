@@ -1837,6 +1837,18 @@ var render = function() {
                         { attrs: { label: "番名", "label-width": "60px" } },
                         [
                           _c("el-input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: {
+                                  rules: "required",
+                                  scope: "create-bangumi"
+                                },
+                                expression:
+                                  "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
+                              }
+                            ],
                             attrs: { "auto-complete": "off" },
                             model: {
                               value: _vm.createForm.name,
@@ -1862,6 +1874,18 @@ var render = function() {
                         { attrs: { label: "别名", "label-width": "60px" } },
                         [
                           _c("el-input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: {
+                                  rules: "required",
+                                  scope: "create-bangumi"
+                                },
+                                expression:
+                                  "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
+                              }
+                            ],
                             attrs: { "auto-complete": "off" },
                             model: {
                               value: _vm.createForm.alias,
@@ -1895,6 +1919,18 @@ var render = function() {
                           _c(
                             "el-input",
                             {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: {
+                                    rules: "required",
+                                    scope: "create-bangumi"
+                                  },
+                                  expression:
+                                    "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
+                                }
+                              ],
                               attrs: { "auto-complete": "off" },
                               model: {
                                 value: _vm.createForm.avatar,
@@ -1964,6 +2000,18 @@ var render = function() {
                           _c(
                             "el-input",
                             {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: {
+                                    rules: "required",
+                                    scope: "create-bangumi"
+                                  },
+                                  expression:
+                                    "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
+                                }
+                              ],
                               attrs: { "auto-complete": "off" },
                               model: {
                                 value: _vm.createForm.banner,
@@ -2024,6 +2072,18 @@ var render = function() {
                 { attrs: { label: "简介", "label-width": "60px" } },
                 [
                   _c("el-input", {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: {
+                          rules: "required",
+                          scope: "create-bangumi"
+                        },
+                        expression:
+                          "{\n            rules: 'required',\n            scope: 'create-bangumi'\n          }"
+                      }
+                    ],
                     attrs: {
                       type: "textarea",
                       rows: 5,
@@ -5053,6 +5113,30 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var defaultEditForm = {
   name: '',
@@ -5063,6 +5147,13 @@ var defaultEditForm = {
   avatar: '',
   banner: '',
   season: '',
+  summary: ''
+};
+var defaultCreateForm = {
+  name: '',
+  avatar: '',
+  banner: '',
+  alias: '',
   summary: ''
 };
 var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}';
@@ -5113,15 +5204,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       }],
       editIndex: 0,
       editForm: defaultEditForm,
-      createForm: {
-        name: '',
-        avatar: '',
-        banner: '',
-        alias: '',
-        season: '',
-        summary: '',
-        tags: []
-      },
+      createForm: defaultCreateForm,
       uploadHeaders: {
         token: '',
         key: ''
@@ -5435,27 +5518,34 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
     handleCreateDone: function handleCreateDone() {
       var _this6 = this;
 
-      this.$http.post('/bangumi/create', {
-        name: this.createForm.name,
-        avatar: this.createForm.avatar.replace(this.CDNPrefixp, ''),
-        banner: this.createForm.banner.replace(this.CDNPrefixp, ''),
-        alias: this.createForm.alias.split(/,|，/).join(','),
-        summary: this.createForm.summary
-      }).then(function (data) {
-        _this6.list.push({
-          id: data,
-          name: _this6.createForm.name,
-          avatar: _this6.createForm.avatar,
-          banner: _this6.createForm.banner,
-          summary: _this6.createForm.summary,
-          alias: _this6.createForm.alias.split(/,|，/).join(','),
-          deleted_at: moment().format('YYYY-MM-DD H:m:s')
-        });
-        _this6.showCreateModal = false;
-        _this6.$message.success('操作成功');
-      }, function (err) {
-        _this6.$message.error('操作失败');
-        console.log(err);
+      this.$validator.validateAll('create-bangumi').then(function (result) {
+        if (result) {
+          _this6.$http.post('/bangumi/create', {
+            name: _this6.createForm.name,
+            avatar: _this6.createForm.avatar.replace(_this6.CDNPrefixp, ''),
+            banner: _this6.createForm.banner.replace(_this6.CDNPrefixp, ''),
+            alias: _this6.createForm.alias.split(/,|，/).join(','),
+            summary: _this6.createForm.summary
+          }).then(function (data) {
+            _this6.list.push(Object.assign(defaultEditForm, {
+              id: data,
+              name: _this6.createForm.name,
+              avatar: _this6.createForm.avatar,
+              banner: _this6.createForm.banner,
+              summary: _this6.createForm.summary,
+              alias: _this6.createForm.alias.split(/,|，/).join(','),
+              deleted_at: moment().format('YYYY-MM-DD H:m:s')
+            }));
+            _this6.showCreateModal = false;
+            _this6.$message.success('操作成功');
+            _this6.createForm = defaultCreateForm;
+          }, function (err) {
+            _this6.$message.error('操作失败');
+            console.log(err);
+          });
+        } else {
+          _this6.$message.warning('信息不完整');
+        }
       });
     }
   }
