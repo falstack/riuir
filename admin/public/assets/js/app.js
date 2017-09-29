@@ -727,14 +727,17 @@ var http = _axios_0_16_2_axios_default.a.create({
 });
 
 http.interceptors.request.use(function (config) {
-  return config;
+  return document.getElementById('__orz') ? config : null;
 });
 
 http.interceptors.response.use(function (res) {
-  // Do something with response data
   return res && res.data;
 }, function (err) {
-  return Promise.reject(err.response.data);
+  if (err.response && err.response.status === 401) {
+    window.location = '/';
+    return;
+  }
+  return err.response ? Promise.reject(err.response.data) : Promise.reject(err);
 });
 
 /* harmony default export */ var api = (http);
@@ -1616,7 +1619,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "el-col",
+                "el-row",
                 [
                   _c(
                     "el-col",
@@ -1685,7 +1688,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "el-col",
+                "el-row",
                 [
                   _c(
                     "el-col",
@@ -1883,55 +1886,32 @@ var render = function() {
                 [
                   _c(
                     "el-col",
-                    { attrs: { span: 12 } },
+                    { attrs: { span: 21 } },
                     [
                       _c(
-                        "el-col",
-                        { attrs: { span: 21 } },
+                        "el-form-item",
+                        { attrs: { label: "头像", "label-width": "60px" } },
                         [
                           _c(
-                            "el-form-item",
-                            { attrs: { label: "头像", "label-width": "60px" } },
-                            [
-                              _c("el-input", {
-                                attrs: { "auto-complete": "off" },
-                                model: {
-                                  value: _vm.createForm.avatar,
-                                  callback: function($$v) {
-                                    _vm.createForm.avatar = $$v
-                                  },
-                                  expression: "createForm.avatar"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { span: 2, offset: 1 } },
-                        [
-                          _c(
-                            "el-form-item",
+                            "el-input",
+                            {
+                              attrs: { "auto-complete": "off" },
+                              model: {
+                                value: _vm.createForm.avatar,
+                                callback: function($$v) {
+                                  _vm.createForm.avatar = $$v
+                                },
+                                expression: "createForm.avatar"
+                              }
+                            },
                             [
                               _c(
-                                "el-upload",
-                                {
-                                  attrs: {
-                                    action: "http://up.qiniu.com",
-                                    data: _vm.uploadHeaders,
-                                    "show-file-list": false,
-                                    "on-success": _vm.handleCreateAvatarSuccess,
-                                    "before-upload": _vm.beforeUpload
-                                  }
-                                },
-                                [_c("i", { staticClass: "el-icon-plus" })]
+                                "template",
+                                { attrs: { slot: "prepend" }, slot: "prepend" },
+                                [_vm._v("https://cdn.riuir.com/")]
                               )
                             ],
-                            1
+                            2
                           )
                         ],
                         1
@@ -1942,55 +1922,92 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-col",
-                    { attrs: { span: 12 } },
+                    { attrs: { span: 2, offset: 1 } },
                     [
                       _c(
-                        "el-col",
-                        { attrs: { span: 21 } },
+                        "el-form-item",
                         [
                           _c(
-                            "el-form-item",
-                            { attrs: { label: "横幅", "label-width": "60px" } },
-                            [
-                              _c("el-input", {
-                                attrs: { "auto-complete": "off" },
-                                model: {
-                                  value: _vm.createForm.banner,
-                                  callback: function($$v) {
-                                    _vm.createForm.banner = $$v
-                                  },
-                                  expression: "createForm.banner"
-                                }
-                              })
-                            ],
-                            1
+                            "el-upload",
+                            {
+                              attrs: {
+                                action: "http://up.qiniu.com",
+                                data: _vm.uploadHeaders,
+                                "show-file-list": false,
+                                "on-success": _vm.handleCreateAvatarSuccess,
+                                "before-upload": _vm.beforeUpload
+                              }
+                            },
+                            [_c("i", { staticClass: "el-icon-plus" })]
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 21 } },
+                    [
                       _c(
-                        "el-col",
-                        { attrs: { span: 2, offset: 1 } },
+                        "el-form-item",
+                        { attrs: { label: "横幅", "label-width": "60px" } },
                         [
                           _c(
-                            "el-form-item",
+                            "el-input",
+                            {
+                              attrs: { "auto-complete": "off" },
+                              model: {
+                                value: _vm.createForm.banner,
+                                callback: function($$v) {
+                                  _vm.createForm.banner = $$v
+                                },
+                                expression: "createForm.banner"
+                              }
+                            },
                             [
                               _c(
-                                "el-upload",
-                                {
-                                  attrs: {
-                                    action: "http://up.qiniu.com",
-                                    data: _vm.uploadHeaders,
-                                    "show-file-list": false,
-                                    "on-success": _vm.handleCreateBannerSuccess,
-                                    "before-upload": _vm.beforeUpload
-                                  }
-                                },
-                                [_c("i", { staticClass: "el-icon-plus" })]
+                                "template",
+                                { attrs: { slot: "prepend" }, slot: "prepend" },
+                                [_vm._v("https://cdn.riuir.com/")]
                               )
                             ],
-                            1
+                            2
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 2, offset: 1 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        [
+                          _c(
+                            "el-upload",
+                            {
+                              attrs: {
+                                action: "http://up.qiniu.com",
+                                data: _vm.uploadHeaders,
+                                "show-file-list": false,
+                                "on-success": _vm.handleCreateBannerSuccess,
+                                "before-upload": _vm.beforeUpload
+                              }
+                            },
+                            [_c("i", { staticClass: "el-icon-plus" })]
                           )
                         ],
                         1
@@ -4411,7 +4428,7 @@ var defaultCreateForm = {
       var isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isFormat) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
+        this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
       }
       if (!isLt2M) {
         this.$message.error('上传头像图片大小不能超过 2MB!');
@@ -5034,6 +5051,8 @@ if (false) {(function () {
 //
 //
 //
+//
+//
 
 var defaultEditForm = {
   name: '',
@@ -5123,7 +5142,6 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       this.$http.get('/bangumi/list').then(function (data) {
         _this.list = data.bangumis;
         _this.tags = data.tags;
-        _this.uploadHeaders.token = data.uptoken;
         _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
         _this.loading = false;
       });
@@ -5187,7 +5205,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       var isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isFormat) {
-        this.$message.error('上传头像图片只能是 JPG 格式!');
+        this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
       }
       if (!isLt2M) {
         this.$message.error('上传头像图片大小不能超过 2MB!');
@@ -5394,7 +5412,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
           id: row.id,
           isDeleted: isDeleted
         }).then(function () {
-          _this5.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+          _this5.list[index + (_this5.pagination.curPage - 1) * _this5.pagination.pageSize].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
           _this5.$message.success('操作成功');
         }, function (err) {
           _this5.$message.error('操作失败');
@@ -5424,7 +5442,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
         alias: this.createForm.alias.split(/,|，/).join(','),
         summary: this.createForm.summary
       }).then(function (data) {
-        _this6.list.unshift({
+        _this6.list.push({
           id: data,
           name: _this6.createForm.name,
           avatar: _this6.createForm.avatar,
@@ -5954,7 +5972,7 @@ var defaultCreateForm = {
             'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', bangumiEnglishName)
           };
         }
-        arr.unshift({
+        arr.push({
           'resource': resource,
           'bangumi_id': bangumi_id,
           'part': i,

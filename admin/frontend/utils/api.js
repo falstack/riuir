@@ -9,14 +9,17 @@ const http = axios.create({
 })
 
 http.interceptors.request.use((config) => {
-  return config
+  return document.getElementById('__orz') ? config : null
 })
 
 http.interceptors.response.use((res) => {
-  // Do something with response data
   return res && res.data
 }, (err) => {
-  return Promise.reject(err.response.data)
+  if (err.response && err.response.status === 401) {
+    window.location = '/'
+    return
+  }
+  return err.response ? Promise.reject(err.response.data) : Promise.reject(err)
 })
 
 export default http

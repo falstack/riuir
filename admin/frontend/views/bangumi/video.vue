@@ -466,7 +466,7 @@
               'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', bangumiEnglishName)
             }
           }
-          arr.unshift({
+          arr.push({
             'resource': resource,
             'bangumi_id': bangumi_id,
             'part': i,

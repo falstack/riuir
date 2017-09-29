@@ -131,7 +131,7 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-col>
+        <el-row>
           <el-col :span="21">
             <el-form-item label="头像" :label-width="'60px'">
               <el-input v-model="editForm.avatar" auto-complete="off">
@@ -151,8 +151,8 @@
               </el-upload>
             </el-form-item>
           </el-col>
-        </el-col>
-        <el-col>
+        </el-row>
+        <el-row>
           <el-col :span="21">
             <el-form-item label="横幅" :label-width="'60px'">
               <el-input v-model="editForm.banner" auto-complete="off">
@@ -172,7 +172,7 @@
               </el-upload>
             </el-form-item>
           </el-col>
-        </el-col>
+        </el-row>
         <el-form-item label="季度" :label-width="'60px'">
           <el-input
             type="textarea"
@@ -209,43 +209,45 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
-            <el-col :span="21">
-              <el-form-item label="头像" :label-width="'60px'">
-                <el-input v-model="createForm.avatar" auto-complete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2" :offset="1">
-              <el-form-item>
-                <el-upload
-                  action="http://up.qiniu.com"
-                  :data="uploadHeaders"
-                  :show-file-list="false"
-                  :on-success="handleCreateAvatarSuccess"
-                  :before-upload="beforeUpload">
-                  <i class="el-icon-plus"></i>
-                </el-upload>
-              </el-form-item>
-            </el-col>
+          <el-col :span="21">
+            <el-form-item label="头像" :label-width="'60px'">
+              <el-input v-model="createForm.avatar" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
+            </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-col :span="21">
-              <el-form-item label="横幅" :label-width="'60px'">
-                <el-input v-model="createForm.banner" auto-complete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2" :offset="1">
-              <el-form-item>
-                <el-upload
-                  action="http://up.qiniu.com"
-                  :data="uploadHeaders"
-                  :show-file-list="false"
-                  :on-success="handleCreateBannerSuccess"
-                  :before-upload="beforeUpload">
-                  <i class="el-icon-plus"></i>
-                </el-upload>
-              </el-form-item>
-            </el-col>
+          <el-col :span="2" :offset="1">
+            <el-form-item>
+              <el-upload
+                action="http://up.qiniu.com"
+                :data="uploadHeaders"
+                :show-file-list="false"
+                :on-success="handleCreateAvatarSuccess"
+                :before-upload="beforeUpload">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="21">
+            <el-form-item label="横幅" :label-width="'60px'">
+              <el-input v-model="createForm.banner" auto-complete="off">
+                <template slot="prepend">https://cdn.riuir.com/</template>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="2" :offset="1">
+            <el-form-item>
+              <el-upload
+                action="http://up.qiniu.com"
+                :data="uploadHeaders"
+                :show-file-list="false"
+                :on-success="handleCreateBannerSuccess"
+                :before-upload="beforeUpload">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+            </el-form-item>
           </el-col>
         </el-row>
         <el-form-item label="简介" :label-width="'60px'">
@@ -368,7 +370,6 @@
         this.$http.get('/bangumi/list').then((data) => {
           this.list = data.bangumis
           this.tags = data.tags
-          this.uploadHeaders.token = data.uptoken
           this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
@@ -407,7 +408,7 @@
         const isLt2M = file.size / 1024 / 1024 < 2;
 
         if (!isFormat) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
+          this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
         }
         if (!isLt2M) {
           this.$message.error('上传头像图片大小不能超过 2MB!');
@@ -514,7 +515,7 @@
             id: row.id,
             isDeleted: isDeleted
           }).then(() => {
-            this.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+            this.list[index + ((this.pagination.curPage - 1) * this.pagination.pageSize)].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
             this.$message.success('操作成功');
           }, (err) => {
             this.$message.error('操作失败');
@@ -542,7 +543,7 @@
           alias: this.createForm.alias.split(/,|，/).join(','),
           summary: this.createForm.summary
         }).then((data) => {
-          this.list.unshift({
+          this.list.push({
             id: data,
             name: this.createForm.name,
             avatar: this.createForm.avatar,
