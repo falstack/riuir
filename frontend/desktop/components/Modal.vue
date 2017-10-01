@@ -65,7 +65,7 @@
       }
 
       >header {
-        background-color: $color-dark-light;
+        background-color: $color-blue-light;
 
         h4 {
           font-size: 16px;
@@ -88,13 +88,13 @@
           line-height: 20px;
           border-radius: 50%;
           background-color: $color-white;
-          color: $color-text-light;
+          color: $color-blue-light;
           font-size: 18px;
           font-family: 'Hiragino Sans GB',Helvetica,Arial,sans-serif;
           text-align: center;
 
           &:hover {
-            color: $color-text-deep;
+            color: $color-blue-normal;
           }
         }
       }
