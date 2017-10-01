@@ -38,7 +38,7 @@
 <template>
   <transition name="fade">
     <div id="side-bar" v-show="show" :style="{ right: `${right}px` }">
-      <div class="item icon-fanhuidingbu" aria-hidden="true" @click="$scrollY(0)"></div>
+      <div class="item icon-fanhuidingbu" aria-hidden="true" @click="$scrollToY(0)"></div>
     </div>
   </transition>
 </template>
@@ -54,7 +54,7 @@
     },
     methods: {
       computeShow () {
-        const result = window.screen.height < document.body.scrollTop
+        const result = window.scrollY > window.innerHeight
         if (result) {
           this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2 + 18
         }
@@ -63,12 +63,12 @@
     },
     mounted () {
       this.show = this.computeShow()
-      document.addEventListener('scroll', () => {
+      document.addEventListener('scroll', this.$throttle(() => {
         this.show = this.computeShow()
-      })
-      window.addEventListener('resize', () => {
+      }, 500))
+      window.addEventListener('resize', this.$throttle(() => {
         this.show = this.computeShow()
-      })
+      }, 500))
     }
   }
 </script>

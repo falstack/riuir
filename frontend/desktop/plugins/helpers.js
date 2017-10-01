@@ -112,7 +112,7 @@ Helpers.install = function (Vue, options) {
     return parseInt(getGray(getRGB(ele)), 10)
   }
 
-  Vue.prototype.$scrollY = (targetY, timer, dom, ease) => {
+  Vue.prototype.$scrollToY = (targetY, timer, dom, ease) => {
     let currentTime = 0
     const element = dom || window
     const scrollY = dom ? dom.scrollTop : window.scrollY
