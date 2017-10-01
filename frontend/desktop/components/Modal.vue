@@ -16,10 +16,25 @@
 
     &.modal-enter-active,
     &.modal-leave-active {
+      .v-modal-mask {
+        opacity: 0;
+      }
+
       .v-modal {
         transform: translate(-50%, -70%);
         opacity: 0;
       }
+    }
+
+    .v-modal-mask {
+      background-color: rgba(0, 0, 0, .3);
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transition: opacity $time;
+      opacity: 1;
     }
 
     .v-modal {
@@ -29,7 +44,6 @@
       transform: translate(-50%,-50%);
       border-radius: 6px;
       background-color: #fff;
-      border: 1px solid rgba(0,0,0,.1);
       box-shadow: 0 5px 25px rgba(0,0,0,.1);
       transition: opacity $time, transform $time;
       opacity: 1;
@@ -39,6 +53,8 @@
       height: auto;
       max-height: 80%;
       max-width: 50%;
+      min-width: 500px;
+      cursor: default;
 
       >header, >main, >footer {
         &:before, &:after {
@@ -49,17 +65,37 @@
       }
 
       >header {
-        padding: 20px;
+        background-color: $color-dark-light;
 
         h4 {
+          font-size: 16px;
+          height: 40px;
+          line-height: 40px;
           margin: 0;
-          color: #333;
+          padding-left: 20px;
+          color: $color-white;
+          text-align: left;
+          font-weight: 700;
         }
 
         .close {
           position: absolute;
-          right: 0;
-          top: 0;
+          right: 10px;
+          top: 10px;
+          display: block;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          border-radius: 50%;
+          background-color: $color-white;
+          color: $color-text-light;
+          font-size: 18px;
+          font-family: 'Hiragino Sans GB',Helvetica,Arial,sans-serif;
+          text-align: center;
+
+          &:hover {
+            color: $color-text-deep;
+          }
         }
       }
 
@@ -78,6 +114,31 @@
 
         button {
           float: right;
+          font-size: 14px;
+          height: 30px;
+          padding: 0 15px;
+          margin-left: 10px;
+          border-radius: 4px;
+          font-weight: 600;
+        }
+
+        .cancel {
+          background-color: $color-white;
+          color: $color-text-light;
+
+          &:hover {
+            background-color: $color-gray-normal;
+            color: $color-text-normal;
+          }
+        }
+
+        .submit {
+          background-color: $color-blue-light;
+          color: $color-white;
+
+          &:hover {
+            background-color: $color-blue-normal;
+          }
         }
       }
     }
@@ -87,7 +148,8 @@
 <template>
   <transition name="modal">
     <section class="v-modal-wrap" v-if="toggle">
-      <div class="v-modal" @click>
+      <div class="v-modal-mask" @click.stop.prevent="handleClose"></div>
+      <div class="v-modal" @click.stop.prevent>
         <header v-if="header">
           <slot name="header">
             <h4 v-text="headerText"></h4>
@@ -142,33 +204,29 @@
       }
     },
     watch: {
-      toggle(val) {
-        val ? this.$backdrop.show({
-          ele: this.$el,
-          click: this.handleClose
-        }) : this.$backdrop.hide()
-        this.$emit('input', val);
+      toggle (val) {
+        this.$emit('input', val)
       },
-      value(val) {
-        this.toggle = val;
+      value (val) {
+        this.toggle = val
       }
     },
-    data() {
+    data () {
       return {
         toggle: this.value
-      };
+      }
     },
     methods: {
-      handleClose() {
-        this.toggle = false;
+      handleClose () {
+        this.toggle = false
       },
-      handleSubmit() {
-        this.$emit('submit');
+      handleSubmit () {
+        this.$emit('submit')
       },
-      handleCancel() {
-        this.$emit('cancel');
-        this.handleClose();
+      handleCancel () {
+        this.$emit('cancel')
+        this.handleClose()
       }
     }
-  };
+  }
 </script>

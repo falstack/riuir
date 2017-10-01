@@ -5,21 +5,13 @@
     bottom: 80px;
     background-color: transparent;
     width: $item-size;
-
-    &.fade-enter-active,
-    &.fade-leave-active {
-      transition: opacity .5s
-    }
-    &.fade-enter,
-    &.fade-leave-to {
-      opacity: 0
-    }
+    z-index: 10;
 
     .item {
-      background-color: gray;
+      background-color: $color-gray-deep;
       width: $item-size;
       height: $item-size;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       border-radius: 4px;
       font-size: 30px;
       text-align: center;
@@ -27,6 +19,15 @@
       color: $color-white;
       cursor: pointer;
       font-family: 'iconfont' !important;
+      transition: opacity .5s;
+
+      &:hover {
+        background-color: $color-dark-light;
+      }
+
+      &.item-hidden {
+        opacity: 0;
+      }
 
       &:last-child {
         margin-bottom: 0;
@@ -36,11 +37,18 @@
 </style>
 
 <template>
-  <transition name="fade">
-    <div id="side-bar" v-show="show" :style="{ right: `${right}px` }">
-      <div class="item icon-fanhuidingbu" aria-hidden="true" @click="$scrollToY(0)"></div>
+    <div id="side-bar" v-if="init" :style="{ right: `${right}px` }">
+      <div class="item icon-fanhuidingbu"
+           :class="{ 'item-hidden': !show }"
+           @click="$scrollToY(0)"
+      ></div>
+      <div class="item icon-fankui"
+           @click.stop.prevent="showFeedModal = true">
+        <v-modal v-model="showFeedModal">
+          feedback modal
+        </v-modal>
+      </div>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -48,27 +56,31 @@
     name: 'v-side-bar',
     data () {
       return {
+        init: false,
         show: false,
-        right: 0
+        right: 0,
+        showFeedModal: false
       }
     },
     methods: {
       computeShow () {
-        const result = window.scrollY > window.innerHeight
-        if (result) {
-          this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2 + 18
-        }
-        return result
+        this.show = window.scrollY > window.innerHeight
+      },
+      computeOffset () {
+        this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2 + 18
       }
     },
     mounted () {
-      this.show = this.computeShow()
+      this.computeOffset()
+      this.computeShow()
       document.addEventListener('scroll', this.$throttle(() => {
-        this.show = this.computeShow()
+        this.computeShow()
       }, 500))
       window.addEventListener('resize', this.$throttle(() => {
-        this.show = this.computeShow()
+        this.computeOffset()
+        this.computeShow()
       }, 500))
+      this.init = true
     }
   }
 </script>

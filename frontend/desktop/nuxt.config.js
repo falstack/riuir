@@ -9,6 +9,7 @@ module.exports = {
     { src: '~/plugins/analytics.js', ssr: false },
     { src: '~/plugins/helpers.js' },
     { src: '~/plugins/share.js' },
+    { src: '~/plugins/modal.js' },
     { src: '~/plugins/imagelazy.js' },
     { src: '~/plugins/geetest.js', ssr: false },
     { src: '~/plugins/validate.js', ssr: false }
