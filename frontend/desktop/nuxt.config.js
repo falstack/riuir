@@ -2,7 +2,7 @@ const env = require('./.env')
 const http = require('./config/http')
 const loader = require('./config/loader')
 const webpack = require('webpack')
-const isProd = process.env.NODE_ENV === 'production'
+const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   cache: true,
@@ -39,12 +39,12 @@ module.exports = {
     ],
     script: [
       { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }
-    ].concat(isProd
-    ? [
+    ].concat(isDev
+    ? []
+    : [
         { innerHTML: env.script.baiduStat, type: 'text/javascript' },
         { innerHTML: env.script.baiduPush, type: 'text/javascript' }
-      ]
-    : []),
+    ]),
     __dangerouslyDisableSanitizers: 'script'
   },
   css: [
