@@ -44,12 +44,14 @@
 <template>
     <transition name="fade">
       <div id="side-bar" v-show="show" :style="{ right: `${right}px` }">
+        <!--
         <div class="item icon-fankui"
              @click.stop.prevent="showFeedModal = true">
           <v-modal v-model="showFeedModal">
             feedback modal
           </v-modal>
         </div>
+        -->
         <div class="item icon-fanhuidingbu"
              @click="$scrollToY(0)"
         ></div>
