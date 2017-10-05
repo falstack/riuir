@@ -1,4 +1,8 @@
 export default ({ app }) => {
+  if (process.env.NODE_ENV !== 'production') {
+    return
+  }
+
   (function () {
     const s = document.getElementsByTagName('script')[0]
     /* 360统计 */

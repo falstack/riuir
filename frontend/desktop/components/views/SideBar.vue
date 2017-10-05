@@ -7,6 +7,15 @@
     width: $item-size;
     z-index: 10;
 
+    &.fade-enter-active,
+    &.fade-leave-active {
+      transition: opacity .5s
+    }
+    &.fade-enter,
+    &.fade-leave-to {
+      opacity: 0
+    }
+
     .item {
       background-color: $color-gray-deep;
       width: $item-size;
@@ -25,10 +34,6 @@
         background-color: $color-dark-light;
       }
 
-      &.item-hidden {
-        opacity: 0;
-      }
-
       &:last-child {
         margin-bottom: 0;
       }
@@ -37,18 +42,19 @@
 </style>
 
 <template>
-    <div id="side-bar" v-if="init" :style="{ right: `${right}px` }">
-      <div class="item icon-fanhuidingbu"
-           :class="{ 'item-hidden': !show }"
-           @click="$scrollToY(0)"
-      ></div>
-      <div class="item icon-fankui"
-           @click.stop.prevent="showFeedModal = true">
-        <v-modal v-model="showFeedModal">
-          feedback modal
-        </v-modal>
+    <transition name="fade">
+      <div id="side-bar" v-show="show" :style="{ right: `${right}px` }">
+        <div class="item icon-fankui"
+             @click.stop.prevent="showFeedModal = true">
+          <v-modal v-model="showFeedModal">
+            feedback modal
+          </v-modal>
+        </div>
+        <div class="item icon-fanhuidingbu"
+             @click="$scrollToY(0)"
+        ></div>
       </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -56,7 +62,6 @@
     name: 'v-side-bar',
     data () {
       return {
-        init: false,
         show: false,
         right: 0,
         showFeedModal: false
@@ -80,7 +85,6 @@
         this.computeOffset()
         this.computeShow()
       }, 500))
-      this.init = true
     }
   }
 </script>
