@@ -2,7 +2,6 @@ const env = require('./.env')
 const http = require('./config/http')
 const loader = require('./config/loader')
 const webpack = require('webpack')
-const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   cache: true,
@@ -38,13 +37,10 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' }
-    ].concat(isDev
-    ? []
-    : [
-        { innerHTML: env.script.baiduStat, type: 'text/javascript' },
-        { innerHTML: env.script.baiduPush, type: 'text/javascript' }
-    ]),
+      { src: '//cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js' },
+      { innerHTML: env.script.baiduStat, type: 'text/javascript' },
+      { innerHTML: env.script.baiduPush, type: 'text/javascript' }
+    ],
     __dangerouslyDisableSanitizers: 'script'
   },
   css: [
