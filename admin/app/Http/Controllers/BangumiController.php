@@ -66,7 +66,7 @@ class BangumiController extends Controller
                 'search' => $request->get('alias')
             ])
         ];
-        if (intval($released_video_id) !== intval($bangumi->released_video_id)) {
+        if ($request->get('update')) {
             $arr['published_at'] = time();
         }
 

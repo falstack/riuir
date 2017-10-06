@@ -120,6 +120,11 @@
               <el-input v-model="editForm.released_video_id" placeholder="最新视频id" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
+          <el-col :span="8">
+            <el-form-item label="更新连载" :label-width="'100px'">
+              <el-switch on-text="" off-text="" v-model="editForm.update"></el-switch>
+            </el-form-item>
+          </el-col>
         </el-row>
         <el-form-item label="标签" :label-width="'60px'">
           <el-select v-model="editForm.tags" style="width:100%" multiple placeholder="请选择">
@@ -309,7 +314,8 @@
     avatar: '',
     banner: '',
     season: '',
-    summary: ''
+    summary: '',
+    update: false
   }
   const defaultCreateForm = {
     name: '',
@@ -422,8 +428,8 @@
         })
         this.editForm.tags = tags
         this.editForm.season = row.season || defaultSeason
-        this.editForm.released_video_id = row.released_video_id !== '0' ? row.released_video_id : ''
-
+        this.editForm.released_video_id = row.released_video_id || ''
+        this.editForm.update = false
         this.showEditorModal = true;
       },
       beforeUpload(file) {
