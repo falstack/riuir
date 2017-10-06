@@ -7,12 +7,9 @@ export default class {
     div.id = id
     div.classList.add('backdrop', 'show')
     if (click) {
-      div.addEventListener('click', () => {
-        console.log('123'); // eslint-disable-line
-      })
+      div.addEventListener('click', click())
     }
     document.body.style.overflowY = 'hidden'
-    console.log(ele); // eslint-disable-line
     ele ? ele.parentNode.insertBefore(div, ele) : document.body.appendChild(div)
     return id
   }
