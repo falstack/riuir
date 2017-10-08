@@ -63,7 +63,7 @@
           top: 0;
           width: 100%;
           height: 100%;
-          content: '\e639';
+          content: '\e63a';
           font-size: 40px;
           text-align: center;
           line-height: 60px;
