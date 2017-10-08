@@ -20,6 +20,7 @@
    > 输入`C:`进入 C 盘，输入`D:`进入 D 盘，输入指定的盘符加英文`:`，进入指定的系统盘<br/>
    > 输入`cd dirname`就会进入当前所在目录下的 dirname 文件夹<br/>
    > 输入`cd..` 就会返回上一级目录<br/>
+   > 输入命令后记得敲`回车键`执行
    > 按下`↑`键可以自动填充你上一次输入的命令，`↓`键填充下一次输入的命令
 5. 添加`qshell`所在目录到环境变量`PATH`中：
    > 参见[百度经验](http://jingyan.baidu.com/article/ad310e80d2ebe31848f49e59.html)
@@ -37,7 +38,7 @@
 9. 创建一个文件，名为`upload.json`，内容如下（重要：不可修改）
     ``` json
     {
-      "src_dir"            :   "E:\upload",
+      "src_dir"            :   "E:\\upload",
       "bucket"             :   "clannader",
       "overwrite"          :   true,
       "rescan_local"       :   true,
