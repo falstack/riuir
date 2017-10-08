@@ -444,8 +444,23 @@
         const use1080Lyc = this.createForm.P1080.useLyc;
         const useOuterResource = !(use720P || use1080P);
         const useLyric = use720Lyc || use1080Lyc;
-        const resource = useOuterResource ? '' : defaultResource;
         for (let i = begin; i <= end; i++) {
+          const resource = useOuterResource ? '' : {
+            "video": {
+              "720": {
+                "useLyc": false,
+                "src": ""
+              },
+              "1080": {
+                "useLyc": false,
+                "src": ""
+              }
+            },
+            "lyric": {
+              "zh": "",
+              "en": ""
+            }
+          };
           if ( ! useOuterResource) {
             if (use720P) {
               resource.video['720'] = {
@@ -477,7 +492,6 @@
               : ''
           });
         }
-
         this.$http.post('/video/create', { arr }).then(() => {
           this.$message.success('操作成功');
           this.handleCreateCancel();

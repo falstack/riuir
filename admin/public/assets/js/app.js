@@ -5842,8 +5842,23 @@ var defaultCreateForm = {
       var use1080Lyc = this.createForm.P1080.useLyc;
       var useOuterResource = !(use720P || use1080P);
       var useLyric = use720Lyc || use1080Lyc;
-      var resource = useOuterResource ? '' : defaultResource;
       for (var i = begin; i <= end; i++) {
+        var resource = useOuterResource ? '' : {
+          "video": {
+            "720": {
+              "useLyc": false,
+              "src": ""
+            },
+            "1080": {
+              "useLyc": false,
+              "src": ""
+            }
+          },
+          "lyric": {
+            "zh": "",
+            "en": ""
+          }
+        };
         if (!useOuterResource) {
           if (use720P) {
             resource.video['720'] = {
@@ -5873,7 +5888,6 @@ var defaultCreateForm = {
           'url': useOuterResource ? this.createForm.url.replace('${n}', i).replace('${name}', bangumiEnglishName) : ''
         });
       }
-
       this.$http.post('/video/create', { arr: arr }).then(function () {
         _this5.$message.success('操作成功');
         _this5.handleCreateCancel();
