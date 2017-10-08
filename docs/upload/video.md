@@ -13,25 +13,31 @@
    > 5. Windows 其它系统可以自行百度一下, MacOS 下开启很简单，就不介绍了
 4. 关于七牛云 cmd 上传工具 -> [qshell](https://github.com/qiniu/qshell)，提示一下几点：
    > 1. 介绍中只需要看`简介`,`下载`,`安装`,`密匙设置`就行了
-   > 2. 下载的这个`qshell.exe`或`qshell-darwin-x64`无法运行在桌面上的，也不需要安装
-   > 3. 只需要将这个软件包移动到指定文件夹(目录)下，就可以在该目录下，通过 cmd 工具运行
-   > 4. cmd 命令行工具打开后，如何切换文件目录，记住这几个简单的命令<br/>
+   > 2. 下载的这个`qshell-windows-x64.exe`或`qshell-darwin-x64`无法运行在桌面上的，也不需要安装
+   > 3. 重命名你下载的文件，如`qshell-windows-x64.exe`改为`qshell.exe`
+   > 4. 只需要将这个软件包移动到任意目录下即可（注：这个目录之后会写入系统变量PATH中）
+   > 5. cmd 命令行工具打开后，如何切换文件目录，记住这几个简单的命令<br/>
    > 输入`C:`进入 C 盘，输入`D:`进入 D 盘，输入指定的盘符加英文`:`，进入指定的系统盘<br/>
    > 输入`cd dirname`就会进入当前所在目录下的 dirname 文件夹<br/>
    > 输入`cd..` 就会返回上一级目录<br/>
    > 按下`↑`键可以自动填充你上一次输入的命令，`↓`键填充下一次输入的命令
-5. 暂时不需要添加`qshell`所在目录到环境变量`PATH`
+5. 添加`qshell`所在目录到环境变量`PATH`中：
+   > 参见[百度经验](http://jingyan.baidu.com/article/ad310e80d2ebe31848f49e59.html)
+   > 不同点如下：
+   > 1. 百度经验第七部的截图中，不要点`新建`按钮
+   > 2. 双击截图中的`系统变量`选项框里的`Path`
+   > 3. 然后在新弹出的窗口点击新建，输入你下载的`upload.exe`文件所在的目录即可
 6. `qshell`介绍的页面里，比如这一句：
     ```shell
     $ qshell -m account ak sk
     ```
     前面的`$`代表`shell`命令，不要复制粘贴这个符号
 7. `AccessKey`和`SecretKey`我会给你的，你在命令行里输入就行了
-8. 假设`qshell`在`E:`盘的`upload`目录下，那么`upload`目录就是文件上传的根目录
+8. 假设（这里你任意挑选一个空间合适的盘符就行）`qshell`在`E:`盘的`upload`目录下，那么`E:\upload\`文件夹就是文件上传的`根目录`
 9. 创建一个文件，名为`upload.json`，内容如下（重要：不可修改）
     ``` json
     {
-      "src_dir"            :   "/Users/yuistack/Documents/Upload",
+      "src_dir"            :   "E:\upload",
       "bucket"             :   "clannader",
       "overwrite"          :   true,
       "rescan_local"       :   true,
