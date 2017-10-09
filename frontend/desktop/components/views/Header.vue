@@ -14,171 +14,169 @@
     .text {
       width: 100%;
       height: $header-height;
+      line-height: $header-height;
+      padding-left: 20px;
+      padding-right: 20px;
 
-      .container {
+      .header-left {
         height: $header-height;
-        line-height: $header-height;
+        float: left;
+      }
 
-        .header-left {
-          height: $header-height;
+      .header-right {
+        float: right;
+
+        .search-box {
+          height: $search-height;
+          border-radius: $search-height / 2;
+          background-color: rgba(0, 0, 0, 0.2);
+          margin-top: ($header-height - $search-height) / 2;
+          margin-right: 30px;
           float: left;
-        }
 
-        .header-right {
-          float: right;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+          }
 
-          .search-box {
-            height: $search-height;
-            border-radius: $search-height / 2;
-            background-color: rgba(0, 0, 0, 0.2);
-            margin-top: ($header-height - $search-height) / 2;
-            margin-right: 30px;
-            float: left;
+          $transition: .2s;
+          .search-ctx {
+            width: 135px;
+            background-color: transparent;
+            transition: $transition;
+            font-size: 12px;
+            padding: 4px 10px 4px 15px;
+            line-height: 24px;
+            border-radius: 16px 0 0 16px;
+            color: $color-white;
+            @include input-placeholder();
+            border: 1px solid transparent;
+            border-right: 0;
 
-            &:hover {
-              background-color: rgba(0, 0, 0, 0.4);
+            &:focus {
+              width: 235px;
+              background-color: $color-white;
+              color: #222;
+              @include input-placeholder(#222);
+
+              &+.search-btn {
+                background-color: $color-white;
+                color: $color-text-deep;
+
+                &:hover {
+                  color: $color-blue-normal;
+                }
+              }
+
+              &~.search-history {
+                transition-delay: $transition;
+              }
             }
+          }
 
-            $transition: .2s;
+          @media (max-width: 768px) {
             .search-ctx {
-              width: 135px;
-              background-color: transparent;
-              transition: $transition;
-              font-size: 12px;
-              padding: 4px 10px 4px 15px;
-              line-height: 24px;
-              border-radius: 16px 0 0 16px;
-              color: $color-white;
-              @include input-placeholder();
-              border: 1px solid transparent;
-              border-right: 0;
+              width: 85px;
 
               &:focus {
-                width: 235px;
-                background-color: $color-white;
-                color: #222;
-                @include input-placeholder(#222);
-
-                &+.search-btn {
-                  background-color: $color-white;
-                  color: $color-text-deep;
-
-                  &:hover {
-                    color: $color-blue-normal;
-                  }
-                }
-
-                &~.search-history {
-                  transition-delay: $transition;
-                }
-              }
-            }
-
-            @media (max-width: 768px) {
-              .search-ctx {
-                width: 85px;
-
-                &:focus {
-                  width: 155px;
-                }
-              }
-            }
-
-            .search-btn {
-              width: 32px;
-              height: 32px;
-              border-radius: 0 16px 16px 0;
-              background-color: transparent;
-              transition: $transition;
-              color: $color-white;
-              font-family: 'iconfont' !important;
-              font-size: 18px;
-              border: 1px solid transparent;
-              border-left: 0;
-              line-height: 30px;
-
-              &:before {
-                content: '\e761';
+                width: 155px;
               }
             }
           }
 
-          .sign-btn {
-            border-radius: 2px;
-            width: 52px;
-            height: 34px;
-            line-height: 32px;
+          .search-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 0 16px 16px 0;
+            background-color: transparent;
+            transition: $transition;
             color: $color-white;
-            text-align: center;
-            font-size: 14px;
-          }
+            font-family: 'iconfont' !important;
+            font-size: 18px;
+            border: 1px solid transparent;
+            border-left: 0;
+            line-height: 30px;
 
-          .sign-in {
-            border: 1px solid rgba(255,255,255,.8);
-
-            &:hover {
-              background: $color-white;
-              text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-              color: #000;
-              border: 1px solid #ccc;
+            &:before {
+              content: '\e761';
             }
           }
+        }
 
-          .sign-up {
-            margin-left: 7px;
-            border: 0;
-            background-color: rgba($color-blue-normal, .8);
+        .sign-btn {
+          border-radius: 2px;
+          width: 52px;
+          height: 34px;
+          line-height: 32px;
+          color: $color-white;
+          text-align: center;
+          font-size: 14px;
+        }
 
-            &:hover {
-              background-color: $color-blue-normal;
-            }
+        .sign-in {
+          border: 1px solid rgba(255,255,255,.8);
+
+          &:hover {
+            background: $color-white;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+            color: #000;
+            border: 1px solid #ccc;
+          }
+        }
+
+        .sign-up {
+          margin-left: 7px;
+          border: 0;
+          background-color: rgba($color-blue-normal, .8);
+
+          &:hover {
+            background-color: $color-blue-normal;
+          }
+        }
+
+        .user-section {
+          height: $header-height;
+          cursor: pointer;
+          position: relative;
+          float: right;
+          margin-left: 6px;
+          margin-right: 25px;
+
+          .avatar {
+            margin-top: ($header-height - $avatar-height) / 2;
+            @include avatar($avatar-height);
           }
 
-          .user-section {
-            height: $header-height;
-            cursor: pointer;
-            position: relative;
-            float: right;
-            margin-left: 6px;
-            margin-right: 25px;
-
-            .avatar {
-              margin-top: ($header-height - $avatar-height) / 2;
-              @include avatar($avatar-height);
-            }
-
-            &:hover {
-              .user-panel {
-                visibility: visible;
-                opacity: 1;
-              }
-            }
-
+          &:hover {
             .user-panel {
-              cursor: default;
-              position: absolute;
-              left: -30px;
-              width: 100px;
-              height: 120px;
-              top: 100%;
-              background-color: #fff;
-              border-radius: 0 0 4px 4px;
-              visibility: hidden;
-              opacity: 0;
-              overflow: hidden;
-              box-shadow: rgba(0, 0, 0, 0.16) 0 2px 4px;
-              padding-bottom: 35px;
+              visibility: visible;
+              opacity: 1;
+            }
+          }
 
-              .logout {
-                height: 35px;
-                width: 100%;
-                text-align: center;
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                background-color: $color-gray-normal;
-                font-size: 13px;
-              }
+          .user-panel {
+            cursor: default;
+            position: absolute;
+            left: -30px;
+            width: 100px;
+            height: 120px;
+            top: 100%;
+            background-color: #fff;
+            border-radius: 0 0 4px 4px;
+            visibility: hidden;
+            opacity: 0;
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.16) 0 2px 4px;
+            padding-bottom: 35px;
+
+            .logout {
+              height: 35px;
+              width: 100%;
+              text-align: center;
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              background-color: $color-gray-normal;
+              font-size: 13px;
             }
           }
         }
@@ -332,30 +330,28 @@
 <template>
   <header id="header" :class="[theme, imageGrayLevel > 165 ? 'white' : 'black', scrollFlag ? 'scroll-show' : 'scroll-hide']">
     <div class="text">
-      <div class="container">
-        <nav class="header-left">
-          <nuxt-link class="nav-link" to="/">主站</nuxt-link>
-          <nuxt-link class="nav-link" to="/bangumi/news">番剧</nuxt-link>
-          <nuxt-link class="nav-link" to="/bangumi/tags">分类</nuxt-link>
-        </nav>
-        <nav class="header-right">
-          <v-search :placeholder="'搜索'" :history="true"></v-search>
-          <template v-if="isLogin">
-            <a class="nav-link" href="javascript:;">消息</a>
-            <a class="nav-link" href="javascript:;">动态</a>
-            <div class="user-section">
-              <img class="avatar" :src="$resize(user.avatar, { width: 72, height: 72 })" :alt="user.nickname">
-              <div class="user-panel">
-                <button @click="signOut" class="logout href-fade-blue">退出</button>
-              </div>
+      <nav class="header-left">
+        <nuxt-link class="nav-link" to="/">主站</nuxt-link>
+        <nuxt-link class="nav-link" to="/bangumi/news">番剧</nuxt-link>
+        <nuxt-link class="nav-link" to="/bangumi/tags">分类</nuxt-link>
+      </nav>
+      <nav class="header-right">
+        <v-search :placeholder="'搜索'" :history="true"></v-search>
+        <template v-if="isLogin">
+          <a class="nav-link" href="javascript:;">消息</a>
+          <a class="nav-link" href="javascript:;">动态</a>
+          <div class="user-section">
+            <img class="avatar" :src="$resize(user.avatar, { width: 72, height: 72 })" :alt="user.nickname">
+            <div class="user-panel">
+              <button @click="signOut" class="logout href-fade-blue">退出</button>
             </div>
-          </template>
-          <template v-else>
-            <button class="sign-btn sign-in" @click="signIn">登录</button>
-            <button class="sign-btn sign-up" @click="signUp">注册</button>
-          </template>
-        </nav>
-      </div>
+          </div>
+        </template>
+        <template v-else>
+          <button class="sign-btn sign-in" @click="signIn">登录</button>
+          <button class="sign-btn sign-up" @click="signUp">注册</button>
+        </template>
+      </nav>
     </div>
     <div class="wrap abs">
       <div class="shim" :style="computedBg"></div>
