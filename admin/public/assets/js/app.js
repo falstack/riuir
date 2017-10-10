@@ -3478,7 +3478,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       });
       this.editForm.tags = tags;
       this.editForm.season = row.season || defaultSeason;
-      this.editForm.released_video_id = row.released_video_id || '';
+      this.editForm.released_video_id = row.released_video_id || 0;
       this.editForm.update = false;
       this.showEditorModal = true;
     },

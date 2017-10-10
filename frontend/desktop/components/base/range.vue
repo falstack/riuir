@@ -246,6 +246,7 @@
         } else {
           newPosition = baseOffset + delta
         }
+        console.log(delta); // eslint-disable-line
 
         let newProgress = newPosition / maxOffset
 
