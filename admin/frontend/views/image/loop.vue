@@ -57,7 +57,7 @@
         <el-col :span="11">
           <el-form-item label="番剧id" :label-width="'60px'">
             <el-input name="bangumi_id"
-                      v-model="createForm.bangumiId"
+                      v-model.trim="createForm.bangumiId"
                       auto-complete="off"
             ></el-input>
           </el-form-item>
@@ -65,7 +65,7 @@
         <el-col :span="11" :offset="1">
           <el-form-item label="用户id" :label-width="'60px'">
             <el-input name="user_id"
-                      v-model="createForm.userId"
+                      v-model.trim="createForm.userId"
                       auto-complete="off"
             ></el-input>
           </el-form-item>
@@ -73,7 +73,7 @@
         <el-col :span="21">
           <el-form-item label="资源" :label-width="'60px'">
             <el-input name="url"
-                      v-model="createForm.url"
+                      v-model.trim="createForm.url"
                       v-validate="{
                         rules: 'required',
                         scope: 'create-loop'

@@ -1675,7 +1675,8 @@ var render = function() {
                         model: {
                           value: _vm.createForm.bangumiId,
                           callback: function($$v) {
-                            _vm.createForm.bangumiId = $$v
+                            _vm.createForm.bangumiId =
+                              typeof $$v === "string" ? $$v.trim() : $$v
                           },
                           expression: "createForm.bangumiId"
                         }
@@ -1700,7 +1701,8 @@ var render = function() {
                         model: {
                           value: _vm.createForm.userId,
                           callback: function($$v) {
-                            _vm.createForm.userId = $$v
+                            _vm.createForm.userId =
+                              typeof $$v === "string" ? $$v.trim() : $$v
                           },
                           expression: "createForm.userId"
                         }
@@ -1739,7 +1741,8 @@ var render = function() {
                           model: {
                             value: _vm.createForm.url,
                             callback: function($$v) {
-                              _vm.createForm.url = $$v
+                              _vm.createForm.url =
+                                typeof $$v === "string" ? $$v.trim() : $$v
                             },
                             expression: "createForm.url"
                           }
@@ -2295,7 +2298,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.name,
                               callback: function($$v) {
-                                _vm.editForm.name = $$v
+                                _vm.editForm.name =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.name"
                             }
@@ -2320,7 +2324,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.alias,
                               callback: function($$v) {
-                                _vm.editForm.alias = $$v
+                                _vm.editForm.alias =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.alias"
                             }
@@ -2389,7 +2394,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.released_video_id,
                               callback: function($$v) {
-                                _vm.editForm.released_video_id = $$v
+                                _vm.editForm.released_video_id =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.released_video_id"
                             }
@@ -2475,7 +2481,8 @@ var render = function() {
                               model: {
                                 value: _vm.editForm.avatar,
                                 callback: function($$v) {
-                                  _vm.editForm.avatar = $$v
+                                  _vm.editForm.avatar =
+                                    typeof $$v === "string" ? $$v.trim() : $$v
                                 },
                                 expression: "editForm.avatar"
                               }
@@ -2544,7 +2551,8 @@ var render = function() {
                               model: {
                                 value: _vm.editForm.banner,
                                 callback: function($$v) {
-                                  _vm.editForm.banner = $$v
+                                  _vm.editForm.banner =
+                                    typeof $$v === "string" ? $$v.trim() : $$v
                                 },
                                 expression: "editForm.banner"
                               }
@@ -2608,7 +2616,8 @@ var render = function() {
                     model: {
                       value: _vm.editForm.season,
                       callback: function($$v) {
-                        _vm.editForm.season = $$v
+                        _vm.editForm.season =
+                          typeof $$v === "string" ? $$v.trim() : $$v
                       },
                       expression: "editForm.season"
                     }
@@ -2630,7 +2639,8 @@ var render = function() {
                     model: {
                       value: _vm.editForm.summary,
                       callback: function($$v) {
-                        _vm.editForm.summary = $$v
+                        _vm.editForm.summary =
+                          typeof $$v === "string" ? $$v.trim() : $$v
                       },
                       expression: "editForm.summary"
                     }
@@ -2692,7 +2702,8 @@ var render = function() {
                             model: {
                               value: _vm.createForm.name,
                               callback: function($$v) {
-                                _vm.createForm.name = $$v
+                                _vm.createForm.name =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "createForm.name"
                             }
@@ -2729,7 +2740,8 @@ var render = function() {
                             model: {
                               value: _vm.createForm.alias,
                               callback: function($$v) {
-                                _vm.createForm.alias = $$v
+                                _vm.createForm.alias =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "createForm.alias"
                             }
@@ -2774,7 +2786,8 @@ var render = function() {
                               model: {
                                 value: _vm.createForm.avatar,
                                 callback: function($$v) {
-                                  _vm.createForm.avatar = $$v
+                                  _vm.createForm.avatar =
+                                    typeof $$v === "string" ? $$v.trim() : $$v
                                 },
                                 expression: "createForm.avatar"
                               }
@@ -2855,7 +2868,8 @@ var render = function() {
                               model: {
                                 value: _vm.createForm.banner,
                                 callback: function($$v) {
-                                  _vm.createForm.banner = $$v
+                                  _vm.createForm.banner =
+                                    typeof $$v === "string" ? $$v.trim() : $$v
                                 },
                                 expression: "createForm.banner"
                               }
@@ -2931,7 +2945,8 @@ var render = function() {
                     model: {
                       value: _vm.createForm.summary,
                       callback: function($$v) {
-                        _vm.createForm.summary = $$v
+                        _vm.createForm.summary =
+                          typeof $$v === "string" ? $$v.trim() : $$v
                       },
                       expression: "createForm.summary"
                     }
@@ -4133,7 +4148,8 @@ var render = function() {
                     model: {
                       value: _vm.editForm.name,
                       callback: function($$v) {
-                        _vm.editForm.name = $$v
+                        _vm.editForm.name =
+                          typeof $$v === "string" ? $$v.trim() : $$v
                       },
                       expression: "editForm.name"
                     }
@@ -4203,7 +4219,8 @@ var render = function() {
                     model: {
                       value: _vm.createForm.name,
                       callback: function($$v) {
-                        _vm.createForm.name = $$v
+                        _vm.createForm.name =
+                          typeof $$v === "string" ? $$v.trim() : $$v
                       },
                       expression: "createForm.name"
                     }
@@ -4615,7 +4632,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.part,
                               callback: function($$v) {
-                                _vm.editForm.part = $$v
+                                _vm.editForm.part =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.part"
                             }
@@ -4640,7 +4658,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.name,
                               callback: function($$v) {
-                                _vm.editForm.name = $$v
+                                _vm.editForm.name =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.name"
                             }
@@ -4671,7 +4690,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.resource.video[720].src,
                               callback: function($$v) {
-                                _vm.editForm.resource.video[720].src = $$v
+                                _vm.editForm.resource.video[720].src =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.resource.video[720].src"
                             }
@@ -4731,7 +4751,8 @@ var render = function() {
                             model: {
                               value: _vm.editForm.resource.video[1080].src,
                               callback: function($$v) {
-                                _vm.editForm.resource.video[1080].src = $$v
+                                _vm.editForm.resource.video[1080].src =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "editForm.resource.video[1080].src"
                             }
@@ -4786,7 +4807,8 @@ var render = function() {
                       model: {
                         value: _vm.editForm.url,
                         callback: function($$v) {
-                          _vm.editForm.url = $$v
+                          _vm.editForm.url =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "editForm.url"
                       }
@@ -4815,7 +4837,8 @@ var render = function() {
                       model: {
                         value: _vm.editForm.poster,
                         callback: function($$v) {
-                          _vm.editForm.poster = $$v
+                          _vm.editForm.poster =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "editForm.poster"
                       }
@@ -4844,7 +4867,8 @@ var render = function() {
                       model: {
                         value: _vm.editForm.resource.lyric.zh,
                         callback: function($$v) {
-                          _vm.editForm.resource.lyric.zh = $$v
+                          _vm.editForm.resource.lyric.zh =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "editForm.resource.lyric.zh"
                       }
@@ -4943,7 +4967,8 @@ var render = function() {
                             model: {
                               value: _vm.createForm.part,
                               callback: function($$v) {
-                                _vm.createForm.part = $$v
+                                _vm.createForm.part =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "createForm.part"
                             }
@@ -4971,7 +4996,8 @@ var render = function() {
                             model: {
                               value: _vm.createForm.bangumiEnglishName,
                               callback: function($$v) {
-                                _vm.createForm.bangumiEnglishName = $$v
+                                _vm.createForm.bangumiEnglishName =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
                               },
                               expression: "createForm.bangumiEnglishName"
                             }
@@ -5045,7 +5071,10 @@ var render = function() {
                                   model: {
                                     value: _vm.createForm.P720.src,
                                     callback: function($$v) {
-                                      _vm.createForm.P720.src = $$v
+                                      _vm.createForm.P720.src =
+                                        typeof $$v === "string"
+                                          ? $$v.trim()
+                                          : $$v
                                     },
                                     expression: "createForm.P720.src"
                                   }
@@ -5111,7 +5140,10 @@ var render = function() {
                                   model: {
                                     value: _vm.createForm.P1080.src,
                                     callback: function($$v) {
-                                      _vm.createForm.P1080.src = $$v
+                                      _vm.createForm.P1080.src =
+                                        typeof $$v === "string"
+                                          ? $$v.trim()
+                                          : $$v
                                     },
                                     expression: "createForm.P1080.src"
                                   }
@@ -5170,7 +5202,8 @@ var render = function() {
                           model: {
                             value: _vm.createForm.url,
                             callback: function($$v) {
-                              _vm.createForm.url = $$v
+                              _vm.createForm.url =
+                                typeof $$v === "string" ? $$v.trim() : $$v
                             },
                             expression: "createForm.url"
                           }
@@ -5200,7 +5233,8 @@ var render = function() {
                       model: {
                         value: _vm.createForm.poster,
                         callback: function($$v) {
-                          _vm.createForm.poster = $$v
+                          _vm.createForm.poster =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "createForm.poster"
                       }
@@ -5230,7 +5264,8 @@ var render = function() {
                           model: {
                             value: _vm.createForm.lyric.zh,
                             callback: function($$v) {
-                              _vm.createForm.lyric.zh = $$v
+                              _vm.createForm.lyric.zh =
+                                typeof $$v === "string" ? $$v.trim() : $$v
                             },
                             expression: "createForm.lyric.zh"
                           }
@@ -5262,7 +5297,8 @@ var render = function() {
                     model: {
                       value: _vm.createForm.name,
                       callback: function($$v) {
-                        _vm.createForm.name = $$v
+                        _vm.createForm.name =
+                          typeof $$v === "string" ? $$v.trim() : $$v
                       },
                       expression: "createForm.name"
                     }
@@ -6021,7 +6057,8 @@ var render = function() {
                       model: {
                         value: _vm.signUp.name,
                         callback: function($$v) {
-                          _vm.signUp.name = $$v
+                          _vm.signUp.name =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "signUp.name"
                       }
@@ -6039,7 +6076,8 @@ var render = function() {
                       model: {
                         value: _vm.signUp.email,
                         callback: function($$v) {
-                          _vm.signUp.email = $$v
+                          _vm.signUp.email =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "signUp.email"
                       }
@@ -6057,7 +6095,8 @@ var render = function() {
                       model: {
                         value: _vm.signUp.password,
                         callback: function($$v) {
-                          _vm.signUp.password = $$v
+                          _vm.signUp.password =
+                            typeof $$v === "string" ? $$v.trim() : $$v
                         },
                         expression: "signUp.password"
                       }

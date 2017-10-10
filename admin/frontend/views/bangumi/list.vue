@@ -93,12 +93,12 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="番名" :label-width="'60px'">
-              <el-input v-model="editForm.name" auto-complete="off"></el-input>
+              <el-input v-model.trim="editForm.name" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="16">
             <el-form-item label="别名" :label-width="'60px'">
-              <el-input v-model="editForm.alias" auto-complete="off"></el-input>
+              <el-input v-model.trim="editForm.alias" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -117,7 +117,7 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="视频" :label-width="'60px'">
-              <el-input v-model="editForm.released_video_id" placeholder="最新视频id" auto-complete="off"></el-input>
+              <el-input v-model.trim="editForm.released_video_id" placeholder="最新视频id" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -139,7 +139,7 @@
         <el-row>
           <el-col :span="21">
             <el-form-item label="头像" :label-width="'60px'">
-              <el-input v-model="editForm.avatar" auto-complete="off">
+              <el-input v-model.trim="editForm.avatar" auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-form-item>
@@ -160,7 +160,7 @@
         <el-row>
           <el-col :span="21">
             <el-form-item label="横幅" :label-width="'60px'">
-              <el-input v-model="editForm.banner" auto-complete="off">
+              <el-input v-model.trim="editForm.banner" auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-form-item>
@@ -183,7 +183,7 @@
             type="textarea"
             :rows="2"
             placeholder="请输入番剧季度信息，JSON格式，包含 part，time，name 字段"
-            v-model="editForm.season">
+            v-model.trim="editForm.season">
           </el-input>
         </el-form-item>
         <el-form-item label="简介" :label-width="'60px'">
@@ -191,7 +191,7 @@
             type="textarea"
             :rows="4"
             placeholder="请输入番剧简介"
-            v-model="editForm.summary">
+            v-model.trim="editForm.summary">
           </el-input>
         </el-form-item>
       </el-form>
@@ -204,7 +204,7 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="番名" :label-width="'60px'">
-              <el-input v-model="createForm.name"
+              <el-input v-model.trim="createForm.name"
                         v-validate="{
                           rules: 'required',
                           scope: 'create-bangumi'
@@ -214,7 +214,7 @@
           </el-col>
           <el-col :span="16">
             <el-form-item label="别名" :label-width="'60px'">
-              <el-input v-model="createForm.alias"
+              <el-input v-model.trim="createForm.alias"
                         v-validate="{
                           rules: 'required',
                           scope: 'create-bangumi'
@@ -226,7 +226,7 @@
         <el-row>
           <el-col :span="21">
             <el-form-item label="头像" :label-width="'60px'">
-              <el-input v-model="createForm.avatar"
+              <el-input v-model.trim="createForm.avatar"
                         v-validate="{
                           rules: 'required',
                           scope: 'create-bangumi'
@@ -252,7 +252,7 @@
         <el-row>
           <el-col :span="21">
             <el-form-item label="横幅" :label-width="'60px'">
-              <el-input v-model="createForm.banner"
+              <el-input v-model.trim="createForm.banner"
                         v-validate="{
                           rules: 'required',
                           scope: 'create-bangumi'
@@ -284,7 +284,7 @@
               scope: 'create-bangumi'
             }"
             placeholder="请输入番剧简介"
-            v-model="createForm.summary">
+            v-model.trim="createForm.summary">
           </el-input>
         </el-form-item>
       </el-form>

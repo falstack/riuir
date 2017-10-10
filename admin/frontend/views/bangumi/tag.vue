@@ -42,7 +42,7 @@
              @submit="handleEditDone">
       <el-form :model="editForm">
         <el-form-item label="名称" :label-width="'60px'">
-          <el-input v-model="editForm.name" auto-complete="off"></el-input>
+          <el-input v-model.trim="editForm.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
     </v-modal>
@@ -61,7 +61,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="名称" :label-width="'60px'">
-          <el-input v-model="createForm.name" auto-complete="off"></el-input>
+          <el-input v-model.trim="createForm.name" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
     </v-modal>

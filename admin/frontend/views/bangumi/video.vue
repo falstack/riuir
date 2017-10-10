@@ -115,19 +115,19 @@
           </el-col>
           <el-col :span="5">
             <el-form-item label="集数" :label-width="'85px'">
-              <el-input v-model="editForm.part" auto-complete="off"></el-input>
+              <el-input v-model.trim="editForm.part" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="10">
             <el-form-item label="名称" :label-width="'85px'">
-              <el-input v-model="editForm.name" auto-complete="off"></el-input>
+              <el-input v-model.trim="editForm.name" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <template>
           <el-form-item label="720P 资源" :label-width="'85px'">
             <el-col :span="18">
-              <el-input v-model="editForm.resource.video[720].src" auto-complete="off">
+              <el-input v-model.trim="editForm.resource.video[720].src" auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-col>
@@ -139,7 +139,7 @@
         <template>
           <el-form-item label="1080P 资源" :label-width="'85px'">
             <el-col :span="18">
-              <el-input v-model="editForm.resource.video[1080].src" auto-complete="off">
+              <el-input v-model.trim="editForm.resource.video[1080].src" auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-col>
@@ -149,17 +149,17 @@
           </el-form-item>
         </template>
         <el-form-item label="外链资源" :label-width="'85px'">
-          <el-input v-model="editForm.url" auto-complete="off">
+          <el-input v-model.trim="editForm.url" auto-complete="off">
             <template slot="prepend">https://cdn.riuir.com/</template>
           </el-input>
         </el-form-item>
         <el-form-item label="海报" :label-width="'85px'">
-          <el-input v-model="editForm.poster" auto-complete="off">
+          <el-input v-model.trim="editForm.poster" auto-complete="off">
             <template slot="prepend">https://cdn.riuir.com/</template>
           </el-input>
         </el-form-item>
         <el-form-item label="字幕" :label-width="'85px'">
-          <el-input v-model="editForm.resource.lyric.zh" auto-complete="off">
+          <el-input v-model.trim="editForm.resource.lyric.zh" auto-complete="off">
             <template slot="prepend">https://cdn.riuir.com/</template>
           </el-input>
         </el-form-item>
@@ -185,12 +185,12 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="集数" :label-width="'85px'">
-              <el-input v-model="createForm.part" placeholder="m-n" auto-complete="off"></el-input>
+              <el-input v-model.trim="createForm.part" placeholder="m-n" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="名称" :label-width="'85px'">
-              <el-input v-model="createForm.bangumiEnglishName" placeholder="${name}" auto-complete="off"></el-input>
+              <el-input v-model.trim="createForm.bangumiEnglishName" placeholder="${name}" auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -203,7 +203,7 @@
         <el-row v-if="createForm.P720.show">
           <el-form-item label="720P 资源" :label-width="'85px'">
             <el-col :span="18">
-              <el-input v-model="createForm.P720.src" auto-complete="off">
+              <el-input v-model.trim="createForm.P720.src" auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-col>
@@ -215,7 +215,7 @@
         <el-row v-if="createForm.P1080.show">
           <el-form-item label="1080P 资源" :label-width="'85px'">
             <el-col :span="18">
-              <el-input v-model="createForm.P1080.src" auto-complete="off">
+              <el-input v-model.trim="createForm.P1080.src" auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
             </el-col>
@@ -225,22 +225,22 @@
           </el-form-item>
         </el-row>
         <el-form-item v-if="!createForm.P720.show && !createForm.P1080.show" label="外链资源" :label-width="'85px'">
-          <el-input v-model="createForm.url" auto-complete="off">
+          <el-input v-model.trim="createForm.url" auto-complete="off">
             <template slot="prepend">https://cdn.riuir.com/</template>
           </el-input>
         </el-form-item>
         <el-form-item label="海报" :label-width="'85px'">
-          <el-input v-model="createForm.poster" auto-complete="off">
+          <el-input v-model.trim="createForm.poster" auto-complete="off">
             <template slot="prepend">https://cdn.riuir.com/</template>
           </el-input>
         </el-form-item>
         <el-form-item v-if="createForm.P720.useLyc || createForm.P1080.useLyc" label="字幕" :label-width="'85px'">
-          <el-input v-model="createForm.lyric.zh" auto-complete="off">
+          <el-input v-model.trim="createForm.lyric.zh" auto-complete="off">
             <template slot="prepend">https://cdn.riuir.com/</template>
           </el-input>
         </el-form-item>
         <el-form-item label="名称" :label-width="'85px'">
-          <el-input v-model="createForm.name" type="textarea" placeholder="一行一个" auto-complete="off"></el-input>
+          <el-input v-model.trim="createForm.name" type="textarea" placeholder="一行一个" auto-complete="off"></el-input>
         </el-form-item>
       </el-form>
     </v-modal>

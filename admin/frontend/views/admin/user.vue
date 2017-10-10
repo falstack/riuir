@@ -8,13 +8,13 @@
                @submit="register">
         <el-form label-width="80px">
           <el-form-item label="昵称">
-            <el-input v-model="signUp.name"></el-input>
+            <el-input v-model.trim="signUp.name"></el-input>
           </el-form-item>
           <el-form-item label="邮箱">
-            <el-input type="email" v-model="signUp.email"></el-input>
+            <el-input type="email" v-model.trim="signUp.email"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input type="password" v-model="signUp.password"></el-input>
+            <el-input type="password" v-model.trim="signUp.password"></el-input>
           </el-form-item>
         </el-form>
       </v-modal>
