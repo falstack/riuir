@@ -94,7 +94,7 @@
     <div class="banner bg" :class="{'show' : !toggle}" :style="{ backgroundImage: banner2 ? `url(${$resize(banner2.url, { width: 1920, mode: 0 })})` : '' }"></div>
     <img class="another"
          crossOrigin="anonymous"
-         :src="`${another}?imageMogr2/auto-orient/strip/gravity/Center/crop/435x140`"
+         :src="`${another}?imageMogr2/auto-orient/strip/gravity/Center/crop/435x300`"
          :flag="imageGrayLevel"
          ref="another"
          @load="computedGray"
@@ -170,8 +170,8 @@
       },
       computedGray () {
         setTimeout(() => {
-          this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 65)
-        }, 7500)
+          this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 100)
+        }, 7000)
       }
     },
     beforeDestroy () {
