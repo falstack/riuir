@@ -233,11 +233,11 @@
         if (this.vertical) {
           baseOffset = this.dragState.y
           maxOffset = contentBox.height
-          delta = event.pageY - contentBox.top - baseOffset - document.body.scrollTop
+          delta = event.pageY - contentBox.top - baseOffset - window.scrollY
         } else {
           baseOffset = this.dragState.x
           maxOffset = contentBox.width
-          delta = event.pageX - contentBox.left - baseOffset - document.body.scrollLeft
+          delta = event.pageX - contentBox.left - baseOffset - window.scrollX
         }
 
         if (this.step) {
@@ -246,7 +246,6 @@
         } else {
           newPosition = baseOffset + delta
         }
-        console.log(delta); // eslint-disable-line
 
         let newProgress = newPosition / maxOffset
 

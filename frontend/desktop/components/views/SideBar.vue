@@ -74,7 +74,7 @@
         this.show = window.scrollY > window.innerHeight
       },
       computeOffset () {
-        this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2 + 18
+        this.right = (document.body.offsetWidth - document.querySelector('.container').offsetWidth) / 2 - 50
       }
     },
     mounted () {
