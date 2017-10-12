@@ -40,6 +40,8 @@
       top: 50%;
       transform: translateY(-50%);
       width: 0;
+      transition: .2s;
+      border-radius: 4px;
     }
 
     .vue-pwa-range-thumb {

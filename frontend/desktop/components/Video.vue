@@ -277,7 +277,6 @@
          @dblclick="screenclick ? screen() : ''"
          @mousemove="tool">
       <video :preload="auto ? 'auto' : 'metadata'"
-             :poster="poster"
              :autoplay="auto"
              ref="video">
       </video>
