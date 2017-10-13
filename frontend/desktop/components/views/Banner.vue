@@ -1,7 +1,7 @@
 <style lang="scss" scoped="">
   #banner {
     width: 100%;
-    height: 170px;
+    height: $banner-hgt;
     margin-bottom: 40px;
 
     .another {
@@ -44,7 +44,6 @@
         this.$channel.$emit('change-page-background', {
           theme: 'blur',
           img: this.bg,
-          hgt: 170,
           gray: this.$imageGrayLevel(this.$refs.another)
         })
       }

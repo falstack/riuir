@@ -313,9 +313,10 @@
 
         .shim {
           position: absolute;
-          left: -12.5%;
-          top: 0;
           width: 125%;
+          height: $banner-hgt * 1.25;
+          top: -$banner-hgt * 0.125;
+          left: -12.5%;
           background-repeat: no-repeat;
           background-position: center;
           background-size: 80%;
@@ -371,7 +372,6 @@
     },
     data () {
       return {
-        height: 0,
         theme: 'mask',
         img: '',
         another: '',
@@ -382,8 +382,7 @@
     computed: {
       computedBg () {
         return this.img ? {
-          backgroundImage: `url(${this.img})`,
-          height: `${this.height}px`
+          backgroundImage: `url(${this.img})`
         } : {}
       },
       isLogin () {
@@ -410,7 +409,6 @@
       this.$channel.$on('change-page-background', ({ img, hgt, theme, gray }) => {
         this.img = img
         this.theme = theme
-        this.height = hgt
         if (!this.imageGrayLevel) {
           this.imageGrayLevel = gray
         }
