@@ -81,9 +81,9 @@
       <div id="metas">
         <ul>
           <li v-for="meta in sortVideos" :key="meta.id">
-            <nuxt-link class="meta" :style="{ width: `${maxWidth}px` }" :to="`/video/${meta.id}`">
+            <a class="meta" :style="{ width: `${maxWidth}px` }" :href="`/video/${meta.id}`">
               <span>{{ meta.part }}</span>{{ meta.name }}
-            </nuxt-link>
+            </a>
           </li>
         </ul>
         <div class="more" v-if="take < videos.length" @click="showAll = !showAll">{{ showAll ? '收起' : '展开' }}</div>

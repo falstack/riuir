@@ -390,11 +390,6 @@
         default: false
       }
     },
-    watch: {
-      source () {
-        this.initVideo()
-      }
-    },
     data () {
       return {
         video: null,
