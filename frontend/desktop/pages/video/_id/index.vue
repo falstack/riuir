@@ -81,7 +81,10 @@
       <div id="metas">
         <ul>
           <li v-for="meta in sortVideos" :key="meta.id">
-            <a class="meta" :style="{ width: `${maxWidth}px` }" :href="`/video/${meta.id}`">
+            <a class="meta"
+               :class="{ 'nuxt-link-active' : $route.params.id == meta.id }"
+               :style="{ width: `${maxWidth}px` }"
+               :href="`/video/${meta.id}`">
               <span>{{ meta.part }}</span>{{ meta.name }}
             </a>
           </li>
@@ -140,14 +143,6 @@
         return this.showAll ? metas : metas.slice(begin, begin + this.take)
       }
     },
-    watch: {
-      '$route' () {
-        this.$nextTick(() => {
-          this.computeMaxWidth()
-          this.computePage()
-        })
-      }
-    },
     data () {
       return {
         id: parseInt(this.$route.params.id, 10),
@@ -192,6 +187,10 @@
     mounted () {
       this.computeMaxWidth()
       this.computePage()
+      window.addEventListener('resize', () => {
+        this.computeMaxWidth()
+        this.computePage()
+      })
     }
   }
 </script>
