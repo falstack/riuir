@@ -9,3 +9,5 @@
 ## [封禁列表](/banned)
 
 ## [视频资源补档](/upload/video)
+
+## [番剧管理](/bangumi/admin)

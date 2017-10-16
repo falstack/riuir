@@ -209,6 +209,7 @@
                           rules: 'required',
                           scope: 'create-bangumi'
                         }"
+                        placeholder="番剧的名称"
                         auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
@@ -219,6 +220,7 @@
                           rules: 'required',
                           scope: 'create-bangumi'
                         }"
+                        placeholder="番剧的别名，以逗号分隔"
                         auto-complete="off"></el-input>
             </el-form-item>
           </el-col>
@@ -231,6 +233,7 @@
                           rules: 'required',
                           scope: 'create-bangumi'
                         }"
+                        placeholder="头像，2M 以内的jpg, png"
                         auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
@@ -257,6 +260,7 @@
                           rules: 'required',
                           scope: 'create-bangumi'
                         }"
+                        placeholder="横幅，2M 以内的jpg, png"
                         auto-complete="off">
                 <template slot="prepend">https://cdn.riuir.com/</template>
               </el-input>
@@ -283,7 +287,7 @@
               rules: 'required',
               scope: 'create-bangumi'
             }"
-            placeholder="请输入番剧简介"
+            placeholder="请输入番剧简介，尽量在200字以内"
             v-model.trim="createForm.summary">
           </el-input>
         </el-form-item>

@@ -1,21 +1,17 @@
 webpackJsonp([1],{
 
-/***/ 118:
+/***/ 112:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 38:
+/***/ 35:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: ./node_modules/_moment@2.18.1@moment/locale/zh-cn.js
-var zh_cn = __webpack_require__(19);
-var zh_cn_default = /*#__PURE__*/__webpack_require__.n(zh_cn);
 
 // EXTERNAL MODULE: ./node_modules/_vue@2.4.4@vue/dist/vue.common.js
 var vue_common = __webpack_require__(1);
@@ -234,7 +230,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(42)
+  __webpack_require__(38)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -389,7 +385,7 @@ var Header_render = function() {
           _c("template", { attrs: { slot: "title" }, slot: "title" }, [
             _c("img", {
               staticClass: "avatar",
-              attrs: { src: __webpack_require__(44), alt: "avatar" }
+              attrs: { src: __webpack_require__(40), alt: "avatar" }
             })
           ]),
           _vm._v(" "),
@@ -419,7 +415,7 @@ if (false) {
 var Header_disposed = false
 function Header_injectStyle (ssrContext) {
   if (Header_disposed) return
-  __webpack_require__(43)
+  __webpack_require__(39)
 }
 var Header_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -588,7 +584,7 @@ if (false) {
 var app_disposed = false
 function app_injectStyle (ssrContext) {
   if (app_disposed) return
-  __webpack_require__(40)
+  __webpack_require__(36)
 }
 var app_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -631,7 +627,7 @@ if (false) {(function () {
 /* harmony default export */ var frontend_app = (app_Component.exports);
 
 // EXTERNAL MODULE: ./node_modules/_vue-router@2.7.0@vue-router/dist/vue-router.esm.js
-var vue_router_esm = __webpack_require__(22);
+var vue_router_esm = __webpack_require__(19);
 
 // CONCATENATED MODULE: ./frontend/router/index.js
 
@@ -647,35 +643,35 @@ vue_common_default.a.use(vue_router_esm["default"]);
   routes: [{
     path: '/',
     name: '首页',
-    component: __webpack_require__(45).default
+    component: __webpack_require__(41).default
   }, {
     path: '/image/loop',
     name: '首页轮播',
-    component: __webpack_require__(47).default
+    component: __webpack_require__(43).default
   }, {
     path: '/image/banner',
     name: 'banner 图',
-    component: __webpack_require__(49).default
+    component: __webpack_require__(45).default
   }, {
     path: '/bangumi/list',
     name: '番剧列表',
-    component: __webpack_require__(50).default
+    component: __webpack_require__(46).default
   }, {
     path: '/bangumi/tag',
     name: '番剧标签',
-    component: __webpack_require__(52).default
+    component: __webpack_require__(47).default
   }, {
     path: '/bangumi/video',
     name: '番剧视频',
-    component: __webpack_require__(53).default
+    component: __webpack_require__(48).default
   }, {
     path: '/admin/user',
     name: '管理员',
-    component: __webpack_require__(55).default
+    component: __webpack_require__(49).default
   }]
 }));
-// EXTERNAL MODULE: ./node_modules/_vuex@2.4.0@vuex/dist/vuex.esm.js
-var vuex_esm = __webpack_require__(23);
+// EXTERNAL MODULE: ./node_modules/_vuex@2.4.1@vuex/dist/vuex.esm.js
+var vuex_esm = __webpack_require__(20);
 
 // CONCATENATED MODULE: ./frontend/store/index.js
 
@@ -712,7 +708,7 @@ vue_common_default.a.use(vuex_esm["default"]);
   }
 }));
 // EXTERNAL MODULE: ./node_modules/_axios@0.16.2@axios/index.js
-var _axios_0_16_2_axios = __webpack_require__(56);
+var _axios_0_16_2_axios = __webpack_require__(50);
 var _axios_0_16_2_axios_default = /*#__PURE__*/__webpack_require__.n(_axios_0_16_2_axios);
 
 // CONCATENATED MODULE: ./frontend/utils/api.js
@@ -742,7 +738,7 @@ http.interceptors.response.use(function (res) {
 
 /* harmony default export */ var api = (http);
 // EXTERNAL MODULE: ./node_modules/_deep-assign@2.0.0@deep-assign/index.js
-var _deep_assign_2_0_0_deep_assign = __webpack_require__(75);
+var _deep_assign_2_0_0_deep_assign = __webpack_require__(69);
 var _deep_assign_2_0_0_deep_assign_default = /*#__PURE__*/__webpack_require__.n(_deep_assign_2_0_0_deep_assign);
 
 // CONCATENATED MODULE: ./frontend/utils/helpers.js
@@ -794,13 +790,9 @@ Helpers.install = function (Vue, options) {
 };
 
 /* harmony default export */ var helpers = (Helpers);
-// EXTERNAL MODULE: ./node_modules/_element-ui@1.4.4@element-ui/lib/element-ui.common.js
-var element_ui_common = __webpack_require__(77);
+// EXTERNAL MODULE: ./node_modules/_element-ui@1.4.6@element-ui/lib/element-ui.common.js
+var element_ui_common = __webpack_require__(71);
 var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_common);
-
-// EXTERNAL MODULE: ./node_modules/_moment@2.18.1@moment/moment.js
-var moment = __webpack_require__(9);
-var moment_default = /*#__PURE__*/__webpack_require__.n(moment);
 
 // CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/modal.vue
 //
@@ -1073,7 +1065,7 @@ if (false) {
 var modal_disposed = false
 function modal_injectStyle (ssrContext) {
   if (modal_disposed) return
-  __webpack_require__(118)
+  __webpack_require__(112)
 }
 var modal_normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1115,8 +1107,8 @@ if (false) {(function () {
 
 /* harmony default export */ var frontend_components_modal = (modal_Component.exports);
 
-// EXTERNAL MODULE: ./node_modules/_vee-validate@2.0.0-rc.17@vee-validate/dist/vee-validate.esm.js
-var vee_validate_esm = __webpack_require__(119);
+// EXTERNAL MODULE: ./node_modules/_vee-validate@2.0.0-rc.18@vee-validate/dist/vee-validate.esm.js
+var vee_validate_esm = __webpack_require__(113);
 
 // CONCATENATED MODULE: ./frontend/utils/validate.js
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -1162,7 +1154,7 @@ vee_validate_esm["a" /* default */].Validator.extend('len', function (value, len
   return result === parseInt(len[0], 10);
 });
 // EXTERNAL MODULE: ./node_modules/_lodash@4.17.4@lodash/lodash.js
-var lodash = __webpack_require__(120);
+var lodash = __webpack_require__(114);
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 // CONCATENATED MODULE: ./frontend/entry.js
@@ -1177,11 +1169,6 @@ var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 
 
-
-
-vue_common_default.a.use(__webpack_require__(121), {
-  moment: moment_default.a
-});
 vue_common_default.a.use(element_ui_common_default.a);
 vue_common_default.a.use(helpers);
 vue_common_default.a.component(frontend_components_modal.name, frontend_components_modal);
@@ -1196,35 +1183,35 @@ var entry_app = new vue_common_default.a({
 
 /***/ }),
 
+/***/ 36:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 39:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 40:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 42:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 43:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 44:
 /***/ (function(module, exports) {
 
 module.exports = "data:image/gif;base64,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"
 
 /***/ }),
 
-/***/ 45:
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1284,7 +1271,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(46)
+  __webpack_require__(42)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1329,14 +1316,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 46:
+/***/ 42:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 47:
+/***/ 43:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1834,7 +1821,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(48)
+  __webpack_require__(44)
 }
 var normalizeComponent = __webpack_require__(4)
 /* script */
@@ -1879,14 +1866,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 48:
+/***/ 44:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 49:
+/***/ 45:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2013,15 +2000,737 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 50:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/list.vue
-var list = __webpack_require__(51);
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/list.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+var defaultEditForm = {
+  name: '',
+  alias: '',
+  released_at: '',
+  released_video_id: '',
+  tags: [],
+  avatar: '',
+  banner: '',
+  season: '',
+  summary: '',
+  update: false
+};
+var defaultCreateForm = {
+  name: '',
+  avatar: '',
+  banner: '',
+  alias: '',
+  summary: ''
+};
+var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}';
+/* harmony default export */ var list = ({
+  name: 'v-page-bangumi-list',
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
+  data: function data() {
+    return {
+      list: [],
+      tags: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 20,
+        curPage: 1
+      },
+      showEditorModal: false,
+      showCreateModal: false,
+      dialogTitle: '',
+      release_weekly: [{
+        id: 0,
+        name: '不连载'
+      }, {
+        id: 1,
+        name: '周一'
+      }, {
+        id: 2,
+        name: '周二'
+      }, {
+        id: 3,
+        name: '周三'
+      }, {
+        id: 4,
+        name: '周四'
+      }, {
+        id: 5,
+        name: '周五'
+      }, {
+        id: 6,
+        name: '周六'
+      }, {
+        id: 7,
+        name: '周日'
+      }],
+      editIndex: 0,
+      editForm: defaultEditForm,
+      createForm: defaultCreateForm,
+      uploadHeaders: {
+        token: '',
+        key: ''
+      },
+      CDNPrefixp: 'https://cdn.riuir.com/',
+      loading: true
+    };
+  },
+  created: function created() {
+    this.getBangumis();
+    this.getUptoken();
+  },
+
+  methods: {
+    getBangumis: function getBangumis() {
+      var _this = this;
+
+      this.$http.get('/bangumi/list').then(function (data) {
+        _this.list = data.bangumis;
+        _this.tags = data.tags;
+        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
+        _this.loading = false;
+      });
+    },
+    getUptoken: function getUptoken() {
+      var _this2 = this;
+
+      this.$http.get('/image/uptoken').then(function (token) {
+        _this2.uploadHeaders.token = token;
+      });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
+    },
+    handleEditOpen: function handleEditOpen(index, row) {
+      var _this3 = this;
+
+      this.dialogTitle = row.name;
+      this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
+
+      var tags = [];
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = row.tags[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var tag = _step.value;
+
+          tags.push(tag.name);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      Object.keys(row).forEach(function (key) {
+        _this3.editForm[key] = row[key];
+      });
+      this.editForm.tags = tags;
+      this.editForm.season = row.season || defaultSeason;
+      this.editForm.released_video_id = row.released_video_id || 0;
+      this.editForm.update = false;
+      this.showEditorModal = true;
+    },
+    beforeUpload: function beforeUpload(file) {
+      var isFormat = file.type === 'image/jpeg' || file.type === 'image/png';
+      var isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isFormat) {
+        this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!');
+      }
+      this.uploadHeaders.key = 'bangumi/avatar-banner/' + new Date().getTime() + '/' + Math.random().toString(36).substring(3, 6);
+      return isFormat && isLt2M;
+    },
+    getTagIdByName: function getTagIdByName(name) {
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.tags[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var tag = _step2.value;
+
+          if (tag.name === name) {
+            return tag.id;
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+    },
+    handleEditDone: function handleEditDone() {
+      var _this4 = this;
+
+      var tags = [];
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = this.editForm.tags[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var tag = _step3.value;
+
+          tags.push(tag.id ? tag.id : this.getTagIdByName(tag));
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3.return) {
+            _iterator3.return();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
+
+      var season = this.editForm.season === defaultSeason ? '' : this.editForm.season;
+      if (season) {
+        try {
+          var tempSeason = JSON.parse(season);
+          var name = tempSeason.name;
+          var part = tempSeason.part;
+          var time = tempSeason.time;
+          if (time.every(function (eif) {
+            return (/^\d{4}\.\d{1,2}$/.test(eif)
+            );
+          }) && part.some(function (item) {
+            return typeof item !== 'number';
+          })) {
+            delete tempSeason.name;
+            delete tempSeason.part;
+            season = JSON.stringify(tempSeason);
+          } else {
+            if (!name || !part || !time) {
+              this.$message.error('season 缺少 key');
+              return;
+            }
+            if (name.length !== part.length - 1 || part.length < 2) {
+              this.$message.error('season 信息不完整');
+              return;
+            }
+            if (part.some(function (item) {
+              return typeof item !== 'number';
+            })) {
+              this.$message.error('season 的 part 必须是数字');
+              return;
+            }
+            if (!part.every(function (item, index, arr) {
+              if (index) {
+                if (index === arr.length - 1) {
+                  return item === -1 || item > arr[index - 1];
+                } else {
+                  return item > arr[index - 1];
+                }
+              } else {
+                return item === 0;
+              }
+            })) {
+              this.$message.error('season part 要从 0 开始，升序排列，最后一项可为 -1');
+              return;
+            }
+            if (time.every(function (eif) {
+              return eif === 'xxxx.xx';
+            })) {
+              delete tempSeason.time;
+              season = JSON.stringify(tempSeason);
+            } else if (time.every(function (eif) {
+              return !/^\d{4}\.\d{1,2}$/.test(eif);
+            })) {
+              this.$message.error('time 格式不正确');
+              return;
+            } else if (name.length !== time.length) {
+              this.$message.error('time 数量不对');
+              return;
+            }
+          }
+        } catch (e) {
+          this.$message.error('season 不是 JSON 格式');
+          return;
+        }
+      }
+      this.editForm.alias = this.editForm.alias.split(/,|，/).join(',');
+      this.$http.post('/bangumi/edit', Object.assign(this.editForm, { tags: tags, season: season })).then(function () {
+        var newTags = [];
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+          for (var _iterator4 = _this4.tags[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            var _tag = _step4.value;
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
+
+            try {
+              for (var _iterator5 = tags[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                var item = _step5.value;
+
+                if (item === _tag.id) {
+                  newTags.push(_tag);
+                }
+              }
+            } catch (err) {
+              _didIteratorError5 = true;
+              _iteratorError5 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                  _iterator5.return();
+                }
+              } finally {
+                if (_didIteratorError5) {
+                  throw _iteratorError5;
+                }
+              }
+            }
+          }
+        } catch (err) {
+          _didIteratorError4 = true;
+          _iteratorError4 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+              _iterator4.return();
+            }
+          } finally {
+            if (_didIteratorError4) {
+              throw _iteratorError4;
+            }
+          }
+        }
+
+        Object.keys(_this4.editForm).forEach(function (key) {
+          _this4.list[_this4.editIndex][key] = _this4.editForm[key];
+        });
+        _this4.list[_this4.editIndex].tags = newTags;
+        _this4.list[_this4.editIndex].season = season;
+        _this4.showEditorModal = false;
+        _this4.$message.success('操作成功');
+      }, function (err) {
+        _this4.$message.error('操作失败');
+        console.log(err);
+      });
+    },
+    handleDelete: function handleDelete(index, row) {
+      var _this5 = this;
+
+      var isDeleted = row.deleted_at !== null;
+      this.$confirm('\u786E\u5B9A\u8981' + (isDeleted ? '恢复' : '删除') + '\u300A' + row.name + '\u300B\u5417?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function () {
+        _this5.$http.post('/bangumi/delete', {
+          id: row.id,
+          isDeleted: isDeleted
+        }).then(function () {
+          _this5.list[index + (_this5.pagination.curPage - 1) * _this5.pagination.pageSize].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+          _this5.$message.success('操作成功');
+        }, function (err) {
+          _this5.$message.error('操作失败');
+          console.log(err);
+        });
+      });
+    },
+    handleEditAvatarSuccess: function handleEditAvatarSuccess(res, file) {
+      this.editForm.avatar = res.key;
+    },
+    handleEditBannerSuccess: function handleEditBannerSuccess(res, file) {
+      this.editForm.banner = res.key;
+    },
+    handleCreateAvatarSuccess: function handleCreateAvatarSuccess(res, file) {
+      this.createForm.avatar = res.key;
+    },
+    handleCreateBannerSuccess: function handleCreateBannerSuccess(res, file) {
+      this.createForm.banner = res.key;
+    },
+    handleCreateDone: function handleCreateDone() {
+      var _this6 = this;
+
+      this.$validator.validateAll('create-bangumi').then(function (result) {
+        if (result) {
+          _this6.$http.post('/bangumi/create', {
+            name: _this6.createForm.name,
+            avatar: _this6.createForm.avatar.replace(_this6.CDNPrefixp, ''),
+            banner: _this6.createForm.banner.replace(_this6.CDNPrefixp, ''),
+            alias: _this6.createForm.alias.split(/,|，/).join(','),
+            summary: _this6.createForm.summary
+          }).then(function (data) {
+            _this6.list.push(Object.assign(defaultEditForm, {
+              id: data,
+              name: _this6.createForm.name,
+              avatar: _this6.createForm.avatar,
+              banner: _this6.createForm.banner,
+              summary: _this6.createForm.summary,
+              alias: _this6.createForm.alias.split(/,|，/).join(','),
+              deleted_at: moment().format('YYYY-MM-DD H:m:s')
+            }));
+            _this6.showCreateModal = false;
+            _this6.$message.success('操作成功');
+            _this6.createForm = defaultCreateForm;
+          }, function (err) {
+            _this6.$message.error('操作失败');
+            console.log(err);
+          });
+        } else {
+          _this6.$message.warning('信息不完整');
+        }
+      });
+    }
+  }
+});
 // CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-6d7951d8","hasScoped":false}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/list.vue
 var render = function() {
   var _vm = this
@@ -2698,7 +3407,10 @@ var render = function() {
                                   "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
                               }
                             ],
-                            attrs: { "auto-complete": "off" },
+                            attrs: {
+                              placeholder: "番剧的名称",
+                              "auto-complete": "off"
+                            },
                             model: {
                               value: _vm.createForm.name,
                               callback: function($$v) {
@@ -2736,7 +3448,10 @@ var render = function() {
                                   "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
                               }
                             ],
-                            attrs: { "auto-complete": "off" },
+                            attrs: {
+                              placeholder: "番剧的别名，以逗号分隔",
+                              "auto-complete": "off"
+                            },
                             model: {
                               value: _vm.createForm.alias,
                               callback: function($$v) {
@@ -2782,7 +3497,10 @@ var render = function() {
                                     "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
                                 }
                               ],
-                              attrs: { "auto-complete": "off" },
+                              attrs: {
+                                placeholder: "头像，2M 以内的jpg, png",
+                                "auto-complete": "off"
+                              },
                               model: {
                                 value: _vm.createForm.avatar,
                                 callback: function($$v) {
@@ -2864,7 +3582,10 @@ var render = function() {
                                     "{\n                        rules: 'required',\n                        scope: 'create-bangumi'\n                      }"
                                 }
                               ],
-                              attrs: { "auto-complete": "off" },
+                              attrs: {
+                                placeholder: "横幅，2M 以内的jpg, png",
+                                "auto-complete": "off"
+                              },
                               model: {
                                 value: _vm.createForm.banner,
                                 callback: function($$v) {
@@ -2940,7 +3661,7 @@ var render = function() {
                     attrs: {
                       type: "textarea",
                       rows: 5,
-                      placeholder: "请输入番剧简介"
+                      placeholder: "请输入番剧简介，尽量在200字以内"
                     },
                     model: {
                       value: _vm.createForm.summary,
@@ -3009,7 +3730,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  list["a" /* default */],
+  list,
   bangumi_list,
   __vue_styles__,
   __vue_scopeId__,
@@ -3040,735 +3761,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 51:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(moment) {//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var defaultEditForm = {
-  name: '',
-  alias: '',
-  released_at: '',
-  released_video_id: '',
-  tags: [],
-  avatar: '',
-  banner: '',
-  season: '',
-  summary: '',
-  update: false
-};
-var defaultCreateForm = {
-  name: '',
-  avatar: '',
-  banner: '',
-  alias: '',
-  summary: ''
-};
-var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxxx.xx", "xxxx.xx"]}';
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'v-page-bangumi-list',
-  computed: {
-    filter: function filter() {
-      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
-      return this.list.slice(begin, begin + this.pagination.pageSize);
-    }
-  },
-  data: function data() {
-    return {
-      list: [],
-      tags: [],
-      pagination: {
-        totalPage: 0,
-        pageSize: 20,
-        curPage: 1
-      },
-      showEditorModal: false,
-      showCreateModal: false,
-      dialogTitle: '',
-      release_weekly: [{
-        id: 0,
-        name: '不连载'
-      }, {
-        id: 1,
-        name: '周一'
-      }, {
-        id: 2,
-        name: '周二'
-      }, {
-        id: 3,
-        name: '周三'
-      }, {
-        id: 4,
-        name: '周四'
-      }, {
-        id: 5,
-        name: '周五'
-      }, {
-        id: 6,
-        name: '周六'
-      }, {
-        id: 7,
-        name: '周日'
-      }],
-      editIndex: 0,
-      editForm: defaultEditForm,
-      createForm: defaultCreateForm,
-      uploadHeaders: {
-        token: '',
-        key: ''
-      },
-      CDNPrefixp: 'https://cdn.riuir.com/',
-      loading: true
-    };
-  },
-  created: function created() {
-    this.getBangumis();
-    this.getUptoken();
-  },
-
-  methods: {
-    getBangumis: function getBangumis() {
-      var _this = this;
-
-      this.$http.get('/bangumi/list').then(function (data) {
-        _this.list = data.bangumis;
-        _this.tags = data.tags;
-        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
-        _this.loading = false;
-      });
-    },
-    getUptoken: function getUptoken() {
-      var _this2 = this;
-
-      this.$http.get('/image/uptoken').then(function (token) {
-        _this2.uploadHeaders.token = token;
-      });
-    },
-    handleSizeChange: function handleSizeChange(val) {
-      this.pagination.pageSize = val;
-    },
-    handleCurrentChange: function handleCurrentChange(val) {
-      this.pagination.curPage = val;
-    },
-    handleEditOpen: function handleEditOpen(index, row) {
-      var _this3 = this;
-
-      this.dialogTitle = row.name;
-      this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
-
-      var tags = [];
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = row.tags[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var tag = _step.value;
-
-          tags.push(tag.name);
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      Object.keys(row).forEach(function (key) {
-        _this3.editForm[key] = row[key];
-      });
-      this.editForm.tags = tags;
-      this.editForm.season = row.season || defaultSeason;
-      this.editForm.released_video_id = row.released_video_id || 0;
-      this.editForm.update = false;
-      this.showEditorModal = true;
-    },
-    beforeUpload: function beforeUpload(file) {
-      var isFormat = file.type === 'image/jpeg' || file.type === 'image/png';
-      var isLt2M = file.size / 1024 / 1024 < 2;
-
-      if (!isFormat) {
-        this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
-      }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!');
-      }
-      this.uploadHeaders.key = 'bangumi/avatar-banner/' + new Date().getTime() + '/' + Math.random().toString(36).substring(3, 6);
-      return isFormat && isLt2M;
-    },
-    getTagIdByName: function getTagIdByName(name) {
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = this.tags[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var tag = _step2.value;
-
-          if (tag.name === name) {
-            return tag.id;
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-    },
-    handleEditDone: function handleEditDone() {
-      var _this4 = this;
-
-      var tags = [];
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
-
-      try {
-        for (var _iterator3 = this.editForm.tags[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var tag = _step3.value;
-
-          tags.push(tag.id ? tag.id : this.getTagIdByName(tag));
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion3 && _iterator3.return) {
-            _iterator3.return();
-          }
-        } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
-          }
-        }
-      }
-
-      var season = this.editForm.season === defaultSeason ? '' : this.editForm.season;
-      if (season) {
-        try {
-          var tempSeason = JSON.parse(season);
-          var name = tempSeason.name;
-          var part = tempSeason.part;
-          var time = tempSeason.time;
-          if (time.every(function (eif) {
-            return (/^\d{4}\.\d{1,2}$/.test(eif)
-            );
-          }) && part.some(function (item) {
-            return typeof item !== 'number';
-          })) {
-            delete tempSeason.name;
-            delete tempSeason.part;
-            season = JSON.stringify(tempSeason);
-          } else {
-            if (!name || !part || !time) {
-              this.$message.error('season 缺少 key');
-              return;
-            }
-            if (name.length !== part.length - 1 || part.length < 2) {
-              this.$message.error('season 信息不完整');
-              return;
-            }
-            if (part.some(function (item) {
-              return typeof item !== 'number';
-            })) {
-              this.$message.error('season 的 part 必须是数字');
-              return;
-            }
-            if (!part.every(function (item, index, arr) {
-              if (index) {
-                if (index === arr.length - 1) {
-                  return item === -1 || item > arr[index - 1];
-                } else {
-                  return item > arr[index - 1];
-                }
-              } else {
-                return item === 0;
-              }
-            })) {
-              this.$message.error('season part 要从 0 开始，升序排列，最后一项可为 -1');
-              return;
-            }
-            if (time.every(function (eif) {
-              return eif === 'xxxx.xx';
-            })) {
-              delete tempSeason.time;
-              season = JSON.stringify(tempSeason);
-            } else if (time.every(function (eif) {
-              return !/^\d{4}\.\d{1,2}$/.test(eif);
-            })) {
-              this.$message.error('time 格式不正确');
-              return;
-            } else if (name.length !== time.length) {
-              this.$message.error('time 数量不对');
-              return;
-            }
-          }
-        } catch (e) {
-          this.$message.error('season 不是 JSON 格式');
-          return;
-        }
-      }
-      this.editForm.alias = this.editForm.alias.split(/,|，/).join(',');
-      this.$http.post('/bangumi/edit', Object.assign(this.editForm, { tags: tags, season: season })).then(function () {
-        var newTags = [];
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
-
-        try {
-          for (var _iterator4 = _this4.tags[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var _tag = _step4.value;
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
-
-            try {
-              for (var _iterator5 = tags[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var item = _step5.value;
-
-                if (item === _tag.id) {
-                  newTags.push(_tag);
-                }
-              }
-            } catch (err) {
-              _didIteratorError5 = true;
-              _iteratorError5 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                  _iterator5.return();
-                }
-              } finally {
-                if (_didIteratorError5) {
-                  throw _iteratorError5;
-                }
-              }
-            }
-          }
-        } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion4 && _iterator4.return) {
-              _iterator4.return();
-            }
-          } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
-            }
-          }
-        }
-
-        Object.keys(_this4.editForm).forEach(function (key) {
-          _this4.list[_this4.editIndex][key] = _this4.editForm[key];
-        });
-        _this4.list[_this4.editIndex].tags = newTags;
-        _this4.list[_this4.editIndex].season = season;
-        _this4.showEditorModal = false;
-        _this4.$message.success('操作成功');
-      }, function (err) {
-        _this4.$message.error('操作失败');
-        console.log(err);
-      });
-    },
-    handleDelete: function handleDelete(index, row) {
-      var _this5 = this;
-
-      var isDeleted = row.deleted_at !== null;
-      this.$confirm('\u786E\u5B9A\u8981' + (isDeleted ? '恢复' : '删除') + '\u300A' + row.name + '\u300B\u5417?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(function () {
-        _this5.$http.post('/bangumi/delete', {
-          id: row.id,
-          isDeleted: isDeleted
-        }).then(function () {
-          _this5.list[index + (_this5.pagination.curPage - 1) * _this5.pagination.pageSize].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
-          _this5.$message.success('操作成功');
-        }, function (err) {
-          _this5.$message.error('操作失败');
-          console.log(err);
-        });
-      });
-    },
-    handleEditAvatarSuccess: function handleEditAvatarSuccess(res, file) {
-      this.editForm.avatar = res.key;
-    },
-    handleEditBannerSuccess: function handleEditBannerSuccess(res, file) {
-      this.editForm.banner = res.key;
-    },
-    handleCreateAvatarSuccess: function handleCreateAvatarSuccess(res, file) {
-      this.createForm.avatar = res.key;
-    },
-    handleCreateBannerSuccess: function handleCreateBannerSuccess(res, file) {
-      this.createForm.banner = res.key;
-    },
-    handleCreateDone: function handleCreateDone() {
-      var _this6 = this;
-
-      this.$validator.validateAll('create-bangumi').then(function (result) {
-        if (result) {
-          _this6.$http.post('/bangumi/create', {
-            name: _this6.createForm.name,
-            avatar: _this6.createForm.avatar.replace(_this6.CDNPrefixp, ''),
-            banner: _this6.createForm.banner.replace(_this6.CDNPrefixp, ''),
-            alias: _this6.createForm.alias.split(/,|，/).join(','),
-            summary: _this6.createForm.summary
-          }).then(function (data) {
-            _this6.list.push(Object.assign(defaultEditForm, {
-              id: data,
-              name: _this6.createForm.name,
-              avatar: _this6.createForm.avatar,
-              banner: _this6.createForm.banner,
-              summary: _this6.createForm.summary,
-              alias: _this6.createForm.alias.split(/,|，/).join(','),
-              deleted_at: moment().format('YYYY-MM-DD H:m:s')
-            }));
-            _this6.showCreateModal = false;
-            _this6.$message.success('操作成功');
-            _this6.createForm = defaultCreateForm;
-          }, function (err) {
-            _this6.$message.error('操作失败');
-            console.log(err);
-          });
-        } else {
-          _this6.$message.warning('信息不完整');
-        }
-      });
-    }
-  }
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(9)))
-
-/***/ }),
-
-/***/ 52:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4314,15 +4307,551 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 53:
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// EXTERNAL MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/video.vue
-var video = __webpack_require__(54);
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/video.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+var defaultResource = {
+  "video": {
+    "720": {
+      "useLyc": false,
+      "src": ""
+    },
+    "1080": {
+      "useLyc": false,
+      "src": ""
+    }
+  },
+  "lyric": {
+    "zh": "",
+    "en": ""
+  }
+};
+var defaultCreateForm = {
+  P720: {
+    show: false,
+    useLyc: false,
+    src: 'bangumi/${name}/video/720/${n}.mp4'
+  },
+  P1080: {
+    show: false,
+    useLyc: false,
+    src: 'bangumi/${name}/video/1080/${n}.mp4'
+  },
+  lyric: {
+    zh: 'bangumi/${name}/lyric/zh/${n}.vtt',
+    en: 'bangumi/${name}/lyric/en/${n}.vtt'
+  },
+  bangumiEnglishName: '',
+  bname: '',
+  name: '',
+  part: '',
+  url: 'bangumi/${name}/video/${n}.mp4',
+  poster: 'bangumi/${name}/poster/${n}.jpg'
+};
+/* harmony default export */ var video = ({
+  name: 'v-page-bangumi-video',
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
+  data: function data() {
+    return {
+      loading: true,
+      list: [],
+      bangumis: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 24,
+        curPage: 1
+      },
+      showEditorModal: false,
+      showCreateModal: false,
+      dialogTitle: '',
+      editIndex: 0,
+      editForm: {
+        id: '',
+        bangumi_id: '',
+        bname: '',
+        name: '',
+        part: '',
+        poster: '',
+        url: '',
+        resource: defaultResource
+      },
+      createForm: defaultCreateForm,
+      CDNPrefixp: 'https://cdn.riuir.com/'
+    };
+  },
+  created: function created() {
+    this.getVideos();
+  },
+
+  methods: {
+    getVideos: function getVideos() {
+      var _this = this;
+
+      this.$http.get('/bangumi/videos').then(function (data) {
+        _this.list = data.videos;
+        _this.bangumis = data.bangumis;
+        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
+        _this.loading = false;
+      });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
+    },
+    handleEditOpen: function handleEditOpen(index, row) {
+      var _this2 = this;
+
+      this.dialogTitle = row.name;
+      this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
+
+      Object.keys(row).forEach(function (key) {
+        _this2.editForm[key] = row[key];
+      });
+      this.editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource;
+
+      this.showEditorModal = true;
+    },
+    preview: function preview(url) {
+      if (url) {
+        window.open("" + this.CDNPrefixp + url);
+      }
+    },
+    computedBangumiId: function computedBangumiId(bname) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.bangumis[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var bangumi = _step.value;
+
+          if (bangumi.name === bname) {
+            return bangumi.id;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return 0;
+    },
+    handleEditDone: function handleEditDone() {
+      var _this3 = this;
+
+      this.$http.post('/video/edit', this.editForm).then(function () {
+        Object.keys(_this3.editForm).forEach(function (key) {
+          _this3.list[_this3.editIndex][key] = _this3.editForm[key];
+        });
+        _this3.showEditorModal = false;
+        _this3.$message.success('操作成功');
+      }, function () {
+        _this3.$message.error('操作失败');
+      });
+    },
+    handleDelete: function handleDelete(index, row) {
+      var _this4 = this;
+
+      var isDeleted = row.deleted_at !== null;
+      this.$confirm("\u786E\u5B9A\u8981" + (isDeleted ? '恢复' : '删除') + "\u300A" + row.name + "\u300B\u5417?", '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function () {
+        _this4.$http.post('/video/delete', {
+          id: row.id,
+          isDeleted: isDeleted
+        }).then(function () {
+          _this4.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
+          _this4.$message.success('操作成功');
+        }, function (err) {
+          _this4.$message.error('操作失败');
+          console.log(err);
+        });
+      });
+    },
+    handleCreateCancel: function handleCreateCancel() {
+      this.createForm = defaultCreateForm;
+      this.showCreateModal = false;
+    },
+    handleCreateDone: function handleCreateDone() {
+      var _this5 = this;
+
+      var part = this.createForm.part.split('-');
+      if (!this.createForm.bname) {
+        this.$message.warning('先选择番剧');
+        return;
+      }
+      if (part.length !== 2) {
+        this.$message.warning('集数不符合规范');
+        return;
+      }
+      var begin = part[0] - 0,
+          end = part[1] - 0;
+
+      var length = end - begin + 1;
+      if (length <= 0 || begin <= 0) {
+        this.$message.warning('集数不符合规范');
+        return;
+      }
+      var bangumiEnglishName = this.createForm.bangumiEnglishName;
+      if (bangumiEnglishName === '') {
+        this.$message.warning('未填写番剧英文名');
+        return;
+      }
+      var names = this.createForm.name.split('\n');
+      if (names.length !== length) {
+        this.$message.warning('名称个数不对');
+        return;
+      }
+      var arr = [],
+          j = 0;
+      var bangumi_id = this.computedBangumiId(this.createForm.bname);
+      var use720P = this.createForm.P720.show;
+      var use1080P = this.createForm.P1080.show;
+      var use720Lyc = this.createForm.P720.useLyc;
+      var use1080Lyc = this.createForm.P1080.useLyc;
+      var useOuterResource = !(use720P || use1080P);
+      var useLyric = use720Lyc || use1080Lyc;
+      for (var i = begin; i <= end; i++) {
+        var resource = useOuterResource ? '' : {
+          "video": {
+            "720": {
+              "useLyc": false,
+              "src": ""
+            },
+            "1080": {
+              "useLyc": false,
+              "src": ""
+            }
+          },
+          "lyric": {
+            "zh": "",
+            "en": ""
+          }
+        };
+        if (!useOuterResource) {
+          if (use720P) {
+            resource.video['720'] = {
+              src: this.createForm.P720.src.replace('${n}', i).replace('${name}', bangumiEnglishName),
+              useLyc: use720Lyc
+            };
+          }
+          if (use1080P) {
+            resource.video['1080'] = {
+              src: this.createForm.P1080.src.replace('${n}', i).replace('${name}', bangumiEnglishName),
+              useLyc: use1080Lyc
+            };
+          }
+        }
+        if (useLyric) {
+          // 这里默认只写入中文字体
+          resource.lyric = {
+            'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', bangumiEnglishName)
+          };
+        }
+        arr.push({
+          'resource': resource,
+          'bangumi_id': bangumi_id,
+          'part': i,
+          'name': names[j++],
+          'poster': this.createForm.poster.replace('${n}', i).replace('${name}', bangumiEnglishName),
+          'url': useOuterResource ? this.createForm.url.replace('${n}', i).replace('${name}', bangumiEnglishName) : ''
+        });
+      }
+      this.$http.post('/video/create', { arr: arr }).then(function () {
+        _this5.$message.success('操作成功');
+        _this5.handleCreateCancel();
+      }, function (err) {
+        _this5.$message.error('操作失败');
+        console.log(err);
+      });
+    }
+  }
+});
 // CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-0b9e0b16","hasScoped":false}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/video.vue
 var render = function() {
   var _vm = this
@@ -5361,7 +5890,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  video["a" /* default */],
+  video,
   bangumi_video,
   __vue_styles__,
   __vue_scopeId__,
@@ -5392,553 +5921,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 54:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(moment) {//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var defaultResource = {
-  "video": {
-    "720": {
-      "useLyc": false,
-      "src": ""
-    },
-    "1080": {
-      "useLyc": false,
-      "src": ""
-    }
-  },
-  "lyric": {
-    "zh": "",
-    "en": ""
-  }
-};
-var defaultCreateForm = {
-  P720: {
-    show: false,
-    useLyc: false,
-    src: 'bangumi/${name}/video/720/${n}.mp4'
-  },
-  P1080: {
-    show: false,
-    useLyc: false,
-    src: 'bangumi/${name}/video/1080/${n}.mp4'
-  },
-  lyric: {
-    zh: 'bangumi/${name}/lyric/zh/${n}.vtt',
-    en: 'bangumi/${name}/lyric/en/${n}.vtt'
-  },
-  bangumiEnglishName: '',
-  bname: '',
-  name: '',
-  part: '',
-  url: 'bangumi/${name}/video/${n}.mp4',
-  poster: 'bangumi/${name}/poster/${n}.jpg'
-};
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'v-page-bangumi-video',
-  computed: {
-    filter: function filter() {
-      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
-      return this.list.slice(begin, begin + this.pagination.pageSize);
-    }
-  },
-  data: function data() {
-    return {
-      loading: true,
-      list: [],
-      bangumis: [],
-      pagination: {
-        totalPage: 0,
-        pageSize: 24,
-        curPage: 1
-      },
-      showEditorModal: false,
-      showCreateModal: false,
-      dialogTitle: '',
-      editIndex: 0,
-      editForm: {
-        id: '',
-        bangumi_id: '',
-        bname: '',
-        name: '',
-        part: '',
-        poster: '',
-        url: '',
-        resource: defaultResource
-      },
-      createForm: defaultCreateForm,
-      CDNPrefixp: 'https://cdn.riuir.com/'
-    };
-  },
-  created: function created() {
-    this.getVideos();
-  },
-
-  methods: {
-    getVideos: function getVideos() {
-      var _this = this;
-
-      this.$http.get('/bangumi/videos').then(function (data) {
-        _this.list = data.videos;
-        _this.bangumis = data.bangumis;
-        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
-        _this.loading = false;
-      });
-    },
-    handleSizeChange: function handleSizeChange(val) {
-      this.pagination.pageSize = val;
-    },
-    handleCurrentChange: function handleCurrentChange(val) {
-      this.pagination.curPage = val;
-    },
-    handleEditOpen: function handleEditOpen(index, row) {
-      var _this2 = this;
-
-      this.dialogTitle = row.name;
-      this.editIndex = index + (this.pagination.curPage - 1) * this.pagination.pageSize;
-
-      Object.keys(row).forEach(function (key) {
-        _this2.editForm[key] = row[key];
-      });
-      this.editForm.resource = row.resource ? this.$deepAssign(defaultResource, row.resource) : defaultResource;
-
-      this.showEditorModal = true;
-    },
-    preview: function preview(url) {
-      if (url) {
-        window.open("" + this.CDNPrefixp + url);
-      }
-    },
-    computedBangumiId: function computedBangumiId(bname) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.bangumis[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var bangumi = _step.value;
-
-          if (bangumi.name === bname) {
-            return bangumi.id;
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      return 0;
-    },
-    handleEditDone: function handleEditDone() {
-      var _this3 = this;
-
-      this.$http.post('/video/edit', this.editForm).then(function () {
-        Object.keys(_this3.editForm).forEach(function (key) {
-          _this3.list[_this3.editIndex][key] = _this3.editForm[key];
-        });
-        _this3.showEditorModal = false;
-        _this3.$message.success('操作成功');
-      }, function () {
-        _this3.$message.error('操作失败');
-      });
-    },
-    handleDelete: function handleDelete(index, row) {
-      var _this4 = this;
-
-      var isDeleted = row.deleted_at !== null;
-      this.$confirm("\u786E\u5B9A\u8981" + (isDeleted ? '恢复' : '删除') + "\u300A" + row.name + "\u300B\u5417?", '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(function () {
-        _this4.$http.post('/video/delete', {
-          id: row.id,
-          isDeleted: isDeleted
-        }).then(function () {
-          _this4.list[index].deleted_at = isDeleted ? null : moment().format('YYYY-MM-DD H:m:s');
-          _this4.$message.success('操作成功');
-        }, function (err) {
-          _this4.$message.error('操作失败');
-          console.log(err);
-        });
-      });
-    },
-    handleCreateCancel: function handleCreateCancel() {
-      this.createForm = defaultCreateForm;
-      this.showCreateModal = false;
-    },
-    handleCreateDone: function handleCreateDone() {
-      var _this5 = this;
-
-      var part = this.createForm.part.split('-');
-      if (!this.createForm.bname) {
-        this.$message.warning('先选择番剧');
-        return;
-      }
-      if (part.length !== 2) {
-        this.$message.warning('集数不符合规范');
-        return;
-      }
-      var begin = part[0] - 0,
-          end = part[1] - 0;
-
-      var length = end - begin + 1;
-      if (length <= 0 || begin <= 0) {
-        this.$message.warning('集数不符合规范');
-        return;
-      }
-      var bangumiEnglishName = this.createForm.bangumiEnglishName;
-      if (bangumiEnglishName === '') {
-        this.$message.warning('未填写番剧英文名');
-        return;
-      }
-      var names = this.createForm.name.split('\n');
-      if (names.length !== length) {
-        this.$message.warning('名称个数不对');
-        return;
-      }
-      var arr = [],
-          j = 0;
-      var bangumi_id = this.computedBangumiId(this.createForm.bname);
-      var use720P = this.createForm.P720.show;
-      var use1080P = this.createForm.P1080.show;
-      var use720Lyc = this.createForm.P720.useLyc;
-      var use1080Lyc = this.createForm.P1080.useLyc;
-      var useOuterResource = !(use720P || use1080P);
-      var useLyric = use720Lyc || use1080Lyc;
-      for (var i = begin; i <= end; i++) {
-        var resource = useOuterResource ? '' : {
-          "video": {
-            "720": {
-              "useLyc": false,
-              "src": ""
-            },
-            "1080": {
-              "useLyc": false,
-              "src": ""
-            }
-          },
-          "lyric": {
-            "zh": "",
-            "en": ""
-          }
-        };
-        if (!useOuterResource) {
-          if (use720P) {
-            resource.video['720'] = {
-              src: this.createForm.P720.src.replace('${n}', i).replace('${name}', bangumiEnglishName),
-              useLyc: use720Lyc
-            };
-          }
-          if (use1080P) {
-            resource.video['1080'] = {
-              src: this.createForm.P1080.src.replace('${n}', i).replace('${name}', bangumiEnglishName),
-              useLyc: use1080Lyc
-            };
-          }
-        }
-        if (useLyric) {
-          // 这里默认只写入中文字体
-          resource.lyric = {
-            'zh': this.createForm.lyric.zh.replace('${n}', i).replace('${name}', bangumiEnglishName)
-          };
-        }
-        arr.push({
-          'resource': resource,
-          'bangumi_id': bangumi_id,
-          'part': i,
-          'name': names[j++],
-          'poster': this.createForm.poster.replace('${n}', i).replace('${name}', bangumiEnglishName),
-          'url': useOuterResource ? this.createForm.url.replace('${n}', i).replace('${name}', bangumiEnglishName) : ''
-        });
-      }
-      this.$http.post('/video/create', { arr: arr }).then(function () {
-        _this5.$message.success('操作成功');
-        _this5.handleCreateCancel();
-      }, function (err) {
-        _this5.$message.error('操作失败');
-        console.log(err);
-      });
-    }
-  }
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(9)))
-
-/***/ }),
-
-/***/ 55:
+/***/ 49:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6170,4 +6153,4 @@ if (false) {(function () {
 
 /***/ })
 
-},[38]);
+},[35]);

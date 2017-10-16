@@ -88,7 +88,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(zh-cn)$/),
     new ExtractTextPlugin('../css/style.css'),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -104,7 +103,7 @@ module.exports = {
       name: 'manifest'
     }),
     new webpack.ProvidePlugin({
-      moment: 'moment'
+
     })
   ],
   stats: {
