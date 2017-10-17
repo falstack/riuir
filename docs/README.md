@@ -8,6 +8,7 @@
 
 ## [封禁列表](/banned)
 
-## [视频资源补档](/upload/video)
+## [视频资源补档教程](/upload/video)
+## [视频资源补档列表](/upload/index)
 
 ## [番剧管理](/bangumi/admin)
