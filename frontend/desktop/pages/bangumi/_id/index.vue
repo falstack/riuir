@@ -129,9 +129,9 @@
           <h2 class="subtitle">视频列表</h2>
           <div v-if="info.season">
             <template v-for="season in videos">
-              <h3 class="celltitle" v-text="season.name"></h3>
-              <ul>
-                <li v-for="video in sortVideos(season.data)" :key="video.id">
+              <h3 class="celltitle" v-text="season.name" :key="season.name"></h3>
+              <ul :key="season.name">
+                <li v-for="(video, index) in sortVideos(season.data)" :key="video.id">
                   <a :href="selfResource(video.url) ? `/video/${video.id}` : video.url"
                      :rel="selfResource(video.url) ? '' : 'nofollow'"
                      target="_blank">
@@ -141,7 +141,7 @@
                              :src="$resize(video.poster, { width: 192, height: 120 })">
                       </v-img>
                       <figcaption class="abs">
-                        <p class="oneline">第{{ video.part }}话</p>
+                        <p class="oneline">第{{ info.repeat ? index + 1 : video.part }}话</p>
                         <span class="twoline" v-text="video.name"></span>
                       </figcaption>
                     </figure>
@@ -174,7 +174,9 @@
         <div id="tags">
           <h2 class="subtitle">标签</h2>
           <ul>
-            <li class="tag" v-for="tag in tags"><nuxt-link :to="`/bangumi/tags/${tag.pivot.tag_id}`" v-text="tag.name"></nuxt-link></li>
+            <li class="tag" v-for="tag in tags" :key="tag.pivot.tag_id">
+              <nuxt-link :to="`/bangumi/tags/${tag.pivot.tag_id}`" v-text="tag.name"></nuxt-link>
+            </li>
           </ul>
         </div>
       </aside>

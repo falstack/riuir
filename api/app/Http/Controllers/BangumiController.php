@@ -54,7 +54,7 @@ class BangumiController extends Controller
             $bangumi->keywords = trim($keywords, ',');
 
             $bangumi->season = $bangumi['season'] === 'null' ? '' : json_decode($bangumi['season']);
-
+            
             if ($bangumi->season !== '' && isset($bangumi->season->part) && isset($bangumi->season->name))
             {
                 $list = Video::where('bangumi_id', $id)->select('id', 'part', 'name', 'poster', 'url')->get()->toArray();
@@ -74,6 +74,7 @@ class BangumiController extends Controller
                         'data' => $length > 0 ? array_slice($list, $begin, $length) : array_slice($list, $begin)
                     ]);
                 }
+                $bangumi->repeat = isset($bangumi->season->re) ? (boolean)$bangumi->season->re : false;
                 $bangumi->season = true;
             }
             else
