@@ -46,6 +46,9 @@
       <el-menu-item-group title="标签">
         <el-menu-item index="/bangumi/tag">标签列表</el-menu-item>
       </el-menu-item-group>
+      <el-menu-item-group title="合集">
+        <el-menu-item index="/bangumi/collection">合集列表</el-menu-item>
+      </el-menu-item-group>
       <el-menu-item-group title="视频">
         <el-menu-item index="/bangumi/video">视频列表</el-menu-item>
       </el-menu-item-group>

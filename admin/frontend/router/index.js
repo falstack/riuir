@@ -33,6 +33,11 @@ export default new Router({
       component: require('view/bangumi/tag').default
     },
     {
+      path: '/bangumi/collection',
+      name: '番剧合集',
+      component: require('view/bangumi/collection').default
+    },
+    {
       path: '/bangumi/video',
       name: '番剧视频',
       component: require('view/bangumi/video').default
