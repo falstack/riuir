@@ -4777,7 +4777,7 @@ var defaultCreateForm = {
         this.$message.warning('集数不符合规范');
         return;
       }
-      var bangumiEnglishName = this.createForm.bangumiEnglishName;
+      var bangumiEnglishName = this.createForm.bangumiEnglishName.toLowerCase();
       if (bangumiEnglishName === '') {
         this.$message.warning('未填写番剧英文名');
         return;
