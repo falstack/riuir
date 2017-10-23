@@ -171,7 +171,7 @@
       computedGray () {
         setTimeout(() => {
           this.imageGrayLevel = this.$imageGrayLevel(this.$refs.another, 100)
-        }, 7000)
+        }, 7500)
       }
     },
     beforeDestroy () {

@@ -60,9 +60,12 @@
       }
     }
 
+    $video-item-width: 255px;
+    $video-item-margin: 15px;
+    $video-item-height: 70px;
     #videos {
       li {
-        margin: 0 14px 15px 0;
+        margin: 0 $video-item-margin 15px 0;
       }
 
       a {
@@ -71,8 +74,8 @@
       }
 
       figure {
-        width: 200px;
-        height: 60px;
+        width: $video-item-width - $video-item-margin;
+        height: $video-item-height;
         background-color: $color-gray-normal;
         cursor: pointer;
         border-radius: 3px;
@@ -83,14 +86,14 @@
         }
 
         img {
-          width: 96px;
+          width: 110px;
           height: 100%;
           cursor: pointer;
           margin-right: 12px;
         }
 
         figcaption {
-          padding-left: 108px;
+          padding-left: 122px;
           padding-right: 12px;
 
           p {
