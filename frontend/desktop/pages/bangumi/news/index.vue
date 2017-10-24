@@ -21,16 +21,16 @@
       }
 
       .bangumi {
-        width: 180px;
-        margin: 0 26px 26px 0;
+        width: 170px;
+        margin: 0 10px 10px 0;
 
         figure {
           position: relative;
 
           >a {
-            margin-right: 12px;
-            width: 72px;
-            height: 72px;
+            margin-right: 8px;
+            width: 65px;
+            height: 65px;
             display: block;
             float: left;
             position: relative;
@@ -43,7 +43,7 @@
           }
 
           figcaption {
-            padding: 5px 0 5px 84px;
+            padding: 5px 0 5px 73px;
             z-index: 0;
             font-size: 12px;
             display: flex;
