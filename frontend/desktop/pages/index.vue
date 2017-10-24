@@ -99,11 +99,9 @@
          ref="another"
          @load="computedGray"
          alt="another">
-    <div class="container">
-      <div class="index-panel">
-        <div class="slogan bg" :class="{ 'invert' : imageGrayLevel > 165 }"></div>
-        <v-search :placeholder="'搜索二次元的一切'" :auto="true" :suggess="true"></v-search>
-      </div>
+    <div class="index-panel">
+      <div class="slogan bg" :class="{ 'invert' : imageGrayLevel > 165 }"></div>
+      <v-search :placeholder="'搜索二次元的一切'" :auto="true" :suggess="true"></v-search>
     </div>
   </div>
 </template>

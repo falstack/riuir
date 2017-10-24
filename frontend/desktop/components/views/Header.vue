@@ -20,7 +20,10 @@
 
       .header-left {
         height: $header-height;
-        float: left;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
       }
 
       .header-right {
@@ -331,7 +334,7 @@
 <template>
   <header id="header" :class="[theme, imageGrayLevel > 165 ? 'white' : 'black', scrollFlag ? 'scroll-show' : 'scroll-hide']">
     <div class="text">
-      <nav class="header-left">
+      <nav class="container header-left">
         <nuxt-link class="nav-link" to="/">主站</nuxt-link>
         <nuxt-link class="nav-link" to="/bangumi/news">番剧</nuxt-link>
         <nuxt-link class="nav-link" to="/bangumi/tags">分类</nuxt-link>
