@@ -30,6 +30,15 @@ Route::group(['middleware' => ['auth']], function ()
         Route::post('/edit', 'BangumiController@edit');
 
         Route::post('/delete', 'BangumiController@delete');
+
+        Route::group(['prefix' => 'collection'], function ()
+        {
+            Route::get('/list', 'BangumiCollectionController@list');
+
+            Route::post('/create', 'BangumiCollectionController@create');
+
+            Route::post('/edit', 'BangumiCollectionController@edit');
+        });
     });
 
     Route::group(['prefix' => 'video'], function ()

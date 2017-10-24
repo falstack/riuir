@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bangumi;
+use App\Models\BangumiCollection;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class BangumiController extends Controller
             ]),
             'season' => 'null',
             'count_score' => 0,
+            'collection_id' => 0,
             'deleted_at' => Carbon::now()
         ]);
     }
@@ -64,7 +66,8 @@ class BangumiController extends Controller
             'season' => $request->get('season') ? $request->get('season') : 'null',
             'alias' => json_encode([
                 'search' => $request->get('alias')
-            ])
+            ]),
+            'collection_id' => $request->get('collection_id')
         ];
         if ($request->get('update')) {
             $arr['published_at'] = time();
@@ -99,7 +102,8 @@ class BangumiController extends Controller
 
         return [
             'bangumis' => $bangumis,
-            'tags' => Tag::where('model', 0)->select('id', 'name')->get()
+            'tags' => Tag::where('model', 0)->select('id', 'name')->get(),
+            'collections' => BangumiCollection::select('id', 'name', 'title')->get()
         ];
     }
 }

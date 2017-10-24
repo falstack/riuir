@@ -126,16 +126,32 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-form-item label="标签" :label-width="'60px'">
-          <el-select v-model="editForm.tags" style="width:100%" multiple placeholder="请选择">
-            <el-option
-              v-for="item in tags"
-              :key="item.id"
-              :label="item.name"
-              :value="item.name">
-            </el-option>
-          </el-select>
-        </el-form-item>
+        <el-row>
+          <el-col :span="16">
+            <el-form-item label="标签" :label-width="'60px'">
+              <el-select v-model="editForm.tags" style="width:100%" multiple placeholder="请选择">
+                <el-option
+                  v-for="item in tags"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.name">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="合集" :label-width="'60px'">
+              <el-select v-model="editForm.collection_id" style="width:100%" placeholder="请选择">
+                <el-option
+                  v-for="item in collections"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
         <el-row>
           <el-col :span="21">
             <el-form-item label="头像" :label-width="'60px'">
@@ -319,6 +335,7 @@
     banner: '',
     season: '',
     summary: '',
+    collection_id: '',
     update: false
   }
   const defaultCreateForm = {
@@ -341,6 +358,7 @@
       return {
         list: [],
         tags: [],
+        collections: [],
         pagination: {
           totalPage: 0,
           pageSize: 20,
@@ -403,6 +421,7 @@
         this.$http.get('/bangumi/list').then((data) => {
           this.list = data.bangumis
           this.tags = data.tags
+          this.collections = data.collections
           this.pagination.totalPage =  Math.ceil(this.list.length / this.pagination.pageSize)
           this.loading = false
         })
@@ -426,13 +445,13 @@
         for (const tag of row.tags) {
           tags.push(tag.name)
         }
-
         Object.keys(row).forEach(key => {
           this.editForm[key] = row[key]
         })
         this.editForm.tags = tags
         this.editForm.season = row.season || defaultSeason
         this.editForm.released_video_id = row.released_video_id || 0
+        this.editForm.collection_id = row.collection_id || 0
         this.editForm.update = false
         this.showEditorModal = true;
       },
@@ -515,7 +534,7 @@
             return;
           }
         }
-        this.editForm.alias = this.editForm.alias.split(/,|，/).join(',')
+        this.editForm.alias = this.editForm.alias ? this.editForm.alias.split(/,|，/).join(',') : ''
         this.$http.post('/bangumi/edit', Object.assign(this.editForm, { tags, season })).then(() => {
           let newTags = [];
           for (const tag of this.tags) {

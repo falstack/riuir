@@ -14,7 +14,7 @@ class AddCollectionIdToBangumisTable extends Migration
     public function up()
     {
         Schema::table('bangumis', function (Blueprint $table) {
-            //
+            $table->integer('collection_id')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddCollectionIdToBangumisTable extends Migration
     public function down()
     {
         Schema::table('bangumis', function (Blueprint $table) {
-            //
+            $table->dropColumn('collection_id');
         });
     }
 }

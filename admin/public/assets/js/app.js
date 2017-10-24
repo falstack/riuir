@@ -1,555 +1,9 @@
 webpackJsonp([1],{
 
-/***/ 112:
+/***/ 113:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 128:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/collection.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var collection = ({
-  name: 'v-page-collection',
-  computed: {
-    filter: function filter() {
-      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
-      return this.list.slice(begin, begin + this.pagination.pageSize);
-    }
-  },
-  data: function data() {
-    return {
-      list: [],
-      pagination: {
-        totalPage: 0,
-        pageSize: 20,
-        curPage: 1
-      },
-      models: [{
-        id: '0',
-        name: '番剧'
-      }],
-      showEditorModal: false,
-      showCreateModal: false,
-      editForm: {
-        index: '',
-        name: '',
-        id: '',
-        model: ''
-      },
-      createForm: {
-        name: '',
-        model: ''
-      },
-      loading: true
-    };
-  },
-  created: function created() {
-    this.getTags();
-  },
-
-  methods: {
-    getTags: function getTags() {
-      var _this = this;
-
-      this.$http.get('/bangumi/tags').then(function (data) {
-        _this.list = data;
-        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
-        _this.loading = false;
-      });
-    },
-    handleSizeChange: function handleSizeChange(val) {
-      this.pagination.pageSize = val;
-    },
-    handleCurrentChange: function handleCurrentChange(val) {
-      this.pagination.curPage = val;
-    },
-    modelFormat: function modelFormat(key) {
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.models[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var model = _step.value;
-
-          if (model.name === key) {
-            return model.id;
-          }
-          if (model.id === key) {
-            return model.name;
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-    },
-    handleEditOpen: function handleEditOpen(index, row) {
-      this.editForm = {
-        index: index,
-        id: row.id,
-        name: row.name,
-        model: row.model
-      };
-      this.showEditorModal = true;
-    },
-    handleEditDone: function handleEditDone() {
-      var _this2 = this;
-
-      this.$http.post('/tag/edit', {
-        id: this.editForm.id,
-        name: this.editForm.name,
-        model: this.editForm.model
-      }).then(function () {
-        var index = _this2.editForm.index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize;
-        _this2.list[index] = _this2.editForm;
-        _this2.showEditorModal = false;
-        _this2.$message.success('操作成功');
-      }, function (err) {
-        _this2.$message.error('操作失败');
-        console.log(err);
-      });
-    },
-    handleCreateDone: function handleCreateDone() {
-      var _this3 = this;
-
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = this.list[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var tag = _step2.value;
-
-          if (tag.name === this.createForm.name) {
-            this.$message({
-              message: '标签已存在',
-              type: 'warning'
-            });
-            return;
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      this.$http.post('/tag/create', {
-        name: this.createForm.name,
-        model: this.modelFormat(this.createForm.model)
-      }).then(function (data) {
-        _this3.list.push({
-          id: data,
-          name: _this3.createForm.name,
-          model: _this3.modelFormat(_this3.createForm.model)
-        });
-        _this3.showCreateModal = false;
-        _this3.$message.success('操作成功');
-        _this3.createForm = {
-          name: '',
-          model: ''
-        };
-      }, function (err) {
-        _this3.$message.error('操作失败');
-        console.log(err);
-      });
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-5e613694","hasScoped":false}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/collection.vue
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c(
-        "header",
-        [
-          _c(
-            "el-button",
-            {
-              attrs: { type: "primary", icon: "plus", size: "large" },
-              on: {
-                click: function($event) {
-                  _vm.showCreateModal = true
-                }
-              }
-            },
-            [_vm._v("创建标签")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-table",
-        {
-          directives: [
-            {
-              name: "loading",
-              rawName: "v-loading",
-              value: _vm.loading,
-              expression: "loading"
-            }
-          ],
-          staticClass: "main-view",
-          attrs: { data: _vm.filter, border: "", "highlight-current-row": "" }
-        },
-        [
-          _c("el-table-column", {
-            attrs: { prop: "id", sortable: "", label: "索引" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "name", label: "名称" } }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { label: "类型" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(scope) {
-                  return [
-                    _vm._v(
-                      "\n        " +
-                        _vm._s(_vm.modelFormat(scope.row.model)) +
-                        "\n      "
-                    )
-                  ]
-                }
-              }
-            ])
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { label: "操作" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(scope) {
-                  return [
-                    _c(
-                      "el-button",
-                      {
-                        attrs: { type: "primary", size: "small", icon: "edit" },
-                        on: {
-                          click: function($event) {
-                            _vm.handleEditOpen(scope.$index, scope.row)
-                          }
-                        }
-                      },
-                      [_vm._v("编辑")]
-                    )
-                  ]
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-modal",
-        {
-          staticClass: "tag-editor-modal",
-          attrs: { "header-text": "标签编辑" },
-          on: { submit: _vm.handleEditDone },
-          model: {
-            value: _vm.showEditorModal,
-            callback: function($$v) {
-              _vm.showEditorModal = $$v
-            },
-            expression: "showEditorModal"
-          }
-        },
-        [
-          _c(
-            "el-form",
-            { attrs: { model: _vm.editForm } },
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "名称", "label-width": "60px" } },
-                [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.editForm.name,
-                      callback: function($$v) {
-                        _vm.editForm.name =
-                          typeof $$v === "string" ? $$v.trim() : $$v
-                      },
-                      expression: "editForm.name"
-                    }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-modal",
-        {
-          staticClass: "tag-creator-modal",
-          attrs: { "header-text": "创建标签" },
-          on: { submit: _vm.handleCreateDone },
-          model: {
-            value: _vm.showCreateModal,
-            callback: function($$v) {
-              _vm.showCreateModal = $$v
-            },
-            expression: "showCreateModal"
-          }
-        },
-        [
-          _c(
-            "el-form",
-            { attrs: { model: _vm.createForm } },
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "类型", "label-width": "60px" } },
-                [
-                  _c(
-                    "el-select",
-                    {
-                      attrs: { placeholder: "请选择" },
-                      model: {
-                        value: _vm.createForm.model,
-                        callback: function($$v) {
-                          _vm.createForm.model = $$v
-                        },
-                        expression: "createForm.model"
-                      }
-                    },
-                    _vm._l(_vm.models, function(model) {
-                      return _c("el-option", {
-                        key: model.id,
-                        attrs: { value: model.name }
-                      })
-                    })
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "名称", "label-width": "60px" } },
-                [
-                  _c("el-input", {
-                    attrs: { "auto-complete": "off" },
-                    model: {
-                      value: _vm.createForm.name,
-                      callback: function($$v) {
-                        _vm.createForm.name =
-                          typeof $$v === "string" ? $$v.trim() : $$v
-                      },
-                      expression: "createForm.name"
-                    }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "footer",
-        [
-          _c("el-pagination", {
-            attrs: {
-              layout: "total, sizes, prev, pager, next, jumper",
-              "current-page": _vm.pagination.curPage,
-              "page-sizes": [20, 50, 100],
-              "page-size": _vm.pagination.pageSize,
-              pageCount: _vm.pagination.totalPage,
-              total: _vm.list.length
-            },
-            on: {
-              "size-change": _vm.handleSizeChange,
-              "current-change": _vm.handleCurrentChange
-            }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var bangumi_collection = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-5e613694", esExports)
-  }
-}
-// CONCATENATED MODULE: ./frontend/views/bangumi/collection.vue
-var disposed = false
-var normalizeComponent = __webpack_require__(4)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  collection,
-  bangumi_collection,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "frontend/views/bangumi/collection.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] collection.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5e613694", Component.options)
-  } else {
-    hotAPI.reload("data-v-5e613694", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ var views_bangumi_collection = __webpack_exports__["default"] = (Component.exports);
-
 
 /***/ }),
 
@@ -792,7 +246,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(38)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -977,7 +431,7 @@ function Header_injectStyle (ssrContext) {
   if (Header_disposed) return
   __webpack_require__(39)
 }
-var Header_normalizeComponent = __webpack_require__(4)
+var Header_normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -1146,7 +600,7 @@ function app_injectStyle (ssrContext) {
   if (app_disposed) return
   __webpack_require__(36)
 }
-var app_normalizeComponent = __webpack_require__(4)
+var app_normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -1223,15 +677,15 @@ vue_common_default.a.use(vue_router_esm["default"]);
   }, {
     path: '/bangumi/collection',
     name: '番剧合集',
-    component: __webpack_require__(128).default
+    component: __webpack_require__(48).default
   }, {
     path: '/bangumi/video',
     name: '番剧视频',
-    component: __webpack_require__(48).default
+    component: __webpack_require__(49).default
   }, {
     path: '/admin/user',
     name: '管理员',
-    component: __webpack_require__(49).default
+    component: __webpack_require__(50).default
   }]
 }));
 // EXTERNAL MODULE: ./node_modules/_vuex@2.4.1@vuex/dist/vuex.esm.js
@@ -1272,7 +726,7 @@ vue_common_default.a.use(vuex_esm["default"]);
   }
 }));
 // EXTERNAL MODULE: ./node_modules/_axios@0.16.2@axios/index.js
-var _axios_0_16_2_axios = __webpack_require__(50);
+var _axios_0_16_2_axios = __webpack_require__(51);
 var _axios_0_16_2_axios_default = /*#__PURE__*/__webpack_require__.n(_axios_0_16_2_axios);
 
 // CONCATENATED MODULE: ./frontend/utils/api.js
@@ -1303,7 +757,7 @@ http.interceptors.response.use(function (res) {
 
 /* harmony default export */ var api = (http);
 // EXTERNAL MODULE: ./node_modules/_deep-assign@2.0.0@deep-assign/index.js
-var _deep_assign_2_0_0_deep_assign = __webpack_require__(69);
+var _deep_assign_2_0_0_deep_assign = __webpack_require__(70);
 var _deep_assign_2_0_0_deep_assign_default = /*#__PURE__*/__webpack_require__.n(_deep_assign_2_0_0_deep_assign);
 
 // CONCATENATED MODULE: ./frontend/utils/helpers.js
@@ -1356,7 +810,7 @@ Helpers.install = function (Vue, options) {
 
 /* harmony default export */ var helpers = (Helpers);
 // EXTERNAL MODULE: ./node_modules/_element-ui@1.4.6@element-ui/lib/element-ui.common.js
-var element_ui_common = __webpack_require__(71);
+var element_ui_common = __webpack_require__(72);
 var element_ui_common_default = /*#__PURE__*/__webpack_require__.n(element_ui_common);
 
 // CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/components/modal.vue
@@ -1630,9 +1084,9 @@ if (false) {
 var modal_disposed = false
 function modal_injectStyle (ssrContext) {
   if (modal_disposed) return
-  __webpack_require__(112)
+  __webpack_require__(113)
 }
-var modal_normalizeComponent = __webpack_require__(4)
+var modal_normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -1673,7 +1127,7 @@ if (false) {(function () {
 /* harmony default export */ var frontend_components_modal = (modal_Component.exports);
 
 // EXTERNAL MODULE: ./node_modules/_vee-validate@2.0.0-rc.18@vee-validate/dist/vee-validate.esm.js
-var vee_validate_esm = __webpack_require__(113);
+var vee_validate_esm = __webpack_require__(114);
 
 // CONCATENATED MODULE: ./frontend/utils/validate.js
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -1719,7 +1173,7 @@ vee_validate_esm["a" /* default */].Validator.extend('len', function (value, len
   return result === parseInt(len[0], 10);
 });
 // EXTERNAL MODULE: ./node_modules/_lodash@4.17.4@lodash/lodash.js
-var lodash = __webpack_require__(114);
+var lodash = __webpack_require__(115);
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 // CONCATENATED MODULE: ./frontend/entry.js
@@ -1838,7 +1292,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(42)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -2388,7 +1842,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(44)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -2522,7 +1976,7 @@ if (false) {
 }
 // CONCATENATED MODULE: ./frontend/views/image/banner.vue
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -2882,6 +2336,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var defaultEditForm = {
   name: '',
@@ -2893,6 +2363,7 @@ var defaultEditForm = {
   banner: '',
   season: '',
   summary: '',
+  collection_id: '',
   update: false
 };
 var defaultCreateForm = {
@@ -2915,6 +2386,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
     return {
       list: [],
       tags: [],
+      collections: [],
       pagination: {
         totalPage: 0,
         pageSize: 20,
@@ -2971,6 +2443,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       this.$http.get('/bangumi/list').then(function (data) {
         _this.list = data.bangumis;
         _this.tags = data.tags;
+        _this.collections = data.collections;
         _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
         _this.loading = false;
       });
@@ -3026,6 +2499,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
       this.editForm.tags = tags;
       this.editForm.season = row.season || defaultSeason;
       this.editForm.released_video_id = row.released_video_id || 0;
+      this.editForm.collection_id = row.collection_id || 0;
       this.editForm.update = false;
       this.showEditorModal = true;
     },
@@ -3164,7 +2638,7 @@ var defaultSeason = '{"name": ["xx", "xx"], "part": [0, "xx", -1], "time": ["xxx
           return;
         }
       }
-      this.editForm.alias = this.editForm.alias.split(/,|，/).join(',');
+      this.editForm.alias = this.editForm.alias ? this.editForm.alias.split(/,|，/).join(',') : '';
       this.$http.post('/bangumi/edit', Object.assign(this.editForm, { tags: tags, season: season })).then(function () {
         var newTags = [];
         var _iteratorNormalCompletion4 = true;
@@ -3710,28 +3184,76 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "el-form-item",
-                { attrs: { label: "标签", "label-width": "60px" } },
+                "el-row",
                 [
                   _c(
-                    "el-select",
-                    {
-                      staticStyle: { width: "100%" },
-                      attrs: { multiple: "", placeholder: "请选择" },
-                      model: {
-                        value: _vm.editForm.tags,
-                        callback: function($$v) {
-                          _vm.editForm.tags = $$v
-                        },
-                        expression: "editForm.tags"
-                      }
-                    },
-                    _vm._l(_vm.tags, function(item) {
-                      return _c("el-option", {
-                        key: item.id,
-                        attrs: { label: item.name, value: item.name }
-                      })
-                    })
+                    "el-col",
+                    { attrs: { span: 16 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "标签", "label-width": "60px" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              staticStyle: { width: "100%" },
+                              attrs: { multiple: "", placeholder: "请选择" },
+                              model: {
+                                value: _vm.editForm.tags,
+                                callback: function($$v) {
+                                  _vm.editForm.tags = $$v
+                                },
+                                expression: "editForm.tags"
+                              }
+                            },
+                            _vm._l(_vm.tags, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: { label: item.name, value: item.name }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 8 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "合集", "label-width": "60px" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              staticStyle: { width: "100%" },
+                              attrs: { placeholder: "请选择" },
+                              model: {
+                                value: _vm.editForm.collection_id,
+                                callback: function($$v) {
+                                  _vm.editForm.collection_id = $$v
+                                },
+                                expression: "editForm.collection_id"
+                              }
+                            },
+                            _vm._l(_vm.collections, function(item) {
+                              return _c("el-option", {
+                                key: item.id,
+                                attrs: { label: item.name, value: item.id }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -4283,7 +3805,7 @@ if (false) {
 }
 // CONCATENATED MODULE: ./frontend/views/bangumi/list.vue
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -4829,7 +4351,7 @@ if (false) {
 }
 // CONCATENATED MODULE: ./frontend/views/bangumi/tag.vue
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -4873,6 +4395,521 @@ if (false) {(function () {
 /***/ }),
 
 /***/ 48:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// CONCATENATED MODULE: ./node_modules/_babel-loader@7.1.2@babel-loader/lib!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=script&index=0!./frontend/views/bangumi/collection.vue
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var collection = ({
+  name: 'v-page-collection',
+  computed: {
+    filter: function filter() {
+      var begin = (this.pagination.curPage - 1) * this.pagination.pageSize;
+      return this.list.slice(begin, begin + this.pagination.pageSize);
+    }
+  },
+  data: function data() {
+    return {
+      list: [],
+      pagination: {
+        totalPage: 0,
+        pageSize: 20,
+        curPage: 1
+      },
+      showEditorModal: false,
+      showCreateModal: false,
+      editForm: {
+        index: '',
+        name: '',
+        id: '',
+        title: ''
+      },
+      createForm: {
+        name: '',
+        title: ''
+      },
+      loading: true
+    };
+  },
+  created: function created() {
+    this.getData();
+  },
+
+  methods: {
+    getData: function getData() {
+      var _this = this;
+
+      this.$http.get('/bangumi/collection/list').then(function (data) {
+        _this.list = data;
+        _this.pagination.totalPage = Math.ceil(_this.list.length / _this.pagination.pageSize);
+        _this.loading = false;
+      });
+    },
+    handleSizeChange: function handleSizeChange(val) {
+      this.pagination.pageSize = val;
+    },
+    handleCurrentChange: function handleCurrentChange(val) {
+      this.pagination.curPage = val;
+    },
+    handleEditOpen: function handleEditOpen(index, row) {
+      this.editForm = {
+        index: index,
+        id: row.id,
+        name: row.name,
+        title: row.title
+      };
+      this.showEditorModal = true;
+    },
+    handleEditDone: function handleEditDone() {
+      var _this2 = this;
+
+      if (!this.editForm.title || !this.editForm.name) {
+        this.$message({
+          message: '不能有空值',
+          type: 'warning'
+        });
+        return;
+      }
+      this.$http.post('/bangumi/collection/edit', {
+        id: this.editForm.id,
+        name: this.editForm.name,
+        title: this.editForm.title
+      }).then(function () {
+        var index = _this2.editForm.index + (_this2.pagination.curPage - 1) * _this2.pagination.pageSize;
+        _this2.list[index] = _this2.editForm;
+        _this2.showEditorModal = false;
+        _this2.$message.success('操作成功');
+      }, function (err) {
+        _this2.$message.error('操作失败');
+        console.log(err);
+      });
+    },
+    handleCreateDone: function handleCreateDone() {
+      var _this3 = this;
+
+      if (!this.createForm.title || !this.createForm.name) {
+        this.$message({
+          message: '不能有空值',
+          type: 'warning'
+        });
+        return;
+      }
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var item = _step.value;
+
+          if (item.name === this.createForm.name || item.name === this.createForm.title || item.title === this.createForm.title || item.title === this.createForm.name) {
+            this.$message({
+              message: '合集已存在',
+              type: 'warning'
+            });
+            return;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      this.$http.post('/bangumi/collection/create', {
+        name: this.createForm.name,
+        title: this.createForm.title
+      }).then(function (data) {
+        _this3.list.push({
+          id: data,
+          name: _this3.createForm.name,
+          title: _this3.createForm.title
+        });
+        _this3.showCreateModal = false;
+        _this3.$message.success('操作成功');
+        _this3.createForm = {
+          name: '',
+          title: ''
+        };
+      }, function (err) {
+        _this3.$message.error('操作失败');
+        console.log(err);
+      });
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/_vue-loader@13.0.5@vue-loader/lib/template-compiler?{"id":"data-v-5e613694","hasScoped":false}!./node_modules/_vue-loader@13.0.5@vue-loader/lib/selector.js?type=template&index=0!./frontend/views/bangumi/collection.vue
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "header",
+        [
+          _c(
+            "el-button",
+            {
+              attrs: { type: "primary", icon: "plus", size: "large" },
+              on: {
+                click: function($event) {
+                  _vm.showCreateModal = true
+                }
+              }
+            },
+            [_vm._v("创建合集")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          directives: [
+            {
+              name: "loading",
+              rawName: "v-loading",
+              value: _vm.loading,
+              expression: "loading"
+            }
+          ],
+          staticClass: "main-view",
+          attrs: { data: _vm.filter, border: "", "highlight-current-row": "" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "id", sortable: "", label: "索引" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", { attrs: { prop: "name", label: "名称" } }),
+          _vm._v(" "),
+          _c("el-table-column", { attrs: { prop: "title", label: "标题" } }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { label: "操作" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "primary", size: "small", icon: "edit" },
+                        on: {
+                          click: function($event) {
+                            _vm.handleEditOpen(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v("编辑")]
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-modal",
+        {
+          staticClass: "tag-editor-modal",
+          attrs: { "header-text": "标签编辑" },
+          on: { submit: _vm.handleEditDone },
+          model: {
+            value: _vm.showEditorModal,
+            callback: function($$v) {
+              _vm.showEditorModal = $$v
+            },
+            expression: "showEditorModal"
+          }
+        },
+        [
+          _c(
+            "el-form",
+            { attrs: { model: _vm.editForm } },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { label: "名称", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: "番剧名称的前缀", "auto-complete": "off" },
+                    model: {
+                      value: _vm.editForm.name,
+                      callback: function($$v) {
+                        _vm.editForm.name =
+                          typeof $$v === "string" ? $$v.trim() : $$v
+                      },
+                      expression: "editForm.name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "标题", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: "番剧页面的标题", "auto-complete": "off" },
+                    model: {
+                      value: _vm.editForm.title,
+                      callback: function($$v) {
+                        _vm.editForm.title =
+                          typeof $$v === "string" ? $$v.trim() : $$v
+                      },
+                      expression: "editForm.title"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-modal",
+        {
+          staticClass: "tag-creator-modal",
+          attrs: { "header-text": "创建合集" },
+          on: { submit: _vm.handleCreateDone },
+          model: {
+            value: _vm.showCreateModal,
+            callback: function($$v) {
+              _vm.showCreateModal = $$v
+            },
+            expression: "showCreateModal"
+          }
+        },
+        [
+          _c(
+            "el-form",
+            { attrs: { model: _vm.createForm } },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { label: "名称", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: "番剧名称的前缀", "auto-complete": "off" },
+                    model: {
+                      value: _vm.createForm.name,
+                      callback: function($$v) {
+                        _vm.createForm.name =
+                          typeof $$v === "string" ? $$v.trim() : $$v
+                      },
+                      expression: "createForm.name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "标题", "label-width": "60px" } },
+                [
+                  _c("el-input", {
+                    attrs: { placeholder: "番剧页面的标题", "auto-complete": "off" },
+                    model: {
+                      value: _vm.createForm.title,
+                      callback: function($$v) {
+                        _vm.createForm.title =
+                          typeof $$v === "string" ? $$v.trim() : $$v
+                      },
+                      expression: "createForm.title"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "footer",
+        [
+          _c("el-pagination", {
+            attrs: {
+              layout: "total, sizes, prev, pager, next, jumper",
+              "current-page": _vm.pagination.curPage,
+              "page-sizes": [20, 50, 100],
+              "page-size": _vm.pagination.pageSize,
+              pageCount: _vm.pagination.totalPage,
+              total: _vm.list.length
+            },
+            on: {
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ var bangumi_collection = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-5e613694", esExports)
+  }
+}
+// CONCATENATED MODULE: ./frontend/views/bangumi/collection.vue
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  collection,
+  bangumi_collection,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "frontend/views/bangumi/collection.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] collection.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5e613694", Component.options)
+  } else {
+    hotAPI.reload("data-v-5e613694", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ var views_bangumi_collection = __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 49:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6443,7 +6480,7 @@ if (false) {
 }
 // CONCATENATED MODULE: ./frontend/views/bangumi/video.vue
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
@@ -6486,7 +6523,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 49:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6675,7 +6712,7 @@ if (false) {
 }
 // CONCATENATED MODULE: ./frontend/views/admin/user.vue
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(3)
 /* script */
 
 /* template */
